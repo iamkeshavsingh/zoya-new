@@ -23,13 +23,43 @@
     <!-- First Section -->
 
     <section class="flex items-center max-md:flex-col">
-      <div class="relative h-auto md:h-[777px] inline-block w-full md:w-[55%]">
+      <!-- <div class="relative h-auto md:h-[777px] inline-block w-full md:w-[55%]">
         <img src="/assets/model1.png" alt="Model Image" class="h-full w-full" />
         <div
           class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         >
           <img src="/assets/Play-Btn.svg" alt="Play Button" />
         </div>
+      </div> -->
+
+      <div class="relative h-auto md:h-[777px] w-full md:w-[55%]">
+        <!-- Thumbnail & Play Button Layer -->
+        <div
+          id="thumbnailContainer"
+          class="relative h-full w-full cursor-pointer"
+        >
+          <img
+            src="/assets/model1.png"
+            alt="Model Thumbnail"
+            class="h-full w-full object-cover"
+          />
+          <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          >
+            <img src="/assets/Play-Btn.svg" alt="Play Button" />
+          </div>
+        </div>
+
+        <!-- Video Player -->
+        <video
+          id="videoPlayer"
+          class="absolute top-0 left-0 w-full h-full hidden object-cover"
+          autoplay
+          loop
+        >
+          <source src="/assets/sample-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
 
       <div class="md:pl-[68px] w-full md:w-[45%]">
@@ -167,7 +197,7 @@
 
     <!-- Third Section -->
     <section class="flex mt-[70px] md:mt-[97px] relative max-md:flex-col">
-      <div
+      <!-- <div
         class="relative h-[400px] md:h-[966px] inline-block w-full md:w-[50%] xl:w-[55%]"
       >
         <img src="/assets/model3.png" alt="Model Image" class="w-full h-full" />
@@ -176,7 +206,37 @@
         >
           <img src="/assets/Play-Btn.svg" alt="Play Button" />
         </div>
+      </div> -->
+
+      <div
+        class="relative h-[400px] md:h-[966px] inline-block w-full md:w-[50%] xl:w-[55%]"
+      >
+        <!-- Thumbnail and Play Button -->
+        <div id="thumbContainer2" class="relative w-full h-full cursor-pointer">
+          <img
+            src="/assets/model3.png"
+            alt="Model Thumbnail"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          >
+            <img src="/assets/Play-Btn.svg" alt="Play Button" />
+          </div>
+        </div>
+
+        <!-- Video Player -->
+        <video
+          id="videoPlayer2"
+          class="absolute top-0 left-0 w-full h-full hidden object-cover"
+          autoplay
+          loop
+        >
+          <source src="/assets/sample-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
+
       <div
         class="w-full md:w-[50%] xl:w-[45%] max-md:mt-[285px] md:pl-[90px] xl:pl-[105px] md:pr-[86px]"
       >
@@ -385,7 +445,7 @@
     <section
       class="flex items-center mt-[70px] md:mt-[146px] relative max-md:flex-col"
     >
-      <div
+      <!-- <div
         class="relative h-[400px] md:h-[804px] inline-block w-full md:w-[55%]"
       >
         <img src="/assets/model5.png" alt="Model Image" class="w-full h-full" />
@@ -394,6 +454,35 @@
         >
           <img src="/assets/Play-Btn.svg" alt="Play Button" />
         </div>
+      </div> -->
+
+      <div
+        class="relative h-[400px] md:h-[804px] inline-block w-full md:w-[55%]"
+      >
+        <!-- Thumbnail and Play Button -->
+        <div id="thumbContainer3" class="relative w-full h-full cursor-pointer">
+          <img
+            src="/assets/model5.png"
+            alt="Model Thumbnail"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          >
+            <img src="/assets/Play-Btn.svg" alt="Play Button" />
+          </div>
+        </div>
+
+        <!-- Video Player -->
+        <video
+          id="videoPlayer3"
+          class="absolute top-0 left-0 w-full h-full hidden object-cover"
+          autoplay
+          loop
+        >
+          <source src="/assets/sample-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
       <div
         class="w-full md:w-[45%] md:pl-[105px] md:pr-[86px] max-md:mt-[48px]"
@@ -478,8 +567,31 @@
     <section
       class="flex items-center justify-center md:gap-[82px] my-[80px] md:my-[122px] max-md:flex-col max-md:px-[30px]"
     >
-      <div>
-        <img src="/assets/girl.png" alt="" />
+      <div class="w-[377px] h-[465px] relative">
+        <!-- <img src="/assets/girl.png" alt="" /> -->
+        <div id="thumbContainer4" class="relative w-full h-full cursor-pointer">
+          <img
+            src="/assets/girl.png"
+            alt="Model Thumbnail"
+            class="w-full h-full object-cover"
+          />
+          <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          >
+            <img src="/assets/Play-Btn.svg" alt="Play Button" />
+          </div>
+        </div>
+
+        <!-- Video Player -->
+        <video
+          id="videoPlayer4"
+          class="absolute top-0 left-0 w-full h-full hidden object-cover"
+          autoplay
+          loop
+        >
+          <source src="/assets/sample-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
       <div>
         <h3
@@ -499,5 +611,46 @@
         </button>
       </div>
     </section>
+    <script>
+      const thumbnail = document.getElementById("thumbnailContainer");
+      const video = document.getElementById("videoPlayer");
+
+      thumbnail.addEventListener("click", () => {
+        thumbnail.style.display = "none";
+        video.classList.remove("hidden");
+        video.play();
+      });
+    </script>
+
+    <script>
+      const thumb2 = document.getElementById("thumbContainer2");
+      const video2 = document.getElementById("videoPlayer2");
+
+      thumb2.addEventListener("click", () => {
+        thumb2.style.display = "none";
+        video2.classList.remove("hidden");
+        video2.play();
+      });
+    </script>
+    <script>
+      const thumb3 = document.getElementById("thumbContainer3");
+      const video3 = document.getElementById("videoPlayer3");
+
+      thumb3.addEventListener("click", () => {
+        thumb3.style.display = "none";
+        video3.classList.remove("hidden");
+        video3.play();
+      });
+    </script>
+    <script>
+      const thumb4 = document.getElementById("thumbContainer4");
+      const video4 = document.getElementById("videoPlayer4");
+
+      thumb4.addEventListener("click", () => {
+        thumb4.style.display = "none";
+        video4.classList.remove("hidden");
+        video4.play();
+      });
+    </script>
   </body>
 </html>
