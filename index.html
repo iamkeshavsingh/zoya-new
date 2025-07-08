@@ -23,21 +23,10 @@
     <!-- First Section -->
 
     <section class="flex items-center max-md:flex-col">
-      <!-- <div class="relative h-auto md:h-[777px] inline-block w-full md:w-[55%]">
-        <img src="/assets/model1.png" alt="Model Image" class="h-full w-full" />
-        <div
-          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        >
-          <img src="/assets/Play-Btn.svg" alt="Play Button" />
-        </div>
-      </div> -->
-
+      <!-- FIRST VIDEO SECTION -->
       <div class="relative h-auto md:h-[777px] w-full md:w-[55%]">
         <!-- Thumbnail & Play Button Layer -->
-        <div
-          id="thumbnailContainer"
-          class="relative h-full w-full cursor-pointer"
-        >
+        <div id="thumbnailContainer1" class="relative h-full w-full">
           <img
             src="/assets/model1.png"
             alt="Model Thumbnail"
@@ -46,20 +35,50 @@
           <div
             class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           >
-            <img src="/assets/Play-Btn.svg" alt="Play Button" />
+            <img
+              id="playBtn1"
+              src="/assets/Play-Btn.svg"
+              alt="Play Button"
+              class="cursor-pointer"
+            />
           </div>
         </div>
 
-        <!-- Video Player -->
-        <video
-          id="videoPlayer"
-          class="absolute top-0 left-0 w-full h-full hidden object-cover"
-          autoplay
-          loop
-        >
-          <source src="/assets/sample-video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <!-- Video Player with Controls -->
+        <div class="relative w-full h-full group hidden" id="videoWrapper1">
+          <video id="video1" class="w-full h-full object-cover" muted loop>
+            <source src="/assets/sample-video.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Custom Controls -->
+          <div
+            class="absolute bottom-0 left-0 right-0 px-4 flex items-center justify-between gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 py-2 text-white text-sm"
+          >
+            <div class="flex items-center gap-2">
+              <!-- Mute/Unmute Button -->
+              <button id="muteBtn1">
+                <img id="muteIcon1" src="/assets/Unmute.svg" alt="Mute" />
+              </button>
+
+              <button id="playPauseBtn1">
+                <img id="pauseIcon1" src="/assets/pause.svg" alt="pause" />
+              </button>
+            </div>
+            <div class="flex items-center w-full gap-2 max-w-[235px]">
+              <span id="currentTime1" class="text-[12px]">00:00</span>
+              <input
+                id="progress1"
+                type="range"
+                class="w-full h-1 accent-white"
+                value="0"
+                min="0"
+                max="100"
+                step="0.1"
+              />
+              <span id="duration1" class="text-[12px]">00:00</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="md:pl-[68px] w-full md:w-[45%]">
@@ -197,44 +216,63 @@
 
     <!-- Third Section -->
     <section class="flex mt-[70px] md:mt-[97px] relative max-md:flex-col">
-      <!-- <div
-        class="relative h-[400px] md:h-[966px] inline-block w-full md:w-[50%] xl:w-[55%]"
-      >
-        <img src="/assets/model3.png" alt="Model Image" class="w-full h-full" />
-        <div
-          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        >
-          <img src="/assets/Play-Btn.svg" alt="Play Button" />
-        </div>
-      </div> -->
-
       <div
         class="relative h-[400px] md:h-[966px] inline-block w-full md:w-[50%] xl:w-[55%]"
       >
-        <!-- Thumbnail and Play Button -->
-        <div id="thumbContainer2" class="relative w-full h-full cursor-pointer">
+        <!-- Thumbnail & Play Button Layer -->
+        <div id="thumbnailContainer2" class="relative h-full w-full">
           <img
             src="/assets/model3.png"
             alt="Model Thumbnail"
-            class="w-full h-full object-cover"
+            class="h-full w-full object-cover"
           />
           <div
             class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           >
-            <img src="/assets/Play-Btn.svg" alt="Play Button" />
+            <img
+              id="playBtn2"
+              src="/assets/Play-Btn.svg"
+              alt="Play Button"
+              class="cursor-pointer"
+            />
           </div>
         </div>
 
-        <!-- Video Player -->
-        <video
-          id="videoPlayer2"
-          class="absolute top-0 left-0 w-full h-full hidden object-cover"
-          autoplay
-          loop
-        >
-          <source src="/assets/sample-video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <!-- Video Player with Controls -->
+        <div class="relative w-full h-full group hidden" id="videoWrapper2">
+          <video id="video2" class="w-full h-full object-cover" muted loop>
+            <source src="/assets/sample-video.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Custom Controls -->
+          <div
+            class="absolute bottom-0 left-0 right-0 px-4 flex items-center justify-between gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 py-2 text-white text-sm"
+          >
+            <div class="flex items-center gap-2">
+              <!-- Mute/Unmute Button -->
+              <button id="muteBtn2">
+                <img id="muteIcon2" src="/assets/Unmute.svg" alt="Mute" />
+              </button>
+
+              <button id="playPauseBtn2">
+                <img id="pauseIcon2" src="/assets/pause.svg" alt="pause" />
+              </button>
+            </div>
+            <div class="flex items-center w-full gap-2 max-w-[235px]">
+              <span id="currentTime2" class="text-[12px]">00:00</span>
+              <input
+                id="progress2"
+                type="range"
+                class="w-full h-1 accent-white"
+                value="0"
+                min="0"
+                max="100"
+                step="0.1"
+              />
+              <span id="duration2" class="text-[12px]">00:00</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div
@@ -445,44 +483,64 @@
     <section
       class="flex items-center mt-[70px] md:mt-[146px] relative max-md:flex-col"
     >
-      <!-- <div
-        class="relative h-[400px] md:h-[804px] inline-block w-full md:w-[55%]"
-      >
-        <img src="/assets/model5.png" alt="Model Image" class="w-full h-full" />
-        <div
-          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        >
-          <img src="/assets/Play-Btn.svg" alt="Play Button" />
-        </div>
-      </div> -->
-
       <div
         class="relative h-[400px] md:h-[804px] inline-block w-full md:w-[55%]"
       >
         <!-- Thumbnail and Play Button -->
-        <div id="thumbContainer3" class="relative w-full h-full cursor-pointer">
+        <!-- Thumbnail & Play Button Layer -->
+        <div id="thumbnailContainer3" class="relative h-full w-full">
           <img
             src="/assets/model5.png"
             alt="Model Thumbnail"
-            class="w-full h-full object-cover"
+            class="h-full w-full object-cover"
           />
           <div
             class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           >
-            <img src="/assets/Play-Btn.svg" alt="Play Button" />
+            <img
+              id="playBtn3"
+              src="/assets/Play-Btn.svg"
+              alt="Play Button"
+              class="cursor-pointer"
+            />
           </div>
         </div>
 
-        <!-- Video Player -->
-        <video
-          id="videoPlayer3"
-          class="absolute top-0 left-0 w-full h-full hidden object-cover"
-          autoplay
-          loop
-        >
-          <source src="/assets/sample-video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <!-- Video Player with Controls -->
+        <div class="relative w-full h-full group hidden" id="videoWrapper3">
+          <video id="video3" class="w-full h-full object-cover" muted loop>
+            <source src="/assets/sample-video.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Custom Controls -->
+          <div
+            class="absolute bottom-0 left-0 right-0 px-4 flex items-center justify-between gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 py-2 text-white text-sm"
+          >
+            <div class="flex items-center gap-2">
+              <!-- Mute/Unmute Button -->
+              <button id="muteBtn3">
+                <img id="muteIcon3" src="/assets/Unmute.svg" alt="Mute" />
+              </button>
+
+              <button id="playPauseBtn3">
+                <img id="pauseIcon3" src="/assets/pause.svg" alt="pause" />
+              </button>
+            </div>
+            <div class="flex items-center w-full gap-2 max-w-[235px]">
+              <span id="currentTime3" class="text-[12px]">00:00</span>
+              <input
+                id="progress3"
+                type="range"
+                class="w-full h-1 accent-white"
+                value="0"
+                min="0"
+                max="100"
+                step="0.1"
+              />
+              <span id="duration3" class="text-[12px]">00:00</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div
         class="w-full md:w-[45%] md:pl-[105px] md:pr-[86px] max-md:mt-[48px]"
@@ -569,29 +627,60 @@
     >
       <div class="w-[377px] h-[465px] relative">
         <!-- <img src="/assets/girl.png" alt="" /> -->
-        <div id="thumbContainer4" class="relative w-full h-full cursor-pointer">
+        <!-- Thumbnail & Play Button Layer -->
+        <div id="thumbnailContainer4" class="relative h-full w-full">
           <img
             src="/assets/girl.png"
             alt="Model Thumbnail"
-            class="w-full h-full object-cover"
+            class="h-full w-full object-cover"
           />
           <div
             class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           >
-            <img src="/assets/Play-Btn.svg" alt="Play Button" />
+            <img
+              id="playBtn4"
+              src="/assets/Play-Btn.svg"
+              alt="Play Button"
+              class="cursor-pointer"
+            />
           </div>
         </div>
 
-        <!-- Video Player -->
-        <video
-          id="videoPlayer4"
-          class="absolute top-0 left-0 w-full h-full hidden object-cover"
-          autoplay
-          loop
-        >
-          <source src="/assets/sample-video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <!-- Video Player with Controls -->
+        <div class="relative w-full h-full group hidden" id="videoWrapper4">
+          <video id="video4" class="w-full h-full object-cover" muted loop>
+            <source src="/assets/sample-video.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Custom Controls -->
+          <div
+            class="absolute bottom-0 left-0 right-0 px-4 flex items-center justify-between gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 py-2 text-white text-sm"
+          >
+            <div class="flex items-center gap-2">
+              <!-- Mute/Unmute Button -->
+              <button id="muteBtn4">
+                <img id="muteIcon4" src="/assets/Unmute.svg" alt="Mute" />
+              </button>
+
+              <button id="playPauseBtn4">
+                <img id="pauseIcon4" src="/assets/pause.svg" alt="pause" />
+              </button>
+            </div>
+            <div class="flex items-center w-full gap-2 max-w-[235px]">
+              <span id="currentTime4" class="text-[12px]">00:00</span>
+              <input
+                id="progress4"
+                type="range"
+                class="w-full h-1 accent-white"
+                value="0"
+                min="0"
+                max="100"
+                step="0.1"
+              />
+              <span id="duration4" class="text-[12px]">00:00</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div>
         <h3
@@ -612,45 +701,74 @@
       </div>
     </section>
     <script>
-      const thumbnail = document.getElementById("thumbnailContainer");
-      const video = document.getElementById("videoPlayer");
+      function formatTime(seconds) {
+        const m = Math.floor(seconds / 60)
+          .toString()
+          .padStart(2, "0");
+        const s = Math.floor(seconds % 60)
+          .toString()
+          .padStart(2, "0");
+        return `${m}:${s}`;
+      }
 
-      thumbnail.addEventListener("click", () => {
-        thumbnail.style.display = "none";
-        video.classList.remove("hidden");
-        video.play();
-      });
-    </script>
+      function setupVideoPlayer(index) {
+        const thumbContainer = document.getElementById(
+          `thumbnailContainer${index}`
+        );
+        const playBtn = document.getElementById(`playBtn${index}`);
+        const videoWrapper = document.getElementById(`videoWrapper${index}`);
+        const video = document.getElementById(`video${index}`);
+        const playPauseBtn = document.getElementById(`playPauseBtn${index}`);
+        const muteBtn = document.getElementById(`muteBtn${index}`);
+        const progress = document.getElementById(`progress${index}`);
+        const currentTime = document.getElementById(`currentTime${index}`);
+        const duration = document.getElementById(`duration${index}`);
+        const muteIcon = document.getElementById(`muteIcon${index}`);
+        const pauseIcon = document.getElementById(`pauseIcon${index}`);
 
-    <script>
-      const thumb2 = document.getElementById("thumbContainer2");
-      const video2 = document.getElementById("videoPlayer2");
+        playBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          thumbContainer.classList.add("hidden");
+          videoWrapper.classList.remove("hidden");
+          video.play();
+        });
 
-      thumb2.addEventListener("click", () => {
-        thumb2.style.display = "none";
-        video2.classList.remove("hidden");
-        video2.play();
-      });
-    </script>
-    <script>
-      const thumb3 = document.getElementById("thumbContainer3");
-      const video3 = document.getElementById("videoPlayer3");
+        video.addEventListener("loadedmetadata", () => {
+          duration.textContent = formatTime(video.duration);
+        });
 
-      thumb3.addEventListener("click", () => {
-        thumb3.style.display = "none";
-        video3.classList.remove("hidden");
-        video3.play();
-      });
-    </script>
-    <script>
-      const thumb4 = document.getElementById("thumbContainer4");
-      const video4 = document.getElementById("videoPlayer4");
+        playPauseBtn.addEventListener("click", () => {
+          if (video.paused) {
+            video.play();
+            pauseIcon.src = "/assets/pause.svg";
+          } else {
+            video.pause();
+            pauseIcon.src = "/assets/Play.svg";
+          }
+        });
 
-      thumb4.addEventListener("click", () => {
-        thumb4.style.display = "none";
-        video4.classList.remove("hidden");
-        video4.play();
-      });
+        muteBtn.addEventListener("click", () => {
+          video.muted = !video.muted;
+          muteIcon.src = video.muted
+            ? "/assets/Mute.svg"
+            : "/assets/Unmute.svg";
+        });
+
+        video.addEventListener("timeupdate", () => {
+          const percent = (video.currentTime / video.duration) * 100;
+          progress.value = percent;
+          currentTime.textContent = formatTime(video.currentTime);
+        });
+
+        progress.addEventListener("input", () => {
+          video.currentTime = (progress.value / 100) * video.duration;
+        });
+      }
+
+      setupVideoPlayer(1);
+      setupVideoPlayer(2);
+      setupVideoPlayer(3);
+      setupVideoPlayer(4);
     </script>
   </body>
 </html>
