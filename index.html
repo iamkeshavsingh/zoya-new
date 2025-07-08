@@ -25,29 +25,10 @@
     <section class="flex items-center max-md:flex-col">
       <!-- FIRST VIDEO SECTION -->
       <div class="relative h-auto md:h-[777px] w-full md:w-[55%]">
-        <!-- Thumbnail & Play Button Layer -->
-        <div id="thumbnailContainer1" class="relative h-full w-full">
-          <img
-            src="/assets/model1.png"
-            alt="Model Thumbnail"
-            class="h-full w-full object-cover"
-          />
-          <div
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          >
-            <img
-              id="playBtn1"
-              src="/assets/Play-Btn.svg"
-              alt="Play Button"
-              class="cursor-pointer"
-            />
-          </div>
-        </div>
-
         <!-- Video Player with Controls -->
         <div class="relative w-full h-full group hidden" id="videoWrapper1">
           <video id="video1" class="w-full h-full object-cover" muted loop>
-            <source src="/assets/sample-video.mp4" type="video/mp4" />
+            <source src="/assets/v1.mp4" type="video/mp4" />
           </video>
 
           <!-- Custom Controls -->
@@ -65,17 +46,26 @@
               </button>
             </div>
             <div class="flex items-center w-full gap-2 max-w-[235px]">
-              <span id="currentTime1" class="text-[12px]">00:00</span>
+              <span id="currentTime1" class="text-[12px] albert">00:00</span>
+              <!-- <input
+                id="progress1"
+                type="range"
+                class="w-full h-1 accent-white no-thumb"
+                value="0"
+                min="0"
+                max="100"
+                step="0.1"
+              /> -->
               <input
                 id="progress1"
                 type="range"
-                class="w-full h-1 accent-white"
+                class="w-full h-1 accent-white no-thumb"
                 value="0"
                 min="0"
                 max="100"
                 step="0.1"
               />
-              <span id="duration1" class="text-[12px]">00:00</span>
+              <span id="duration1" class="text-[12px] albert">00:00</span>
             </div>
           </div>
         </div>
@@ -198,11 +188,11 @@
           <img src="/assets/arrow-right.svg" alt="" />
         </button>
         <div class="max-md:absolute max-md:top-[31%] max-md:right-[27px]">
-          <img
-            src="/assets/ring.png"
-            alt=""
-            class="max-md:w-[233px] h-[311px] md:h-[266px]"
-          />
+          <div class="w-[341px] h-[266px]">
+            <video class="w-full h-full object-cover" muted autoplay loop>
+              <source src="/assets/v2.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
       </div>
       <div class="w-full md:w-[55%]">
@@ -219,29 +209,10 @@
       <div
         class="relative h-[400px] md:h-[966px] inline-block w-full md:w-[50%] xl:w-[55%]"
       >
-        <!-- Thumbnail & Play Button Layer -->
-        <div id="thumbnailContainer2" class="relative h-full w-full">
-          <img
-            src="/assets/model3.png"
-            alt="Model Thumbnail"
-            class="h-full w-full object-cover"
-          />
-          <div
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          >
-            <img
-              id="playBtn2"
-              src="/assets/Play-Btn.svg"
-              alt="Play Button"
-              class="cursor-pointer"
-            />
-          </div>
-        </div>
-
         <!-- Video Player with Controls -->
         <div class="relative w-full h-full group hidden" id="videoWrapper2">
           <video id="video2" class="w-full h-full object-cover" muted loop>
-            <source src="/assets/sample-video.mp4" type="video/mp4" />
+            <source src="/assets/v3.mp4" type="video/mp4" />
           </video>
 
           <!-- Custom Controls -->
@@ -259,17 +230,17 @@
               </button>
             </div>
             <div class="flex items-center w-full gap-2 max-w-[235px]">
-              <span id="currentTime2" class="text-[12px]">00:00</span>
+              <span id="currentTime2" class="text-[12px] albert">00:00</span>
               <input
                 id="progress2"
                 type="range"
-                class="w-full h-1 accent-white"
+                class="w-full h-1 accent-white no-thumb"
                 value="0"
                 min="0"
                 max="100"
                 step="0.1"
               />
-              <span id="duration2" class="text-[12px]">00:00</span>
+              <span id="duration2" class="text-[12px] albert">00:00</span>
             </div>
           </div>
         </div>
@@ -463,11 +434,11 @@
         </button>
 
         <div class="max-md:absolute max-md:top-[31%] max-md:right-[27px]">
-          <img
-            src="/assets/arcRing.png"
-            alt=""
-            class="max-md:w-[233px] h-[311px] md:h-[266px]"
-          />
+          <div class="w-[341px] h-[266px]">
+            <video class="w-full h-full object-cover" muted autoplay loop>
+              <source src="/assets/v4.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
       </div>
       <div class="w-full md:w-[50%] xl:w-[40%]">
@@ -486,30 +457,10 @@
       <div
         class="relative h-[400px] md:h-[804px] inline-block w-full md:w-[55%]"
       >
-        <!-- Thumbnail and Play Button -->
-        <!-- Thumbnail & Play Button Layer -->
-        <div id="thumbnailContainer3" class="relative h-full w-full">
-          <img
-            src="/assets/model5.png"
-            alt="Model Thumbnail"
-            class="h-full w-full object-cover"
-          />
-          <div
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          >
-            <img
-              id="playBtn3"
-              src="/assets/Play-Btn.svg"
-              alt="Play Button"
-              class="cursor-pointer"
-            />
-          </div>
-        </div>
-
         <!-- Video Player with Controls -->
         <div class="relative w-full h-full group hidden" id="videoWrapper3">
           <video id="video3" class="w-full h-full object-cover" muted loop>
-            <source src="/assets/sample-video.mp4" type="video/mp4" />
+            <source src="/assets/v5.mp4" type="video/mp4" />
           </video>
 
           <!-- Custom Controls -->
@@ -527,17 +478,17 @@
               </button>
             </div>
             <div class="flex items-center w-full gap-2 max-w-[235px]">
-              <span id="currentTime3" class="text-[12px]">00:00</span>
+              <span id="currentTime3" class="text-[12px] albert">00:00</span>
               <input
                 id="progress3"
                 type="range"
-                class="w-full h-1 accent-white"
+                class="w-full h-1 accent-white no-thumb"
                 value="0"
                 min="0"
                 max="100"
                 step="0.1"
               />
-              <span id="duration3" class="text-[12px]">00:00</span>
+              <span id="duration3" class="text-[12px] albert">00:00</span>
             </div>
           </div>
         </div>
@@ -628,58 +579,12 @@
       <div class="w-[377px] h-[465px] relative">
         <!-- <img src="/assets/girl.png" alt="" /> -->
         <!-- Thumbnail & Play Button Layer -->
-        <div id="thumbnailContainer4" class="relative h-full w-full">
+        <div class="relative h-full w-full">
           <img
             src="/assets/girl.png"
             alt="Model Thumbnail"
             class="h-full w-full object-cover"
           />
-          <div
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          >
-            <img
-              id="playBtn4"
-              src="/assets/Play-Btn.svg"
-              alt="Play Button"
-              class="cursor-pointer"
-            />
-          </div>
-        </div>
-
-        <!-- Video Player with Controls -->
-        <div class="relative w-full h-full group hidden" id="videoWrapper4">
-          <video id="video4" class="w-full h-full object-cover" muted loop>
-            <source src="/assets/sample-video.mp4" type="video/mp4" />
-          </video>
-
-          <!-- Custom Controls -->
-          <div
-            class="absolute bottom-0 left-0 right-0 px-4 flex items-center justify-between gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 py-2 text-white text-sm"
-          >
-            <div class="flex items-center gap-2">
-              <!-- Mute/Unmute Button -->
-              <button id="muteBtn4">
-                <img id="muteIcon4" src="/assets/Unmute.svg" alt="Mute" />
-              </button>
-
-              <button id="playPauseBtn4">
-                <img id="pauseIcon4" src="/assets/pause.svg" alt="pause" />
-              </button>
-            </div>
-            <div class="flex items-center w-full gap-2 max-w-[235px]">
-              <span id="currentTime4" class="text-[12px]">00:00</span>
-              <input
-                id="progress4"
-                type="range"
-                class="w-full h-1 accent-white"
-                value="0"
-                min="0"
-                max="100"
-                step="0.1"
-              />
-              <span id="duration4" class="text-[12px]">00:00</span>
-            </div>
-          </div>
         </div>
       </div>
       <div>
@@ -726,7 +631,8 @@
         const muteIcon = document.getElementById(`muteIcon${index}`);
         const pauseIcon = document.getElementById(`pauseIcon${index}`);
 
-        playBtn.addEventListener("click", (e) => {
+        // Manual play button (for fallback if user clicks)
+        playBtn?.addEventListener("click", (e) => {
           e.stopPropagation();
           thumbContainer.classList.add("hidden");
           videoWrapper.classList.remove("hidden");
@@ -763,10 +669,28 @@
         progress.addEventListener("input", () => {
           video.currentTime = (progress.value / 100) * video.duration;
         });
+
+        // Auto play when section is visible
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                thumbContainer?.classList.add("hidden");
+                videoWrapper.classList.remove("hidden");
+                video.play();
+              } else {
+                video.pause();
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+        observer.observe(videoWrapper.parentElement);
       }
 
-      setupVideoPlayer(1);
-      setupVideoPlayer(2);
+      // Setup all video sections
+      setupVideoPlayer(1); // autoplay from load
+      setupVideoPlayer(2); // on scroll
       setupVideoPlayer(3);
       setupVideoPlayer(4);
     </script>

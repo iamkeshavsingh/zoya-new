@@ -5,6 +5,56 @@
 .albert {
   font-family: "Albert Sans", sans-serif;
 }
+/* Hide thumb (white circle) for all browsers */
+.no-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 0;
+  width: 0;
+  background: transparent;
+  border: none;
+}
+
+.no-thumb::-moz-range-thumb {
+  height: 0;
+  width: 0;
+  background: transparent;
+  border: none;
+}
+
+/* Hide thumb (white circle) for all browsers */
+.no-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 0;
+  width: 0;
+  background: transparent;
+  border: none;
+}
+
+.no-thumb::-moz-range-thumb {
+  height: 0;
+  width: 0;
+  background: transparent;
+  border: none;
+}
+
+.no-thumb::-ms-thumb {
+  height: 0;
+  width: 0;
+  background: transparent;
+  border: none;
+}
+.no-thumb::-webkit-slider-thumb {
+  height: 0px;
+  width: 0px;
+  background: transparent;
+  border-radius: none;
+  cursor: pointer;
+  margin-top: -5px;
+  opacity: 0;
+}
+
 @keyframes float {
   0%,
   100% {
