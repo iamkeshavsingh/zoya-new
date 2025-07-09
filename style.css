@@ -22,7 +22,6 @@
   border: none;
 }
 
-/* Hide thumb (white circle) for all browsers */
 .no-thumb::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -54,7 +53,11 @@
   margin-top: -5px;
   opacity: 0;
 }
-
+.no-thumbr::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4); /* white with 40% opacity */
+  border-radius: 4px;
+}
 @keyframes float {
   0%,
   100% {
