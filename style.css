@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 .cormorant {
   font-family: "Cormorant", serif;
 }
