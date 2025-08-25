@@ -4,32 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <!-- First Section -->
 
-    <section class="flex items-center max-md:flex-col">
+    <section class="first_section">
       <!-- FIRST VIDEO SECTION -->
-      <div class="relative h-auto md:h-[777px] w-full md:w-[55%]">
+      <div class="first_video_section">
         <!-- Video Player with Controls -->
-        <div class="relative w-full h-full group hidden" id="videoWrapper1">
+        <div class="video_section" id="videoWrapper1">
           <video
             id="video1"
-            class="w-full h-[471px] md:h-full object-cover"
+            class="video_section_video"
             muted
             loop
             playsinline
@@ -39,17 +38,15 @@
           </video>
 
           <!-- Custom Controls -->
-          <div
-            class="absolute bottom-0 left-0 right-0 px-4 flex items-center justify-between gap-4 transition-opacity duration-300 py-2 text-white text-sm"
-          >
-            <div class="flex items-center gap-2">
+          <div class="custom_controls">
+            <div class="custom_controls_btn">
               <!-- Mute/Unmute Button -->
               <button id="muteBtn1">
                 <img
                   id="muteIcon1"
                   src="/assets/Mute.svg"
                   alt="Mute"
-                  class="max-md:w-[30px] max-md:h-[32px]"
+                  class="muteIcon"
                 />
               </button>
 
@@ -58,12 +55,14 @@
                   id="pauseIcon1"
                   src="/assets/pause.svg"
                   alt="pause"
-                  class="max-md:w-[30px] max-md:h-[32px]"
+                  class="pauseIcon"
                 />
               </button>
             </div>
-            <div class="flex items-center w-full gap-2 max-w-[235px]">
-              <span id="currentTime1" class="text-[12px] albert">00:00</span>
+            <div class="custom_slider">
+              <span id="currentTime1" class="custom_slider_text albert"
+                >00:00</span
+              >
               <!-- <input
                 id="progress1"
                 type="range"
@@ -76,37 +75,37 @@
               <input
                 id="progress1"
                 type="range"
-                class="w-full h-1 accent-white no-thumb"
+                class="custom_slider_input accent-white no-thumb"
                 value="0"
                 min="0"
                 max="100"
                 step="0.1"
               />
-              <span id="duration1" class="text-[12px] albert">00:00</span>
+              <span id="duration1" class="custom_slider_text albert"
+                >00:00</span
+              >
             </div>
           </div>
         </div>
       </div>
 
-      <div class="md:pl-[68px] w-full md:w-[45%]">
-        <div
-          class="max-md:mt-[30px] max-md:flex max-md:justify-center max-md:gap-2"
-        >
+      <div class="first_section_rightpart">
+        <div class="first_section_rightpart_mobile_style">
           <h3
-            class="font-normal cormorant text-[36px] max-md:text-center md:text-[52px] lg:text-[88px] leading-[100%] uppercase text-[#92653D] mb-6"
+            class="first_section_rightpart_head cormorant"
             style="letter-spacing: -3%"
           >
             Aeterna
           </h3>
           <h3
-            class="font-normal cormorant text-[36px] max-md:text-center md:text-[52px] lg:text-[88px] leading-[100%] uppercase text-[#92653D] mb-[21px] md:mb-[50px]"
+            class="first_section_rightpart_head cormorant"
             style="letter-spacing: -3%"
           >
             EDITS
           </h3>
         </div>
         <p
-          class="font-medium text-[12px] md:text-[14px] text-[#7B7B7B] capitalize leading-[150%] albert max-w-[434px] mb-[28px] md:mb-[40px] max-md:px-[20px] max-md:text-center max-lg:mx-auto"
+          class="first_section_rightpart_para albert"
           style="letter-spacing: -3%"
         >
           here is never a time and place for knowing, It happens in a heartbeat,
@@ -114,13 +113,9 @@
           patterns, awakening her spirit like a talisman beyond time, making her
           more alive than ever.
         </p>
-        <a href="#secondSecScroll" class="cursor-pointer">
-          <button
-            class="flex items-center gap-[13px] cursor-pointer max-md:mx-auto"
-          >
-            <span
-              class="albert font-medium text-[#92653D] text-[10px] md:text-[14px] leading-[150%] uppercase"
-              style="letter-spacing: -3%"
+        <a href="#secondSecScroll">
+          <button class="discover_btn">
+            <span class="discover_btn_text albert" style="letter-spacing: -3%"
               >discover Looks
             </span>
             <img src="/assets/bottomArrow.svg" alt="" />
@@ -131,57 +126,33 @@
 
     <!-- Second Section -->
 
-    <section
-      id="secondSecScroll"
-      class="flex items-center mt-[80px] md:mt-[92px] relative max-md:flex-col-reverse"
-    >
-      <div
-        class="hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ml-[-35px] float-animation"
-      >
+    <section id="secondSecScroll" class="second_section">
+      <div class="floatImage">
         <img src="/assets/floatRing.svg" alt="" />
       </div>
-      <div class="w-full md:w-[45%] md:pl-[97px] md:pr-[82px] max-md:mt-[32px]">
-        <img
-          src="/assets/Heading1.svg"
-          alt=""
-          class="max-md:w-[84px] max-md:h-[56px]"
-        />
-        <h3
-          class="cormorant font-normal text-[20px] md:text-[32px] text-[#896442] mt-[24px] mb-[12px] md:mb-[27px] max-md:pl-[20px] max-md:pr-[70px]"
-        >
-          A TIMELESS IMPRESSION RING
-        </h3>
-        <p
-          class="capitalize font-medium text-[12px] md:text-[14px] text-[#7B7B7B] leading-[150%] albert mb-[28px] max-md:pl-[20px] max-md:pr-[70px]"
-          style="letter-spacing: -3%"
-        >
+      <div class="leftPart">
+        <img src="/assets/Heading1.svg" alt="" class="countHeading" />
+        <h3 class="leftPart_heading cormorant">A TIMELESS IMPRESSION RING</h3>
+        <p class="leftPart_para albert" style="letter-spacing: -3%">
           A masterpiece shaped by the rhythm of the universe. This necklace is
           more - a vision born of sacred geometry, where seven interwoven
           circles create a gateway
         </p>
-        <div
-          class="flex items-center gap-[15px] md:gap-[19px] mb-[22px] max-md:pl-[20px] max-md:pr-[70px]"
-        >
-          <div class="flex items-center justify-center flex-col">
+        <div class="purityGroup">
+          <div class="box">
             <img src="/assets/purity.svg" alt="" />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
-              18karat <br />Purity
-            </p>
+            <p class="boxText albert">18karat <br />Purity</p>
           </div>
           <span>
             <img src="/assets/vLine.svg" alt="" />
           </span>
-          <div class="flex items-center justify-center flex-col">
+          <div class="box">
             <img
               src="/assets/clarity.svg"
               className="w-[20px] h-[20px]"
               alt=""
             />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
+            <p class="boxText albert">
               9.361g
               <br />Clarity
             </p>
@@ -189,62 +160,41 @@
           <span>
             <img src="/assets/vLine.svg" alt="" />
           </span>
-          <div class="flex items-center justify-center flex-col">
+          <div class="box">
             <img src="/assets/diamond.svg" alt="" />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
+            <p class="boxText albert">
               0.67
               <br />Diamond Caratage
             </p>
           </div>
         </div>
-        <button
-          class="cursor-pointer flex items-center gap-[32px] border-[0.5px] border-[#000000] px-[20px] py-[10px] max-md:ml-[20px] max-md:mr-[70px] md:mb-[59px]"
-        >
-          <span
-            class="albert font-normal text-[12px] md:text-[14px] leading-[100%] uppercase"
-            style="letter-spacing: 8%"
+        <button class="exploreBtn">
+          <span class="exploreBtnText albert" style="letter-spacing: 8%"
             >Explore More</span
           >
           <img src="/assets/arrow-right.svg" alt="" />
         </button>
-        <div class="max-md:absolute max-md:top-[30.4%] max-md:right-[27px]">
-          <div
-            class="w-[233px] h-[311px] md:w-[341px] md:h-[266px] max-md:hidden"
-          >
-            <video
-              class="w-full h-full object-cover"
-              muted
-              autoplay
-              loop
-              playsinline
-              preload="auto"
-            >
+        <div class="smallVideoMobStyle">
+          <div class="smallVideo">
+            <video muted autoplay loop playsinline preload="auto">
               <source src="/assets/v2.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
       </div>
-      <div class="w-full md:w-[55%]">
-        <img
-          src="/assets/model2.png"
-          alt="Model Image"
-          class="h-[400px] w-full md:h-[780px] object-cover"
-        />
+      <div class="rightPart">
+        <img src="/assets/model2.png" alt="Model Image" />
       </div>
     </section>
 
     <!-- Third Section -->
-    <section class="flex mt-[70px] md:mt-[97px] relative max-md:flex-col">
-      <div
-        class="relative h-[400px] md:h-[966px] inline-block w-full md:w-[50%] xl:w-[55%]"
-      >
+    <section class="third_section">
+      <div class="second_video_section">
         <!-- Video Player with Controls -->
-        <div class="relative w-full h-full group hidden" id="videoWrapper2">
+        <div class="video_section" id="videoWrapper2">
           <video
             id="video2"
-            class="w-full h-full object-cover"
+            class="video_section_video"
             muted
             loop
             playsinline
@@ -254,17 +204,15 @@
           </video>
 
           <!-- Custom Controls -->
-          <div
-            class="absolute bottom-0 left-0 right-0 px-4 flex items-center justify-between gap-4 transition-opacity duration-300 py-2 text-white text-sm"
-          >
-            <div class="flex items-center gap-2">
+          <div class="custom_controls">
+            <div class="custom_controls_btn">
               <!-- Mute/Unmute Button -->
               <button id="muteBtn2">
                 <img
                   id="muteIcon2"
                   src="/assets/Unmute.svg"
                   alt="Mute"
-                  class="max-md:w-[30px] max-md:h-[32px]"
+                  class="muteIcon"
                 />
               </button>
 
@@ -273,74 +221,53 @@
                   id="pauseIcon2"
                   src="/assets/pause.svg"
                   alt="pause"
-                  class="max-md:w-[30px] max-md:h-[32px]"
+                  class="pauseIcon"
                 />
               </button>
             </div>
-            <div class="flex items-center w-full gap-2 max-w-[235px]">
-              <span id="currentTime2" class="text-[12px] albert">00:00</span>
+            <div class="custom_slider">
+              <span id="currentTime2" class="custom_slider_text albert"
+                >00:00</span
+              >
               <input
                 id="progress2"
                 type="range"
-                class="w-full h-1 accent-white no-thumb"
+                class="custom_slider_input accent-white no-thumb"
                 value="0"
                 min="0"
                 max="100"
                 step="0.1"
               />
-              <span id="duration2" class="text-[12px] albert">00:00</span>
+              <span id="duration2" class="custom_slider_text albert"
+                >00:00</span
+              >
             </div>
           </div>
         </div>
       </div>
 
-      <div
-        class="w-full md:w-[50%] xl:w-[45%] max-md:mt-[280px] md:pl-[90px] xl:pl-[105px] md:pr-[86px]"
-      >
-        <div class="flex md:justify-end">
-          <img
-            src="/assets/Heading2.svg"
-            alt=""
-            class="max-md:w-[84px] max-md:h-[56px]"
-          />
+      <div class="third_section_rightpart">
+        <div class="third_section_rightpart_content">
+          <img src="/assets/Heading2.svg" alt="" class="countHeading" />
         </div>
 
-        <h3
-          class="cormorant font-normal text-[20px] md:text-[28px] xl:text-[32px] text-[#896442] mt-[20px] md:mt-[45px] mb-3 md:mb-[27px] flex md:justify-end max-md:pl-[20px] max-md:pr-[67px]"
-        >
-          COSMIC VISION NECKPIECE
-        </h3>
-        <p
-          class="capitalize font-medium text-[12px] md:text-[14px] text-[#7B7B7B] leading-[150%] albert mb-[28px] flex md:justify-end md:text-right max-md:pl-[20px] max-md:pr-[67px]"
-          style="letter-spacing: -3%"
-        >
+        <h3 class="rightPart_heading cormorant">COSMIC VISION NECKPIECE</h3>
+        <p class="rightPart_para albert" style="letter-spacing: -3%">
           This bangle is a poem whispered to her from the stars. Its verses
           etched in a custom-cut purple amethyst, resting on a bed of round
           ones. While the secrets
         </p>
-        <div
-          class="flex items-center md:justify-end gap-[15px] md:gap-[19px] mb-[22px] max-md:pl-[20px] max-md:pr-[67px]"
-        >
-          <div class="flex items-center justify-center flex-col">
+        <div class="purityGroup2">
+          <div class="box">
             <img src="/assets/purity.svg" alt="" />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
-              18karat <br />Purity
-            </p>
+            <p class="boxText albert">18karat <br />Purity</p>
           </div>
           <span>
             <img src="/assets/vLine.svg" alt="" />
           </span>
-          <div class="flex items-center justify-center flex-col">
-            <img
-              src="/assets/clarity.svg"
-              className="w-[20px] h-[20px]"
-              alt=""
-            />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
+          <div class="box">
+            <img src="/assets/clarity.svg" alt="" />
+            <p class="boxText albert">
               9.361g
               <br />Clarity
             </p>
@@ -348,35 +275,27 @@
           <span>
             <img src="/assets/vLine.svg" alt="" />
           </span>
-          <div class="flex items-center justify-center flex-col">
+          <div class="box">
             <img src="/assets/diamond.svg" alt="" />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
+            <p class="boxText albert">
               0.67
               <br />Diamond Caratage
             </p>
           </div>
         </div>
-        <div class="flex items-center md:justify-end">
-          <button
-            class="cursor-pointer flex items-center text-right justify-end gap-[32px] border-[0.5px] border-[#000000] px-[20px] py-[10px] md:mb-[59px] max-md:ml-[20px] max-md:mr-[67px]"
-          >
-            <span
-              class="albert font-normal text-[14px] leading-[100%] uppercase"
-              style="letter-spacing: 8%"
+        <div class="exploreBtnAlignment">
+          <button class="exploreBtn">
+            <span class="exploreBtnText albert" style="letter-spacing: 8%"
               >Explore More</span
             >
             <img src="/assets/arrow-right.svg" alt="" />
           </button>
         </div>
-        <div
-          class="flex items-center gap-4 md:gap-[21px] max-md:px-[20px] absolute max-md:top-[430px] md:right-[39px] md:bottom-[10px] lg:bottom-[76px]"
-        >
-          <div class="max-md:w-[50%] max-md:h-[213px]">
+        <div class="twoImages">
+          <div class="twoImages_firstImg">
             <img src="/assets/neck2.png" alt="" class="w-full h-full" />
           </div>
-          <div class="max-md:w-[50%] max-md:h-[213px]">
+          <div class="twoImages_firstImg">
             <img src="/assets/neck1.png" alt="" class="w-full h-full" />
           </div>
         </div>
@@ -385,78 +304,47 @@
 
     <!-- Fourth Section -->
 
-    <section
-      class="flex items-center mt-[80px] md:mt-[92px] relative max-md:flex-col-reverse"
-    >
-      <div
-        class="hidden xl:block absolute top-1/2 right-[6%] ml-[-35px] transform -translate-y-1/2 float-animation"
-      >
+    <section class="fourth_section">
+      <div class="fourth_section_floatImg">
         <img src="/assets/floatArcRing.svg" alt="" />
       </div>
-      <div
-        class="hidden xl:block absolute bottom-[26px] right-[14%] bg-[#F9F3F0] w-[400px] px-[36px] py-[24px]"
-      >
+      <div class="fourth_section_floatBox">
         <p
-          class="text-[#232323] albert font-medium leading-[150%] capitalize mb-[29px] opacity-[60%]"
+          class="fourth_section_floatBoxText albert"
           style="letter-spacing: -3%"
         >
           This ring is inspired by the intersecting patterns of the flower of
           life. A mysterious display custom cut amethyst is positioned at its
           centre and
         </p>
-        <button
-          class="cursor-pointer flex items-center gap-[32px] border-[0.5px] border-[#000000] px-[20px] py-[10px]"
-        >
-          <span
-            class="albert font-normal text-[14px] leading-[100%] uppercase"
-            style="letter-spacing: 8%"
+        <button class="fourth_section_floatBoxBtn">
+          <span class="exploreBtnText albert" style="letter-spacing: 8%"
             >Explore More</span
           >
           <img src="/assets/arrow-right.svg" alt="" />
         </button>
       </div>
 
-      <div
-        class="w-full md:w-[50%] xl:w-[40%] md:pl-[97px] md:pr-[82px] max-md:mt-[32px]"
-      >
-        <img
-          src="/assets/Heading3.svg"
-          alt=""
-          class="max-md:w-[84px] max-md:h-[56px]"
-        />
-        <h3
-          class="cormorant font-normal text-[20px] md:text-[32px] text-[#896442] mt-[24px] mb-[12px] md:mb-[27px] max-md:pl-[20px] max-md:pr-[70px]"
-        >
-          AN INFINITE ARC RING
-        </h3>
-        <p
-          class="capitalize font-medium text-[12px] md:text-[14px] text-[#7B7B7B] leading-[150%] albert mb-[28px] max-md:pl-[20px] max-md:pr-[70px]"
-          style="letter-spacing: -3%"
-        >
+      <div class="fifth_section">
+        <img src="/assets/Heading3.svg" alt="" class="countHeading" />
+        <h3 class="fifth_section_heading cormorant">AN INFINITE ARC RING</h3>
+        <p class="fifth_section_para albert" style="letter-spacing: -3%">
           A timeless concept rendered to pieces and incorporated into a design
           that is both innovative and minimalist. A stackable statement the ring
           can be
         </p>
 
-        <div
-          class="flex items-center gap-[16px] md:gap-[19px] mb-[22px] max-md:pl-[20px] max-md:pr-[70px]"
-        >
-          <div class="flex items-center justify-center flex-col">
+        <div class="purityGroup">
+          <div class="box">
             <img src="/assets/purity.svg" alt="" />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
-              18karat <br />Purity
-            </p>
+            <p class="boxText albert">18karat <br />Purity</p>
           </div>
           <span>
             <img src="/assets/vLine.svg" alt="" />
           </span>
-          <div class="flex items-center justify-center flex-col">
+          <div class="box">
             <img src="/assets/clarity.svg" alt="" />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
+            <p class="boxText albert">
               9.361g
               <br />Clarity
             </p>
@@ -464,65 +352,46 @@
           <span>
             <img src="/assets/vLine.svg" alt="" />
           </span>
-          <div class="flex items-center justify-center flex-col">
+          <div class="box">
             <img src="/assets/diamond.svg" alt="" />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
+            <p class="boxText albert">
               0.67
               <br />Diamond Caratage
             </p>
           </div>
         </div>
-        <button
-          class="cursor-pointer flex items-center gap-[32px] border-[0.5px] border-[#000000] px-[20px] py-[10px] md:mb-[107px] max-md:ml-[20px] max-md:mr-[70px]"
-        >
-          <span
-            class="albert font-normal text-[14px] leading-[100%] uppercase"
-            style="letter-spacing: 8%"
+        <button class="exploreBtn">
+          <span class="exploreBtnText albert" style="letter-spacing: 8%"
             >Explore More</span
           >
           <img src="/assets/arrow-right.svg" alt="" />
         </button>
 
-        <div class="max-md:absolute max-md:top-[31%] max-md:right-[27px]">
-          <div
-            class="w-[233px] h-[311px] md:w-[341px] md:h-[266px] max-md:hidden"
-          >
-            <video
-              class="w-full h-full object-cover"
-              muted
-              autoplay
-              loop
-              playsinline
-              preload="auto"
-            >
+        <div class="smallVideoMobStyle">
+          <div class="smallVideo">
+            <video muted autoplay loop playsinline preload="auto">
               <source src="/assets/v4.mp4" type="video/mp4" />
             </video>
           </div>
         </div>
       </div>
-      <div class="w-full md:w-[50%] xl:w-[40%]">
+      <div class="fourth_section_model">
         <img
           src="/assets/model4.png"
           alt="Model Image"
-          class="h-[400px] w-full md:h-[826px] object-cover"
+          class="h-[400px] w-full"
         />
       </div>
     </section>
 
     <!-- Fifth Section -->
-    <section
-      class="flex items-center mt-[70px] md:mt-[146px] relative max-md:flex-col"
-    >
-      <div
-        class="relative h-[400px] md:h-[804px] inline-block w-full md:w-[55%]"
-      >
+    <section class="fifthSection">
+      <div class="fifthSectionParent">
         <!-- Video Player with Controls -->
-        <div class="relative w-full h-full group hidden" id="videoWrapper3">
+        <div class="video_section" id="videoWrapper3">
           <video
             id="video3"
-            class="w-full h-full object-cover"
+            class="video_section_video"
             muted
             loop
             playsinline
@@ -532,17 +401,15 @@
           </video>
 
           <!-- Custom Controls -->
-          <div
-            class="absolute bottom-0 left-0 right-0 px-4 flex items-center justify-between gap-4 transition-opacity duration-300 py-2 text-white text-sm"
-          >
-            <div class="flex items-center gap-2">
+          <div class="custom_controls">
+            <div class="custom_controls_btn">
               <!-- Mute/Unmute Button -->
               <button id="muteBtn3">
                 <img
                   id="muteIcon3"
                   src="/assets/Unmute.svg"
                   alt="Mute"
-                  class="max-md:w-[30px] max-md:h-[32px]"
+                  class="muteIcon"
                 />
               </button>
 
@@ -551,74 +418,58 @@
                   id="pauseIcon3"
                   src="/assets/pause.svg"
                   alt="pause"
-                  class="max-md:w-[30px] max-md:h-[32px]"
+                  class="pauseIcon"
                 />
               </button>
             </div>
-            <div class="flex items-center w-full gap-2 max-w-[235px]">
-              <span id="currentTime3" class="text-[12px] albert">00:00</span>
+            <div class="custom_slider">
+              <span id="currentTime3" class="custom_slider_text albert"
+                >00:00</span
+              >
               <input
                 id="progress3"
                 type="range"
-                class="w-full h-1 accent-white no-thumb"
+                class="custom_slider_input accent-white no-thumb"
                 value="0"
                 min="0"
                 max="100"
                 step="0.1"
               />
-              <span id="duration3" class="text-[12px] albert">00:00</span>
+              <span id="duration3" class="custom_slider_text albert"
+                >00:00</span
+              >
             </div>
           </div>
         </div>
       </div>
-      <div
-        class="w-full md:w-[45%] md:pl-[105px] md:pr-[86px] max-md:mt-[32px]"
-      >
-        <div class="flex md:justify-center max-md:pl-[15px] max-md:pr-[67px]">
-          <img
-            src="/assets/Heading4.svg"
-            alt=""
-            class="max-md:w-[84px] max-md:h-[56px]"
-          />
+      <div class="fifth_section_rightpart">
+        <div class="fifthSection_rightpart">
+          <img src="/assets/Heading4.svg" alt="" class="countHeading" />
         </div>
 
-        <h3
-          class="cormorant font-normal text-[20px] md:text-[32px] text-[#896442] mt-[20px] md:mt-[45px] mb-[18px] md:mb-[46px] max-md:pl-[25px] max-md:pr-[67px] flex md:justify-center max-xl:text-center"
-        >
+        <h3 class="fifthSection_rightpart_heading cormorant">
           AN INFINITE ARC RING
         </h3>
         <img src="/assets/arcRing1.svg" alt="" class="max-md:hidden mx-auto" />
         <p
-          class="capitalize font-medium text-[14px] text-[#7B7B7B] leading-[150%] albert mb-[28px] flex justify-end md:text-center max-md:pl-[25px] max-md:pr-[67px]"
+          class="fifthSection_rightpart_para albert"
           style="letter-spacing: -3%"
         >
           This bangle is a poem whispered to her from the stars. Its verses
           etched in a custom-cut purple amethyst, resting on a bed of round
           ones. While the secrets
         </p>
-        <div
-          class="flex items-center md:justify-center gap-4 md:gap-[19px] mb-[22px] max-md:pl-[25px] max-md:pr-[67px]"
-        >
-          <div class="flex items-center justify-center flex-col">
+        <div class="purityGroup3">
+          <div class="box">
             <img src="/assets/purity.svg" alt="" />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
-              18karat <br />Purity
-            </p>
+            <p class="boxText albert">18karat <br />Purity</p>
           </div>
           <span>
             <img src="/assets/vLine.svg" alt="" />
           </span>
-          <div class="flex items-center justify-center flex-col">
-            <img
-              src="/assets/clarity.svg"
-              className="w-[20px] h-[20px]"
-              alt=""
-            />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
+          <div class="box">
+            <img src="/assets/clarity.svg" alt="" />
+            <p class="boxText albert">
               9.361g
               <br />Clarity
             </p>
@@ -626,25 +477,17 @@
           <span>
             <img src="/assets/vLine.svg" alt="" />
           </span>
-          <div class="flex items-center justify-center flex-col">
+          <div class="box">
             <img src="/assets/diamond.svg" alt="" />
-            <p
-              class="albert text-[#232323] text-[12px] leading-[22px] font-normal mt-[6px] text-center"
-            >
+            <p class="boxText albert">
               0.67
               <br />Diamond Caratage
             </p>
           </div>
         </div>
-        <div
-          class="flex items-center md:justify-center max-md:pl-[25px] max-md:pr-[67px]"
-        >
-          <button
-            class="cursor-pointer flex items-center text-right justify-end gap-[32px] border-[0.5px] border-[#000000] px-[20px] py-[10px] md:mb-[59px]"
-          >
-            <span
-              class="albert font-normal text-[14px] leading-[100%] uppercase"
-              style="letter-spacing: 8%"
+        <div class="exploreBtnAlignment2 max-md:pl-[25px] max-md:pr-[67px]">
+          <button class="exploreBtn">
+            <span class="exploreBtnText" style="letter-spacing: 8%"
               >Explore More</span
             >
             <img src="/assets/arrow-right.svg" alt="" />
@@ -655,37 +498,30 @@
 
     <!-- Sixth Section -->
 
-    <section
-      class="flex items-center justify-center md:gap-[82px] my-[80px] md:my-[122px] max-md:flex-col max-md:px-[10px]"
-    >
-      <div class="h-full relative">
+    <section class="sixth_section">
+      <div style="position: relative; height: 100%">
         <!-- <img src="/assets/girl.png" alt="" /> -->
         <!-- Thumbnail & Play Button Layer -->
-        <div class="relative">
+        <div style="position: relative">
           <img
             src="/assets/girl.png"
             alt="Model Thumbnail"
-            class="h-[465px] w-[377px] object-cover max-md:hidden"
+            class="girlDesktopImg"
           />
           <img
             src="/assets/girlmob.svg"
             alt="Model Thumbnail"
-            class="h-[202px] w-[333px] object-cover mx-auto md:hidden"
+            class="girlMobImg"
           />
         </div>
       </div>
       <div>
-        <h3
-          class="cormorant font-normal text-[32px] leading-[120%] uppercase text-[#896442] max-w-[481px] max-md:mt-[29px] mb-[36px] md:mb-[58px] max-md:text-center"
-        >
-          Found your style in our collection? Let’s take the next step.
+        <h3 class="sixth_section_heading cormorant">
+          Found your style in our collection? Let's take the next step.
         </h3>
-        <button
-          class="cursor-pointer flex items-center max-md:mx-auto gap-[32px] border-[0.5px] border-[#000000] px-[20px] py-[10px] md:mb-[107px]"
-        >
-          <span
-            class="albert font-normal text-[14px] leading-[100%] uppercase"
-            style="letter-spacing: 8%"
+
+        <button class="exploreBtn2">
+          <span class="exploreBtnText albert" style="letter-spacing: 8%"
             >Book an Appointment</span
           >
           <img src="/assets/arrow-right.svg" alt="" />
