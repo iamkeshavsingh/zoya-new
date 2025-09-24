@@ -559,6 +559,9 @@
         max-width: 500px;
         margin: 0 auto;
       }
+      .IntimateBgChild .explore-btn {
+        display: none;
+      }
       .IntimateBgImg {
         width: 916px;
         height: 503px;
@@ -583,13 +586,34 @@
         }
         .IntimateBgPara {
           font-size: 14px;
-
+          line-height: normal;
           margin-bottom: 39px;
         }
         .IntimateBgImg {
           width: 90%;
           object-fit: cover;
+          margin: -73px auto 0;
         }
+        .IntemateButtonDiv{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .IntimateBgChild .explore-btn {
+        /* margin-top: 2rem; */
+        padding: 12px 28px;
+        border: 1px solid #232323;
+        background: transparent;
+        color: #232323;
+        font-size: 14px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        /* display: none; */
+      }
       }
 
       /* Discover Slider */
@@ -603,7 +627,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-           overflow: hidden;
+        overflow: hidden;
       }
 
       .discoverSlider h2 {
@@ -664,6 +688,8 @@
         cursor: pointer;
         user-select: none;
         transition: 0.3s;
+        margin-right: 66px;
+        margin-left: 44px;  
       }
 
       .discoverSlider .arrow:hover {
@@ -1425,7 +1451,7 @@
           more alive than ever.
         </p>
         <a
-          href="#secondSecScroll"
+          href="#second_section_slider"
           class="discover_div"
           style="text-decoration: none"
         >
@@ -1784,10 +1810,17 @@
           </h3>
           <p class="IntimateBgPara">
             Knowing strikes in an instant, unexpected and powerful. For her, it
-            was like <br />
+            was like
             diving into an infinity of patterns, emerging stronger, senses
             sharpened.
           </p>
+          <div class="IntemateButtonDiv">
+           <button class="explore-btn">EXPLORE THIS COLLECTION 
+              <span>
+                <img src="./images/buttonArrow.svg" alt="arrow" >
+              </span>
+            </button>
+          </div>
         </div>
       </div>
       <img
