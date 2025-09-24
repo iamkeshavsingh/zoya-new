@@ -21,6 +21,7 @@
       html {
         scroll-behavior: smooth;
       }
+
       @font-face {
         font-family: "AGaramondPro";
         src: url("/font/AGaramondPro-Regular.otf");
@@ -28,6 +29,7 @@
 
       body {
         font-family: "AGaramondPro", serif;
+        margin: 0;
       }
 
       /* .AGaramondPro {
@@ -648,8 +650,9 @@
       .discoverSlider .slides {
   display: flex;
   gap: 86px;
-  max-width: 1200px;
+  max-width: 1120px;
   transition: transform 0.5s ease-in-out;
+
 }
 
 .discoverSlider .slide {
@@ -683,14 +686,17 @@
         background: #c39784;
         border: 1px solid #c89d7c;
         color: #c89d7c;
-        font-size: 2rem;
-        padding: 5px 15px;
+        font-size: 1rem;
+        padding: 3px 10px;
         cursor: pointer;
         user-select: none;
         transition: 0.3s;
-        margin-right: 66px;
+        /* margin-right: 66px */
         /* margin-left: 44px;   */
       }
+            .discoverSlider .arrow img {
+              margin-top: 5px;
+            }
 
       .discoverSlider .arrow:hover {
         background: #c89d7c;
@@ -698,10 +704,10 @@
       }
 
       .discoverSlider .arrow.left {
-        left: 10px;
+        left: 48px;
       }
       .discoverSlider .arrow.right {
-        right: 10px;
+        right: 48px;
       }
 
       /* Button */
@@ -1130,21 +1136,23 @@
 }
 
 .second_section_heading {
-  font-size: 54px;
+  font-size: 52px;
   color: #523418;
   font-weight: 400;
-  line-height: 1.375;
-  margin-bottom: 1rem;
+  line-height: 100%;
+  margin-top: 16px;
+  margin-bottom: 28px;
 }
 
 .second_section_description {
-  max-width: 42rem;
+  max-width: 400px;
   margin-left: auto;
   margin-right: auto;
-  font-size: 0.875rem;
+  font-size: 16px;
   color: #7B7B7B;
-  line-height: 1.625;
-  margin-bottom: 2.5rem;
+  line-height: 100%;
+  margin-top: 0;
+  margin-bottom: 88px;
 }
 
 .second_section_slider_div {
@@ -1470,7 +1478,7 @@
 
     <!-- second section---- -->
     <section class="second_section" id="second_section_slider">
-      <div class="custom_divider"></div>
+     <img src="./assets/sLine.png" />
       <h2 class="second_section_heading">
         An intimate story, where<br />
         jewels become poetry.
