@@ -603,6 +603,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+           overflow: hidden;
       }
 
       .discoverSlider h2 {
@@ -617,27 +618,23 @@
       }
 
       .discoverSlider .slider {
-        position: relative;
         overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 100px;
       }
 
       .discoverSlider .slides {
-        display: flex;
-        gap: 86px;
-        max-width: 1200px;
-        transition: transform 0.5s ease-in-out;
-      }
+  display: flex;
+  gap: 86px;
+  max-width: 1200px;
+  transition: transform 0.5s ease-in-out;
+}
 
-      .discoverSlider .slide {
-        width: 315px;
-        box-sizing: border-box;
-        text-align: center;
-        border: 1px solid #f6f0eb;
-      }
+.discoverSlider .slide {
+  flex: 0 0 calc((100% - (86px * 2)) / 3); /* desktop: 3 cards with gap */
+  max-width: 315px;
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid #f6f0eb;
+}
 
       .discoverSlider .slide img {
         width: 315px;
@@ -706,6 +703,28 @@
         border-color: #c89d7c;
         color: #fff;
       } */
+
+    @media screen and (max-width:600px) {
+       
+       .discoverSlider .slides {
+    gap: 22px;
+    justify-content: flex-start;
+  }
+
+  .discoverSlider .slide {
+    flex: 0 0 calc((100% - 16px) / 2); /* mobile: 2 cards with gap */
+    max-width: 161px;
+  }
+       .discoverSlider .slide img {
+        width: 161px;
+        max-height: 267px;
+   
+      }
+        .discoverSlider .arrow {
+          display: none;
+        }
+      
+    }
 
       @media screen and (min-width: 1400px) {
         .fourth_section_model {
@@ -1806,17 +1825,16 @@
             <div class="caption">Victoire De Necklace 14k</div>
           </div>
         </div>     
-        <!-- Left arrow -->
+
         <div class="left_arrow_div arrow left" >
           <img src="/images/arrowLeft.png" alt="arrow" />
         </div>   
-        <!-- Right arrow -->
+ 
         <div class="right_arrow_div arrow right">
           <img src="/images/arrowRight.png" alt="arrow" />
         </div>
 
-        <!-- <div class="arrow left">&#10094;</div>
-        <div class="arrow right">&#10095;</div> -->
+     
       </div>
 
       <button class="explore-btn">EXPLORE THIS COLLECTION 
@@ -1950,67 +1968,78 @@
 
     <!-- Discover Slider  -->
 
-    <script>
-      const slides = document.getElementById("slides");
-      const slide = document.querySelectorAll(".slide");
-      const prev = document.querySelector(".left");
-      const next = document.querySelector(".right");
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelector(".slides");
+  const prev = document.querySelector(".arrow.left");
+  const next = document.querySelector(".arrow.right");
 
-      const visibleSlides = window.innerWidth < 768 ? 1 : 3;
-      let index = visibleSlides; // because clone lagayenge
-      let allowShift = true;
+  let visibleSlides = window.innerWidth < 768 ? 2 : 3;
+  let index = visibleSlides;
 
-      // clone first & last slides
-      const totalSlides = slide.length;
-      const firstClones = [];
-      const lastClones = [];
+  // original slides
+  const slideNodes = Array.from(slides.querySelectorAll(".slide"));
+  const totalSlides = slideNodes.length;
 
-      for (let i = 0; i < visibleSlides; i++) {
-        firstClones.push(slide[i].cloneNode(true));
-        lastClones.push(slide[totalSlides - 1 - i].cloneNode(true));
-      }
+  // clone first & last slides
+  for (let i = 0; i < visibleSlides; i++) {
+    slides.append(slideNodes[i].cloneNode(true));
+    slides.prepend(slideNodes[totalSlides - 1 - i].cloneNode(true));
+  }
 
-      lastClones.reverse().forEach((clone) => slides.prepend(clone));
-      firstClones.forEach((clone) => slides.append(clone));
+  const allSlides = Array.from(slides.querySelectorAll(".slide"));
 
-      const allSlides = document.querySelectorAll(".slide");
-      const newTotal = allSlides.length;
+  // get computed gap
+  function getGap() {
+    return parseFloat(getComputedStyle(slides).gap) || 0;
+  }
 
-      // initial position
-      slides.style.transform = `translateX(${-index * (100 / visibleSlides)}%)`;
+  function getSlideFullWidth() {
+    return allSlides[0].offsetWidth + getGap();
+  }
 
-      function moveSlide(dir) {
-        if (allowShift) {
-          slides.style.transition = "transform 0.5s ease-in-out";
-          index += dir;
-          slides.style.transform = `translateX(${
-            -index * (100 / visibleSlides)
-          }%)`;
-        }
-      }
+  let slideFullWidth = getSlideFullWidth();
 
-      next.addEventListener("click", () => moveSlide(1));
-      prev.addEventListener("click", () => moveSlide(-1));
+  slides.style.transform = `translateX(${-index * slideFullWidth}px)`;
 
-      slides.addEventListener("transitionend", () => {
-        allowShift = true;
-        if (index >= newTotal - visibleSlides) {
-          slides.style.transition = "none";
-          index = visibleSlides;
-          slides.style.transform = `translateX(${
-            -index * (100 / visibleSlides)
-          }%)`;
-        } else if (index < visibleSlides) {
-          slides.style.transition = "none";
-          index = totalSlides;
-          slides.style.transform = `translateX(${
-            -index * (100 / visibleSlides)
-          }%)`;
-        }
-      });
+  function moveSlide(dir) {
+    slides.style.transition = "transform 0.5s ease-in-out";
+    index += dir;
+    slides.style.transform = `translateX(${-index * slideFullWidth}px)`;
+  }
 
-      // auto play
-      setInterval(() => moveSlide(1), 3000);
-    </script>
+  next.addEventListener("click", () => moveSlide(1));
+  prev.addEventListener("click", () => moveSlide(-1));
+
+  slides.addEventListener("transitionend", () => {
+    const newTotal = allSlides.length;
+
+    if (index >= newTotal - visibleSlides) {
+      slides.style.transition = "none";
+      index = visibleSlides;
+      slides.style.transform = `translateX(${-index * slideFullWidth}px)`;
+    } else if (index < visibleSlides) {
+      slides.style.transition = "none";
+      index = totalSlides;
+      slides.style.transform = `translateX(${-index * slideFullWidth}px)`;
+    }
+  });
+
+  // autoplay
+  setInterval(() => moveSlide(1), 3000);
+
+  // responsive resize fix
+  window.addEventListener("resize", () => {
+    visibleSlides = window.innerWidth < 768 ? 2 : 3;
+    slideFullWidth = getSlideFullWidth();
+    slides.style.transition = "none";
+    slides.style.transform = `translateX(${-index * slideFullWidth}px)`;
+  });
+});
+</script>
+
+
+
+
   </body>
 </html>
