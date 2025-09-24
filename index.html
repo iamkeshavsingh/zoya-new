@@ -5,18 +5,1309 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=AGaramondPro:ital,wght@0,300..700;1,300..700&display=swap"
       rel="stylesheet"
     />
 
     <link
-      href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=AGaramondPro+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/style.css" />
+    <!-- <link rel="stylesheet" href="/style.css" /> -->
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      @font-face {
+        font-family: "AGaramondPro";
+        src: url("/font/AGaramondPro-Regular.otf");
+      }
+
+      body {
+        font-family: "AGaramondPro", serif;
+      }
+
+      /* .AGaramondPro {
+  font-family: "AGaramondPro", serif;
+}
+
+.albert {
+  font-family: "Albert Sans", sans-serif;
+} */
+      /* Hide thumb (white circle) for all browsers */
+      .no-thumb::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 0;
+        width: 0;
+        background: transparent;
+        border: none;
+      }
+
+      .no-thumb::-moz-range-thumb {
+        height: 0;
+        width: 0;
+        background: transparent;
+        border: none;
+      }
+
+      .no-thumb::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 0;
+        width: 0;
+        background: transparent;
+        border: none;
+      }
+
+      .no-thumb::-moz-range-thumb {
+        height: 0;
+        width: 0;
+        background: transparent;
+        border: none;
+      }
+
+      .no-thumb::-ms-thumb {
+        height: 0;
+        width: 0;
+        background: transparent;
+        border: none;
+      }
+      .no-thumb::-webkit-slider-thumb {
+        height: 0px;
+        width: 0px;
+        background: transparent;
+        border-radius: none;
+        cursor: pointer;
+        margin-top: -5px;
+        opacity: 0;
+      }
+      .no-thumbr::-webkit-slider-runnable-track {
+        height: 4px;
+        background: rgba(255, 255, 255, 0.4); /* white with 40% opacity */
+        border-radius: 4px;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+      /* .float-animation {
+  animation: float 3s ease-in-out infinite;
+} */
+
+      /* First Section styles */
+
+      .first_section {
+        display: flex;
+        align-items: center;
+        position: sticky;
+        top: 0;
+      }
+      .first_video_section {
+        position: relative;
+        height: 777px;
+        width: 55%;
+      }
+      .video_section {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .video_section_video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .custom_controls {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        transition-property: opacity;
+        transition-duration: 300ms;
+        color: #ffffff;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+      }
+      .custom_controls_btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .custom_slider {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        max-width: 235px;
+      }
+      .custom_slider_text {
+        font-size: 12px;
+      }
+      .custom_slider_input {
+        width: 100%;
+        height: 4px;
+      }
+      .first_section_rightpart {
+        padding-left: 68px;
+        width: 45%;
+      }
+      .first_section_rightpart_head {
+        font-size: 88px;
+        font-weight: 100;
+        line-height: 100%;
+        text-transform: uppercase;
+        color: #92653d;
+        margin-bottom: 24px;
+      }
+      .first_section_rightpart_head1 {
+        font-size: 88px;
+        font-weight: 100;
+        line-height: 100%;
+        text-transform: uppercase;
+        color: #92653d;
+        margin-bottom: 24px;
+        margin-top: 0px !important;
+      }
+
+      .first_section_rightpart_para {
+        font-weight: 500;
+        font-size: 14px;
+        color: #7b7b7b;
+        text-transform: capitalize;
+        line-height: 150%;
+        max-width: 434px;
+        margin-bottom: 40px;
+      }
+      .first_section_rightpart_head {
+        letter-spacing: -3%;
+      }
+      @media (max-width: 1023px) {
+        .first_section_rightpart_head {
+          font-size: 36px !important;
+          /* font-weight: 100; */
+        }
+      }
+      @media (min-width: 1024px) {
+        .first_section_rightpart_head {
+          font-size: 80px !important;
+          /* font-weight: 100; */
+        }
+      }
+      @media (max-width: 1023px) {
+        .first_section_rightpart_head1 {
+          font-size: 36px !important;
+          font-weight: 300;
+        }
+      }
+      @media (min-width: 1024px) {
+        .first_section_rightpart_head1 {
+          font-size: 80px !important;
+          font-weight: 300;
+        }
+      }
+      .discover_btn {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        cursor: pointer;
+      }
+      .discover_btn_text {
+        font-weight: 500;
+        color: #92653d;
+        font-size: 14px;
+        text-transform: uppercase;
+        line-height: 150%;
+      }
+      .floatImage {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* margin-left: -35px; */
+      }
+      .leftPart {
+        width: 45%;
+        padding-left: 97px;
+        padding-right: 82px;
+      }
+      .leftPart_heading {
+        font-weight: 400;
+        font-size: 32px;
+        color: #896442;
+        margin-top: 24px;
+        margin-bottom: 27px;
+      }
+      .rightPart_heading {
+        font-weight: 400;
+        font-size: 32px;
+        color: #896442;
+        margin-top: 24px;
+        margin-bottom: 27px;
+        display: flex;
+        justify-content: end;
+      }
+      .fifthSection_rightpart_heading {
+        font-weight: 400;
+        font-size: 32px;
+        color: #896442;
+        margin-top: 24px;
+        margin-bottom: 27px;
+        display: flex;
+        justify-content: center;
+      }
+      .leftPart_para {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 14px;
+        color: #7b7b7b;
+        line-height: 150%;
+        margin-bottom: 28px;
+      }
+      .rightPart_para {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 14px;
+        color: #7b7b7b;
+        line-height: 150%;
+        margin-bottom: 28px;
+        display: flex;
+        justify-content: end;
+        text-align: end;
+      }
+      .fifthSection_rightpart_para {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 14px;
+        color: #7b7b7b;
+        line-height: 150%;
+        margin-bottom: 28px;
+        display: flex;
+        justify-content: center;
+        text-align: end;
+      }
+      .purityGroup {
+        display: flex;
+        align-items: center;
+        gap: 19px;
+        margin-bottom: 22px;
+      }
+      .purityGroup2 {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 19px;
+        margin-bottom: 22px;
+      }
+      .purityGroup3 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 19px;
+        margin-bottom: 22px;
+      }
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .boxText {
+        color: #232323;
+        font-size: 12px;
+        line-height: 22px;
+        font-weight: 400;
+        margin-top: 6px;
+        text-align: center;
+      }
+      .exploreBtn,
+      .exploreBtn2 {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        border: 0.5px solid #000;
+        background-color: transparent !important;
+        color: #000;
+        padding: 10px 20px;
+        margin-bottom: 59px;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 100%;
+        text-transform: uppercase;
+      }
+      /* .arrow {
+        -webkit-mask: url("/assets/arrow-right.svg") no-repeat center;
+        mask: url("/assets/arrow-right.svg") no-repeat center;
+        background-color: #92653d;
+        width: 24px;
+        height: 24px;
+      } */
+
+      .exploreBtnAlignment {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+      }
+      .exploreBtnAlignment2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .smallVideo {
+        width: 341px;
+        height: 266px;
+      }
+      .smallVideo video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .rightPart {
+        width: 55%;
+      }
+      .rightPart img {
+        width: 100%;
+        height: 780px;
+        object-fit: cover;
+      }
+      .third_section {
+        margin-top: 97px;
+        position: relative;
+        display: flex;
+      }
+      .second_video_section {
+        position: relative;
+        height: 966px;
+        width: 55%;
+        display: inline-block;
+      }
+      .third_section_rightpart {
+        width: 45%;
+        padding-left: 105px;
+        padding-right: 86px;
+      }
+
+      .fifth_section_rightpart {
+        width: 45%;
+        padding-left: 105px;
+        padding-right: 86px;
+      }
+      .third_section_rightpart_content {
+        display: flex;
+        justify-content: end;
+      }
+      .twoImages {
+        display: flex;
+        align-items: center;
+        gap: 21px;
+        position: absolute;
+        right: 39px;
+        bottom: 76px;
+      }
+      .fourth_section_floatImg {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 2%;
+        margin-left: -35px;
+        transform: translateY(-50%);
+      }
+      .fourth_section_floatBox {
+        position: absolute;
+        bottom: 26px;
+        right: 12%;
+        background-color: #f9f3f0;
+        width: 400px;
+        padding: 24px 36px;
+        display: block;
+      }
+      .fourth_section_floatBoxText {
+        color: #232323;
+        font-weight: 500;
+        line-height: 150%;
+        text-transform: capitalize;
+        margin-bottom: 29px;
+        opacity: 0.6;
+      }
+      .fourth_section_floatBoxBtn {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        border: 0.5px solid #92653d;
+        color: #92653d;
+        background-color: transparent !important;
+        padding: 10px 20px;
+      }
+      .fifth_section {
+        width: 30%;
+        padding-left: 97px;
+        padding-right: 82px;
+      }
+      .fifth_section_heading {
+        font-weight: normal;
+        font-size: 32px;
+        color: #896442;
+        margin-top: 24px;
+        margin-bottom: 27px;
+      }
+      .fifth_section_para {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 14px;
+        color: #7b7b7b;
+        line-height: 150%;
+        margin-bottom: 28px;
+      }
+      /* .fourth_section_model {
+  width: 30%;
+} */
+      .fourth_section_model img {
+        height: 826px;
+        object-fit: cover;
+      }
+      .fifthSection {
+        display: flex;
+        align-items: center;
+        margin-top: 146px;
+        position: relative;
+      }
+      .fifthSectionParent {
+        position: relative;
+        height: 804px;
+        display: inline-block;
+        width: 55%;
+      }
+      .fifthSection_rightpart {
+        display: flex;
+        justify-content: center;
+      }
+      .sixth_section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 82px;
+        padding: 117px 0;
+        background-color: #fff;
+        position: relative;
+        z-index: 99;
+      }
+      .girlDesktopImg {
+        height: 465px;
+        width: 377px;
+        object-fit: cover;
+      }
+      .girlMobImg {
+        display: none;
+      }
+      .sixth_section_heading {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 120%;
+        text-transform: uppercase;
+        color: #896442;
+        max-width: 481px;
+        margin-bottom: 58px;
+      }
+      /* An Intimate */
+      .IntimateBgParent {
+        background-color: #fff;
+        position: relative;
+        z-index: 99;
+        padding-bottom: 64px;
+      }
+      .IntimateBg {
+        background-color: #fdf9f2;
+        height: 485px;
+      }
+      .IntimateBgChild {
+        padding-top: 48px;
+        max-width: 916px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .IntimateBgHead {
+        font-size: 52px;
+        line-height: 100%;
+        color: #523418;
+        font-weight: normal;
+        margin: 0;
+        margin-top: 16px;
+        margin-bottom: 28px;
+      }
+      .IntimateBgPara {
+        font-size: 16px;
+        line-height: 100%;
+        color: #7b7b7b;
+        margin: 0;
+        margin-bottom: 52px;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .IntimateBgImg {
+        width: 916px;
+        height: 503px;
+        margin-top: -262px;
+        margin: -200px auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @media screen and (max-width: 1000px) {
+        .IntimateBg {
+          height: 430px;
+        }
+        .IntimateBgChild {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .IntimateBgHead {
+          font-size: 36px;
+          margin-bottom: 23px;
+        }
+        .IntimateBgPara {
+          font-size: 14px;
+
+          margin-bottom: 39px;
+        }
+        .IntimateBgImg {
+          width: 90%;
+          object-fit: cover;
+        }
+      }
+
+      /* Discover Slider */
+
+      .discoverSlider {
+        position: relative;
+        background-color: #fff;
+        z-index: 99;
+        /* height: 715px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .discoverSlider h2 {
+        font-size: 48px;
+        line-height: 100%;
+        margin: 0;
+        color: #232323;
+        padding-top: 32px;
+        padding-bottom: 50px;
+        text-align: center;
+        font-weight: normal;
+      }
+
+      .discoverSlider .slider {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 100px;
+      }
+
+      .discoverSlider .slides {
+        display: flex;
+        gap: 86px;
+        max-width: 1200px;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .discoverSlider .slide {
+        width: 315px;
+        box-sizing: border-box;
+        text-align: center;
+        border: 1px solid #f6f0eb;
+      }
+
+      .discoverSlider .slide img {
+        width: 315px;
+        max-height: 377px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .discoverSlider .caption {
+        color: #0f0f0f;
+        padding: 10px;
+        margin-top: -5px;
+        font-weight: 500;
+        text-align: left;
+      }
+
+      /* Arrows */
+      .discoverSlider .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #c39784;
+        border: 1px solid #c89d7c;
+        color: #c89d7c;
+        font-size: 2rem;
+        padding: 5px 15px;
+        cursor: pointer;
+        user-select: none;
+        transition: 0.3s;
+      }
+
+      .discoverSlider .arrow:hover {
+        background: #c89d7c;
+        border-color: #c89d7c;
+      }
+
+      .discoverSlider .arrow.left {
+        left: 10px;
+      }
+      .discoverSlider .arrow.right {
+        right: 10px;
+      }
+
+      /* Button */
+      .discoverSlider .explore-btn {
+        margin-top: 2rem;
+        padding: 12px 28px;
+        border: 1px solid #232323;
+        background: transparent;
+        color: #232323;
+        font-size: 14px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .discoverSlider .span img{
+        width: 12px;
+        height: 24px;
+      }
+
+      /* .discoverSlider .explore-btn:hover {
+        background: #c89d7c;
+        border-color: #c89d7c;
+        color: #fff;
+      } */
+
+      @media screen and (min-width: 1400px) {
+        .fourth_section_model {
+          width: 45%;
+        }
+        .second_video_section {
+          width: 85%;
+        }
+        .third_section_rightpart {
+          width: 40%;
+        }
+      }
+      @media screen and (min-width: 1700px) {
+        .second_video_section {
+          width: 85%;
+        }
+        .third_section_rightpart {
+          width: 30%;
+        }
+      }
+      @media screen and (min-width: 2100px) {
+        .fourth_section_floatImg {
+          right: 6%;
+        }
+        .fourth_section_model {
+          width: 47%;
+        }
+        .second_video_section {
+          width: 60%;
+        }
+        .third_section_rightpart {
+          width: 27%;
+        }
+        .twoImages_firstImg {
+          width: 411px;
+        }
+        .twoImages {
+          bottom: 37px;
+          right: 3%;
+        }
+      }
+      @media screen and (min-width: 1201px) and (max-width: 1399px) {
+        .fifth_section {
+          width: 35%;
+        }
+        .fourth_section_model {
+          width: 35%;
+        }
+        .fourth_section_floatBox {
+          right: 9%;
+        }
+        .fourth_section_floatImg {
+          right: 0px;
+        }
+        .second_video_section {
+          width: 75%;
+        }
+        .third_section_rightpart {
+          width: 55%;
+        }
+      }
+      @media screen and (max-width: 1200px) {
+        .fourth_section_model {
+          width: 50%;
+        }
+        .fifth_section {
+          width: 50%;
+        }
+        .twoImages {
+          bottom: 10px;
+        }
+        .third_section_rightpart,
+        .fifth_section_rightpart {
+          width: 50%;
+          padding-left: 90px;
+        }
+        .second_video_section {
+          width: 50%;
+        }
+        .first_section_rightpart_head {
+          font-size: 52px;
+        }
+        .first_section_rightpart_head1 {
+          font-size: 52px;
+        }
+        .first_section_rightpart_para {
+          margin: 0 auto;
+        }
+      }
+      @media screen and (max-width: 1024px) {
+        .first_section {
+          flex-direction: column;
+        }
+        .first_video_section {
+          height: auto;
+          width: 100%;
+        }
+        .video_section_video {
+          height: 400px;
+        }
+        .muteIcon,
+        .pauseIcon {
+          width: 30px;
+          height: 32px;
+        }
+        .first_section_rightpart {
+          width: 100%;
+          padding-left: 0;
+        }
+        .first_section_rightpart_mobile_style {
+          margin-top: 30px;
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+        }
+        .first_section_rightpart_head {
+          margin-top: 0px !important;
+          text-align: center;
+          font-size: 36px;
+        }
+        .first_section_rightpart_head1 {
+          font-size: 36px;
+        }
+        .first_section_rightpart_para {
+          font-size: 12px;
+          color: #7b7b7b;
+          margin-bottom: 28px;
+          padding-left: 20px;
+          padding-right: 20px;
+          text-align: center;
+        }
+        .discover_btn {
+          margin: 0 auto;
+        }
+        .discover_div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+        }
+        .discover_btn_text {
+          font-size: 10px;
+        }
+        .floatImage {
+          display: none;
+        }
+        .leftPart {
+          width: 100%;
+          margin-top: 32px;
+          padding: 0;
+        }
+        .countHeading {
+          width: 84px;
+          height: 56px;
+        }
+        .leftPart_heading {
+          font-size: 20px;
+          margin-bottom: 12px;
+          padding-left: 20px;
+          padding-right: 70px;
+        }
+        .rightPart_heading {
+          font-size: 20px;
+          margin-bottom: 12px;
+          padding-left: 20px;
+          padding-right: 70px;
+          justify-content: flex-start;
+        }
+        .fifthSection_rightpart_heading {
+          font-size: 20px;
+          margin-bottom: 12px;
+          padding-left: 30px;
+          padding-right: 70px;
+          justify-content: flex-start;
+        }
+        .leftPart_para {
+          font-size: 12px;
+          padding-left: 20px;
+          padding-right: 70px;
+        }
+        .rightPart_para {
+          font-size: 12px;
+          padding-left: 20px;
+          padding-right: 70px;
+          justify-content: flex-start;
+          text-align: start;
+        }
+        .fifthSection_rightpart_para {
+          font-size: 12px;
+          padding-left: 30px;
+          padding-right: 70px;
+          justify-content: flex-start;
+          text-align: start;
+        }
+        .purityGroup {
+          gap: 15px;
+          padding-left: 20px;
+          padding-right: 70px;
+        }
+        .purityGroup2,
+        .purityGroup3 {
+          gap: 15px;
+          padding-left: 30px;
+          padding-right: 70px;
+          justify-content: flex-start;
+        }
+
+        .exploreBtn {
+          /* margin-left: 20px; */
+          margin-right: 70px;
+          margin-bottom: 0;
+        }
+        .exploreBtn2 {
+          margin: 0 auto;
+        }
+        .exploreBtnText {
+          font-size: 12px;
+          color: #000;
+        }
+        .smallVideoMobStyle {
+          position: absolute;
+          top: 30.4%;
+          right: 27px;
+        }
+        .smallVideo {
+          display: none;
+        }
+        .rightPart {
+          width: 100%;
+        }
+        .rightPart img {
+          height: 400px;
+        }
+        .third_section {
+          flex-direction: column;
+          margin-top: 70px;
+        }
+        .second_video_section {
+          height: 400px;
+          width: 100%;
+        }
+        .third_section_rightpart {
+          width: 100%;
+          margin-top: 280px;
+          padding: 0;
+        }
+        .imageFifthSection {
+          display: none;
+        }
+        .fifth_section_rightpart {
+          /* display: none; */
+          width: 100%;
+          margin-top: 30px;
+          padding: 0;
+        }
+        .third_section_rightpart_content {
+          display: flex;
+          justify-content: start;
+        }
+        .exploreBtnAlignment {
+          display: flex;
+          align-items: center;
+          justify-content: start;
+        }
+        .exploreBtnAlignmentMobile {
+          margin-left: 20px;
+        }
+
+        .twoImages {
+          position: absolute;
+          display: flex;
+          gap: 16px;
+          padding: 0 20px;
+          bottom: unset !important;
+          top: 430px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: calc(100% - 40px);
+          max-width: none;
+        }
+
+        .twoImages_firstImg {
+          width: 50%;
+          height: 213px;
+        }
+
+        .twoImages_firstImg img {
+          width: 100%;
+          height: 100%;
+        }
+        .fourth_section_floatImg,
+        .fourth_section_floatBox {
+          display: none;
+        }
+        .fifth_section {
+          width: 100%;
+          margin-top: 32px;
+          padding: 0;
+        }
+        .fifth_section_heading {
+          font-size: 20px;
+          margin-bottom: 12px;
+          padding-left: 20px;
+          padding-right: 70px;
+        }
+        .fifth_section_para {
+          padding-left: 20px;
+          padding-right: 70px;
+        }
+        .fourth_section_model img {
+          height: 400px;
+          width: 100%;
+        }
+        .fifthSection {
+          margin-top: 70px;
+          flex-direction: column;
+        }
+        .fifthSectionParent {
+          height: 400px;
+          width: 100%;
+        }
+        .fifthSection_rightpart {
+          justify-content: flex-start;
+          padding-left: 15px;
+          padding-right: 67px;
+        }
+        .exploreBtnAlignment2 {
+          padding-left: 30px;
+          padding-right: 67px;
+          justify-content: flex-start;
+        }
+        .sixth_section {
+          gap: 0;
+          /* margin: 80px 0; */
+          flex-direction: column;
+          padding: 80px 10px;
+        }
+        .girlDesktopImg {
+          display: none;
+        }
+        .girlMobImg {
+          height: 202px;
+          width: 333px;
+          object-fit: cover;
+          margin: 0 auto;
+          display: block;
+        }
+        .sixth_section_heading {
+          margin-top: 29px;
+          margin-bottom: 36px;
+          text-align: center;
+          font-size: 22px;
+        }
+        .fourth_section_model {
+          width: 100%;
+        }
+      }
+
+
+      /* slider section css */
+
+      .second_section {
+  padding: 4rem 1rem;
+  text-align: center;
+  display: block;
+  position: relative;
+  background-color: #fff;
+  z-index: 99;
+}
+
+.custom_divider {
+  width: 3rem;
+  height: 1px;
+  background-color: #333;
+  border: none;
+  margin: 0 auto 1.5rem auto;
+}
+
+.second_section_heading {
+  font-size: 54px;
+  color: #523418;
+  font-weight: 400;
+  line-height: 1.375;
+  margin-bottom: 1rem;
+}
+
+.second_section_description {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.875rem;
+  color: #7B7B7B;
+  line-height: 1.625;
+  margin-bottom: 2.5rem;
+}
+
+.second_section_slider_div {
+  position: relative;
+  max-width: 1194px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.second_section_slider_div > .left_arrow_div {
+  position: absolute;
+  top: 50%;
+  left: -1.25rem;
+  transform: translateY(-50%);
+  background-color: #c39784;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.second_section_slider_div > .right_arrow_div {
+  position: absolute;
+  top: 50%;
+  right: -1.25rem;
+  transform: translateY(-50%);
+  background-color: #c39784;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.second_section_slider_div .slider_container {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.second_section_slider_div .slider_container .slider-card {
+  height: 588px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.second_section_slider_div .slider_container .slider-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Progress bar styles */
+.progress-bar-container {
+  position: absolute;
+  top: 40px;
+  right: 6px;
+  width: 92px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #fff;
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Overlay content styles */
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* background: linear-gradient(transparent, rgba(0, 0, 0, 0.7)); */
+  color: white;
+  padding: 0px 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.overlay-title {
+  font-family: "AGaramondPro", serif;
+  text-align: left;
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 11px;
+  /* letter-spacing: -0.03em; */
+}
+
+.overlay-description {
+  font-size: 16px;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.button-div {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  background: white;
+  border: none;
+  padding: 13.5px 20px;
+  margin-bottom: 24px;
+}
+.button-div > p {
+  font-family: "AGaramondPro", serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #232323;
+  margin: 0px !important;
+}
+.button-div > img {
+  width: 12px !important;
+  height: 24px !important;
+}
+
+/* Show overlay and progress on active card */
+.slider-card.active .progress-bar-container,
+.slider-card.active .card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .second_section_heading {
+    font-size: 36px;
+  }
+  .second_section_description {
+    font-size: 14px;
+  }
+  .overlay-title {
+    font-size: 28px;
+  }
+  .overlay-description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .second_section_slider_div > .left_arrow_div {
+    display: none;
+  }
+  .second_section_slider_div > .right_arrow_div {
+    display: none;
+  }
+  .progress-bar-container {
+    width: 50px;
+    top: 15px;
+    right: 15px;
+  }
+  .card-overlay {
+    padding: 30px 20px 20px;
+    display: block;
+  }
+  .overlay-title {
+    font-size: 28px;
+    text-align: center;
+  }
+  .overlay-description {
+    font-size: 12px;
+    text-align: center;
+  }
+  .button-div > p{
+    font-size: 12px;
+  }
+  .button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .button-div{
+    gap: 23px;
+    justify-content: space-between;
+    width: 230px;
+  }
+}
+
+    </style>
   </head>
   <body>
     <!-- First Section -->
@@ -26,6 +1317,7 @@
       <div class="first_video_section">
         <!-- Video Player with Controls -->
         <div class="video_section" id="videoWrapper1">
+          <!-- <img src="" alt=""> -->
           <video
             id="video1"
             class="video_section_video"
@@ -41,26 +1333,26 @@
           <div class="custom_controls">
             <div class="custom_controls_btn">
               <!-- Mute/Unmute Button -->
-              <button id="muteBtn1">
+              <div id="muteBtn1">
                 <img
                   id="muteIcon1"
                   src="/assets/Mute.svg"
                   alt="Mute"
                   class="muteIcon"
                 />
-              </button>
+              </div>
 
-              <button id="playPauseBtn1">
+              <div id="playPauseBtn1">
                 <img
                   id="pauseIcon1"
                   src="/assets/pause.svg"
                   alt="pause"
                   class="pauseIcon"
                 />
-              </button>
+              </div>
             </div>
             <div class="custom_slider">
-              <span id="currentTime1" class="custom_slider_text albert"
+              <span id="currentTime1" class="custom_slider_text AGaramondPro"
                 >00:00</span
               >
               <!-- <input
@@ -81,7 +1373,7 @@
                 max="100"
                 step="0.1"
               />
-              <span id="duration1" class="custom_slider_text albert"
+              <span id="duration1" class="custom_slider_text AGaramondPro"
                 >00:00</span
               >
             </div>
@@ -91,21 +1383,21 @@
 
       <div class="first_section_rightpart">
         <div class="first_section_rightpart_mobile_style">
-          <h3
-            class="first_section_rightpart_head cormorant"
-            style="letter-spacing: -3%"
+          <p
+            class="first_section_rightpart_head AGaramondPro"
+            style="letter-spacing: -3%; font-size: 80px"
           >
             Aeterna
-          </h3>
-          <h3
-            class="first_section_rightpart_head cormorant"
-            style="letter-spacing: -3%"
+          </p>
+          <p
+            class="first_section_rightpart_head1 AGaramondPro"
+            style="letter-spacing: -3%; font-size: 80px"
           >
-            EDITS
-          </h3>
+            EDIT
+          </p>
         </div>
         <p
-          class="first_section_rightpart_para albert"
+          class="first_section_rightpart_para AGaramondPro"
           style="letter-spacing: -3%"
         >
           here is never a time and place for knowing, It happens in a heartbeat,
@@ -113,387 +1405,425 @@
           patterns, awakening her spirit like a talisman beyond time, making her
           more alive than ever.
         </p>
-        <a href="#secondSecScroll">
-          <button class="discover_btn">
-            <span class="discover_btn_text albert" style="letter-spacing: -3%"
+        <a
+          href="#secondSecScroll"
+          class="discover_div"
+          style="text-decoration: none"
+        >
+          <div class="discover_btn">
+            <span
+              class="discover_btn_text AGaramondPro"
+              style="letter-spacing: -3%"
               >discover Looks
             </span>
             <img src="/assets/bottomArrow.svg" alt="" />
-          </button>
+          </div>
         </a>
       </div>
     </section>
 
-    <!-- Second Section -->
 
-    <section id="secondSecScroll" class="second_section">
-      <div class="floatImage">
-        <img src="/assets/floatRing.svg" alt="" />
-      </div>
-      <div class="leftPart">
-        <img src="/assets/Heading1.svg" alt="" class="countHeading" />
-        <h3 class="leftPart_heading cormorant">A TIMELESS IMPRESSION RING</h3>
-        <p class="leftPart_para albert" style="letter-spacing: -3%">
-          A masterpiece shaped by the rhythm of the universe. This necklace is
-          more - a vision born of sacred geometry, where seven interwoven
-          circles create a gateway
-        </p>
-        <div class="purityGroup">
-          <div class="box">
-            <img src="/assets/purity.svg" alt="" />
-            <p class="boxText albert">18karat <br />Purity</p>
-          </div>
-          <span>
-            <img src="/assets/vLine.svg" alt="" />
-          </span>
-          <div class="box">
-            <img
-              src="/assets/clarity.svg"
-              className="w-[20px] h-[20px]"
-              alt=""
-            />
-            <p class="boxText albert">
-              9.361g
-              <br />Clarity
-            </p>
-          </div>
-          <span>
-            <img src="/assets/vLine.svg" alt="" />
-          </span>
-          <div class="box">
-            <img src="/assets/diamond.svg" alt="" />
-            <p class="boxText albert">
-              0.67
-              <br />Diamond Caratage
-            </p>
-          </div>
+    <!-- second section---- -->
+    <section class="second_section" id="second_section_slider">
+      <div class="custom_divider"></div>
+      <h2 class="second_section_heading">
+        An intimate story, where<br />
+        jewels become poetry.
+      </h2>
+
+      <p class="second_section_description">
+        Knowing strikes in an instant, unexpected and powerful. For her, it was
+        like diving into an infinity of patterns, emerging stronger, senses
+        sharpened.
+      </p>
+
+      <div class="second_section_slider_div">
+        <!-- Left arrow -->
+        <div class="left_arrow_div" id="sec2-left-arrow">
+          <img src="/images/arrowLeft.png" alt="arrow" />
         </div>
-        <button class="exploreBtn">
-          <span class="exploreBtnText albert" style="letter-spacing: 8%"
-            >Explore More</span
-          >
-          <img src="/assets/arrow-right.svg" alt="" />
-        </button>
-        <div class="smallVideoMobStyle">
-          <div class="smallVideo">
-            <video muted autoplay loop playsinline preload="auto">
-              <source src="/assets/v2.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
-      </div>
-      <div class="rightPart">
-        <img src="/assets/model2.png" alt="Model Image" />
-      </div>
-    </section>
 
-    <!-- Third Section -->
-    <section class="third_section">
-      <div class="second_video_section">
-        <!-- Video Player with Controls -->
-        <div class="video_section" id="videoWrapper2">
-          <video
-            id="video2"
-            class="video_section_video"
-            muted
-            loop
-            playsinline
-            preload="auto"
-          >
-            <source src="/assets/v3.mp4" type="video/mp4" />
-          </video>
-
-          <!-- Custom Controls -->
-          <div class="custom_controls">
-            <div class="custom_controls_btn">
-              <!-- Mute/Unmute Button -->
-              <button id="muteBtn2">
-                <img
-                  id="muteIcon2"
-                  src="/assets/Unmute.svg"
-                  alt="Mute"
-                  class="muteIcon"
-                />
-              </button>
-
-              <button id="playPauseBtn2">
-                <img
-                  id="pauseIcon2"
-                  src="/assets/pause.svg"
-                  alt="pause"
-                  class="pauseIcon"
-                />
-              </button>
+        <!-- Slider container -->
+        <div id="sec2-slider" class="slider_container">
+          <div class="slider-card">
+            <img src="./images/look1.png" alt="Look 1" />
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
             </div>
-            <div class="custom_slider">
-              <span id="currentTime2" class="custom_slider_text albert"
-                >00:00</span
-              >
-              <input
-                id="progress2"
-                type="range"
-                class="custom_slider_input accent-white no-thumb"
-                value="0"
-                min="0"
-                max="100"
-                step="0.1"
-              />
-              <span id="duration2" class="custom_slider_text albert"
-                >00:00</span
-              >
+            <div class="card-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+                <p class="overlay-description">
+                  Knowing strikes in an instant, </br> unexpected and powerful
+                </p>
+              </div>
+              <div class="button-container">
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="third_section_rightpart">
-        <div class="third_section_rightpart_content">
-          <img src="/assets/Heading2.svg" alt="" class="countHeading" />
-        </div>
+          <div class="slider-card">
+            <img src="./images/look2.png" alt="Look 2" />
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+            <div class="card-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+                <p class="overlay-description">
+                  Knowing strikes in an instant, </br> unexpected and powerful
+                </p>
+              </div>              
+              <div class="button-container">
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <h3 class="rightPart_heading cormorant">COSMIC VISION NECKPIECE</h3>
-        <p class="rightPart_para albert" style="letter-spacing: -3%">
-          This bangle is a poem whispered to her from the stars. Its verses
-          etched in a custom-cut purple amethyst, resting on a bed of round
-          ones. While the secrets
-        </p>
-        <div class="purityGroup2">
-          <div class="box">
-            <img src="/assets/purity.svg" alt="" />
-            <p class="boxText albert">18karat <br />Purity</p>
+          <div class="slider-card">
+            <img src="./images/look3.png" alt="Look 3" />
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+            <div class="card-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+                <p class="overlay-description">
+                  Knowing strikes in an instant, </br> unexpected and powerful
+                </p>
+              </div>
+              <div class="button-container">
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+              </div>
+            </div>
           </div>
-          <span>
-            <img src="/assets/vLine.svg" alt="" />
-          </span>
-          <div class="box">
-            <img src="/assets/clarity.svg" alt="" />
-            <p class="boxText albert">
-              9.361g
-              <br />Clarity
-            </p>
+
+          <div class="slider-card">
+            <img src="./images/look1.png" alt="Look 4" />
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+            <div class="card-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+                <p class="overlay-description">
+                  Knowing strikes in an instant, </br> unexpected and powerful
+                </p>
+              </div>
+              <div class="button-container">
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+              </div>
+            </div>
           </div>
-          <span>
-            <img src="/assets/vLine.svg" alt="" />
-          </span>
-          <div class="box">
-            <img src="/assets/diamond.svg" alt="" />
-            <p class="boxText albert">
-              0.67
-              <br />Diamond Caratage
-            </p>
+
+          <div class="slider-card">
+            <img src="./images/look2.png" alt="Look 5" />
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+            <div class="card-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+                <p class="overlay-description">
+                  Knowing strikes in an instant, </br> unexpected and powerful
+                </p>
+              </div>
+              <div class="button-container">
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider-card">
+            <img src="./images/look3.png" alt="Look 6" />
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+            <div class="card-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+                <br class="overlay-description">
+                  Knowing strikes in an instant, </br> unexpected and powerful
+                </p>
+              </div>
+              <div class="button-container">
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="exploreBtnAlignment">
-          <button class="exploreBtn">
-            <span class="exploreBtnText albert" style="letter-spacing: 8%"
-              >Explore More</span
-            >
-            <img src="/assets/arrow-right.svg" alt="" />
-          </button>
-        </div>
-        <div class="twoImages">
-          <div class="twoImages_firstImg">
-            <img src="/assets/neck2.png" alt="" class="w-full h-full" />
-          </div>
-          <div class="twoImages_firstImg">
-            <img src="/assets/neck1.png" alt="" class="w-full h-full" />
-          </div>
+        <!-- Right arrow -->
+        <div class="right_arrow_div" id="sec2-right-arrow">
+          <img src="/images/arrowRight.png" alt="arrow" />
         </div>
       </div>
     </section>
 
-    <!-- Fourth Section -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const leftArrow = document.getElementById("sec2-left-arrow");
+        const rightArrow = document.getElementById("sec2-right-arrow");
+        const container = document.getElementById("sec2-slider");
+        const cards = Array.from(container.children);
 
-    <section class="fourth_section">
-      <div class="fourth_section_floatImg">
-        <img src="/assets/floatArcRing.svg" alt="" />
-      </div>
-      <div class="fourth_section_floatBox">
-        <p
-          class="fourth_section_floatBoxText albert"
-          style="letter-spacing: -3%"
-        >
-          This ring is inspired by the intersecting patterns of the flower of
-          life. A mysterious display custom cut amethyst is positioned at its
-          centre and
-        </p>
-        <button class="fourth_section_floatBoxBtn">
-          <span class="exploreBtnText albert" style="letter-spacing: 8%"
-            >Explore More</span
-          >
-          <img src="/assets/arrow-right.svg" alt="" />
-        </button>
-      </div>
+        let currentStartIndex = 0;
+        // const visibleCards = 3;
+        let visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
+        let progressInterval;
 
-      <div class="fifth_section">
-        <img src="/assets/Heading3.svg" alt="" class="countHeading" />
-        <h3 class="fifth_section_heading cormorant">AN INFINITE ARC RING</h3>
-        <p class="fifth_section_para albert" style="letter-spacing: -3%">
-          A timeless concept rendered to pieces and incorporated into a design
-          that is both innovative and minimalist. A stackable statement the ring
-          can be
-        </p>
+        function updateSlider() {
+          const totalCards = cards.length;
 
-        <div class="purityGroup">
-          <div class="box">
-            <img src="/assets/purity.svg" alt="" />
-            <p class="boxText albert">18karat <br />Purity</p>
-          </div>
-          <span>
-            <img src="/assets/vLine.svg" alt="" />
-          </span>
-          <div class="box">
-            <img src="/assets/clarity.svg" alt="" />
-            <p class="boxText albert">
-              9.361g
-              <br />Clarity
-            </p>
-          </div>
-          <span>
-            <img src="/assets/vLine.svg" alt="" />
-          </span>
-          <div class="box">
-            <img src="/assets/diamond.svg" alt="" />
-            <p class="boxText albert">
-              0.67
-              <br />Diamond Caratage
-            </p>
-          </div>
+          // Hide arrows if not needed
+          if (totalCards <= visibleSliderCard) {
+            leftArrow.classList.add("hidden");
+            rightArrow.classList.add("hidden");
+          } else {
+            leftArrow.classList.remove("hidden");
+            rightArrow.classList.remove("hidden");
+          }
+
+          cards.forEach((card, idx) => {
+            const visibleIndex =
+              (idx - currentStartIndex + totalCards) % totalCards;
+
+            // Reset styles first
+            card.style.display = "none";
+            card.classList.remove("active");
+
+            if (totalCards === 1) {
+              // Case: only one card
+              card.style.display = "block";
+              card.style.width = "100%";
+              card.classList.add("active");
+            } else if (totalCards === 2) {
+              // Case: exactly two cards total
+              if (visibleIndex < 2) {
+                card.style.display = "block";
+                if (visibleIndex === 0) {
+                  card.style.width = "80%"; // active
+                  card.classList.add("active");
+                } else {
+                  card.style.width = "20%"; // non-active
+                }
+              }
+            } else {
+              // Case: 3 or more cards
+              if (visibleIndex < visibleSliderCard) {
+                card.style.display = "block";
+                if (visibleIndex === 0) {
+                  card.style.width =
+                    visibleSliderCard === 2 ? "80%" : "50%"; // active
+                  card.classList.add("active");
+                } else {
+                  card.style.width =
+                    visibleSliderCard === 2 ? "20%" : "24%"; // non-active
+                }
+              }
+            }
+          });
+
+          // Start progress animation for active card
+          startProgressAnimation();
+        }
+
+
+        function startProgressAnimation() {
+          // Clear any existing interval
+          if (progressInterval) {
+            clearInterval(progressInterval);
+          }
+
+          // Find active card and reset its progress
+          const activeCard = document.querySelector(".slider-card.active");
+          if (activeCard) {
+            const progressBar = activeCard.querySelector(".progress-bar");
+            progressBar.style.width = "0%";
+
+            let progress = 0;
+            progressInterval = setInterval(() => {
+              progress += 2;
+              progressBar.style.width = progress + "%";
+
+              if (progress >= 100) {
+                clearInterval(progressInterval);
+                // Auto-advance to next slide after progress completes
+                setTimeout(() => {
+                  slideRight();
+                }, 500);
+              }
+            }, 100); // Adjust speed as needed (100ms = 5 second total)
+          }
+        }
+
+        function slideRight() {
+          if (cards.length > visibleSliderCard) {
+            currentStartIndex++;
+
+            // Loop back to beginning if we've reached the end
+            if (currentStartIndex >= cards.length) {
+              currentStartIndex = 0;
+            }
+
+            updateSlider();
+          }
+        }
+
+        function slideLeft() {
+          if (cards.length > visibleSliderCard) {
+            currentStartIndex--;
+
+            // Loop to end if we've gone before the beginning
+            if (currentStartIndex < 0) {
+              currentStartIndex = cards.length - 1;
+            }
+
+            updateSlider();
+          }
+        }
+
+        rightArrow.addEventListener("click", () => {
+          if (progressInterval) clearInterval(progressInterval);
+          slideRight();
+        });
+
+        leftArrow.addEventListener("click", () => {
+          if (progressInterval) clearInterval(progressInterval);
+          slideLeft();
+        });
+
+        // Add click event to each card to make it active
+        cards.forEach((card, idx) => {
+          card.addEventListener("click", () => {
+            const visibleIndex = idx - currentStartIndex;
+            // Only allow clicking on visible cards
+            if (visibleIndex >= 0 && visibleIndex < visibleSliderCard) {
+              if (progressInterval) clearInterval(progressInterval);
+
+              // When clicking a card, make it the first visible card (active position)
+              currentStartIndex = idx;
+
+              // Handle looping if we go beyond the cards length
+              if (currentStartIndex + visibleSliderCard > cards.length) {
+                currentStartIndex = Math.max(0, cards.length - visibleSliderCard);
+              }
+
+              updateSlider();
+            }
+          });
+
+          // Add cursor pointer to indicate clickable
+          card.style.cursor = "pointer";
+        });
+
+        // Add click event to discover buttons
+        document.querySelectorAll(".discover-button").forEach((button, idx) => {
+          button.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent card click event
+            console.log(`Discover button clicked for look ${idx + 1}`);
+            // Add your discover button functionality here
+          });
+        });
+
+          window.addEventListener("resize", () => {
+            visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
+            updateSlider();
+          });
+        // Initialize
+        updateSlider();
+      });
+    </script>
+
+    <!-- An Intimate Story -->
+
+    <section class="IntimateBgParent">
+      <div class="IntimateBg">
+        <div class="IntimateBgChild">
+          <img src="./assets/sLine.png" alt="" />
+          <h3 class="IntimateBgHead">
+            An intimate story, where <br />
+            jewels become poetry.
+          </h3>
+          <p class="IntimateBgPara">
+            Knowing strikes in an instant, unexpected and powerful. For her, it
+            was like <br />
+            diving into an infinity of patterns, emerging stronger, senses
+            sharpened.
+          </p>
         </div>
-        <button class="exploreBtn">
-          <span class="exploreBtnText albert" style="letter-spacing: 8%"
-            >Explore More</span
-          >
-          <img src="/assets/arrow-right.svg" alt="" />
-        </button>
-
-        <div class="smallVideoMobStyle">
-          <div class="smallVideo">
-            <video muted autoplay loop playsinline preload="auto">
-              <source src="/assets/v4.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
       </div>
-      <div class="fourth_section_model">
-        <img
-          src="/assets/model4.png"
-          alt="Model Image"
-          class="h-[400px] w-full"
-        />
-      </div>
+      <img
+        src="./assets/intimateGirl.jpg"
+        alt="intimateGirl"
+        class="IntimateBgImg"
+      />
     </section>
 
-    <!-- Fifth Section -->
-    <section class="fifthSection">
-      <div class="fifthSectionParent">
-        <!-- Video Player with Controls -->
-        <div class="video_section" id="videoWrapper3">
-          <video
-            id="video3"
-            class="video_section_video"
-            muted
-            loop
-            playsinline
-            preload="auto"
-          >
-            <source src="/assets/v5.mp4" type="video/mp4" />
-          </video>
+    <!-- Discover Slider -->
 
-          <!-- Custom Controls -->
-          <div class="custom_controls">
-            <div class="custom_controls_btn">
-              <!-- Mute/Unmute Button -->
-              <button id="muteBtn3">
-                <img
-                  id="muteIcon3"
-                  src="/assets/Unmute.svg"
-                  alt="Mute"
-                  class="muteIcon"
-                />
-              </button>
+    <section class="discoverSlider">
+      <h2>Discover Aeterna Collection</h2>
 
-              <button id="playPauseBtn3">
-                <img
-                  id="pauseIcon3"
-                  src="/assets/pause.svg"
-                  alt="pause"
-                  class="pauseIcon"
-                />
-              </button>
-            </div>
-            <div class="custom_slider">
-              <span id="currentTime3" class="custom_slider_text albert"
-                >00:00</span
-              >
-              <input
-                id="progress3"
-                type="range"
-                class="custom_slider_input accent-white no-thumb"
-                value="0"
-                min="0"
-                max="100"
-                step="0.1"
-              />
-              <span id="duration3" class="custom_slider_text albert"
-                >00:00</span
-              >
-            </div>
+      <div class="slider">
+        <div class="slides" id="slides">
+          <div class="slide">
+            <img src="./assets/d1.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
           </div>
+          <div class="slide">
+            <img src="./assets/d2.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./assets/d3.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./assets/d1.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./assets/d2.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+        </div>     
+        <!-- Left arrow -->
+        <div class="left_arrow_div arrow left" >
+          <img src="/images/arrowLeft.png" alt="arrow" />
+        </div>   
+        <!-- Right arrow -->
+        <div class="right_arrow_div arrow right">
+          <img src="/images/arrowRight.png" alt="arrow" />
         </div>
+
+        <!-- <div class="arrow left">&#10094;</div>
+        <div class="arrow right">&#10095;</div> -->
       </div>
-      <div class="fifth_section_rightpart">
-        <div class="fifthSection_rightpart">
-          <img src="/assets/Heading4.svg" alt="" class="countHeading" />
-        </div>
 
-        <h3 class="fifthSection_rightpart_heading cormorant">
-          AN INFINITE ARC RING
-        </h3>
-        <img src="/assets/arcRing1.svg" alt="" class="max-md:hidden mx-auto" />
-        <p
-          class="fifthSection_rightpart_para albert"
-          style="letter-spacing: -3%"
-        >
-          This bangle is a poem whispered to her from the stars. Its verses
-          etched in a custom-cut purple amethyst, resting on a bed of round
-          ones. While the secrets
-        </p>
-        <div class="purityGroup3">
-          <div class="box">
-            <img src="/assets/purity.svg" alt="" />
-            <p class="boxText albert">18karat <br />Purity</p>
-          </div>
-          <span>
-            <img src="/assets/vLine.svg" alt="" />
-          </span>
-          <div class="box">
-            <img src="/assets/clarity.svg" alt="" />
-            <p class="boxText albert">
-              9.361g
-              <br />Clarity
-            </p>
-          </div>
-          <span>
-            <img src="/assets/vLine.svg" alt="" />
-          </span>
-          <div class="box">
-            <img src="/assets/diamond.svg" alt="" />
-            <p class="boxText albert">
-              0.67
-              <br />Diamond Caratage
-            </p>
-          </div>
-        </div>
-        <div class="exploreBtnAlignment2 max-md:pl-[25px] max-md:pr-[67px]">
-          <button class="exploreBtn">
-            <span class="exploreBtnText" style="letter-spacing: 8%"
-              >Explore More</span
-            >
-            <img src="/assets/arrow-right.svg" alt="" />
-          </button>
-        </div>
-      </div>
+      <button class="explore-btn">EXPLORE THIS COLLECTION 
+        <span>
+          <img src="./images/buttonArrow.svg" alt="arrow" >
+      </span>
+    </button>
     </section>
 
     <!-- Sixth Section -->
@@ -516,15 +1846,15 @@
         </div>
       </div>
       <div>
-        <h3 class="sixth_section_heading cormorant">
+        <h3 class="sixth_section_heading AGaramondPro">
           Found your style in our collection? Let's take the next step.
         </h3>
 
         <button class="exploreBtn2">
-          <span class="exploreBtnText albert" style="letter-spacing: 8%"
+          <span class="exploreBtnText AGaramondPro" style="letter-spacing: 8%"
             >Book an Appointment</span
           >
-          <img src="/assets/arrow-right.svg" alt="" />
+          <img src="/assets/arrow-right.svg" alt=""   class="arrow"/>
         </button>
       </div>
     </section>
@@ -616,6 +1946,71 @@
       setupVideoPlayer(2); // on scroll
       setupVideoPlayer(3);
       setupVideoPlayer(4);
+    </script>
+
+    <!-- Discover Slider  -->
+
+    <script>
+      const slides = document.getElementById("slides");
+      const slide = document.querySelectorAll(".slide");
+      const prev = document.querySelector(".left");
+      const next = document.querySelector(".right");
+
+      const visibleSlides = window.innerWidth < 768 ? 1 : 3;
+      let index = visibleSlides; // because clone lagayenge
+      let allowShift = true;
+
+      // clone first & last slides
+      const totalSlides = slide.length;
+      const firstClones = [];
+      const lastClones = [];
+
+      for (let i = 0; i < visibleSlides; i++) {
+        firstClones.push(slide[i].cloneNode(true));
+        lastClones.push(slide[totalSlides - 1 - i].cloneNode(true));
+      }
+
+      lastClones.reverse().forEach((clone) => slides.prepend(clone));
+      firstClones.forEach((clone) => slides.append(clone));
+
+      const allSlides = document.querySelectorAll(".slide");
+      const newTotal = allSlides.length;
+
+      // initial position
+      slides.style.transform = `translateX(${-index * (100 / visibleSlides)}%)`;
+
+      function moveSlide(dir) {
+        if (allowShift) {
+          slides.style.transition = "transform 0.5s ease-in-out";
+          index += dir;
+          slides.style.transform = `translateX(${
+            -index * (100 / visibleSlides)
+          }%)`;
+        }
+      }
+
+      next.addEventListener("click", () => moveSlide(1));
+      prev.addEventListener("click", () => moveSlide(-1));
+
+      slides.addEventListener("transitionend", () => {
+        allowShift = true;
+        if (index >= newTotal - visibleSlides) {
+          slides.style.transition = "none";
+          index = visibleSlides;
+          slides.style.transform = `translateX(${
+            -index * (100 / visibleSlides)
+          }%)`;
+        } else if (index < visibleSlides) {
+          slides.style.transition = "none";
+          index = totalSlides;
+          slides.style.transform = `translateX(${
+            -index * (100 / visibleSlides)
+          }%)`;
+        }
+      });
+
+      // auto play
+      setInterval(() => moveSlide(1), 3000);
     </script>
   </body>
 </html>
