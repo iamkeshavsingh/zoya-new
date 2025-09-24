@@ -1974,7 +1974,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const prev = document.querySelector(".arrow.left");
   const next = document.querySelector(".arrow.right");
 
-  let visibleSlides = window.innerWidth < 768 ? 2 : 3;
+  let visibleSlides = window.innerWidth < 768 ? 1.7 : 3;
   let index = visibleSlides;
 
   // original slides
@@ -1994,18 +1994,22 @@ document.addEventListener("DOMContentLoaded", () => {
     return parseFloat(getComputedStyle(slides).gap) || 0;
   }
 
+  // 🔧 calculate slideFullWidth (slide width + gap) but ignore last gap
   function getSlideFullWidth() {
-    return allSlides[0].offsetWidth + getGap();
+    const slideWidth = allSlides[0].getBoundingClientRect().width;
+    return slideWidth + getGap();
   }
 
-  let slideFullWidth = getSlideFullWidth();
+  function updateTransform() {
+    slides.style.transform = `translateX(${-index * getSlideFullWidth()}px)`;
+  }
 
-  slides.style.transform = `translateX(${-index * slideFullWidth}px)`;
+  updateTransform();
 
   function moveSlide(dir) {
     slides.style.transition = "transform 0.5s ease-in-out";
     index += dir;
-    slides.style.transform = `translateX(${-index * slideFullWidth}px)`;
+    updateTransform();
   }
 
   next.addEventListener("click", () => moveSlide(1));
@@ -2017,26 +2021,26 @@ document.addEventListener("DOMContentLoaded", () => {
     if (index >= newTotal - visibleSlides) {
       slides.style.transition = "none";
       index = visibleSlides;
-      slides.style.transform = `translateX(${-index * slideFullWidth}px)`;
+      updateTransform();
     } else if (index < visibleSlides) {
       slides.style.transition = "none";
       index = totalSlides;
-      slides.style.transform = `translateX(${-index * slideFullWidth}px)`;
+      updateTransform();
     }
   });
 
   // autoplay
   setInterval(() => moveSlide(1), 3000);
 
-  // responsive resize fix
+  // 🔁 responsive resize fix (recalculate everything)
   window.addEventListener("resize", () => {
     visibleSlides = window.innerWidth < 768 ? 2 : 3;
-    slideFullWidth = getSlideFullWidth();
     slides.style.transition = "none";
-    slides.style.transform = `translateX(${-index * slideFullWidth}px)`;
+    updateTransform();
   });
 });
 </script>
+
 
 
 
