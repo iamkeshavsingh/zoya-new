@@ -1287,7 +1287,17 @@ margin: 0;
   width: 0%;
   transition: width 0.3s ease;
 }
+.collapseText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.collapseText p{
+color: white;
+font-size: 20px;
 
+}
 /* Overlay content styles */
 .card-overlay {
   position: absolute;
@@ -1339,6 +1349,7 @@ margin: 0;
   text-transform: uppercase;
   color: #232323;
   margin: 0px !important;
+  margin-top: 5px !important;
 }
 .button-div > img {
   width: 12px !important;
@@ -1405,7 +1416,7 @@ margin: 0;
 
 @media (max-width: 768px) {
   .second_section {
-     padding: 35px 1rem 48px;
+     padding: 35px 0 48px 1rem;
   }
   .sixth_section_heading{
     max-width:333px;
@@ -1444,11 +1455,13 @@ margin: 0;
     align-items: center;
   }
   .button-div{
-    gap: 23px;
+    gap: 0px;
     justify-content: space-between;
-    width: 230px;
-    margin-bottom: 13px;
+    width: 204px;
+    margin-bottom: 14px;
     padding: 9px 14px;
+    max-width: 204px;
+    max-height: 32px;
   }
 }
 
@@ -1584,6 +1597,7 @@ margin: 0;
         <div id="sec2-slider" class="slider_container">
           <div class="slider-card">
             <img src="./images/look1.png" alt="Look 1" />
+         
             <div class="progress-bar-container">
               <div class="progress-bar"></div>
             </div>
