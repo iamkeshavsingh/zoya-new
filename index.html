@@ -1236,7 +1236,31 @@ margin: 0;
   transition: all 0.3s ease;
 }
 
-.second_section_slider_div .slider_container .slider-card img {
+
+.second_section_slider_div .slider_container .collapse-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  line-height: 100%;
+  font-weight: normal;
+  color: #FEFBF5;
+  text-transform: uppercase;
+  z-index: 2;
+  opacity: 1; /* always clear */
+  pointer-events: none;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); /* readability on image */
+  display: block; /* default visible */
+}
+
+/* Hide when card is active (80%) */
+.second_section_slider_div .slider_container .slider-card.active .collapse-label {
+  display: none;
+}
+
+
+.second_section_slider_div .slider_container .second_section_slider_div .slider_container .slider-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1287,7 +1311,17 @@ margin: 0;
   width: 0%;
   transition: width 0.3s ease;
 }
+.collapseText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.collapseText p{
+color: white;
+font-size: 20px;
 
+}
 /* Overlay content styles */
 .card-overlay {
   position: absolute;
@@ -1339,6 +1373,7 @@ margin: 0;
   text-transform: uppercase;
   color: #232323;
   margin: 0px !important;
+  margin-top: 5px !important;
 }
 .button-div > img {
   width: 12px !important;
@@ -1373,7 +1408,9 @@ margin: 0;
     flex: 0 0 auto;
     min-width: 20%; /* safety fallback so cards never become zero width */
   }
-
+.second_section_slider_div .slider_container .collapse-label {
+  display: none;
+}
   /* hide arrows on mobile (you already had this, keep it) */
   .second_section_slider_div > .left_arrow_div,
   .second_section_slider_div > .right_arrow_div {
@@ -1405,7 +1442,7 @@ margin: 0;
 
 @media (max-width: 768px) {
   .second_section {
-     padding: 35px 1rem 48px;
+     padding: 35px 0 48px 1rem;
   }
   .sixth_section_heading{
     max-width:333px;
@@ -1444,11 +1481,13 @@ margin: 0;
     align-items: center;
   }
   .button-div{
-    gap: 23px;
+    gap: 0px;
     justify-content: space-between;
-    width: 230px;
-    margin-bottom: 13px;
+    width: 204px;
+    margin-bottom: 14px;
     padding: 9px 14px;
+    max-width: 204px;
+    max-height: 32px;
   }
 }
 
@@ -1584,6 +1623,9 @@ margin: 0;
         <div id="sec2-slider" class="slider_container">
           <div class="slider-card">
             <img src="./images/look1.png" alt="Look 1" />
+              <!-- Collapse label -->
+  <div class="collapse-label">Look 1</div>
+         
             <div class="progress-bar-container">
               <div class="progress-bar"></div>
             </div>
@@ -1605,6 +1647,7 @@ margin: 0;
 
           <div class="slider-card">
             <img src="./images/look2.png" alt="Look 2" />
+            <div class="collapse-label">Look 2</div>
             <div class="progress-bar-container">
               <div class="progress-bar"></div>
             </div>
@@ -1626,6 +1669,7 @@ margin: 0;
 
           <div class="slider-card">
             <img src="./images/look3.png" alt="Look 3" />
+            <div class="collapse-label">Look 3</div>
             <div class="progress-bar-container">
               <div class="progress-bar"></div>
             </div>
