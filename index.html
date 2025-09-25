@@ -1565,7 +1565,7 @@ margin: 0;
             </div>
           </div>
 
-          <div class="slider-card">
+          <!-- <div class="slider-card">
             <img src="./images/look3.png" alt="Look 3" />
             <div class="progress-bar-container">
               <div class="progress-bar"></div>
@@ -1584,15 +1584,8 @@ margin: 0;
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          
-
-          
-
-          
-
-         
         </div>
         <!-- Right arrow -->
         <div class="right_arrow_div" id="sec2-right-arrow">
@@ -1614,41 +1607,97 @@ margin: 0;
     let progressInterval;
     let sliderActive = false;
 
-    function updateSlider() {
-      if (!sliderActive) return;
+    // function updateSlider() {
+    //   if (!sliderActive) return;
 
-      const totalCards = cards.length;
+    //   const totalCards = cards.length;
 
-      // Arrow show/hide
-      if (totalCards > visibleSliderCard) {
-        leftArrow.classList.remove("hidden");
-        rightArrow.classList.remove("hidden");
-      } else {
-        leftArrow.classList.add("hidden");
-        rightArrow.classList.add("hidden");
-      }
+    //   // Arrow show/hide
+    //   if (totalCards > visibleSliderCard) {
+    //     leftArrow.classList.remove("hidden");
+    //     rightArrow.classList.remove("hidden");
+    //   } else {
+    //     leftArrow.classList.add("hidden");
+    //     rightArrow.classList.add("hidden");
+    //   }
 
-      // Reset all cards
-      cards.forEach((card) => {
-        card.style.display = "none";
-        card.classList.remove("active");
-      });
+    //   // Reset all cards
+    //   cards.forEach((card) => {
+    //     card.style.display = "none";
+    //     card.classList.remove("active");
+    //   });
 
-      // Show visible cards
-      for (let i = 0; i < visibleSliderCard; i++) {
-        const idx = (currentStartIndex + i) % totalCards;
-        const card = cards[idx];
-        card.style.display = "block";
-        if (i === 0) {
-          card.classList.add("active");
-          card.style.width = visibleSliderCard === 2 ? "80%" : "50%";
-        } else {
-          card.style.width = visibleSliderCard === 2 ? "20%" : "24%";
+    //   // Show visible cards
+    //   for (let i = 0; i < visibleSliderCard; i++) {
+    //     const idx = (currentStartIndex + i) % totalCards;
+    //     const card = cards[idx];
+    //     card.style.display = "block";
+    //     if (i === 0) {
+    //       card.classList.add("active");
+    //       card.style.width = visibleSliderCard === 2 ? "80%" : "50%";
+    //     } else {
+    //       card.style.width = visibleSliderCard === 2 ? "20%" : "24%";
+    //     }
+    //   }
+
+    //   startProgressAnimation();
+    // }
+
+     function updateSlider() {
+          const totalCards = cards.length;
+
+          // Hide arrows if not needed
+          if (totalCards <= visibleSliderCard) {
+            leftArrow.classList.add("hidden");
+            rightArrow.classList.add("hidden");
+          } else {
+            leftArrow.classList.remove("hidden");
+            rightArrow.classList.remove("hidden");
+          }
+
+          cards.forEach((card, idx) => {
+            const visibleIndex =
+              (idx - currentStartIndex + totalCards) % totalCards;
+
+            // Reset styles first
+            card.style.display = "none";
+            card.classList.remove("active");
+
+            if (totalCards === 1) {
+              // Case: only one card
+              card.style.display = "block";
+              card.style.width = "100%";
+              card.classList.add("active");
+            } else if (totalCards === 2) {
+              // Case: exactly two cards total
+              if (visibleIndex < 2) {
+                card.style.display = "block";
+                if (visibleIndex === 0) {
+                  card.style.width = "80%"; // active
+                  card.classList.add("active");
+                } else {
+                  card.style.width = "20%"; // non-active
+                }
+              }
+            } else {
+              // Case: 3 or more cards
+              if (visibleIndex < visibleSliderCard) {
+                card.style.display = "block";
+                if (visibleIndex === 0) {
+                  card.style.width =
+                    visibleSliderCard === 2 ? "80%" : "50%"; // active
+                  card.classList.add("active");
+                } else {
+                  card.style.width =
+                    visibleSliderCard === 2 ? "20%" : "24%"; // non-active
+                }
+              }
+            }
+          });
+
+          // Start progress animation for active card
+          startProgressAnimation();
         }
-      }
-
-      startProgressAnimation();
-    }
 
     function startProgressAnimation() {
       if (!sliderActive) return;
