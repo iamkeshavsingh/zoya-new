@@ -1222,6 +1222,12 @@ margin: 0;
   overflow: hidden;
 }
 
+
+
+
+
+
+
 .second_section_slider_div .slider_container .slider-card {
   height: 588px;
   position: relative;
@@ -1234,8 +1240,32 @@ margin: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
+/* Black overlay */
+.second_section_slider_div .slider_container .slider-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+ height: 100%; /* bottom half only */
+  /* background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.6)); */
+  background-color: rgba(0,0,0,0.4);
+  pointer-events: none; /* taki click events image/card pe hi jaye */
+}
+.second_section_slider_div .slider_container .slider-card.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+ height: 50%; /* bottom half only */
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+  /* background-color: rgba(0,0,0,0.4); */
+  pointer-events: none; /* taki click events image/card pe hi jaye */
+}
 /* Progress bar styles */
 .progress-bar-container {
   position: absolute;
@@ -1771,6 +1801,15 @@ margin: 0;
       },
       { threshold: 0.3 }
     );
+
+     cards.forEach((card, idx) => {
+      card.addEventListener("click", () => {
+        currentStartIndex = idx;
+        updateSlider();
+      });
+    });
+
+    observer.observe(section);
 
     observer.observe(section);
   });
