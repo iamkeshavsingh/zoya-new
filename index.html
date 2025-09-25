@@ -28,9 +28,10 @@
       }
 
       body {
-        font-family: "AGaramondPro", serif;
+        font-family: "AGaramondPro", serif !important;
         margin: 0;
       }
+    
 
       /* .AGaramondPro {
   font-family: "AGaramondPro", serif;
@@ -347,6 +348,7 @@
         font-weight: normal;
         line-height: 100%;
         text-transform: uppercase;
+           font-family: "AGaramondPro", serif !important;
       }
       /* .arrow {
         -webkit-mask: url("/assets/arrow-right.svg") no-repeat center;
@@ -559,6 +561,11 @@
       }
       .IntimateBgChild .explore-btn {
         display: none;
+      }
+      .explore-btn p{
+margin: 0;
+ font-family: "AGaramondPro", serif !important;
+
       }
       .IntimateBgImg {
         width: 916px;
@@ -1579,68 +1586,9 @@
             </div>
           </div>
 
-          <div class="slider-card">
-            <img src="./images/look1.png" alt="Look 4" />
-            <div class="progress-bar-container">
-              <div class="progress-bar"></div>
-            </div>
-            <div class="card-overlay">
-              <div>
-                <h3 class="overlay-title">AETERNA EDITS</h3>
-                <p class="overlay-description">
-                  Knowing strikes in an instant, </br> unexpected and powerful
-                </p>
-              </div>
-              <div class="button-container">
-                <div class="button-div">
-                  <p>DISCOVER THIS LOOK</p>
-                  <img src="./images/buttonArrow.svg" alt="arrow" >
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
-          <div class="slider-card">
-            <img src="./images/look2.png" alt="Look 5" />
-            <div class="progress-bar-container">
-              <div class="progress-bar"></div>
-            </div>
-            <div class="card-overlay">
-              <div>
-                <h3 class="overlay-title">AETERNA EDITS</h3>
-                <p class="overlay-description">
-                  Knowing strikes in an instant, </br> unexpected and powerful
-                </p>
-              </div>
-              <div class="button-container">
-                <div class="button-div">
-                  <p>DISCOVER THIS LOOK</p>
-                  <img src="./images/buttonArrow.svg" alt="arrow" >
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="slider-card">
-            <img src="./images/look3.png" alt="Look 6" />
-            <div class="progress-bar-container">
-              <div class="progress-bar"></div>
-            </div>
-            <div class="card-overlay">
-              <div>
-                <h3 class="overlay-title">AETERNA EDITS</h3>
-                <br class="overlay-description">
-                  Knowing strikes in an instant, </br> unexpected and powerful
-                </p>
-              </div>
-              <div class="button-container">
-                <div class="button-div">
-                  <p>DISCOVER THIS LOOK</p>
-                  <img src="./images/buttonArrow.svg" alt="arrow" >
-                </div>
-              </div>
-            </div>
-          </div>
+         
         </div>
         <!-- Right arrow -->
         <div class="right_arrow_div" id="sec2-right-arrow">
@@ -1650,6 +1598,172 @@
     </section>
 
     <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const section = document.getElementById("second_section_slider");
+    const leftArrow = document.getElementById("sec2-left-arrow");
+    const rightArrow = document.getElementById("sec2-right-arrow");
+    const container = document.getElementById("sec2-slider");
+    const cards = Array.from(container.children);
+
+    let currentStartIndex = 0;
+    let visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
+    let progressInterval;
+    let sliderActive = false; // only true when section is in view
+
+    function updateSlider() {
+      if (!sliderActive) return; // only run if section is active
+
+      const totalCards = cards.length;
+
+      // Hide arrows if not needed
+      if (totalCards <= visibleSliderCard) {
+        leftArrow.classList.add("hidden");
+        rightArrow.classList.add("hidden");
+      } else {
+        leftArrow.classList.remove("hidden");
+        rightArrow.classList.remove("hidden");
+      }
+
+      cards.forEach((card, idx) => {
+        const visibleIndex =
+          (idx - currentStartIndex + totalCards) % totalCards;
+
+        // Reset styles
+        card.style.display = "none";
+        card.classList.remove("active");
+
+        if (totalCards === 1) {
+          card.style.display = "block";
+          card.style.width = "100%";
+          card.classList.add("active");
+        } else if (totalCards === 2) {
+          if (visibleIndex < 2) {
+            card.style.display = "block";
+            if (visibleIndex === 0) {
+              card.style.width = "80%"; // active
+              card.classList.add("active");
+            } else {
+              card.style.width = "20%"; // non-active
+            }
+          }
+        } else {
+          if (visibleIndex < visibleSliderCard) {
+            card.style.display = "block";
+            if (visibleIndex === 0) {
+              card.style.width = visibleSliderCard === 2 ? "80%" : "50%";
+              card.classList.add("active");
+            } else {
+              card.style.width = visibleSliderCard === 2 ? "20%" : "24%";
+            }
+          }
+        }
+      });
+
+      startProgressAnimation();
+    }
+
+    function startProgressAnimation() {
+      if (!sliderActive) return;
+      if (progressInterval) clearInterval(progressInterval);
+
+      const activeCard = document.querySelector(".slider-card.active");
+      if (activeCard) {
+        const progressBar = activeCard.querySelector(".progress-bar");
+        progressBar.style.width = "0%";
+
+        let progress = 0;
+        progressInterval = setInterval(() => {
+          if (!sliderActive) {
+            clearInterval(progressInterval);
+            return;
+          }
+
+          progress += 2;
+          progressBar.style.width = progress + "%";
+
+          if (progress >= 100) {
+            clearInterval(progressInterval);
+            setTimeout(() => {
+              slideRight();
+            }, 500);
+          }
+        }, 100);
+      }
+    }
+
+    function slideRight() {
+      if (cards.length > visibleSliderCard) {
+        currentStartIndex++;
+        if (currentStartIndex >= cards.length) {
+          currentStartIndex = 0;
+        }
+        updateSlider();
+      }
+    }
+
+    function slideLeft() {
+      if (cards.length > visibleSliderCard) {
+        currentStartIndex--;
+        if (currentStartIndex < 0) {
+          currentStartIndex = cards.length - 1;
+        }
+        updateSlider();
+      }
+    }
+
+    rightArrow.addEventListener("click", () => {
+      if (progressInterval) clearInterval(progressInterval);
+      slideRight();
+    });
+
+    leftArrow.addEventListener("click", () => {
+      if (progressInterval) clearInterval(progressInterval);
+      slideLeft();
+    });
+
+    // Card click to make active
+    cards.forEach((card, idx) => {
+      card.addEventListener("click", () => {
+        const visibleIndex = idx - currentStartIndex;
+        if (visibleIndex >= 0 && visibleIndex < visibleSliderCard) {
+          if (progressInterval) clearInterval(progressInterval);
+          currentStartIndex = idx;
+          if (currentStartIndex + visibleSliderCard > cards.length) {
+            currentStartIndex = Math.max(0, cards.length - visibleSliderCard);
+          }
+          updateSlider();
+        }
+      });
+      card.style.cursor = "pointer";
+    });
+
+    window.addEventListener("resize", () => {
+      visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
+      updateSlider();
+    });
+
+    // Intersection Observer to start slider only when in view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            sliderActive = true;
+            updateSlider();
+          } else {
+            sliderActive = false;
+            if (progressInterval) clearInterval(progressInterval);
+          }
+        });
+      },
+      { threshold: 0.3 } // adjust when to trigger (30% visible)
+    );
+
+    observer.observe(section);
+  });
+</script>
+
+
+    <!-- <script>
       document.addEventListener("DOMContentLoaded", function () {
         const leftArrow = document.getElementById("sec2-left-arrow");
         const rightArrow = document.getElementById("sec2-right-arrow");
@@ -1822,7 +1936,7 @@
         // Initialize
         updateSlider();
       });
-    </script>
+    </script> -->
 
     <!-- An Intimate Story -->
 
@@ -1841,7 +1955,7 @@
             sharpened.
           </p>
           <div class="IntemateButtonDiv">
-           <button class="explore-btn">EXPLORE THIS COLLECTION 
+           <button class="explore-btn"> <p>EXPLORE THIS COLLECTION </p>
               <span>
                 <img src="./images/buttonArrow.svg" alt="arrow" >
               </span>
@@ -1896,7 +2010,7 @@
      
       </div>
 
-      <button class="explore-btn">EXPLORE THIS COLLECTION 
+      <button class="explore-btn"><p>EXPLORE THIS COLLECTION</p>  
         <span>
           <img src="./images/buttonArrow.svg" alt="arrow" >
       </span>
