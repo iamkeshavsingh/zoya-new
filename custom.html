@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Custom Carousel</title>
+    <title>Looped Custom Carousel</title>
     <style>
       body {
         margin: 0;
@@ -45,7 +45,6 @@
         width: 20%;
       }
 
-      /* Optional arrows */
       .arrow {
         position: absolute;
         top: 50%;
@@ -57,6 +56,7 @@
         padding: 0.3rem 0.5rem;
         cursor: pointer;
         user-select: none;
+        z-index: 10;
       }
 
       .arrow.left {
@@ -70,11 +70,11 @@
   <body>
     <div class="carousel-wrapper">
       <div class="carousel" id="carousel">
-        <img src="https://picsum.photos/id/1015/800/600" class="active" />
-        <img src="https://picsum.photos/id/1016/800/600" class="small" />
-        <img src="https://picsum.photos/id/1018/800/600" class="small" />
-        <img src="https://picsum.photos/id/1019/800/600" class="small" />
-        <img src="https://picsum.photos/id/1020/800/600" class="small" />
+        <img src="https://picsum.photos/id/1015/800/600" />
+        <img src="https://picsum.photos/id/1016/800/600" />
+        <img src="https://picsum.photos/id/1018/800/600" />
+        <img src="https://picsum.photos/id/1019/800/600" />
+        <img src="https://picsum.photos/id/1020/800/600" />
       </div>
 
       <div class="arrow left" id="prev">&#10094;</div>
@@ -83,43 +83,78 @@
 
     <script>
       const carousel = document.getElementById("carousel");
-      const images = carousel.querySelectorAll("img");
-      let currentIndex = 0;
+      let images = Array.from(carousel.querySelectorAll("img"));
 
-      function updateCarousel() {
+      // Clone first and last for loop effect
+      const firstClone = images[0].cloneNode(true);
+      const lastClone = images[images.length - 1].cloneNode(true);
+      carousel.insertBefore(lastClone, images[0]);
+      carousel.appendChild(firstClone);
+
+      images = Array.from(carousel.querySelectorAll("img"));
+
+      let currentIndex = 1; // because of clone
+      let isTransitioning = false;
+
+      function updateCarousel(animate = true) {
         images.forEach((img, index) => {
-          img.classList.remove("active");
+          img.classList.remove("active", "small");
           img.classList.add("small");
         });
+
         images[currentIndex].classList.add("active");
         images[currentIndex].classList.remove("small");
 
-        // calculate translateX
+        const slideWidth = carousel.offsetWidth * 0.2; // small width
+        const bigWidth = carousel.offsetWidth * 0.6; // active width
+
         let offset = 0;
         for (let i = 0; i < currentIndex; i++) {
           offset += images[i].classList.contains("active")
-            ? carousel.offsetWidth * 0.6
-            : carousel.offsetWidth * 0.2;
+            ? bigWidth
+            : slideWidth;
+        }
+
+        if (!animate) {
+          carousel.style.transition = "none";
+        } else {
+          carousel.style.transition = "transform 0.5s ease";
         }
 
         carousel.style.transform = `translateX(${-offset}px)`;
       }
 
       function nextSlide() {
-        currentIndex = (currentIndex + 1) % images.length;
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex++;
         updateCarousel();
       }
 
       function prevSlide() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex--;
         updateCarousel();
       }
 
-      // Arrow click
+      carousel.addEventListener("transitionend", () => {
+        if (images[currentIndex] === images[0]) {
+          currentIndex = images.length - 2; // jump to last real
+          updateCarousel(false);
+        }
+        if (images[currentIndex] === images[images.length - 1]) {
+          currentIndex = 1; // jump to first real
+          updateCarousel(false);
+        }
+        isTransitioning = false;
+      });
+
+      // Arrows
       document.getElementById("next").addEventListener("click", nextSlide);
       document.getElementById("prev").addEventListener("click", prevSlide);
 
-      // Drag / swipe
+      // Drag/swipe
       let startX = 0;
       let isDragging = false;
 
@@ -143,17 +178,17 @@
         carousel.style.cursor = "grab";
       });
 
-      // touch support
       carousel.addEventListener("touchstart", (e) => {
         startX = e.touches[0].clientX;
       });
+
       carousel.addEventListener("touchend", (e) => {
         const diff = e.changedTouches[0].clientX - startX;
         if (diff < -50) nextSlide();
         if (diff > 50) prevSlide();
       });
 
-      updateCarousel();
+      updateCarousel(false);
     </script>
   </body>
 </html>
