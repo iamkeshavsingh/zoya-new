@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Custom 3-Card Left-Aligned Swiper</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <style>
+      /* --- Base Styles --- */
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        background: #000;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper {
+        width: 90%; /* Screen width adjust kiya */
+        height: 350px;
+        margin: 50px auto; /* Center mein lane ke liye */
+      }
+
+      .swiper-wrapper {
+        align-items: center; /* Slides ko vertically center karne ke liye */
+      }
+
+      /* --- Slide Styles --- */
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #444;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        /* Chote slides ka default state */
+        transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+        opacity: 0.6;
+        height: 80%;
+        border-radius: 8px;
+
+        /* Chota karne ke liye scale use kiya */
+        transform: scale(0.85);
+      }
+
+      /* --- Active Slide Style (The Big Card - Leftmost) --- */
+      .swiper-slide-active {
+        /* Bada karne ke liye scale: 1 */
+        transform: scale(1);
+
+        /* Visual adjustments for big slide */
+        opacity: 1;
+        height: 100%;
+        background: #666;
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+      }
+
+      /* Active slide ka content bada dikhe */
+      .swiper-slide-active span {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      /* --- Navigation Buttons --- */
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: #fff;
+      }
+      /* .swiper-slide {
+        width: 200px !important;
+      }
+      .swiper-slide-active {
+        width: 500px !important;
+      } */
+    </style>
+  </head>
+
+  <body>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <span>Slide 1</span>
+          <p>I am the big one!</p>
+        </div>
+        <div class="swiper-slide"><span>Slide 2</span></div>
+        <div class="swiper-slide"><span>Slide 3</span></div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+      const swiperWrapper = document.querySelector(".mySwiper .swiper-wrapper");
+      let totalSlides = swiperWrapper.children.length;
+
+      // FIX: Agar slides 6 se kam hain (joh loop aur slidesPerView: 3 ke liye zaroori hai),
+      // toh hum slides ko duplicate karenge.
+      // 3 slides hain, toh 3 aur baar duplicate karke total 6 kar dete hain.
+      if (totalSlides > 0 && totalSlides <= 3) {
+        // Sirf 3 slides hain to unko 3 baar aur clone kar do
+        for (let i = 0; i < totalSlides; i++) {
+          const slideToClone = swiperWrapper.children[i];
+          const clonedSlide = slideToClone.cloneNode(true);
+          swiperWrapper.appendChild(clonedSlide);
+        }
+        // Ab total slides 6 ho gayi hongi
+      }
+
+      // Swiper init
+      var swiper = new Swiper(".mySwiper", {
+        // Ek time mein 3 slides dikhengi:
+        slidesPerView: 3,
+
+        spaceBetween: 20,
+
+        centeredSlides: false,
+
+        // Loop: true ab 6 slides ke saath smoothly kaam karega
+        loop: true,
+
+        // Autoplay settings mein thoda change. delay ko 3000ms rakha hai.
+        // autoplay: {
+        //   delay: 3000,
+        //   disableOnInteraction: false,
+        //   pauseOnMouseEnter: true,
+        // },
+        autoplay: false,
+
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+  </body>
+</html>
