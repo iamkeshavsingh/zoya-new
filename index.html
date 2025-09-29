@@ -1702,7 +1702,7 @@ font-size: 20px;
 
 
 
-    <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
   const section = document.getElementById("second_section_slider");
   const leftArrow = document.getElementById("sec2-left-arrow");
@@ -1710,194 +1710,168 @@ document.addEventListener("DOMContentLoaded", function () {
   const container = document.getElementById("sec2-slider");
   const cards = Array.from(container.children);
 
-  let currentStartIndex = 0;
+  let currentIndex = 0;
   let visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
-  let progressInterval;
   let sliderActive = false;
-  let isProgrammaticScroll = false; // to ignore scroll events triggered by container.scrollTo
+  let progressInterval;
 
+  // -------------------
+  // Update slider layout
+  // -------------------
   function updateSlider() {
     const totalCards = cards.length;
 
-    // Show/hide arrows (desktop)
-    if (totalCards <= visibleSliderCard) {
-      leftArrow.classList.add("hidden");
-      rightArrow.classList.add("hidden");
-    } else {
-      leftArrow.classList.remove("hidden");
-      rightArrow.classList.remove("hidden");
-    }
+    // Show/hide arrows
+    // if(totalCards <= visibleSliderCard){
+    //   leftArrow.classList.add("hidden");
+    //   rightArrow.classList.add("hidden");
+    // } else {
+    //   leftArrow.classList.remove("hidden");
+    //   rightArrow.classList.remove("hidden");
+    // }
 
-    // MOBILE behavior: visibleSliderCard === 2 and window width < 768
-    if (window.innerWidth < 768) {
-      // Keep all cards visible as flex items, set flex-basis for active & others
-      cards.forEach((card, idx) => {
-        card.style.display = "block"; // ensure block inside flex
-        if (idx === currentStartIndex) {
-          card.style.flex = "0 0 80%";
-          card.classList.add("active");
-        } else {
-          card.style.flex = "0 0 20%";
-          card.classList.remove("active");
-        }
+    // Mobile
+    if(window.innerWidth < 768){
+      cards.forEach((card, i)=>{
+        card.style.flex = i === 0 ? "0 0 80%" : "0 0 20%";
+        card.classList.remove("active");
+        if(i === currentIndex) card.classList.add("active");
       });
-
-      // Scroll the container so the active card is aligned at the start.
-      // Use programmatic flag to avoid reacting to this scroll.
-      const activeCard = cards[currentStartIndex];
-      if (activeCard) {
-        isProgrammaticScroll = true;
-        // scroll smoothly; offsetLeft handles gaps/padding automatically
-        container.scrollTo({
-          left: activeCard.offsetLeft,
-          behavior: "smooth",
-        });
-        // give time for smooth scroll to finish before re-enabling scroll handler
-        setTimeout(() => {
-          isProgrammaticScroll = false;
-        }, 400);
-      }
-
-      // Start progress animation for active card
-      startProgressAnimation();
+      container.scrollTo({left: cards[currentIndex].offsetLeft, behavior:"smooth"});
+      startProgress();
       return;
     }
 
-    // DESKTOP / non-mobile behavior (keep your existing logic)
-    cards.forEach((card) => {
-      card.style.display = "none";
-      card.classList.remove("active");
-      card.style.width = ""; // reset
-      card.style.flex = ""; // reset any mobile flex
-    });
-
-    for (let i = 0; i < visibleSliderCard; i++) {
-      const idx = (currentStartIndex + i) % totalCards;
-      const card = cards[idx];
+    // Desktop
+    cards.forEach((card, i)=>{
       card.style.display = "block";
-      if (i === 0) {
+      card.classList.remove("active");
+      if(i === 0){
+        card.style.width = "50%";
         card.classList.add("active");
-        card.style.width = visibleSliderCard === 2 ? "80%" : "50%";
       } else {
-        card.style.width = visibleSliderCard === 2 ? "20%" : "24%";
-      }
-    }
-
-    startProgressAnimation();
-  }
-
-  function startProgressAnimation() {
-    if (!sliderActive) return;
-    if (progressInterval) clearInterval(progressInterval);
-
-    const activeCard = document.querySelector(".slider-card.active");
-    if (activeCard) {
-      const progressBar = activeCard.querySelector(".progress-bar");
-      if (!progressBar) return;
-      progressBar.style.width = "0%";
-
-      let progress = 0;
-      progressInterval = setInterval(() => {
-        if (!sliderActive) {
-          clearInterval(progressInterval);
-          return;
-        }
-        progress += 2;
-        progressBar.style.width = progress + "%";
-
-        if (progress >= 100) {
-          clearInterval(progressInterval);
-          setTimeout(() => {
-            slideRight();
-          }, 300);
-        }
-      }, 100);
-    }
-  }
-
-  function slideRight() {
-    currentStartIndex = (currentStartIndex + 1) % cards.length;
-    updateSlider();
-  }
-
-  function slideLeft() {
-    currentStartIndex = (currentStartIndex - 1 + cards.length) % cards.length;
-    updateSlider();
-  }
-
-  rightArrow.addEventListener("click", () => {
-    if (progressInterval) clearInterval(progressInterval);
-    slideRight();
-  });
-
-  leftArrow.addEventListener("click", () => {
-    if (progressInterval) clearInterval(progressInterval);
-    slideLeft();
-  });
-
-  // Resize update
-  window.addEventListener("resize", () => {
-    visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
-    updateSlider();
-  });
-
-  // IntersectionObserver for autoplay on view
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          sliderActive = true;
-          updateSlider();
-        } else {
-          sliderActive = false;
-          if (progressInterval) clearInterval(progressInterval);
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-
-  cards.forEach((card, idx) => {
-    card.addEventListener("click", () => {
-      currentStartIndex = idx;
-      updateSlider();
-    });
-  });
-
-  // MOBILE: sync scroll -> index
-  container.addEventListener("scroll", () => {
-    // only care about mobile scrolls
-    if (window.innerWidth >= 768) return;
-    if (isProgrammaticScroll) return;
-
-    // pick card whose center is closest to container center
-    const containerCenter = container.scrollLeft + container.clientWidth / 2;
-    let closestIndex = 0;
-    let closestDist = Infinity;
-
-    cards.forEach((card, idx) => {
-      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-      const dist = Math.abs(cardCenter - containerCenter);
-      if (dist < closestDist) {
-        closestDist = dist;
-        closestIndex = idx;
+        card.style.width = "24%";
       }
     });
 
-    if (closestIndex !== currentStartIndex) {
-      currentStartIndex = closestIndex;
-      // we call updateSlider to set active class + restart progress
-      updateSlider();
-    }
-  });
+    startProgress();
+  }
 
-  // start observing
+  // -------------------
+  // Progress animation
+  // -------------------
+  function startProgress(){
+    if(!sliderActive) return;
+    if(progressInterval) clearInterval(progressInterval);
+
+    const activeCard = cards[0].querySelector(".progress-bar") ? cards[0] : null;
+    if(!activeCard) return;
+
+    const progressBar = activeCard.querySelector(".progress-bar");
+    progressBar.style.width = "0%";
+    let progress = 0;
+    progressInterval = setInterval(()=>{
+      progress += 2;
+      progressBar.style.width = progress + "%";
+      if(progress>=100){
+        clearInterval(progressInterval);
+        slideRight();
+      }
+    },100);
+  }
+
+  // -------------------
+  // Slide navigation
+  // -------------------
+  function slideRight(){
+    // Move first card to last (loop)
+    const firstCard = cards.shift();
+    cards.push(firstCard);
+
+    // Re-append in DOM to maintain order
+    cards.forEach(c => container.appendChild(c));
+    updateSlider();
+  }
+
+  function slideLeft(){
+    // Move last card to first (loop)
+    const lastCard = cards.pop();
+    cards.unshift(lastCard);
+    cards.forEach(c => container.appendChild(c));
+    updateSlider();
+  }
+
+  leftArrow.addEventListener("click", slideLeft);
+  rightArrow.addEventListener("click", slideRight);
+
+  // -------------------
+  // Mobile drag
+  // -------------------
+  let isDragging = false, startX=0, scrollStart=0;
+  container.addEventListener("pointerdown", e=>{
+    if(window.innerWidth>=768) return;
+    isDragging = true;
+    startX = e.clientX || e.touches[0].clientX;
+    scrollStart = container.scrollLeft;
+    container.setPointerCapture(e.pointerId);
+  });
+  container.addEventListener("pointermove", e=>{
+    if(!isDragging) return;
+    const x = e.clientX || (e.touches && e.touches[0].clientX);
+    container.scrollLeft = scrollStart - (x-startX);
+  });
+  container.addEventListener("pointerup", endDrag);
+  container.addEventListener("pointercancel", endDrag);
+
+  function endDrag(){
+    if(!isDragging) return;
+    isDragging = false;
+
+    // Snap to nearest card
+    let closestIndex = 0, minDist = Infinity;
+    cards.forEach((c, i)=>{
+      const dist = Math.abs(container.scrollLeft - c.offsetLeft);
+      if(dist < minDist){ minDist = dist; closestIndex = i; }
+    });
+
+    // Rearrange so that active card is first
+    const moved = cards.splice(closestIndex,1)[0];
+    cards.unshift(moved);
+    cards.forEach(c=>container.appendChild(c));
+    updateSlider();
+  }
+
+  // -------------------
+  // Click card to activate
+  // -------------------
+  // cards.forEach((card, idx)=>{
+  //   card.addEventListener("click", ()=>{
+  //     const moved = cards.splice(idx,1)[0];
+  //     cards.unshift(moved);
+  //     cards.forEach(c=>container.appendChild(c));
+  //     updateSlider();
+  //   });
+  // });
+
+  // -------------------
+  // Intersection observer
+  // -------------------
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      sliderActive = entry.isIntersecting;
+      if(sliderActive) updateSlider();
+      else if(progressInterval) clearInterval(progressInterval);
+    });
+  }, {threshold:0.3});
   observer.observe(section);
+
+  window.addEventListener("resize", ()=>{ visibleSliderCard = window.innerWidth<768?2:3; updateSlider(); });
 
   // initialize
   updateSlider();
 });
 </script>
+
 
 
     <!-- <script>
