@@ -47,7 +47,7 @@
  .mob-center-slider-container {
         position: relative;
         overflow: hidden;
-        padding: 20px 0;
+        padding:  0 0 60px;
       }
 
       .mob-center-slider {
@@ -68,16 +68,33 @@
       .mob-center-child-element {
         /* background: red; */
         width: 100%;
-        height: 390px;
+        min-height: 390px;
+             max-height: 390px;
         transition: all 0.5s ease;
       
       
         position: relative;
       }
-
+       .mob-center-child-element ,  .mob-center-slide.mob-center-center .mob-center-child-element { 
+        object-fit: cover;
+       }
+.mob-center-slide.mob-center-center .button-div-mob {
+  width: 101.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  background-color: #FDF9F2;
+  padding: 19px auto 20px;
+  margin-top: -6px;
+}
+.button-div-mob img {
+  margin-top: -5px;
+}
       .mob-center-slide.mob-center-center .mob-center-child-element {
         /* background: yellow; */
-        height: 493px;
+        min-height: 436px;
+         max-height: 436px;
  
       }
 
@@ -1821,29 +1838,60 @@ become poetry</div>
               
                 <img src="/images/look1Mob.png" alt="">
                </div>
-                 <div class="button-container">
+               
                   <div class="mob-center-cardContent">
                  
                   </div>
-                   <div class="button-div">
+                   <div class="button-div-mob">
                   <p>DISCOVER THIS LOOK</p>
                   <img src="./images/buttonArrow.svg" alt="arrow" >
                 </div>
                 
-              </div>
+            
           </div>
         </div>
         <div class="mob-center-slide">
-          <div class="mob-center-child-element">
-            2
-             <!-- <img src="/images/look1Mob.png" alt=""> -->
-            </div>
+            <div class="mob-center-child-element">
+
+               <div class="mob-center-cardBG">
+              
+                <img src="/images/look2Mob.png" alt="">
+               </div>
+               
+                  <div class="mob-center-cardContent">
+                 
+                  </div>
+                   <div class="button-div-mob">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+                
+            
+          </div>
+              
+                  
         </div>
         <div class="mob-center-slide">
-          3
-          <div class="mob-center-child-element">
-             <!-- <img src="/images/look1Mob.png" alt=""> -->
-            </div>
+          
+        
+            
+                   <div class="mob-center-child-element">
+
+               <div class="mob-center-cardBG">
+              
+                <img src="/images/look3Mob.png" alt="">
+               </div>
+               
+                  <div class="mob-center-cardContent">
+                 
+                  </div>
+                   <div class="button-div-mob">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+                
+            
+          </div>
         </div>
       
       </div>
