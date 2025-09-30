@@ -317,7 +317,7 @@
       .slider-container {
         width: 100%;
         position: relative;
-        overflow: hidden;
+        /* overflow: hidden; */
       }
       .slider-wrapper {
         display: flex;
@@ -360,6 +360,7 @@
         font-size: 32px;
         font-weight: 400;
         margin-bottom: 11px;
+        text-align: left;
       }
       .overlay-description {
         font-size: 16px;
@@ -460,6 +461,7 @@
 
         h3 {
           color: white;
+          text-align: center;
         }
       }
 
@@ -1611,6 +1613,8 @@
       const nextBtn = document.getElementById("nextBtn");
 
       let isAnimating = false;
+      let autoSlideInterval;
+      let progressTween;
 
       function getWidths() {
         const containerWidth = wrapper.offsetWidth;
@@ -1646,17 +1650,40 @@
           if (index === 0) {
             if (mainOverlay) mainOverlay.style.display = "none";
             if (overlay) overlay.style.display = "block";
+            // show progress bar
+            const progressContainer = slide.querySelector(
+              ".progress-bar-container"
+            );
+            if (progressContainer) progressContainer.style.display = "block";
           } else {
             if (mainOverlay) mainOverlay.style.display = "flex";
             if (overlay) overlay.style.display = "none";
+            const progressContainer = slide.querySelector(
+              ".progress-bar-container"
+            );
+            if (progressContainer) progressContainer.style.display = "none";
           }
         });
+
+        // start progress for active slide
+        startProgressBar();
       }
 
-      setSlidePositions();
-      window.addEventListener("resize", () => {
-        if (!isAnimating) setSlidePositions();
-      });
+      function startProgressBar() {
+        // kill previous tween if exists
+        if (progressTween) progressTween.kill();
+
+        const activeSlide = gsap_slides[0];
+        const progressBar = activeSlide.querySelector(".progress-bar");
+        if (progressBar) {
+          gsap.set(progressBar, { width: "0%" });
+          progressTween = gsap.to(progressBar, {
+            width: "100%",
+            duration: 5,
+            ease: "linear",
+          });
+        }
+      }
 
       function slideRight() {
         if (isAnimating) return;
@@ -1669,7 +1696,6 @@
         const posOffScreenLeft = -(large + gap);
         const posOffScreenRight = pos3 + small + gap;
 
-        // set initial positions
         gsap_slides.forEach((slide, i) => {
           gsap.set(slide, {
             position: "absolute",
@@ -1703,7 +1729,6 @@
           },
         });
 
-        // animate slides
         tl.to(
           gsap_slides[0],
           {
@@ -1765,7 +1790,6 @@
         gsap_slides.unshift(lastSlide);
         wrapper.insertBefore(lastSlide, wrapper.firstChild);
 
-        // positions before animation
         gsap.set(lastSlide, {
           left: posOffScreenLeft,
           width: small,
@@ -1833,12 +1857,40 @@
           );
       }
 
-      nextBtn.addEventListener("click", slideRight);
-      prevBtn.addEventListener("click", slideLeft);
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") slideRight();
-        if (e.key === "ArrowLeft") slideLeft();
+      nextBtn.addEventListener("click", () => {
+        slideRight();
+        restartAutoSlide();
       });
+      prevBtn.addEventListener("click", () => {
+        slideLeft();
+        restartAutoSlide();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") {
+          slideRight();
+          restartAutoSlide();
+        }
+        if (e.key === "ArrowLeft") {
+          slideLeft();
+          restartAutoSlide();
+        }
+      });
+
+      // Auto slide every 6 seconds
+      function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+          slideRight();
+        }, 6000);
+      }
+
+      function restartAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+        startProgressBar(); // reset progress bar
+      }
+
+      setSlidePositions();
+      startAutoSlide();
     </script>
 
     <!-- Seconslider Mob -->
