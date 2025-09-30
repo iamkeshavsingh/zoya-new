@@ -120,7 +120,8 @@
       }
       @media (max-width: 1023px) {
         .first_section_rightpart_head {
-          font-size: 36px !important;
+          font-size: 46px !important;
+
           /* font-weight: 100; */
         }
       }
@@ -225,7 +226,7 @@
           padding-left: 20px;
           padding-right: 20px;
           text-align: center;
-          line-height: 115%;
+          line-height: 100%;
         }
         .discover_btn {
           margin: 0 auto;
@@ -518,11 +519,14 @@
         .second_section_heading {
           font-size: 36px;
           margin-bottom: 23px;
-          padding-right: 15px;
+          padding-right: 16px;
+          padding-left: 16px;
         }
         .second_section_description {
           font-size: 14px;
           margin-bottom: 40px;
+          padding-right: 16px;
+          padding-left: 16px;
         }
       }
       @media screen and (max-width: 400px) {
@@ -2008,20 +2012,20 @@
         if (!isDragging) return;
         isDragging = false;
 
-        // Find nearest slide center
-        const sliderRect = slider.parentElement.getBoundingClientRect();
-        const sliderCenter = sliderRect.left + sliderRect.width / 2;
-        let closestDistance = Infinity;
+        const endX = event.type.includes("mouse")
+          ? event.pageX
+          : event.changedTouches[0].clientX;
 
-        slides.forEach((slide, index) => {
-          const slideRect = slide.getBoundingClientRect();
-          const slideCenter = slideRect.left + slideRect.width / 2;
-          const distance = Math.abs(sliderCenter - slideCenter);
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            centerIndex = index;
-          }
-        });
+        const movedBy = endX - startX;
+        const threshold = 50; // jitna drag par slide change ho
+
+        if (movedBy < -threshold && centerIndex < slides.length - 1) {
+          // right drag -> next slide
+          centerIndex++;
+        } else if (movedBy > threshold && centerIndex > 0) {
+          // left drag -> prev slide
+          centerIndex--;
+        }
 
         updateSlider(true);
         resetAutoplay();
