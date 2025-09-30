@@ -3,24 +3,373 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mobile Friendly Center Slider with Autoplay</title>
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=AGaramondPro:ital,wght@0,300..700;1,300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=AGaramondPro+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
-      body,
-      html {
+      * {
         margin: 0;
         padding: 0;
-        background: #102131;
-        font-family: sans-serif;
+        box-sizing: border-box;
       }
 
+      /* First Section styles */
+
+      .first_section {
+        display: flex;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        max-height: 605px;
+      }
+      .first_video_section {
+        position: relative;
+        height: 605px;
+        width: 55%;
+      }
+      .video_section {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .video_section_video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .custom_controls {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        transition-property: opacity;
+        transition-duration: 300ms;
+        color: #ffffff;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+      }
+      .custom_controls_btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .custom_slider {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        max-width: 235px;
+      }
+      .custom_slider_text {
+        font-size: 12px;
+      }
+      .custom_slider_input {
+        width: 100%;
+        height: 4px;
+      }
+      .first_section_rightpart {
+        padding-left: 68px;
+        width: 45%;
+      }
+      .first_section_rightpart_head {
+        font-size: 88px;
+        font-weight: 100;
+        line-height: 100%;
+        text-transform: uppercase;
+        color: #523418;
+        margin-bottom: 16px;
+        margin-top: 0px !important;
+      }
+      .first_section_rightpart_head1 {
+        font-size: 88px;
+        font-weight: 100;
+        line-height: 100%;
+        text-transform: uppercase;
+        color: #92653d;
+        margin-bottom: 24px;
+        margin-top: 0px !important;
+      }
+
+      .first_section_rightpart_para {
+        font-weight: 400;
+        font-size: 16px;
+        color: #7b7b7b;
+        text-transform: capitalize;
+        line-height: 100%;
+        max-width: 434px;
+        margin-bottom: 40px;
+      }
+      .first_section_rightpart_head {
+        letter-spacing: -3%;
+      }
+      @media (max-width: 1023px) {
+        .first_section_rightpart_head {
+          font-size: 36px !important;
+          /* font-weight: 100; */
+        }
+      }
+
+      @media (max-width: 1023px) {
+        .first_section_rightpart_head1 {
+          font-size: 36px !important;
+          font-weight: 300;
+        }
+      }
+      @media (min-width: 1024px) {
+        .first_section_rightpart_head1 {
+          font-size: 80px !important;
+          font-weight: 300;
+        }
+      }
+
+      .discover_btn {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        cursor: pointer;
+      }
+      .discover_btn_text {
+        font-weight: 500;
+        color: #92653d;
+        font-size: 14px;
+        text-transform: uppercase;
+        line-height: 150%;
+      }
+      /* Seconnd Section  Style */
+      .second_section {
+        padding: 48px 1rem;
+        text-align: center;
+        display: block;
+        position: relative;
+        background-color: #fff;
+        z-index: 99;
+      }
+      .slider-section {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .second_section_heading {
+        font-size: 52px;
+        color: #523418;
+        font-weight: 400;
+        line-height: 100%;
+        margin-top: 16px;
+        margin-bottom: 28px;
+      }
+
+      .second_section_description {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 16px;
+        color: #7b7b7b;
+        line-height: 100%;
+        margin-top: 0;
+        margin-bottom: 73px;
+      }
+
+      .slider-container {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      .slider-wrapper {
+        display: flex;
+        gap: 20px;
+        position: relative;
+        min-height: 600px;
+      }
+
+      .slide {
+        flex-shrink: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        position: absolute;
+        top: 20px;
+        cursor: pointer;
+      }
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .slide-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 32px 21px 25px 32px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        /* justify-content: space-between;
+        align-items: end; */
+      }
+      .overlay-title {
+        font-family: "AGaramondPro", serif;
+        font-size: 32px;
+        font-weight: 400;
+        margin-bottom: 11px;
+      }
+      .overlay-description {
+        font-size: 16px;
+        margin: 0 0 25px;
+      }
+      .button-div {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        background: white;
+        padding: 13.5px 20px;
+        margin-bottom: 24px;
+      }
+      .button-div p {
+        font-family: "AGaramondPro", serif;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #232323;
+        margin: 0;
+      }
+      .button-div img {
+        width: 12px;
+        height: 24px;
+      }
+
+      .progress-bar-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: #eee2dc;
+        z-index: 6;
+        display: none;
+      }
+      .progress-bar {
+        height: 100%;
+        background-color: #764631;
+        border-radius: 2px;
+        width: 0%;
+      }
+
+      .arrow-btn {
+        position: absolute;
+        bottom: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #764631;
+        background: rgba(255, 255, 255, 0.1);
+        color: #764631;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+      .arrow-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+      }
+      .arrow-btn:active {
+        transform: scale(0.95);
+      }
+
+      #prevBtn {
+        right: 200px;
+      }
+      #nextBtn {
+        right: 140px;
+      }
+
+      .slide-main-overlay {
+        /* absolute w-full h-full z-50 flex items-center justify-center top-0 left-0 */
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.274);
+      }
+
+      /* utitlity  */
+      .w-full {
+        width: 100%;
+      }
+      .top-0 {
+        top: 0;
+      }
+      .left-0 {
+        left: 0;
+      }
+      .h-full {
+        height: 100%;
+      }
+      .relative {
+        position: relative;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .z-50 {
+        z-index: 50;
+      }
+      .flex {
+        display: flex;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+
+      /* Mobile slider  */
+
+      .sec2-slider_Mob {
+        display: none;
+      }
+
+      /* Second Section Mobile Slider Style Start */
       .mob-center-slider-container {
         position: relative;
         overflow: hidden;
-        padding: 20px 0;
+        padding: 0 0 60px;
       }
 
       .mob-center-slider {
         display: flex;
+        align-items: center;
         transition: transform 0.5s ease;
         will-change: transform;
       }
@@ -34,23 +383,35 @@
       }
 
       .mob-center-child-element {
-        background: red;
+        /* background: red; */
         width: 100%;
-        height: 80px;
+        min-height: 390px;
+        max-height: 390px;
         transition: all 0.5s ease;
-        margin: 30px 0;
-        border-radius: 8px;
-        text-align: center;
-        line-height: 80px;
-        font-size: 2rem;
-        color: white;
-      }
 
+        position: relative;
+      }
+      .mob-center-child-element,
       .mob-center-slide.mob-center-center .mob-center-child-element {
-        background: yellow;
-        height: 140px;
-        margin: 0;
-        line-height: 140px;
+        object-fit: cover;
+      }
+      .mob-center-slide.mob-center-center .button-div-mob {
+        width: 101.5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 17px;
+        background-color: #fdf9f2;
+        padding: 19px auto 20px;
+        margin-top: -6px;
+      }
+      .button-div-mob img {
+        margin-top: -5px;
+      }
+      .mob-center-slide.mob-center-center .mob-center-child-element {
+        /* background: yellow; */
+        min-height: 436px;
+        max-height: 436px;
       }
 
       .mob-center-arrow {
@@ -65,8 +426,34 @@
         z-index: 10;
         padding: 5px 10px;
         border-radius: 4px;
+        display: none;
       }
-
+      .mob-center-cardBG {
+        position: relative;
+      }
+      .mob-center-slide.mob-center-center .mob-center-cardContent {
+        position: absolute;
+        bottom: 20px;
+        text-align: center;
+        width: 100%;
+      }
+      .mob-center-cardContentHead {
+        font-size: 22px;
+        font-weight: normal;
+        line-height: 100%;
+        color: #fff;
+        text-transform: uppercase;
+        padding: 0 29px 8px;
+        margin: 0;
+      }
+      .mob-center-cardContentPara {
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 100%;
+        color: #fff;
+        margin: 0;
+        padding: 0px 29px 0;
+      }
       .mob-center-arrow.left {
         left: 5px;
       }
@@ -79,38 +466,1094 @@
           flex: 0 0 70%;
           max-width: 70%;
         }
+        .sec2-slider_Desktop {
+          display: none;
+        }
+        .sec2-slider_Mob {
+          display: block;
+        }
       }
 
       @media (max-width: 480px) {
         .mob-center-slide {
-          flex: 0 0 65%;
-          max-width: 65%;
+          flex: 0 0 80%;
+          max-width: 80%;
         }
+      }
+      @media (max-width: 389px) {
+        .mob-center-slide {
+          flex: 0 0 85%;
+          max-width: 85%;
+        }
+      }
+      /* EnD Second Section Mobile Slider Style */
+
+      /* Third Section */
+
+      /* An Intimate */
+      .IntimateBgParent {
+        background-color: #fff;
+        position: relative;
+        z-index: 99;
+        padding-bottom: 64px;
+      }
+      .IntimateBg {
+        background-color: #fdf9f2;
+        height: 485px;
+      }
+      .IntimateBgChild {
+        padding-top: 48px;
+        max-width: 916px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .IntimateBgHead {
+        font-size: 52px;
+        line-height: 100%;
+        color: #523418;
+        font-weight: normal;
+        margin: 0;
+        margin-top: 16px;
+        margin-bottom: 28px;
+      }
+      .IntimateBgPara {
+        font-size: 16px;
+        line-height: 100%;
+        color: #7b7b7b;
+        margin: 0;
+        margin-bottom: 52px;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .IntimateBgChild .explore-btn {
+        display: none;
+      }
+      .explore-btn p {
+        margin: 0;
+        font-family: "AGaramondPro", serif !important;
+      }
+      .IntimateBgImg {
+        width: 916px;
+        height: 503px;
+        margin-top: -262px;
+        margin: -200px auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @media screen and (max-width: 1000px) {
+        .IntimateBg {
+          height: 430px;
+        }
+        .IntimateBgChild {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .IntimateBgHead {
+          font-size: 36px;
+          margin-bottom: 23px;
+        }
+        .IntimateBgPara {
+          font-size: 14px;
+          line-height: normal;
+          margin-bottom: 39px;
+        }
+        .IntimateBgImg {
+          width: 90%;
+          object-fit: cover;
+          margin: -73px auto 0;
+        }
+        .IntemateButtonDiv {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .IntimateBgChild .explore-btn {
+          /* margin-top: 2rem; */
+          padding: 12px 28px;
+          border: 1px solid #232323;
+          background: transparent;
+          color: #232323;
+          font-size: 14px;
+          letter-spacing: 1px;
+          cursor: pointer;
+          transition: 0.3s;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          /* display: none; */
+        }
+      }
+
+      @media screen and (max-width: 400px) {
+        .IntimateBgHead {
+          font-size: 35px;
+        }
+      }
+
+      /* Discover Slider */
+
+      .discoverSlider {
+        position: relative;
+        background-color: #fff;
+        z-index: 99;
+        /* height: 715px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .discoverSlider h2 {
+        font-size: 48px;
+        line-height: 100%;
+        margin: 0;
+        color: #232323;
+        padding-top: 32px;
+        padding-bottom: 50px;
+        text-align: center;
+        font-weight: normal;
+      }
+
+      .discoverSlider .slider {
+        overflow: hidden;
+      }
+
+      .discoverSlider .slides {
+        display: flex;
+        gap: 86px;
+        max-width: 1120px;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .discoverSlider .slide {
+        flex: 0 0 calc((100% - (86px * 2)) / 3); /* desktop: 3 cards with gap */
+        max-width: 315px;
+        box-sizing: border-box;
+        text-align: center;
+        border: 1px solid #f6f0eb;
+      }
+
+      .discoverSlider .slide img {
+        width: 315px;
+        max-height: 377px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .discoverSlider .caption {
+        color: #0f0f0f;
+        padding: 10px;
+        margin-top: -5px;
+        font-weight: 500;
+        text-align: left;
+      }
+
+      /* Arrows */
+      .discoverSlider .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #c39784;
+        border: 1px solid #c89d7c;
+        color: #c89d7c;
+        font-size: 1rem;
+        padding: 3px 10px;
+        cursor: pointer;
+        user-select: none;
+        transition: 0.3s;
+        /* margin-right: 66px */
+        /* margin-left: 44px;   */
+      }
+      .discoverSlider .arrow img {
+        margin-top: 5px;
+      }
+
+      .discoverSlider .arrow:hover {
+        background: #c89d7c;
+        border-color: #c89d7c;
+      }
+
+      .discoverSlider .arrow.left {
+        left: 48px;
+      }
+      .discoverSlider .arrow.right {
+        right: 48px;
+      }
+
+      /* Button */
+      .discoverSlider .explore-btn {
+        margin-top: 2rem;
+        padding: 12px 28px;
+        border: 1px solid #232323;
+        background: transparent;
+        color: #232323;
+        font-size: 14px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .discoverSlider .span img {
+        width: 12px;
+        height: 24px;
+      }
+
+      /* .discoverSlider .explore-btn:hover {
+        background: #c89d7c;
+        border-color: #c89d7c;
+        color: #fff;
+      } */
+
+      @media screen and (max-width: 600px) {
+        .discoverSlider .slides {
+          gap: 22px;
+          justify-content: flex-start;
+        }
+
+        .discoverSlider .slide {
+          flex: 0 0 calc((100% - 16px) / 2); /* mobile: 2 cards with gap */
+          max-width: 161px;
+        }
+        .discoverSlider .slide img {
+          width: 161px;
+          max-height: 267px;
+        }
+        .discoverSlider .arrow {
+          display: none;
+        }
+      }
+      /* Girl section */
+      .sixth_section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 82px;
+        padding: 117px 0;
+        background-color: #fff;
+        position: relative;
+        z-index: 99;
+      }
+      .girlDesktopImg {
+        height: 465px;
+        width: 377px;
+        object-fit: cover;
+      }
+      .girlMobImg {
+        display: none;
+      }
+      .sixth_section_heading {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 120%;
+        text-transform: uppercase;
+        color: #896442;
+        max-width: 481px;
+        margin-bottom: 58px;
       }
     </style>
   </head>
   <body>
-    <div class="mob-center-slider-container">
-      <button class="mob-center-arrow left">&#10094;</button>
-      <div class="mob-center-slider" id="mob-center-slider">
-        <div class="mob-center-slide">
-          <div class="mob-center-child-element">1</div>
-        </div>
-        <div class="mob-center-slide">
-          <div class="mob-center-child-element">2</div>
-        </div>
-        <div class="mob-center-slide">
-          <div class="mob-center-child-element">3</div>
-        </div>
-        <div class="mob-center-slide">
-          <div class="mob-center-child-element">4</div>
-        </div>
-        <div class="mob-center-slide">
-          <div class="mob-center-child-element">5</div>
+    <!-- First Section -->
+
+    <section class="first_section">
+      <!-- FIRST VIDEO SECTION -->
+      <div class="first_video_section">
+        <!-- Video Player with Controls -->
+        <div class="video_section" id="videoWrapper1">
+          <!-- <img src="" alt=""> -->
+          <video
+            id="video1"
+            class="video_section_video"
+            muted
+            loop
+            playsinline
+            preload="auto"
+          >
+            <source src="/images/v1.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Custom Controls -->
+          <div class="custom_controls">
+            <div class="custom_controls_btn">
+              <!-- Mute/Unmute Button -->
+              <div id="muteBtn1">
+                <img
+                  id="muteIcon1"
+                  src="/assets/Mute.svg"
+                  alt="Mute"
+                  class="muteIcon"
+                />
+              </div>
+
+              <div id="playPauseBtn1">
+                <img
+                  id="pauseIcon1"
+                  src="/assets/pause.svg"
+                  alt="pause"
+                  class="pauseIcon"
+                />
+              </div>
+            </div>
+            <div class="custom_slider">
+              <span id="currentTime1" class="custom_slider_text AGaramondPro"
+                >00:00</span
+              >
+              <!-- <input
+                id="progress1"
+                type="range"
+                class="w-full h-1 accent-white no-thumb"
+                value="0"
+                min="0"
+                max="100"
+                step="0.1"
+              /> -->
+              <input
+                id="progress1"
+                type="range"
+                class="custom_slider_input accent-white no-thumb"
+                value="0"
+                min="0"
+                max="100"
+                step="0.1"
+              />
+              <span id="duration1" class="custom_slider_text AGaramondPro"
+                >00:00</span
+              >
+            </div>
+          </div>
         </div>
       </div>
-      <button class="mob-center-arrow right">&#10095;</button>
+
+      <div class="first_section_rightpart">
+        <div class="first_section_rightpart_mobile_style">
+          <p
+            class="first_section_rightpart_head AGaramondPro"
+            style="letter-spacing: -3%"
+          >
+            Aeterna
+          </p>
+        </div>
+        <p class="first_section_rightpart_para AGaramondPro">
+          Here is never a time and place for knowing, It happens in a heartbeat,
+          as it did for her. Like diving into an infinity pool of interconnected
+          patterns
+        </p>
+        <a
+          href="#second_section_slider"
+          class="discover_div"
+          style="text-decoration: none"
+        >
+          <div class="discover_btn">
+            <span
+              class="discover_btn_text AGaramondPro"
+              style="letter-spacing: -3%"
+              >discover Looks
+            </span>
+            <img src="/assets/bottomArrow.svg" alt="" />
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Second Section -->
+    <div class="second_section">
+      <div class="slider-section">
+        <img src="./assets/sLine.png" />
+        <h2 class="second_section_heading">
+          An intimate story, where<br />
+          jewels become poetry.
+        </h2>
+
+        <p class="second_section_description">
+          Knowing strikes in an instant, unexpected and powerful. For her, it
+          was like diving into an infinity of patterns, emerging stronger,
+          senses sharpened.
+        </p>
+        <!-- Desktop SLider -->
+        <div class="sec2-slider_Desktop">
+          <div class="slider-container">
+            <div class="slider-wrapper" id="sliderWrapper">
+              <!-- Slides -->
+              <div class="slide">
+                <img src="./images/look1.png" alt="Look 1" />
+                <section class="slide-main-overlay">
+                  <h3 class="overlay-title">AETERNA EDITS</h3>
+                </section>
+                <div class="slide-overlay">
+                  <div>
+                    <h3 class="overlay-title">AETERNA EDITS</h3>
+                  </div>
+                  <div class="flex justify-between">
+                    <p class="overlay-description">
+                      Knowing strikes in an instant,<br />
+                      unexpected and powerful
+                    </p>
+                    <div class="button-div">
+                      <p>DISCOVER THIS LOOK</p>
+                      <img src="./images/buttonArrow.svg" alt="arrow" />
+                    </div>
+                  </div>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <div class="slide">
+                <img src="./images/look2.png" alt="Look 2" />
+                <section class="slide-main-overlay">
+                  <h3 class="overlay-title">AETERNA EDITS</h3>
+                </section>
+                <div class="slide-overlay">
+                  <div>
+                    <h3 class="overlay-title">AETERNA EDITS</h3>
+                  </div>
+                  <div class="flex justify-between">
+                    <p class="overlay-description">
+                      Knowing strikes in an instant,<br />
+                      unexpected and powerful
+                    </p>
+                    <div class="button-div">
+                      <p>DISCOVER THIS LOOK</p>
+                      <img src="./images/buttonArrow.svg" alt="arrow" />
+                    </div>
+                  </div>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <div class="slide">
+                <img src="./images/look3.png" alt="Look 3" />
+                <section class="slide-main-overlay">
+                  <h3 class="overlay-title">AETERNA EDITS</h3>
+                </section>
+                <div class="slide-overlay">
+                  <div>
+                    <h3 class="overlay-title">AETERNA EDITS</h3>
+                  </div>
+                  <div class="flex justify-between">
+                    <p class="overlay-description">
+                      Knowing strikes in an instant,<br />
+                      unexpected and powerful
+                    </p>
+                    <div class="button-div">
+                      <p>DISCOVER THIS LOOK</p>
+                      <img src="./images/buttonArrow.svg" alt="arrow" />
+                    </div>
+                  </div>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar"></div>
+                </div>
+              </div>
+              <!-- <div class="slide">
+            <img src="./images/look4.png" alt="Look 4" />
+            <div class="slide-overlay">
+              <h3 class="overlay-title">THE GOLDEN HOUR</h3>
+              <p class="overlay-description">
+                Knowing strikes in an instant,<br />
+                unexpected and powerful
+              </p>
+              <div class="button-div">
+                <p>DISCOVER THIS LOOK</p>
+                <img src="./images/buttonArrow.svg" alt="arrow" />
+              </div>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+          </div> -->
+            </div>
+
+            <button class="arrow-btn" id="prevBtn">←</button>
+            <button class="arrow-btn" id="nextBtn">→</button>
+          </div>
+        </div>
+
+        <!-- Mobile slider -->
+        <div class="sec2-slider_Mob">
+          <div class="mob-center-slider-container">
+            <button class="mob-center-arrow left">&#10094;</button>
+            <div class="mob-center-slider" id="mob-center-slider">
+              <div class="mob-center-slide">
+                <div class="mob-center-child-element">
+                  <div class="mob-center-cardBG">
+                    <img src="/images/look1Mob.png" alt="" />
+                  </div>
+
+                  <div class="mob-center-cardContent">
+                    <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                    <p class="mob-center-cardContentPara">
+                      Opulent jewels, imbued with mystic power, mirror the
+                      valley's enchanting allure.
+                    </p>
+                  </div>
+                  <div class="button-div-mob">
+                    <p>DISCOVER THIS LOOK</p>
+                    <img src="./images/buttonArrow.svg" alt="arrow" />
+                  </div>
+                </div>
+              </div>
+              <div class="mob-center-slide">
+                <div class="mob-center-child-element">
+                  <div class="mob-center-cardBG">
+                    <img src="/images/look2Mob.png" alt="" />
+                  </div>
+
+                  <div class="mob-center-cardContent">
+                    <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                    <p class="mob-center-cardContentPara">
+                      Opulent jewels, imbued with mystic power, mirror the
+                      valley's enchanting allure.
+                    </p>
+                  </div>
+                  <div class="button-div-mob">
+                    <p>DISCOVER THIS LOOK</p>
+                    <img src="./images/buttonArrow.svg" alt="arrow" />
+                  </div>
+                </div>
+              </div>
+              <div class="mob-center-slide">
+                <div class="mob-center-child-element">
+                  <div class="mob-center-cardBG">
+                    <img src="/images/look3Mob.png" alt="" />
+                  </div>
+
+                  <div class="mob-center-cardContent">
+                    <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                    <p class="mob-center-cardContentPara">
+                      Opulent jewels, imbued with mystic power, mirror the
+                      valley's enchanting allure.
+                    </p>
+                  </div>
+                  <div class="button-div-mob">
+                    <p>DISCOVER THIS LOOK</p>
+                    <img src="./images/buttonArrow.svg" alt="arrow" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="mob-center-arrow right">&#10095;</button>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Third Section -->
+    <!-- An Intimate Story -->
+
+    <section class="IntimateBgParent">
+      <div class="IntimateBg">
+        <div class="IntimateBgChild">
+          <img src="./assets/sLine.png" alt="" />
+          <h3 class="IntimateBgHead">
+            An intimate story, where <br />
+            jewels become poetry.
+          </h3>
+          <p class="IntimateBgPara">
+            Knowing strikes in an instant, unexpected and powerful. For her, it
+            was like diving into an infinity of patterns, emerging stronger,
+            senses sharpened.
+          </p>
+          <div class="IntemateButtonDiv">
+            <button class="explore-btn">
+              <p>EXPLORE THIS COLLECTION</p>
+              <span>
+                <img src="./images/buttonArrow.svg" alt="arrow" />
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/intimateGirl.jpg"
+        alt="intimateGirl"
+        class="IntimateBgImg"
+      />
+    </section>
+
+    <!-- Discover Slider -->
+
+    <section class="discoverSlider">
+      <h2>Discover Aeterna Collection</h2>
+
+      <div class="slider">
+        <div class="slides" id="slides">
+          <div class="slide">
+            <img src="./images/d1.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./images/d2.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./images/d3.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./images/d1.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./images/d2.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+        </div>
+
+        <div class="left_arrow_div arrow left">
+          <img src="/images/arrowLeft.png" alt="arrow" />
+        </div>
+
+        <div class="right_arrow_div arrow right">
+          <img src="/images/arrowRight.png" alt="arrow" />
+        </div>
+      </div>
+
+      <button class="explore-btn">
+        <p>EXPLORE THIS COLLECTION</p>
+        <span>
+          <img src="./images/buttonArrow.svg" alt="arrow" />
+        </span>
+      </button>
+    </section>
+
+    <!-- Sixth Section -->
+
+    <section class="sixth_section">
+      <div style="position: relative; height: 100%">
+        <!-- <img src="/assets/girl.png" alt="" /> -->
+        <!-- Thumbnail & Play Button Layer -->
+        <div style="position: relative">
+          <img
+            src="/assets/girl.png"
+            alt="Model Thumbnail"
+            class="girlDesktopImg"
+          />
+          <img
+            src="/assets/girlmob.jpg"
+            alt="Model Thumbnail"
+            class="girlMobImg"
+          />
+        </div>
+      </div>
+      <div>
+        <h3 class="sixth_section_heading AGaramondPro">
+          Found your style in our collection? Let's take the next step.
+        </h3>
+
+        <button class="exploreBtn2">
+          <span class="exploreBtnText AGaramondPro" style="letter-spacing: 8%"
+            >Book an Appointment</span
+          >
+          <img src="/assets/arrow-right.svg" alt="" class="arrow" />
+        </button>
+      </div>
+    </section>
+    <script>
+      function formatTime(seconds) {
+        const m = Math.floor(seconds / 60)
+          .toString()
+          .padStart(2, "0");
+        const s = Math.floor(seconds % 60)
+          .toString()
+          .padStart(2, "0");
+        return `${m}:${s}`;
+      }
+
+      function setupVideoPlayer(index) {
+        const thumbContainer = document.getElementById(
+          `thumbnailContainer${index}`
+        );
+        const playBtn = document.getElementById(`playBtn${index}`);
+        const videoWrapper = document.getElementById(`videoWrapper${index}`);
+        const video = document.getElementById(`video${index}`);
+        const playPauseBtn = document.getElementById(`playPauseBtn${index}`);
+        const muteBtn = document.getElementById(`muteBtn${index}`);
+        const progress = document.getElementById(`progress${index}`);
+        const currentTime = document.getElementById(`currentTime${index}`);
+        const duration = document.getElementById(`duration${index}`);
+        const muteIcon = document.getElementById(`muteIcon${index}`);
+        const pauseIcon = document.getElementById(`pauseIcon${index}`);
+
+        // Manual play button (for fallback if user clicks)
+        playBtn?.addEventListener("click", (e) => {
+          e.stopPropagation();
+          thumbContainer.classList.add("hidden");
+          videoWrapper.classList.remove("hidden");
+          video.play();
+        });
+
+        video.addEventListener("loadedmetadata", () => {
+          duration.textContent = formatTime(video.duration);
+        });
+
+        playPauseBtn.addEventListener("click", () => {
+          if (video.paused) {
+            video.play();
+            pauseIcon.src = "/assets/pause.svg";
+          } else {
+            video.pause();
+            pauseIcon.src = "/assets/Play.svg";
+          }
+        });
+
+        muteBtn.addEventListener("click", () => {
+          video.muted = !video.muted;
+          muteIcon.src = video.muted
+            ? "/assets/Mute.svg"
+            : "/assets/Unmute.svg";
+        });
+
+        video.addEventListener("timeupdate", () => {
+          const percent = (video.currentTime / video.duration) * 100;
+          progress.value = percent;
+          currentTime.textContent = formatTime(video.currentTime);
+        });
+
+        progress.addEventListener("input", () => {
+          video.currentTime = (progress.value / 100) * video.duration;
+        });
+
+        // Auto play when section is visible
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                thumbContainer?.classList.add("hidden");
+                videoWrapper.classList.remove("hidden");
+                video.play();
+              } else {
+                video.pause();
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        observer.observe(videoWrapper.parentElement);
+      }
+
+      // Setup all video sections
+      setupVideoPlayer(1); // autoplay from load
+      setupVideoPlayer(2); // on scroll
+      setupVideoPlayer(3);
+      setupVideoPlayer(4);
+    </script>
+
+    <!-- Discover Slider  -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const slides = document.querySelector(".slides");
+        const prev = document.querySelector(".arrow.left");
+        const next = document.querySelector(".arrow.right");
+
+        let visibleSlides = window.innerWidth < 768 ? 1.7 : 3;
+        let index = visibleSlides;
+
+        // original slides
+        const slideNodes = Array.from(slides.querySelectorAll(".slide"));
+        const totalSlides = slideNodes.length;
+
+        // clone first & last slides
+        for (let i = 0; i < visibleSlides; i++) {
+          slides.append(slideNodes[i].cloneNode(true));
+          slides.prepend(slideNodes[totalSlides - 1 - i].cloneNode(true));
+        }
+
+        const allSlides = Array.from(slides.querySelectorAll(".slide"));
+
+        // get computed gap
+        function getGap() {
+          return parseFloat(getComputedStyle(slides).gap) || 0;
+        }
+
+        // 🔧 calculate slideFullWidth (slide width + gap) but ignore last gap
+        function getSlideFullWidth() {
+          const slideWidth = allSlides[0].getBoundingClientRect().width;
+          return slideWidth + getGap();
+        }
+
+        function updateTransform() {
+          slides.style.transform = `translateX(${
+            -index * getSlideFullWidth()
+          }px)`;
+        }
+
+        updateTransform();
+
+        function moveSlide(dir) {
+          slides.style.transition = "transform 0.5s ease-in-out";
+          index += dir;
+          updateTransform();
+        }
+
+        next.addEventListener("click", () => moveSlide(1));
+        prev.addEventListener("click", () => moveSlide(-1));
+
+        slides.addEventListener("transitionend", () => {
+          const newTotal = allSlides.length;
+
+          if (index >= newTotal - visibleSlides) {
+            slides.style.transition = "none";
+            index = visibleSlides;
+            updateTransform();
+          } else if (index < visibleSlides) {
+            slides.style.transition = "none";
+            index = totalSlides;
+            updateTransform();
+          }
+        });
+
+        // autoplay
+        setInterval(() => moveSlide(1), 3000);
+
+        // 🔁 responsive resize fix (recalculate everything)
+        window.addEventListener("resize", () => {
+          visibleSlides = window.innerWidth < 768 ? 2 : 3;
+          slides.style.transition = "none";
+          updateTransform();
+        });
+      });
+    </script>
+
+    <!-- Second SLider Desktop -->
+
+    <script>
+      const wrapper = document.getElementById("sliderWrapper");
+      let slides = Array.from(wrapper.querySelectorAll(".slide"));
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+
+      let isAnimating = false;
+
+      function getWidths() {
+        const containerWidth = wrapper.offsetWidth;
+        const gap = 20;
+        const availableWidth = containerWidth - 2 * gap;
+        return {
+          large: availableWidth * 0.6,
+          small: availableWidth * 0.2,
+          largeHeight: 588,
+          smallHeight: 508,
+          gap,
+        };
+      }
+
+      function setSlidePositions() {
+        const { large, small, gap, largeHeight, smallHeight } = getWidths();
+        let leftPos = 0;
+        slides.forEach((slide, index) => {
+          const width = index === 0 ? large : small;
+          const height = index === 0 ? largeHeight : smallHeight;
+          gsap.set(slide, {
+            position: "absolute",
+            top: 20,
+            left: leftPos,
+            width,
+            height,
+          });
+          leftPos += width + gap;
+
+          // overlay logic
+          const mainOverlay = slide.querySelector(".slide-main-overlay");
+          const overlay = slide.querySelector(".slide-overlay");
+          if (index === 0) {
+            if (mainOverlay) mainOverlay.style.display = "none";
+            if (overlay) overlay.style.display = "block";
+          } else {
+            if (mainOverlay) mainOverlay.style.display = "flex";
+            if (overlay) overlay.style.display = "none";
+          }
+        });
+      }
+
+      setSlidePositions();
+      window.addEventListener("resize", () => {
+        if (!isAnimating) setSlidePositions();
+      });
+
+      function slideRight() {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const { large, small, gap, largeHeight, smallHeight } = getWidths();
+        const pos1 = 0;
+        const pos2 = large + gap;
+        const pos3 = large + small + gap * 2;
+        const posOffScreenLeft = -(large + gap);
+        const posOffScreenRight = pos3 + small + gap;
+
+        // set initial positions
+        slides.forEach((slide, i) => {
+          gsap.set(slide, {
+            position: "absolute",
+            left:
+              i === 0
+                ? pos1
+                : i === 1
+                ? pos2
+                : i === 2
+                ? pos3
+                : posOffScreenRight,
+            width: i === 0 ? large : small,
+            height: i === 0 ? largeHeight : smallHeight,
+          });
+        });
+
+        const incoming = slides[3];
+        gsap.set(incoming, {
+          left: posOffScreenRight,
+          width: small,
+          height: smallHeight,
+        });
+
+        const tl = gsap.timeline({
+          onComplete: () => {
+            const firstSlide = slides.shift();
+            slides.push(firstSlide);
+            wrapper.appendChild(firstSlide);
+            setSlidePositions();
+            isAnimating = false;
+          },
+        });
+
+        // animate slides
+        tl.to(
+          slides[0],
+          {
+            left: posOffScreenLeft,
+            width: small,
+            height: smallHeight,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          0
+        );
+        tl.to(
+          slides[1],
+          {
+            left: pos1,
+            width: large,
+            height: largeHeight,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          0
+        );
+        tl.to(
+          slides[2],
+          {
+            left: pos2,
+            width: small,
+            height: smallHeight,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          0
+        );
+        tl.to(
+          incoming,
+          {
+            left: pos3,
+            width: small,
+            height: smallHeight,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          0
+        );
+      }
+
+      function slideLeft() {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        const { large, small, gap, largeHeight, smallHeight } = getWidths();
+        const pos1 = 0;
+        const pos2 = large + gap;
+        const pos3 = large + small + gap * 2;
+        const posOffScreenLeft = -(small + gap);
+        const posOffScreenRight = pos3 + small + gap;
+
+        const lastSlide = slides.pop();
+        slides.unshift(lastSlide);
+        wrapper.insertBefore(lastSlide, wrapper.firstChild);
+
+        // positions before animation
+        gsap.set(lastSlide, {
+          left: posOffScreenLeft,
+          width: small,
+          height: smallHeight,
+        });
+        gsap.set(slides[1], { left: pos1, width: large, height: largeHeight });
+        gsap.set(slides[2], { left: pos2, width: small, height: smallHeight });
+        const outgoing = slides[3];
+        if (outgoing)
+          gsap.set(outgoing, { left: pos3, width: small, height: smallHeight });
+
+        const tl = gsap.timeline({
+          onComplete: () => {
+            setSlidePositions();
+            isAnimating = false;
+          },
+        });
+
+        tl.to(
+          lastSlide,
+          {
+            left: pos1,
+            width: large,
+            height: largeHeight,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          0
+        );
+        tl.to(
+          slides[1],
+          {
+            left: pos2,
+            width: small,
+            height: smallHeight,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          0
+        );
+        tl.to(
+          slides[2],
+          {
+            left: pos3,
+            width: small,
+            height: smallHeight,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          0
+        );
+        if (outgoing)
+          tl.to(
+            outgoing,
+            { left: posOffScreenRight, duration: 0.6, ease: "power2.inOut" },
+            0
+          );
+      }
+
+      nextBtn.addEventListener("click", slideRight);
+      prevBtn.addEventListener("click", slideLeft);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") slideRight();
+        if (e.key === "ArrowLeft") slideLeft();
+      });
+    </script>
+
+    <!-- Seconslider Mob -->
 
     <script>
       const slider = document.getElementById("mob-center-slider");
@@ -121,9 +1564,11 @@
       // Drag variables
       let isDragging = false;
       let startX = 0;
+      let currentTranslate = 0;
+      let prevTranslate = 0;
 
       // Update center slide
-      function updateSlider() {
+      function updateSlider(animate = true) {
         slides.forEach((slide, index) => {
           slide.classList.remove("mob-center-center");
           if (index === centerIndex) slide.classList.add("mob-center-center");
@@ -133,6 +1578,10 @@
         const slideWidth = slides[centerIndex].offsetWidth;
         const offset =
           (sliderWidth - slideWidth) / 2 - slides[centerIndex].offsetLeft;
+
+        currentTranslate = offset;
+        prevTranslate = offset;
+        slider.style.transition = animate ? "transform 0.5s ease" : "none";
         slider.style.transform = `translateX(${offset}px)`;
       }
 
@@ -172,7 +1621,6 @@
         slide.addEventListener("touchmove", dragAction);
       });
 
-      // Drag functions
       function dragStart(event) {
         isDragging = true;
         startX = event.type.includes("mouse")
@@ -187,14 +1635,16 @@
           ? event.pageX
           : event.touches[0].clientX;
         const movedBy = currentPosition - startX;
-        slider.style.transform = `translateX(${movedBy}px)`;
+
+        currentTranslate = prevTranslate + movedBy;
+        slider.style.transform = `translateX(${currentTranslate}px)`;
       }
 
-      function dragEnd() {
+      function dragEnd(event) {
         if (!isDragging) return;
         isDragging = false;
 
-        // Determine closest center slide
+        // Find nearest slide center
         const sliderRect = slider.parentElement.getBoundingClientRect();
         const sliderCenter = sliderRect.left + sliderRect.width / 2;
         let closestDistance = Infinity;
@@ -209,8 +1659,7 @@
           }
         });
 
-        slider.style.transition = "transform 0.5s ease";
-        updateSlider();
+        updateSlider(true);
         resetAutoplay();
       }
 
@@ -228,7 +1677,7 @@
         }, autoplayInterval);
       }
 
-      window.addEventListener("resize", updateSlider);
+      window.addEventListener("resize", () => updateSlider(false));
       updateSlider();
     </script>
   </body>
