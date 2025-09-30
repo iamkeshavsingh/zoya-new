@@ -197,7 +197,7 @@
         min-height: 600px;
       }
 
-      .slide {
+      .gsap_slide {
         flex-shrink: 0;
         border-radius: 12px;
         overflow: hidden;
@@ -205,7 +205,7 @@
         top: 20px;
         cursor: pointer;
       }
-      .slide img {
+      .gsap_slide img {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -275,13 +275,16 @@
 
       .arrow-btn {
         position: absolute;
-        bottom: 30px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: 2px solid #764631;
-        background: rgba(255, 255, 255, 0.1);
-        color: #764631;
+        /* right: 100px; */
+        padding: 4px;
+        bottom: 0px;
+        width: 40px;
+        height: 40px;
+        border: none;
+        /* border-radius: 50%; */
+        border: 2px solid lightgray;
+        background: white;
+        /* color: #764631; */
         font-size: 20px;
         cursor: pointer;
         display: flex;
@@ -289,8 +292,16 @@
         justify-content: center;
         transition: all 0.3s ease;
       }
+      .arrow-btn svg path {
+        fill: #000000; /* default black */
+        transition: fill 0.3s ease;
+      }
+
+      .arrow-btn:hover svg path {
+        fill: #ffffff; /* white on hover */
+      }
       .arrow-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
+        background: #c39784;
         transform: scale(1.1);
       }
       .arrow-btn:active {
@@ -298,10 +309,10 @@
       }
 
       #prevBtn {
-        right: 200px;
+        right: 36%;
       }
       #nextBtn {
-        right: 140px;
+        right: 31%;
       }
 
       .slide-main-overlay {
@@ -316,7 +327,11 @@
         top: 0;
         left: 0;
         text-align: center;
-        background-color: rgba(0, 0, 0, 0.274);
+        background-color: rgba(0, 0, 0, 0.474);
+
+        h3 {
+          color: white;
+        }
       }
 
       /* utitlity  */
@@ -879,7 +894,7 @@
           <div class="slider-container">
             <div class="slider-wrapper" id="sliderWrapper">
               <!-- Slides -->
-              <div class="slide">
+              <div class="gsap_slide">
                 <img src="./images/look1.png" alt="Look 1" />
                 <section class="slide-main-overlay">
                   <h3 class="overlay-title">AETERNA EDITS</h3>
@@ -903,7 +918,7 @@
                   <div class="progress-bar"></div>
                 </div>
               </div>
-              <div class="slide">
+              <div class="gsap_slide">
                 <img src="./images/look2.png" alt="Look 2" />
                 <section class="slide-main-overlay">
                   <h3 class="overlay-title">AETERNA EDITS</h3>
@@ -927,7 +942,7 @@
                   <div class="progress-bar"></div>
                 </div>
               </div>
-              <div class="slide">
+              <div class="gsap_slide">
                 <img src="./images/look3.png" alt="Look 3" />
                 <section class="slide-main-overlay">
                   <h3 class="overlay-title">AETERNA EDITS</h3>
@@ -970,8 +985,46 @@
           </div> -->
             </div>
 
-            <button class="arrow-btn" id="prevBtn">←</button>
-            <button class="arrow-btn" id="nextBtn">→</button>
+            <button class="arrow-btn" id="prevBtn">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M14.2893 5.70708C13.8988 5.31655 13.2657 5.31655 12.8751 5.70708L7.98768 10.5993C7.20729 11.3805 7.2076 12.6463 7.98837 13.427L12.8787 18.3174C13.2693 18.7079 13.9024 18.7079 14.293 18.3174C14.6835 17.9269 14.6835 17.2937 14.293 16.9032L10.1073 12.7175C9.71678 12.327 9.71678 11.6939 10.1073 11.3033L14.2893 7.12129C14.6799 6.73077 14.6799 6.0976 14.2893 5.70708Z"
+                    fill="#ffffff"
+                  ></path>
+                </g>
+              </svg>
+            </button>
+            <button class="arrow-btn" id="nextBtn">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z"
+                    fill="#ffffff"
+                  ></path>
+                </g>
+              </svg>
+            </button>
           </div>
         </div>
 
@@ -1326,7 +1379,7 @@
 
     <script>
       const wrapper = document.getElementById("sliderWrapper");
-      let slides = Array.from(wrapper.querySelectorAll(".slide"));
+      let gsap_slides = Array.from(wrapper.querySelectorAll(".gsap_slide"));
       const prevBtn = document.getElementById("prevBtn");
       const nextBtn = document.getElementById("nextBtn");
 
@@ -1348,7 +1401,7 @@
       function setSlidePositions() {
         const { large, small, gap, largeHeight, smallHeight } = getWidths();
         let leftPos = 0;
-        slides.forEach((slide, index) => {
+        gsap_slides.forEach((slide, index) => {
           const width = index === 0 ? large : small;
           const height = index === 0 ? largeHeight : smallHeight;
           gsap.set(slide, {
@@ -1390,7 +1443,7 @@
         const posOffScreenRight = pos3 + small + gap;
 
         // set initial positions
-        slides.forEach((slide, i) => {
+        gsap_slides.forEach((slide, i) => {
           gsap.set(slide, {
             position: "absolute",
             left:
@@ -1406,7 +1459,7 @@
           });
         });
 
-        const incoming = slides[3];
+        const incoming = gsap_slides[3];
         gsap.set(incoming, {
           left: posOffScreenRight,
           width: small,
@@ -1415,8 +1468,8 @@
 
         const tl = gsap.timeline({
           onComplete: () => {
-            const firstSlide = slides.shift();
-            slides.push(firstSlide);
+            const firstSlide = gsap_slides.shift();
+            gsap_slides.push(firstSlide);
             wrapper.appendChild(firstSlide);
             setSlidePositions();
             isAnimating = false;
@@ -1425,7 +1478,7 @@
 
         // animate slides
         tl.to(
-          slides[0],
+          gsap_slides[0],
           {
             left: posOffScreenLeft,
             width: small,
@@ -1436,7 +1489,7 @@
           0
         );
         tl.to(
-          slides[1],
+          gsap_slides[1],
           {
             left: pos1,
             width: large,
@@ -1447,7 +1500,7 @@
           0
         );
         tl.to(
-          slides[2],
+          gsap_slides[2],
           {
             left: pos2,
             width: small,
@@ -1481,8 +1534,8 @@
         const posOffScreenLeft = -(small + gap);
         const posOffScreenRight = pos3 + small + gap;
 
-        const lastSlide = slides.pop();
-        slides.unshift(lastSlide);
+        const lastSlide = gsap_slides.pop();
+        gsap_slides.unshift(lastSlide);
         wrapper.insertBefore(lastSlide, wrapper.firstChild);
 
         // positions before animation
@@ -1491,9 +1544,17 @@
           width: small,
           height: smallHeight,
         });
-        gsap.set(slides[1], { left: pos1, width: large, height: largeHeight });
-        gsap.set(slides[2], { left: pos2, width: small, height: smallHeight });
-        const outgoing = slides[3];
+        gsap.set(gsap_slides[1], {
+          left: pos1,
+          width: large,
+          height: largeHeight,
+        });
+        gsap.set(gsap_slides[2], {
+          left: pos2,
+          width: small,
+          height: smallHeight,
+        });
+        const outgoing = gsap_slides[3];
         if (outgoing)
           gsap.set(outgoing, { left: pos3, width: small, height: smallHeight });
 
@@ -1516,7 +1577,7 @@
           0
         );
         tl.to(
-          slides[1],
+          gsap_slides[1],
           {
             left: pos2,
             width: small,
@@ -1527,7 +1588,7 @@
           0
         );
         tl.to(
-          slides[2],
+          gsap_slides[2],
           {
             left: pos3,
             width: small,
