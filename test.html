@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile Friendly Center Slider with Autoplay</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        background: #102131;
+        font-family: sans-serif;
+      }
+
+      .mob-center-slider-container {
+        position: relative;
+        overflow: hidden;
+        padding: 20px 0;
+      }
+
+      .mob-center-slider {
+        display: flex;
+        transition: transform 0.5s ease;
+        will-change: transform;
+      }
+
+      .mob-center-slide {
+        flex: 0 0 70%;
+        max-width: 70%;
+        margin: 0 10px;
+        transition: all 0.5s ease;
+        cursor: pointer;
+      }
+
+      .mob-center-child-element {
+        background: red;
+        width: 100%;
+        height: 80px;
+        transition: all 0.5s ease;
+        margin: 30px 0;
+        border-radius: 8px;
+        text-align: center;
+        line-height: 80px;
+        font-size: 2rem;
+        color: white;
+      }
+
+      .mob-center-slide.mob-center-center .mob-center-child-element {
+        background: yellow;
+        height: 140px;
+        margin: 0;
+        line-height: 140px;
+      }
+
+      .mob-center-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.3);
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
+
+      .mob-center-arrow.left {
+        left: 5px;
+      }
+      .mob-center-arrow.right {
+        right: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .mob-center-slide {
+          flex: 0 0 70%;
+          max-width: 70%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .mob-center-slide {
+          flex: 0 0 65%;
+          max-width: 65%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mob-center-slider-container">
+      <button class="mob-center-arrow left">&#10094;</button>
+      <div class="mob-center-slider" id="mob-center-slider">
+        <div class="mob-center-slide">
+          <div class="mob-center-child-element">1</div>
+        </div>
+        <div class="mob-center-slide">
+          <div class="mob-center-child-element">2</div>
+        </div>
+        <div class="mob-center-slide">
+          <div class="mob-center-child-element">3</div>
+        </div>
+        <div class="mob-center-slide">
+          <div class="mob-center-child-element">4</div>
+        </div>
+        <div class="mob-center-slide">
+          <div class="mob-center-child-element">5</div>
+        </div>
+      </div>
+      <button class="mob-center-arrow right">&#10095;</button>
+    </div>
+
+    <script>
+      const slider = document.getElementById("mob-center-slider");
+      const slides = Array.from(slider.children);
+      let centerIndex = 0;
+      let autoplayInterval = 3000; // 3 seconds
+
+      // Drag variables
+      let isDragging = false;
+      let startX = 0;
+
+      // Update center slide
+      function updateSlider() {
+        slides.forEach((slide, index) => {
+          slide.classList.remove("mob-center-center");
+          if (index === centerIndex) slide.classList.add("mob-center-center");
+        });
+
+        const sliderWidth = slider.parentElement.offsetWidth;
+        const slideWidth = slides[centerIndex].offsetWidth;
+        const offset =
+          (sliderWidth - slideWidth) / 2 - slides[centerIndex].offsetLeft;
+        slider.style.transform = `translateX(${offset}px)`;
+      }
+
+      // Arrow navigation
+      document
+        .querySelector(".mob-center-arrow.left")
+        .addEventListener("click", () => {
+          if (centerIndex > 0) centerIndex--;
+          updateSlider();
+          resetAutoplay();
+        });
+      document
+        .querySelector(".mob-center-arrow.right")
+        .addEventListener("click", () => {
+          if (centerIndex < slides.length - 1) centerIndex++;
+          updateSlider();
+          resetAutoplay();
+        });
+
+      // Slide click to center
+      slides.forEach((slide, index) => {
+        slide.addEventListener("click", () => {
+          centerIndex = index;
+          updateSlider();
+          resetAutoplay();
+        });
+
+        // Drag events
+        slide.addEventListener("mousedown", dragStart);
+        slide.addEventListener("mouseup", dragEnd);
+        slide.addEventListener("mouseleave", dragEnd);
+        slide.addEventListener("mousemove", dragAction);
+
+        // Touch events
+        slide.addEventListener("touchstart", dragStart);
+        slide.addEventListener("touchend", dragEnd);
+        slide.addEventListener("touchmove", dragAction);
+      });
+
+      // Drag functions
+      function dragStart(event) {
+        isDragging = true;
+        startX = event.type.includes("mouse")
+          ? event.pageX
+          : event.touches[0].clientX;
+        slider.style.transition = "none";
+      }
+
+      function dragAction(event) {
+        if (!isDragging) return;
+        const currentPosition = event.type.includes("mouse")
+          ? event.pageX
+          : event.touches[0].clientX;
+        const movedBy = currentPosition - startX;
+        slider.style.transform = `translateX(${movedBy}px)`;
+      }
+
+      function dragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+
+        // Determine closest center slide
+        const sliderRect = slider.parentElement.getBoundingClientRect();
+        const sliderCenter = sliderRect.left + sliderRect.width / 2;
+        let closestDistance = Infinity;
+
+        slides.forEach((slide, index) => {
+          const slideRect = slide.getBoundingClientRect();
+          const slideCenter = slideRect.left + slideRect.width / 2;
+          const distance = Math.abs(sliderCenter - slideCenter);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            centerIndex = index;
+          }
+        });
+
+        slider.style.transition = "transform 0.5s ease";
+        updateSlider();
+        resetAutoplay();
+      }
+
+      // Autoplay
+      let autoplay = setInterval(() => {
+        centerIndex = (centerIndex + 1) % slides.length;
+        updateSlider();
+      }, autoplayInterval);
+
+      function resetAutoplay() {
+        clearInterval(autoplay);
+        autoplay = setInterval(() => {
+          centerIndex = (centerIndex + 1) % slides.length;
+          updateSlider();
+        }, autoplayInterval);
+      }
+
+      window.addEventListener("resize", updateSlider);
+      updateSlider();
+    </script>
+  </body>
+</html>

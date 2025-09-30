@@ -31,7 +31,142 @@
         font-family: "AGaramondPro", Serif !important;
         margin: 0;
       }
-    
+         .cursor-not-allowed {
+      cursor: not-allowed !important;
+    }
+
+    .backround-cyan {
+      background-color: #c39784;
+    }
+
+     .sec2-slider_Mob {
+  display: none;
+}
+
+      /* Second Section Mobile Slider Style Start */
+ .mob-center-slider-container {
+        position: relative;
+        overflow: hidden;
+        padding:  0 0 60px;
+      }
+
+      .mob-center-slider {
+        display: flex;
+        align-items: center;
+        transition: transform 0.5s ease;
+        will-change: transform;
+      }
+
+      .mob-center-slide {
+        flex: 0 0 70%;
+        max-width: 70%;
+        margin: 0 10px;
+        transition: all 0.5s ease;
+        cursor: pointer;
+      }
+
+      .mob-center-child-element {
+        /* background: red; */
+        width: 100%;
+        min-height: 390px;
+             max-height: 390px;
+        transition: all 0.5s ease;
+      
+      
+        position: relative;
+      }
+       .mob-center-child-element ,  .mob-center-slide.mob-center-center .mob-center-child-element { 
+        object-fit: cover;
+       }
+.mob-center-slide.mob-center-center .button-div-mob {
+  width: 101.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  background-color: #FDF9F2;
+  padding: 19px auto 20px;
+  margin-top: -6px;
+}
+.button-div-mob img {
+  margin-top: -5px;
+}
+      .mob-center-slide.mob-center-center .mob-center-child-element {
+        /* background: yellow; */
+        min-height: 436px;
+         max-height: 436px;
+ 
+      }
+
+      .mob-center-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.3);
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        padding: 5px 10px;
+        border-radius: 4px;
+        display: none;
+      }
+.mob-center-cardBG {
+  position: relative;
+}
+.mob-center-cardContent {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+    width: 100%;
+}
+.mob-center-cardContentHead {
+ font-size: 22px;
+ font-weight: normal;
+ line-height: 100%;
+ color: #fff;
+ text-transform: uppercase;
+ padding: 0 29px 8px;
+ margin: 0;
+}
+.mob-center-cardContentPara {
+ font-size: 12px;
+ font-weight: normal;
+ line-height: 100%;
+ color: #fff;
+margin: 0;
+ padding: 0px 29px 0;
+}
+      .mob-center-arrow.left {
+        left: 5px;
+      }
+      .mob-center-arrow.right {
+        right: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .mob-center-slide {
+          flex: 0 0 70%;
+          max-width: 70%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .mob-center-slide {
+          flex: 0 0 80%;
+          max-width: 80%;
+        }
+      }
+        @media (max-width: 389px) {
+        .mob-center-slide {
+          flex: 0 0 85%;
+          max-width: 85%;
+        }
+      }
+      /* EnD Second Section Mobile Slider Style */
+
+
 
       /* .AGaramondPro {
   font-family: "AGaramondPro", serif;
@@ -1136,6 +1271,9 @@ margin: 0;
 
 
       /* slider section css */
+#sec2-slider .card {
+  transition: all 0.6s ease-in-out;
+}
 
       .second_section {
   padding: 48px 1rem;
@@ -1182,30 +1320,30 @@ margin: 0;
 }
 
 .second_section_slider_div > .left_arrow_div {
-  position: absolute;
-  top: 50%;
-  left: -1.25rem;
-  transform: translateY(-50%);
-  background-color: #c39784;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1.25rem;
-  font-weight: bold;
-  z-index: 10;
+    position: absolute;
+    bottom: -3.5%;
+    left: 51%;
+    transform: translateY(-50%);
+    /* background-color: #c39784; */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: bold;
+    z-index: 10;
 }
 
 .second_section_slider_div > .right_arrow_div {
   position: absolute;
-  top: 50%;
-  right: -1.25rem;
+  bottom: -3.5%;
+  left: 56%;
   transform: translateY(-50%);
   background-color: #c39784;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1217,7 +1355,7 @@ margin: 0;
 
 .second_section_slider_div .slider_container {
   display: flex;
-  gap: 1rem;
+  gap: 53px;
   width: 100%;
   overflow: hidden;
 }
@@ -1229,13 +1367,15 @@ margin: 0;
 
 
 .second_section_slider_div .slider_container .slider-card {
-  height: 588px;
+  height: 508px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
+.second_section_slider_div .slider_container .slider-card.active {
+  height: 588px;
+}
 
 .second_section_slider_div .slider_container .collapse-label {
   position: absolute;
@@ -1246,12 +1386,13 @@ margin: 0;
   line-height: 100%;
   font-weight: normal;
   color: #FEFBF5;
-  text-transform: uppercase;
+  text-transform: capitalize;
   z-index: 2;
   opacity: 1; /* always clear */
   pointer-events: none;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); /* readability on image */
   display: block; /* default visible */
+  width: max-content;
 }
 
 /* Hide when card is active (80%) */
@@ -1293,12 +1434,11 @@ margin: 0;
 /* Progress bar styles */
 .progress-bar-container {
   position: absolute;
-  top: 42px;
-  right: 20px;
-  width: 92px;
-  height: 3px;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 2px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #EEE2DC;
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 5;
@@ -1306,7 +1446,7 @@ margin: 0;
 
 .progress-bar {
   height: 100%;
-  background-color: #fff;
+  background-color: #764631;
   border-radius: 2px;
   width: 0%;
   transition: width 0.3s ease;
@@ -1393,7 +1533,14 @@ font-size: 20px;
 
 
 @media (max-width: 768px) {
+  .sec2-slider_Desktop {
+    display: none;
+  }
+  .sec2-slider_Mob {
+  display: block;
+}
  #sec2-slider {
+  /* display: none; */
     display: flex;
     gap: 1rem;
     overflow-x: auto;
@@ -1445,7 +1592,7 @@ font-size: 20px;
 
 @media (max-width: 768px) {
   .second_section {
-     padding: 35px 0 48px 1rem;
+     padding: 35px 0 48px 0rem;
   }
   .sixth_section_heading{
     max-width:333px;
@@ -1623,11 +1770,15 @@ font-size: 20px;
         </div>
 
         <!-- Slider container -->
+
+        <div class="sec2-slider_Desktop">
+
+
         <div id="sec2-slider" class="slider_container">
           <div class="slider-card">
             <img src="./images/look1.png" alt="Look 1" />
               <!-- Collapse label -->
-  <div class="collapse-label">Look 1</div>
+  <div class="collapse-label">Aeterna Edits</div>
          
             <div class="progress-bar-container">
               <div class="progress-bar"></div>
@@ -1650,7 +1801,7 @@ font-size: 20px;
 
           <div class="slider-card">
             <img src="./images/look2.png" alt="Look 2" />
-            <div class="collapse-label">Look 2</div>
+            <div class="collapse-label">Whispers from <br/>the Valley</div>
             <div class="progress-bar-container">
               <div class="progress-bar"></div>
             </div>
@@ -1672,7 +1823,8 @@ font-size: 20px;
 
           <div class="slider-card">
             <img src="./images/look3.png" alt="Look 3" />
-            <div class="collapse-label">Look 3</div>
+            <div class="collapse-label">Where jewels <br/>
+become poetry</div>
             <div class="progress-bar-container">
               <div class="progress-bar"></div>
             </div>
@@ -1693,6 +1845,83 @@ font-size: 20px;
           </div>
 
         </div>
+        </div>
+
+      <div class="sec2-slider_Mob">
+     <div class="mob-center-slider-container">
+      <button class="mob-center-arrow left">&#10094;</button>
+      <div class="mob-center-slider" id="mob-center-slider">
+        <div class="mob-center-slide">
+          <div class="mob-center-child-element">
+
+               <div class="mob-center-cardBG">
+              
+                <img src="/images/look1Mob.png" alt="">
+               </div>
+               
+                  <div class="mob-center-cardContent">
+                 <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                 <p class="mob-center-cardContentPara">Opulent jewels, imbued with mystic power, mirror the valley's enchanting allure.</p>
+                  </div>
+                   <div class="button-div-mob">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+                
+            
+          </div>
+        </div>
+        <div class="mob-center-slide">
+            <div class="mob-center-child-element">
+
+               <div class="mob-center-cardBG">
+              
+                <img src="/images/look2Mob.png" alt="">
+               </div>
+               
+                   <div class="mob-center-cardContent">
+                 <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                 <p class="mob-center-cardContentPara">Opulent jewels, imbued with mystic power, mirror the valley's enchanting allure.</p>
+                  </div>
+                   <div class="button-div-mob">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+                
+            
+          </div>
+              
+                  
+        </div>
+        <div class="mob-center-slide">
+          
+        
+            
+                   <div class="mob-center-child-element">
+
+               <div class="mob-center-cardBG">
+              
+                <img src="/images/look3Mob.png" alt="">
+               </div>
+               
+                   <div class="mob-center-cardContent">
+                 <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                 <p class="mob-center-cardContentPara">Opulent jewels, imbued with mystic power, mirror the valley's enchanting allure.</p>
+                  </div>
+                   <div class="button-div-mob">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+                
+            
+          </div>
+        </div>
+      
+      </div>
+      <button class="mob-center-arrow right">&#10095;</button>
+    </div>
+      </div>
+
         <!-- Right arrow -->
         <div class="right_arrow_div" id="sec2-right-arrow">
           <img src="/images/arrowRight.png" alt="arrow" />
@@ -1702,202 +1931,232 @@ font-size: 20px;
 
 
 
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const section = document.getElementById("second_section_slider");
-  const leftArrow = document.getElementById("sec2-left-arrow");
-  const rightArrow = document.getElementById("sec2-right-arrow");
-  const container = document.getElementById("sec2-slider");
-  const cards = Array.from(container.children);
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const section = document.getElementById("second_section_slider");
+      const leftArrow = document.getElementById("sec2-left-arrow");
+      const rightArrow = document.getElementById("sec2-right-arrow");
+      const container = document.getElementById("sec2-slider");
+      const cards = Array.from(container.children);
 
-  let currentStartIndex = 0;
-  let visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
-  let progressInterval;
-  let sliderActive = false;
-  let isProgrammaticScroll = false; // to ignore scroll events triggered by container.scrollTo
+      let currentIndex = 0;
+      let visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
+      let sliderActive = false;
+      let progressInterval;
 
-  function updateSlider() {
-    const totalCards = cards.length;
+      // -------------------
+      // Update slider layout
+      // -------------------
+      function updateSlider() {
+        const totalCards = cards.length;
 
-    // Show/hide arrows (desktop)
-    if (totalCards <= visibleSliderCard) {
-      leftArrow.classList.add("hidden");
-      rightArrow.classList.add("hidden");
-    } else {
-      leftArrow.classList.remove("hidden");
-      rightArrow.classList.remove("hidden");
-    }
+        // Show/hide arrows
+        // if(totalCards <= visibleSliderCard){
+        //   leftArrow.classList.add("hidden");
+        //   rightArrow.classList.add("hidden");
+        // } else {
+        //   leftArrow.classList.remove("hidden");
+        //   rightArrow.classList.remove("hidden");
+        // }
 
-    // MOBILE behavior: visibleSliderCard === 2 and window width < 768
-    if (window.innerWidth < 768) {
-      // Keep all cards visible as flex items, set flex-basis for active & others
-      cards.forEach((card, idx) => {
-        card.style.display = "block"; // ensure block inside flex
-        if (idx === currentStartIndex) {
-          card.style.flex = "0 0 80%";
-          card.classList.add("active");
-        } else {
-          card.style.flex = "0 0 20%";
-          card.classList.remove("active");
-        }
-      });
-
-      // Scroll the container so the active card is aligned at the start.
-      // Use programmatic flag to avoid reacting to this scroll.
-      const activeCard = cards[currentStartIndex];
-      if (activeCard) {
-        isProgrammaticScroll = true;
-        // scroll smoothly; offsetLeft handles gaps/padding automatically
-        container.scrollTo({
-          left: activeCard.offsetLeft,
-          behavior: "smooth",
-        });
-        // give time for smooth scroll to finish before re-enabling scroll handler
-        setTimeout(() => {
-          isProgrammaticScroll = false;
-        }, 400);
-      }
-
-      // Start progress animation for active card
-      startProgressAnimation();
-      return;
-    }
-
-    // DESKTOP / non-mobile behavior (keep your existing logic)
-    cards.forEach((card) => {
-      card.style.display = "none";
-      card.classList.remove("active");
-      card.style.width = ""; // reset
-      card.style.flex = ""; // reset any mobile flex
-    });
-
-    for (let i = 0; i < visibleSliderCard; i++) {
-      const idx = (currentStartIndex + i) % totalCards;
-      const card = cards[idx];
-      card.style.display = "block";
-      if (i === 0) {
-        card.classList.add("active");
-        card.style.width = visibleSliderCard === 2 ? "80%" : "50%";
-      } else {
-        card.style.width = visibleSliderCard === 2 ? "20%" : "24%";
-      }
-    }
-
-    startProgressAnimation();
-  }
-
-  function startProgressAnimation() {
-    if (!sliderActive) return;
-    if (progressInterval) clearInterval(progressInterval);
-
-    const activeCard = document.querySelector(".slider-card.active");
-    if (activeCard) {
-      const progressBar = activeCard.querySelector(".progress-bar");
-      if (!progressBar) return;
-      progressBar.style.width = "0%";
-
-      let progress = 0;
-      progressInterval = setInterval(() => {
-        if (!sliderActive) {
-          clearInterval(progressInterval);
+        // Mobile
+        if (window.innerWidth < 768) {
+          cards.forEach((card, i) => {
+            card.style.flex = i === 0 ? "0 0 80%" : "0 0 20%";
+            card.classList.remove("active");
+            if (i === currentIndex) card.classList.add("active");
+          });
+          container.scrollTo({ left: cards[currentIndex].offsetLeft, behavior: "smooth" });
+          startProgress();
           return;
         }
-        progress += 2;
-        progressBar.style.width = progress + "%";
 
-        if (progress >= 100) {
-          clearInterval(progressInterval);
-          setTimeout(() => {
-            slideRight();
-          }, 300);
-        }
-      }, 100);
-    }
-  }
+        // Desktop
+        cards.forEach((card, i) => {
+          card.style.display = "block";
+          card.classList.remove("active");
+          if (i === 0) {
+            card.style.width = "50%";
+            card.classList.add("active");
+          } else {
+            card.style.width = "24%";
+          }
+        });
 
-  function slideRight() {
-    currentStartIndex = (currentStartIndex + 1) % cards.length;
-    updateSlider();
-  }
+        console.log(currentIndex, "data CI");
 
-  function slideLeft() {
-    currentStartIndex = (currentStartIndex - 1 + cards.length) % cards.length;
-    updateSlider();
-  }
 
-  rightArrow.addEventListener("click", () => {
-    if (progressInterval) clearInterval(progressInterval);
-    slideRight();
-  });
+        // Enable/disable arrows based on currentIndex
+        // if (currentIndex === 0) {
+        //   leftArrow.setAttribute("disabled", "true");
+        //   leftArrow.classList.add("opacity-50", "cursor-not-allowed"); // optional styling
+        // } else {
+        //   leftArrow.removeAttribute("disabled");
+        //   leftArrow.classList.remove("opacity-50", "cursor-not-allowed");
+        // }
 
-  leftArrow.addEventListener("click", () => {
-    if (progressInterval) clearInterval(progressInterval);
-    slideLeft();
-  });
+        if (currentIndex === 0) {
+          leftArrow.setAttribute("disabled", "true");
+          leftArrow.classList.remove("backround-cyan")
+          leftArrow.classList.add("cursor-not-allowed");
 
-  // Resize update
-  window.addEventListener("resize", () => {
-    visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
-    updateSlider();
-  });
-
-  // IntersectionObserver for autoplay on view
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          sliderActive = true;
-          updateSlider();
+          // change image when disabled
+          const img = leftArrow.querySelector("img");
+          img.src = "/assets/disableArrow.svg";
         } else {
-          sliderActive = false;
-          if (progressInterval) clearInterval(progressInterval);
+          leftArrow.removeAttribute("disabled");
+          leftArrow.classList.add("backround-cyan")
+          leftArrow.classList.remove("cursor-not-allowed");
+
+          // revert image when enabled
+          const img = leftArrow.querySelector("img");
+          img.src = "/images/arrowLeft.png";
         }
-      });
-    },
-    { threshold: 0.3 }
-  );
 
-  cards.forEach((card, idx) => {
-    card.addEventListener("click", () => {
-      currentStartIndex = idx;
-      updateSlider();
-    });
-  });
 
-  // MOBILE: sync scroll -> index
-  container.addEventListener("scroll", () => {
-    // only care about mobile scrolls
-    if (window.innerWidth >= 768) return;
-    if (isProgrammaticScroll) return;
 
-    // pick card whose center is closest to container center
-    const containerCenter = container.scrollLeft + container.clientWidth / 2;
-    let closestIndex = 0;
-    let closestDist = Infinity;
-
-    cards.forEach((card, idx) => {
-      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-      const dist = Math.abs(cardCenter - containerCenter);
-      if (dist < closestDist) {
-        closestDist = dist;
-        closestIndex = idx;
+        startProgress();
       }
-    });
 
-    if (closestIndex !== currentStartIndex) {
-      currentStartIndex = closestIndex;
-      // we call updateSlider to set active class + restart progress
+      // -------------------
+      // Progress animation
+      // -------------------
+      function startProgress() {
+        if (!sliderActive) return;
+        if (progressInterval) clearInterval(progressInterval);
+
+        const activeCard = cards[0].querySelector(".progress-bar") ? cards[0] : null;
+        if (!activeCard) return;
+
+        const progressBar = activeCard.querySelector(".progress-bar");
+        progressBar.style.width = "0%";
+        let progress = 0;
+        progressInterval = setInterval(() => {
+          progress += 2;
+          progressBar.style.width = progress + "%";
+          if (progress >= 100) {
+            clearInterval(progressInterval);
+            slideRight();
+          }
+        }, 100);
+      }
+
+      // -------------------
+      // Slide navigation
+      // -------------------
+      //  let currentIndex = 0; // start at first card
+
+      function slideRight() {
+        const firstCard = cards[0];
+
+        firstCard.style.opacity = "0";
+        firstCard.style.transform = "translateX(-10%)";
+
+        setTimeout(() => {
+          firstCard.style.opacity = "";
+          firstCard.style.transform = "";
+
+          cards.shift();
+          cards.push(firstCard);
+          container.appendChild(firstCard);
+
+          // Update counter
+          currentIndex = (currentIndex + 1) % cards.length;
+          updateSlider();
+        }, 300);
+      }
+
+      function slideLeft() {
+        // Move last card to front (for a true left move)
+        const lastCard = cards.pop();
+        container.insertBefore(lastCard, container.firstChild);
+        cards.unshift(lastCard);
+
+        // Update counter
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+
+        updateSlider();
+      }
+
+      // function slideLeft(){
+      //   // Move last card to first (loop)
+      //   const lastCard = cards.pop();
+      //   cards.unshift(lastCard);
+      //   cards.forEach(c => container.appendChild(c));
+      //   updateSlider();
+      // }
+
+      leftArrow.addEventListener("click", slideLeft);
+      rightArrow.addEventListener("click", slideRight);
+
+      // -------------------
+      // Mobile drag
+      // -------------------
+      let isDragging = false, startX = 0, scrollStart = 0;
+      container.addEventListener("pointerdown", e => {
+        if (window.innerWidth >= 768) return;
+        isDragging = true;
+        startX = e.clientX || e.touches[0].clientX;
+        scrollStart = container.scrollLeft;
+        container.setPointerCapture(e.pointerId);
+      });
+      container.addEventListener("pointermove", e => {
+        if (!isDragging) return;
+        const x = e.clientX || (e.touches && e.touches[0].clientX);
+        container.scrollLeft = scrollStart - (x - startX);
+      });
+      container.addEventListener("pointerup", endDrag);
+      container.addEventListener("pointercancel", endDrag);
+
+      function endDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+
+        // Snap to nearest card
+        let closestIndex = 0, minDist = Infinity;
+        cards.forEach((c, i) => {
+          const dist = Math.abs(container.scrollLeft - c.offsetLeft);
+          if (dist < minDist) { minDist = dist; closestIndex = i; }
+        });
+
+        // Rearrange so that active card is first
+        const moved = cards.splice(closestIndex, 1)[0];
+        cards.unshift(moved);
+        cards.forEach(c => container.appendChild(c));
+        updateSlider();
+      }
+
+      // -------------------
+      // Click card to activate
+      // -------------------
+      // cards.forEach((card, idx)=>{
+      //   card.addEventListener("click", ()=>{
+      //     const moved = cards.splice(idx,1)[0];
+      //     cards.unshift(moved);
+      //     cards.forEach(c=>container.appendChild(c));
+      //     updateSlider();
+      //   });
+      // });
+
+      // -------------------
+      // Intersection observer
+      // -------------------
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          sliderActive = entry.isIntersecting;
+          if (sliderActive) updateSlider();
+          else if (progressInterval) clearInterval(progressInterval);
+        });
+      }, { threshold: 0.3 });
+      observer.observe(section);
+
+      window.addEventListener("resize", () => { visibleSliderCard = window.innerWidth < 768 ? 2 : 3; updateSlider(); });
+
+      // initialize
       updateSlider();
-    }
-  });
+    });
+  </script>
 
-  // start observing
-  observer.observe(section);
-
-  // initialize
-  updateSlider();
-});
-</script>
 
 
     <!-- <script>
@@ -2386,6 +2645,124 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+ <script>
+      const slider = document.getElementById("mob-center-slider");
+      const slides = Array.from(slider.children);
+      let centerIndex = 0;
+      let autoplayInterval = 3000; // 3 seconds
 
-  </body>
+      // Drag variables
+      let isDragging = false;
+      let startX = 0;
+
+      // Update center slide
+      function updateSlider() {
+        slides.forEach((slide, index) => {
+          slide.classList.remove("mob-center-center");
+          if (index === centerIndex) slide.classList.add("mob-center-center");
+        });
+
+        const sliderWidth = slider.parentElement.offsetWidth;
+        const slideWidth = slides[centerIndex].offsetWidth;
+        const offset =
+          (sliderWidth - slideWidth) / 2 - slides[centerIndex].offsetLeft;
+        slider.style.transform = `translateX(${offset}px)`;
+      }
+
+      // Arrow navigation
+      document
+        .querySelector(".mob-center-arrow.left")
+        .addEventListener("click", () => {
+          if (centerIndex > 0) centerIndex--;
+          updateSlider();
+          resetAutoplay();
+        });
+      document
+        .querySelector(".mob-center-arrow.right")
+        .addEventListener("click", () => {
+          if (centerIndex < slides.length - 1) centerIndex++;
+          updateSlider();
+          resetAutoplay();
+        });
+
+      // Slide click to center
+      slides.forEach((slide, index) => {
+        slide.addEventListener("click", () => {
+          centerIndex = index;
+          updateSlider();
+          resetAutoplay();
+        });
+
+        // Drag events
+        slide.addEventListener("mousedown", dragStart);
+        slide.addEventListener("mouseup", dragEnd);
+        slide.addEventListener("mouseleave", dragEnd);
+        slide.addEventListener("mousemove", dragAction);
+
+        // Touch events
+        slide.addEventListener("touchstart", dragStart);
+        slide.addEventListener("touchend", dragEnd);
+        slide.addEventListener("touchmove", dragAction);
+      });
+
+      // Drag functions
+      function dragStart(event) {
+        isDragging = true;
+        startX = event.type.includes("mouse")
+          ? event.pageX
+          : event.touches[0].clientX;
+        slider.style.transition = "none";
+      }
+
+      function dragAction(event) {
+        if (!isDragging) return;
+        const currentPosition = event.type.includes("mouse")
+          ? event.pageX
+          : event.touches[0].clientX;
+        const movedBy = currentPosition - startX;
+        slider.style.transform = `translateX(${movedBy}px)`;
+      }
+
+      function dragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+
+        // Determine closest center slide
+        const sliderRect = slider.parentElement.getBoundingClientRect();
+        const sliderCenter = sliderRect.left + sliderRect.width / 2;
+        let closestDistance = Infinity;
+
+        slides.forEach((slide, index) => {
+          const slideRect = slide.getBoundingClientRect();
+          const slideCenter = slideRect.left + slideRect.width / 2;
+          const distance = Math.abs(sliderCenter - slideCenter);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            centerIndex = index;
+          }
+        });
+
+        slider.style.transition = "transform 0.5s ease";
+        updateSlider();
+        resetAutoplay();
+      }
+
+      // Autoplay
+      let autoplay = setInterval(() => {
+        centerIndex = (centerIndex + 1) % slides.length;
+        updateSlider();
+      }, autoplayInterval);
+
+      function resetAutoplay() {
+        clearInterval(autoplay);
+        autoplay = setInterval(() => {
+          centerIndex = (centerIndex + 1) % slides.length;
+          updateSlider();
+        }, autoplayInterval);
+      }
+
+      window.addEventListener("resize", updateSlider);
+      updateSlider();
+    </script>
+</body>
 </html>
