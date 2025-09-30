@@ -1,0 +1,2786 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=AGaramondPro:ital,wght@0,300..700;1,300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=AGaramondPro+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- <link rel="stylesheet" href="/style.css" /> -->
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @font-face {
+        font-family: "AGaramondPro";
+        src: url("/font/AGaramondPro-Regular.otf");
+      }
+
+      body {
+        font-family: "AGaramondPro", Serif !important;
+        margin: 0;
+      }
+         .cursor-not-allowed {
+      cursor: not-allowed !important;
+    }
+
+    .backround-cyan {
+      background-color: #c39784;
+    }
+
+     .sec2-slider_Mob {
+  display: none;
+}
+
+      /* Second Section Mobile Slider Style Start */
+ .mob-center-slider-container {
+        position: relative;
+        overflow: hidden;
+        padding:  0 0 60px;
+      }
+
+      .mob-center-slider {
+        display: flex;
+        align-items: center;
+        transition: transform 0.5s ease;
+        will-change: transform;
+      }
+
+      .mob-center-slide {
+        flex: 0 0 70%;
+        max-width: 70%;
+        margin: 0 10px;
+        transition: all 0.5s ease;
+        cursor: pointer;
+      }
+
+      .mob-center-child-element {
+        /* background: red; */
+        width: 100%;
+        min-height: 390px;
+             max-height: 390px;
+        transition: all 0.5s ease;
+      
+      
+        position: relative;
+      }
+       .mob-center-child-element ,  .mob-center-slide.mob-center-center .mob-center-child-element { 
+        object-fit: cover;
+       }
+.mob-center-slide.mob-center-center .button-div-mob {
+  width: 101.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  background-color: #FDF9F2;
+  padding: 19px auto 20px;
+  margin-top: -6px;
+}
+.button-div-mob img {
+  margin-top: -5px;
+}
+      .mob-center-slide.mob-center-center .mob-center-child-element {
+        /* background: yellow; */
+        min-height: 436px;
+         max-height: 436px;
+ 
+      }
+
+      .mob-center-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.3);
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+        padding: 5px 10px;
+        border-radius: 4px;
+        display: none;
+      }
+.mob-center-cardBG {
+  position: relative;
+}
+.mob-center-slide.mob-center-center .mob-center-cardContent {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+    width: 100%;
+}
+.mob-center-cardContentHead {
+ font-size: 22px;
+ font-weight: normal;
+ line-height: 100%;
+ color: #fff;
+ text-transform: uppercase;
+ padding: 0 29px 8px;
+ margin: 0;
+}
+.mob-center-cardContentPara {
+ font-size: 12px;
+ font-weight: normal;
+ line-height: 100%;
+ color: #fff;
+margin: 0;
+ padding: 0px 29px 0;
+}
+      .mob-center-arrow.left {
+        left: 5px;
+      }
+      .mob-center-arrow.right {
+        right: 5px;
+      }
+
+      @media (max-width: 768px) {
+        .mob-center-slide {
+          flex: 0 0 70%;
+          max-width: 70%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .mob-center-slide {
+          flex: 0 0 80%;
+          max-width: 80%;
+        }
+      }
+        @media (max-width: 389px) {
+        .mob-center-slide {
+          flex: 0 0 85%;
+          max-width: 85%;
+        }
+      }
+      /* EnD Second Section Mobile Slider Style */
+
+
+
+      /* .AGaramondPro {
+  font-family: "AGaramondPro", serif;
+}
+
+.albert {
+  font-family: "Albert Sans", sans-serif;
+} */
+      /* Hide thumb (white circle) for all browsers */
+      .no-thumb::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 0;
+        width: 0;
+        background: transparent;
+        border: none;
+      }
+
+      .no-thumb::-moz-range-thumb {
+        height: 0;
+        width: 0;
+        background: transparent;
+        border: none;
+      }
+
+      .no-thumb::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 0;
+        width: 0;
+        background: transparent;
+        border: none;
+      }
+
+      .no-thumb::-moz-range-thumb {
+        height: 0;
+        width: 0;
+        background: transparent;
+        border: none;
+      }
+
+      .no-thumb::-ms-thumb {
+        height: 0;
+        width: 0;
+        background: transparent;
+        border: none;
+      }
+      .no-thumb::-webkit-slider-thumb {
+        height: 0px;
+        width: 0px;
+        background: transparent;
+        border-radius: none;
+        cursor: pointer;
+        margin-top: -5px;
+        opacity: 0;
+      }
+      .no-thumbr::-webkit-slider-runnable-track {
+        height: 4px;
+        background: rgba(255, 255, 255, 0.4); /* white with 40% opacity */
+        border-radius: 4px;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+      /* .float-animation {
+  animation: float 3s ease-in-out infinite;
+} */
+
+      /* First Section styles */
+
+      .first_section {
+        display: flex;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        max-height: 605px;
+      }
+      .first_video_section {
+        position: relative;
+        height: 605px;
+        width: 55%;
+      }
+      .video_section {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .video_section_video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .custom_controls {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        transition-property: opacity;
+        transition-duration: 300ms;
+        color: #ffffff;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+      }
+      .custom_controls_btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .custom_slider {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        max-width: 235px;
+      }
+      .custom_slider_text {
+        font-size: 12px;
+      }
+      .custom_slider_input {
+        width: 100%;
+        height: 4px;
+      }
+      .first_section_rightpart {
+        padding-left: 68px;
+        width: 45%;
+      }
+      .first_section_rightpart_head {
+        font-size: 88px ;
+        font-weight: 100;
+        line-height: 100%;
+        text-transform: uppercase;
+        color: #523418;
+        margin-bottom: 16px;
+        margin-top: 0px !important;
+      }
+      .first_section_rightpart_head1 {
+        font-size: 88px;
+        font-weight: 100;
+        line-height: 100%;
+        text-transform: uppercase;
+        color: #92653d;
+        margin-bottom: 24px;
+        margin-top: 0px !important;
+      }
+
+      .first_section_rightpart_para {
+        font-weight: 400;
+        font-size: 16px;
+        color: #7B7B7B;
+        text-transform: capitalize;
+        line-height: 100%;
+        max-width: 434px;
+        margin-bottom: 40px;
+      }
+      .first_section_rightpart_head {
+        letter-spacing: -3%;
+      }
+      @media (max-width: 1023px) {
+        .first_section_rightpart_head {
+          font-size: 36px !important;
+          /* font-weight: 100; */
+        }
+      }
+     
+  
+      @media (max-width: 1023px) {
+        .first_section_rightpart_head1 {
+          font-size: 36px !important;
+          font-weight: 300;
+        }
+      }
+      @media (min-width: 1024px) {
+        .first_section_rightpart_head1 {
+          font-size: 80px !important;
+          font-weight: 300;
+        }
+      }
+      .discover_btn {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        cursor: pointer;
+      }
+      .discover_btn_text {
+        font-weight: 500;
+        color: #92653d;
+        font-size: 14px;
+        text-transform: uppercase;
+        line-height: 150%;
+      }
+      .floatImage {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* margin-left: -35px; */
+      }
+      .leftPart {
+        width: 45%;
+        padding-left: 97px;
+        padding-right: 82px;
+      }
+      .leftPart_heading {
+        font-weight: 400;
+        font-size: 32px;
+        color: #896442;
+        margin-top: 24px;
+        margin-bottom: 27px;
+      }
+      .rightPart_heading {
+        font-weight: 400;
+        font-size: 32px;
+        color: #896442;
+        margin-top: 24px;
+        margin-bottom: 27px;
+        display: flex;
+        justify-content: end;
+      }
+      .fifthSection_rightpart_heading {
+        font-weight: 400;
+        font-size: 32px;
+        color: #896442;
+        margin-top: 24px;
+        margin-bottom: 27px;
+        display: flex;
+        justify-content: center;
+      }
+      .leftPart_para {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 14px;
+        color: #7b7b7b;
+        line-height: 150%;
+        margin-bottom: 28px;
+      }
+      .rightPart_para {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 14px;
+        color: #7b7b7b;
+        line-height: 150%;
+        margin-bottom: 28px;
+        display: flex;
+        justify-content: end;
+        text-align: end;
+      }
+      .fifthSection_rightpart_para {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 14px;
+        color: #7b7b7b;
+        line-height: 150%;
+        margin-bottom: 28px;
+        display: flex;
+        justify-content: center;
+        text-align: end;
+      }
+      .purityGroup {
+        display: flex;
+        align-items: center;
+        gap: 19px;
+        margin-bottom: 22px;
+      }
+      .purityGroup2 {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 19px;
+        margin-bottom: 22px;
+      }
+      .purityGroup3 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 19px;
+        margin-bottom: 22px;
+      }
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .boxText {
+        color: #232323;
+        font-size: 12px;
+        line-height: 22px;
+        font-weight: 400;
+        margin-top: 6px;
+        text-align: center;
+      }
+      .exploreBtn,
+      .exploreBtn2 {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        border: 0.5px solid #000;
+        background-color: transparent !important;
+        color: #000;
+        padding: 10px 20px;
+        margin-bottom: 59px;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 100%;
+        text-transform: uppercase;
+           font-family: "AGaramondPro", serif !important;
+      }
+      /* .arrow {
+        -webkit-mask: url("/assets/arrow-right.svg") no-repeat center;
+        mask: url("/assets/arrow-right.svg") no-repeat center;
+        background-color: #92653d;
+        width: 24px;
+        height: 24px;
+      } */
+
+      .exploreBtnAlignment {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+      }
+      .exploreBtnAlignment2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .smallVideo {
+        width: 341px;
+        height: 266px;
+      }
+      .smallVideo video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .rightPart {
+        width: 55%;
+      }
+      .rightPart img {
+        width: 100%;
+        height: 780px;
+        object-fit: cover;
+      }
+      .third_section {
+        margin-top: 97px;
+        position: relative;
+        display: flex;
+      }
+      .second_video_section {
+        position: relative;
+        height: 966px;
+        width: 55%;
+        display: inline-block;
+      }
+      .third_section_rightpart {
+        width: 45%;
+        padding-left: 105px;
+        padding-right: 86px;
+      }
+
+      .fifth_section_rightpart {
+        width: 45%;
+        padding-left: 105px;
+        padding-right: 86px;
+      }
+      .third_section_rightpart_content {
+        display: flex;
+        justify-content: end;
+      }
+      .twoImages {
+        display: flex;
+        align-items: center;
+        gap: 21px;
+        position: absolute;
+        right: 39px;
+        bottom: 76px;
+      }
+      .fourth_section_floatImg {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 2%;
+        margin-left: -35px;
+        transform: translateY(-50%);
+      }
+      .fourth_section_floatBox {
+        position: absolute;
+        bottom: 26px;
+        right: 12%;
+        background-color: #f9f3f0;
+        width: 400px;
+        padding: 24px 36px;
+        display: block;
+      }
+      .fourth_section_floatBoxText {
+        color: #232323;
+        font-weight: 500;
+        line-height: 150%;
+        text-transform: capitalize;
+        margin-bottom: 29px;
+        opacity: 0.6;
+      }
+      .fourth_section_floatBoxBtn {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        border: 0.5px solid #92653d;
+        color: #92653d;
+        background-color: transparent !important;
+        padding: 10px 20px;
+      }
+      .fifth_section {
+        width: 30%;
+        padding-left: 97px;
+        padding-right: 82px;
+      }
+      .fifth_section_heading {
+        font-weight: normal;
+        font-size: 32px;
+        color: #896442;
+        margin-top: 24px;
+        margin-bottom: 27px;
+      }
+      .fifth_section_para {
+        text-transform: capitalize;
+        font-weight: 500;
+        font-size: 14px;
+        color: #7b7b7b;
+        line-height: 150%;
+        margin-bottom: 28px;
+      }
+      /* .fourth_section_model {
+  width: 30%;
+} */
+      .fourth_section_model img {
+        height: 826px;
+        object-fit: cover;
+      }
+      .fifthSection {
+        display: flex;
+        align-items: center;
+        margin-top: 146px;
+        position: relative;
+      }
+      .fifthSectionParent {
+        position: relative;
+        height: 804px;
+        display: inline-block;
+        width: 55%;
+      }
+      .fifthSection_rightpart {
+        display: flex;
+        justify-content: center;
+      }
+      .sixth_section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 82px;
+        padding: 117px 0;
+        background-color: #fff;
+        position: relative;
+        z-index: 99;
+      }
+      .girlDesktopImg {
+        height: 465px;
+        width: 377px;
+        object-fit: cover;
+      }
+      .girlMobImg {
+        display: none;
+      }
+      .sixth_section_heading {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 120%;
+        text-transform: uppercase;
+        color: #896442;
+        max-width: 481px;
+        margin-bottom: 58px;
+      }
+      /* An Intimate */
+      .IntimateBgParent {
+        background-color: #fff;
+        position: relative;
+        z-index: 99;
+        padding-bottom: 64px;
+      }
+      .IntimateBg {
+        background-color: #fdf9f2;
+        height: 485px;
+      }
+      .IntimateBgChild {
+        padding-top: 48px;
+        max-width: 916px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .IntimateBgHead {
+        font-size: 52px;
+        line-height: 100%;
+        color: #523418;
+        font-weight: normal;
+        margin: 0;
+        margin-top: 16px;
+        margin-bottom: 28px;
+      }
+      .IntimateBgPara {
+        font-size: 16px;
+        line-height: 100%;
+        color: #7b7b7b;
+        margin: 0;
+        margin-bottom: 52px;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .IntimateBgChild .explore-btn {
+        display: none;
+      }
+      .explore-btn p{
+margin: 0;
+ font-family: "AGaramondPro", serif !important;
+
+      }
+      .IntimateBgImg {
+        width: 916px;
+        height: 503px;
+        margin-top: -262px;
+        margin: -200px auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @media screen and (max-width: 1000px) {
+        .IntimateBg {
+          height: 430px;
+        }
+        .IntimateBgChild {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .IntimateBgHead {
+          font-size: 36px;
+          margin-bottom: 23px;
+        }
+        .IntimateBgPara {
+          font-size: 14px;
+          line-height: normal;
+          margin-bottom: 39px;
+        }
+        .IntimateBgImg {
+          width: 90%;
+          object-fit: cover;
+          margin: -73px auto 0;
+        }
+        .IntemateButtonDiv{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .IntimateBgChild .explore-btn {
+        /* margin-top: 2rem; */
+        padding: 12px 28px;
+        border: 1px solid #232323;
+        background: transparent;
+        color: #232323;
+        font-size: 14px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        /* display: none; */
+      }
+      }
+
+      @media screen and (max-width:400px) {
+        .IntimateBgHead {
+          font-size: 35px;
+        }
+      }
+
+      /* Discover Slider */
+
+      .discoverSlider {
+        position: relative;
+        background-color: #fff;
+        z-index: 99;
+        /* height: 715px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .discoverSlider h2 {
+        font-size: 48px;
+        line-height: 100%;
+        margin: 0;
+        color: #232323;
+        padding-top: 32px;
+        padding-bottom: 50px;
+        text-align: center;
+        font-weight: normal;
+      }
+
+      .discoverSlider .slider {
+        overflow: hidden;
+      }
+
+      .discoverSlider .slides {
+  display: flex;
+  gap: 86px;
+  max-width: 1120px;
+  transition: transform 0.5s ease-in-out;
+
+}
+
+.discoverSlider .slide {
+  flex: 0 0 calc((100% - (86px * 2)) / 3); /* desktop: 3 cards with gap */
+  max-width: 315px;
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid #f6f0eb;
+}
+
+      .discoverSlider .slide img {
+        width: 315px;
+        max-height: 377px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .discoverSlider .caption {
+        color: #0f0f0f;
+        padding: 10px;
+        margin-top: -5px;
+        font-weight: 500;
+        text-align: left;
+      }
+
+      /* Arrows */
+      .discoverSlider .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #c39784;
+        border: 1px solid #c89d7c;
+        color: #c89d7c;
+        font-size: 1rem;
+        padding: 3px 10px;
+        cursor: pointer;
+        user-select: none;
+        transition: 0.3s;
+        /* margin-right: 66px */
+        /* margin-left: 44px;   */
+      }
+                    .discoverSlider .arrow img {
+                      margin-top: 5px;
+                    }
+
+      .discoverSlider .arrow:hover {
+        background: #c89d7c;
+        border-color: #c89d7c;
+      }
+
+      .discoverSlider .arrow.left {
+        left: 48px;
+      }
+      .discoverSlider .arrow.right {
+        right: 48px;
+      }
+
+      /* Button */
+      .discoverSlider .explore-btn {
+        margin-top: 2rem;
+        padding: 12px 28px;
+        border: 1px solid #232323;
+        background: transparent;
+        color: #232323;
+        font-size: 14px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .discoverSlider .span img{
+        width: 12px;
+        height: 24px;
+      }
+
+      /* .discoverSlider .explore-btn:hover {
+        background: #c89d7c;
+        border-color: #c89d7c;
+        color: #fff;
+      } */
+
+    @media screen and (max-width:600px) {
+       
+       .discoverSlider .slides {
+    gap: 22px;
+    justify-content: flex-start;
+  }
+
+  .discoverSlider .slide {
+    flex: 0 0 calc((100% - 16px) / 2); /* mobile: 2 cards with gap */
+    max-width: 161px;
+  }
+       .discoverSlider .slide img {
+        width: 161px;
+        max-height: 267px;
+   
+      }
+        .discoverSlider .arrow {
+          display: none;
+        }
+      
+    }
+
+      @media screen and (min-width: 1400px) {
+        .fourth_section_model {
+          width: 45%;
+        }
+        .second_video_section {
+          width: 85%;
+        }
+        .third_section_rightpart {
+          width: 40%;
+        }
+      }
+      @media screen and (min-width: 1700px) {
+        .second_video_section {
+          width: 85%;
+        }
+        .third_section_rightpart {
+          width: 30%;
+        }
+      }
+      @media screen and (min-width: 2100px) {
+        .fourth_section_floatImg {
+          right: 6%;
+        }
+        .fourth_section_model {
+          width: 47%;
+        }
+        .second_video_section {
+          width: 60%;
+        }
+        .third_section_rightpart {
+          width: 27%;
+        }
+        .twoImages_firstImg {
+          width: 411px;
+        }
+        .twoImages {
+          bottom: 37px;
+          right: 3%;
+        }
+      }
+      @media screen and (min-width: 1201px) and (max-width: 1399px) {
+        .fifth_section {
+          width: 35%;
+        }
+        .fourth_section_model {
+          width: 35%;
+        }
+        .fourth_section_floatBox {
+          right: 9%;
+        }
+        .fourth_section_floatImg {
+          right: 0px;
+        }
+        .second_video_section {
+          width: 75%;
+        }
+        .third_section_rightpart {
+          width: 55%;
+        }
+      }
+      @media screen and (max-width: 1200px) {
+        .fourth_section_model {
+          width: 50%;
+        }
+        .fifth_section {
+          width: 50%;
+        }
+        .twoImages {
+          bottom: 10px;
+        }
+        .third_section_rightpart,
+        .fifth_section_rightpart {
+          width: 50%;
+          padding-left: 90px;
+        }
+        .second_video_section {
+          width: 50%;
+        }
+        .first_section_rightpart_head {
+          font-size: 52px;
+        }
+        .first_section_rightpart_head1 {
+          font-size: 52px;
+        }
+        .first_section_rightpart_para {
+          margin: 0 auto;
+        }
+      }
+      @media screen and (max-width: 1024px) {
+        .first_section {
+          flex-direction: column;
+        }
+        .first_video_section {
+          height: auto;
+          width: 100%;
+        }
+        .video_section_video {
+          height: 400px;
+        }
+        .muteIcon,
+        .pauseIcon {
+          width: 30px;
+          height: 32px;
+        }
+        .first_section_rightpart {
+          width: 100%;
+          padding-left: 0;
+        }
+        .first_section_rightpart_mobile_style {
+          margin-top: 35px;
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+        }
+        .first_section_rightpart_head {
+          margin-top: 0px !important;
+          text-align: center;
+          font-size: 36px;
+          margin-bottom: 13px;
+        }
+        .first_section_rightpart_head1 {
+          font-size: 36px;
+        }
+        .first_section_rightpart_para {
+          /* line-height: 17px; */
+          font-size: 14px;
+          color: #7b7b7b;
+          margin-bottom: 20px;
+          padding-left: 20px;
+          padding-right: 20px;
+          text-align: center;
+          line-height: 115%;
+        }
+        .discover_btn {
+          margin: 0 auto;
+        }
+        .discover_div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+        }
+        .discover_btn_text {
+          font-size: 10px;
+        }
+        .floatImage {
+          display: none;
+        }
+        .leftPart {
+          width: 100%;
+          margin-top: 32px;
+          padding: 0;
+        }
+        .countHeading {
+          width: 84px;
+          height: 56px;
+        }
+        .leftPart_heading {
+          font-size: 20px;
+          margin-bottom: 12px;
+          padding-left: 20px;
+          padding-right: 70px;
+        }
+        .rightPart_heading {
+          font-size: 20px;
+          margin-bottom: 12px;
+          padding-left: 20px;
+          padding-right: 70px;
+          justify-content: flex-start;
+        }
+        .fifthSection_rightpart_heading {
+          font-size: 20px;
+          margin-bottom: 12px;
+          padding-left: 30px;
+          padding-right: 70px;
+          justify-content: flex-start;
+        }
+        .leftPart_para {
+          font-size: 12px;
+          padding-left: 20px;
+          padding-right: 70px;
+        }
+        .rightPart_para {
+          font-size: 12px;
+          padding-left: 20px;
+          padding-right: 70px;
+          justify-content: flex-start;
+          text-align: start;
+        }
+        .fifthSection_rightpart_para {
+          font-size: 12px;
+          padding-left: 30px;
+          padding-right: 70px;
+          justify-content: flex-start;
+          text-align: start;
+        }
+        .purityGroup {
+          gap: 15px;
+          padding-left: 20px;
+          padding-right: 70px;
+        }
+        .purityGroup2,
+        .purityGroup3 {
+          gap: 15px;
+          padding-left: 30px;
+          padding-right: 70px;
+          justify-content: flex-start;
+        }
+
+        .exploreBtn {
+          /* margin-left: 20px; */
+          margin-right: 70px;
+          margin-bottom: 0;
+        }
+        .exploreBtn2 {
+          margin: 0 8px;
+          font-size: 14px !important;
+          border: 1px solid #232323;
+        }
+        .exploreBtnText {
+        
+          color: #000;
+        }
+        .smallVideoMobStyle {
+          position: absolute;
+          top: 30.4%;
+          right: 27px;
+        }
+        .smallVideo {
+          display: none;
+        }
+        .rightPart {
+          width: 100%;
+        }
+        .rightPart img {
+          height: 400px;
+        }
+        .third_section {
+          flex-direction: column;
+          margin-top: 70px;
+        }
+        .second_video_section {
+          height: 400px;
+          width: 100%;
+        }
+        .third_section_rightpart {
+          width: 100%;
+          margin-top: 280px;
+          padding: 0;
+        }
+        .imageFifthSection {
+          display: none;
+        }
+        .fifth_section_rightpart {
+          /* display: none; */
+          width: 100%;
+          margin-top: 30px;
+          padding: 0;
+        }
+        .third_section_rightpart_content {
+          display: flex;
+          justify-content: start;
+        }
+        .exploreBtnAlignment {
+          display: flex;
+          align-items: center;
+          justify-content: start;
+        }
+        .exploreBtnAlignmentMobile {
+          margin-left: 20px;
+        }
+
+        .twoImages {
+          position: absolute;
+          display: flex;
+          gap: 16px;
+          padding: 0 20px;
+          bottom: unset !important;
+          top: 430px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: calc(100% - 40px);
+          max-width: none;
+        }
+
+        .twoImages_firstImg {
+          width: 50%;
+          height: 213px;
+        }
+
+        .twoImages_firstImg img {
+          width: 100%;
+          height: 100%;
+        }
+        .fourth_section_floatImg,
+        .fourth_section_floatBox {
+          display: none;
+        }
+        .fifth_section {
+          width: 100%;
+          margin-top: 32px;
+          padding: 0;
+        }
+        .fifth_section_heading {
+          font-size: 20px;
+          margin-bottom: 12px;
+          padding-left: 20px;
+          padding-right: 70px;
+        }
+        .fifth_section_para {
+          padding-left: 20px;
+          padding-right: 70px;
+        }
+        .fourth_section_model img {
+          height: 400px;
+          width: 100%;
+        }
+        .fifthSection {
+          margin-top: 70px;
+          flex-direction: column;
+        }
+        .fifthSectionParent {
+          height: 400px;
+          width: 100%;
+        }
+        .fifthSection_rightpart {
+          justify-content: flex-start;
+          padding-left: 15px;
+          padding-right: 67px;
+        }
+        .exploreBtnAlignment2 {
+          padding-left: 30px;
+          padding-right: 67px;
+          justify-content: flex-start;
+        }
+        .sixth_section {
+          gap: 0;
+          /* margin: 80px 0; */
+          flex-direction: column;
+          padding: 80px 10px;
+        }
+        .girlDesktopImg {
+          display: none;
+        }
+        .girlMobImg {
+          /* height: 202px; */
+          /* width: 333px; */
+          width: 100%;
+          object-fit: cover;
+          margin: 0 auto;
+          display: block;
+        }
+        .sixth_section_heading {
+          margin-top: 22px;
+          margin-bottom: 13px;
+          text-align: left;
+          font-size: 20px;
+          padding: 0px 8px;
+          line-height: 34px;
+        }
+        .fourth_section_model {
+          width: 100%;
+        }
+      }
+
+
+      /* slider section css */
+#sec2-slider .card {
+  transition: all 0.6s ease-in-out;
+}
+
+      .second_section {
+  padding: 48px 1rem;
+  text-align: center;
+  display: block;
+  position: relative;
+  background-color: #fff;
+  z-index: 99;
+}
+
+.custom_divider {
+  width: 3rem;
+  height: 1px;
+  background-color: #333;
+  border: none;
+  margin: 0 auto 1.5rem auto;
+}
+
+.second_section_heading {
+  font-size: 52px;
+  color: #523418;
+  font-weight: 400;
+  line-height: 100%;
+  margin-top: 16px;
+  margin-bottom: 28px;
+}
+
+.second_section_description {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+  color: #7B7B7B;
+  line-height: 100%;
+  margin-top: 0;
+  margin-bottom: 88px;
+}
+
+.second_section_slider_div {
+  position: relative;
+  max-width: 1194px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.second_section_slider_div > .left_arrow_div {
+    position: absolute;
+    bottom: -3.5%;
+    left: 51%;
+    transform: translateY(-50%);
+    /* background-color: #c39784; */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.second_section_slider_div > .right_arrow_div {
+  position: absolute;
+  bottom: -3.5%;
+  left: 56%;
+  transform: translateY(-50%);
+  background-color: #c39784;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: bold;
+  z-index: 10;
+}
+
+.second_section_slider_div .slider_container {
+  display: flex;
+  gap: 53px;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+
+
+
+
+
+.second_section_slider_div .slider_container .slider-card {
+  height: 508px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.second_section_slider_div .slider_container .slider-card.active {
+  height: 588px;
+}
+
+.second_section_slider_div .slider_container .collapse-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  line-height: 100%;
+  font-weight: normal;
+  color: #FEFBF5;
+  text-transform: capitalize;
+  z-index: 2;
+  opacity: 1; /* always clear */
+  pointer-events: none;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); /* readability on image */
+  display: block; /* default visible */
+  width: max-content;
+}
+
+/* Hide when card is active (80%) */
+.second_section_slider_div .slider_container .slider-card.active .collapse-label {
+  display: none;
+}
+
+
+.second_section_slider_div .slider_container .second_section_slider_div .slider_container .slider-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Black overlay */
+.second_section_slider_div .slider_container .slider-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+ height: 100%; /* bottom half only */
+  /* background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.6)); */
+  background-color: rgba(0,0,0,0.4);
+  pointer-events: none; /* taki click events image/card pe hi jaye */
+}
+.second_section_slider_div .slider_container .slider-card.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+ height: 50%; /* bottom half only */
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+  /* background-color: rgba(0,0,0,0.4); */
+  pointer-events: none; /* taki click events image/card pe hi jaye */
+}
+/* Progress bar styles */
+.progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #EEE2DC;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #764631;
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+.collapseText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.collapseText p{
+color: white;
+font-size: 20px;
+
+}
+/* Overlay content styles */
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* background: linear-gradient(transparent, rgba(0, 0, 0, 0.7)); */
+  color: white;
+  padding: 0px 21px 0 32px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.overlay-title {
+  font-family: "AGaramondPro", serif;
+  text-align: left;
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 11px;
+  /* letter-spacing: -0.03em; */
+}
+
+.overlay-description {
+  font-size: 16px;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 25px;
+}
+
+.button-div {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  background: white;
+  border: none;
+  padding: 13.5px 20px;
+  margin-bottom: 24px;
+}
+.button-div > p {
+  font-family: "AGaramondPro", serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #232323;
+  margin: 0px !important;
+  margin-top: 5px !important;
+}
+.button-div > img {
+  width: 12px !important;
+  height: 24px !important;
+}
+
+/* Show overlay and progress on active card */
+.slider-card.active .progress-bar-container,
+.slider-card.active .card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+@media (max-width: 768px) {
+  .sec2-slider_Desktop {
+    display: none;
+  }
+  .sec2-slider_Mob {
+  display: block;
+}
+ #sec2-slider {
+  /* display: none; */
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px; /* optional: prevent cut-off */
+  }
+
+  #sec2-slider .slider-card {
+    scroll-snap-align: start;
+    /* default flex will be overridden by JS to 80%/20% */
+    flex: 0 0 auto;
+    min-width: 20%; /* safety fallback so cards never become zero width */
+  }
+.second_section_slider_div .slider_container .collapse-label {
+  display: none;
+}
+  /* hide arrows on mobile (you already had this, keep it) */
+  .second_section_slider_div > .left_arrow_div,
+  .second_section_slider_div > .right_arrow_div {
+    display: none;
+  }
+  .second_section_heading {
+    font-size: 36px;
+    margin-bottom: 23px;
+    padding-right: 15px;
+  }
+  .second_section_description {
+    font-size: 14px;
+    margin-bottom: 40px;
+        padding-right: 20px;
+  }
+
+  .overlay-title {
+    font-size: 28px;
+  }
+  .overlay-description {
+    font-size: 16px;
+  }
+  .second_section_slider_div .slider_container .slider-card {
+    height: 433px;
+  }
+   .discoverSlider h2 {
+        font-size: 36px;
+    max-width: 281px;
+    margin: 0 auto;
+      }
+}
+
+@media (max-width: 768px) {
+  .second_section {
+     padding: 35px 0 48px 0rem;
+  }
+  .sixth_section_heading{
+    max-width:333px;
+  }
+  .second_section_slider_div > .left_arrow_div {
+    display: none;
+  }
+  .second_section_slider_div > .right_arrow_div {
+    display: none;
+  }
+  .progress-bar-container {
+    width: 50px;
+    top: 15px;
+    right: 15px;
+  }
+  .card-overlay {
+    padding: 30px 20px 0px;
+    display: block;
+  }
+  .overlay-title {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .overlay-description {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .button-div > p{
+    font-size: 12px;
+  }
+  .button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .button-div{
+    gap: 0px;
+    justify-content: space-between;
+    width: 204px;
+    margin-bottom: 14px;
+    padding: 9px 14px;
+    max-width: 204px;
+    max-height: 32px;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <!-- First Section -->
+
+    <section class="first_section">
+      <!-- FIRST VIDEO SECTION -->
+      <div class="first_video_section">
+        <!-- Video Player with Controls -->
+        <div class="video_section" id="videoWrapper1">
+          <!-- <img src="" alt=""> -->
+          <video
+            id="video1"
+            class="video_section_video"
+            muted
+            loop
+            playsinline
+            preload="auto"
+          >
+            <source src="/images/v1.mp4" type="video/mp4" />
+          </video>
+
+          <!-- Custom Controls -->
+          <div class="custom_controls">
+            <div class="custom_controls_btn">
+              <!-- Mute/Unmute Button -->
+              <div id="muteBtn1">
+                <img
+                  id="muteIcon1"
+                  src="/assets/Mute.svg"
+                  alt="Mute"
+                  class="muteIcon"
+                />
+              </div>
+
+              <div id="playPauseBtn1">
+                <img
+                  id="pauseIcon1"
+                  src="/assets/pause.svg"
+                  alt="pause"
+                  class="pauseIcon"
+                />
+              </div>
+            </div>
+            <div class="custom_slider">
+              <span id="currentTime1" class="custom_slider_text AGaramondPro"
+                >00:00</span
+              >
+              <!-- <input
+                id="progress1"
+                type="range"
+                class="w-full h-1 accent-white no-thumb"
+                value="0"
+                min="0"
+                max="100"
+                step="0.1"
+              /> -->
+              <input
+                id="progress1"
+                type="range"
+                class="custom_slider_input accent-white no-thumb"
+                value="0"
+                min="0"
+                max="100"
+                step="0.1"
+              />
+              <span id="duration1" class="custom_slider_text AGaramondPro"
+                >00:00</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="first_section_rightpart">
+        <div class="first_section_rightpart_mobile_style">
+          <p
+            class="first_section_rightpart_head AGaramondPro"
+            style="letter-spacing: -3%; "
+          >
+            Aeterna
+          </p>
+        
+        </div>
+        <p
+          class="first_section_rightpart_para AGaramondPro"
+        
+        >
+        Here is never a time and place for knowing, It happens in a heartbeat, as it did for her. Like diving into an infinity pool of interconnected patterns
+        </p>
+        <a
+          href="#second_section_slider"
+          class="discover_div"
+          style="text-decoration: none"
+        >
+          <div class="discover_btn">
+            <span
+              class="discover_btn_text AGaramondPro"
+              style="letter-spacing: -3%"
+              >discover Looks
+            </span>
+            <img src="/assets/bottomArrow.svg" alt="" />
+          </div>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- second section---- -->
+    <section class="second_section" id="second_section_slider">
+     <img src="./assets/sLine.png" />
+      <h2 class="second_section_heading">
+        An intimate story, where<br />
+        jewels become poetry.
+      </h2>
+
+      <p class="second_section_description">
+        Knowing strikes in an instant, unexpected and powerful. For her, it was
+        like diving into an infinity of patterns, emerging stronger, senses
+        sharpened.
+      </p>
+
+      <div class="second_section_slider_div">
+        <!-- Left arrow -->
+        <div class="left_arrow_div" id="sec2-left-arrow">
+          <img src="/images/arrowLeft.png" alt="arrow" />
+        </div>
+
+        <!-- Slider container -->
+
+        <div class="sec2-slider_Desktop">
+
+
+        <div id="sec2-slider" class="slider_container">
+          <div class="slider-card">
+            <img src="./images/look1.png" alt="Look 1" />
+              <!-- Collapse label -->
+  <div class="collapse-label">Aeterna Edits</div>
+         
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+            <div class="card-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+                <p class="overlay-description">
+                  Knowing strikes in an instant, </br> unexpected and powerful
+                </p>
+              </div>
+              <div class="button-container">
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider-card">
+            <img src="./images/look2.png" alt="Look 2" />
+            <div class="collapse-label">Whispers from <br/>the Valley</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+            <div class="card-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+                <p class="overlay-description">
+                  Knowing strikes in an instant, </br> unexpected and powerful
+                </p>
+              </div>              
+              <div class="button-container">
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider-card">
+            <img src="./images/look3.png" alt="Look 3" />
+            <div class="collapse-label">Where jewels <br/>
+become poetry</div>
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+            <div class="card-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+                <p class="overlay-description">
+                  Knowing strikes in an instant, </br> unexpected and powerful
+                </p>
+              </div>
+              <div class="button-container">
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+
+      <div class="sec2-slider_Mob">
+     <div class="mob-center-slider-container">
+      <button class="mob-center-arrow left">&#10094;</button>
+      <div class="mob-center-slider" id="mob-center-slider">
+        <div class="mob-center-slide">
+          <div class="mob-center-child-element">
+
+               <div class="mob-center-cardBG">
+              
+                <img src="/images/look1Mob.png" alt="">
+               </div>
+               
+                  <div class="mob-center-cardContent">
+                 <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                 <p class="mob-center-cardContentPara">Opulent jewels, imbued with mystic power, mirror the valley's enchanting allure.</p>
+                  </div>
+                   <div class="button-div-mob">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+                
+            
+          </div>
+        </div>
+        <div class="mob-center-slide">
+            <div class="mob-center-child-element">
+
+               <div class="mob-center-cardBG">
+              
+                <img src="/images/look2Mob.png" alt="">
+               </div>
+               
+                   <div class="mob-center-cardContent">
+                 <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                 <p class="mob-center-cardContentPara">Opulent jewels, imbued with mystic power, mirror the valley's enchanting allure.</p>
+                  </div>
+                   <div class="button-div-mob">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+                
+            
+          </div>
+              
+                  
+        </div>
+        <div class="mob-center-slide">
+          
+        
+            
+                   <div class="mob-center-child-element">
+
+               <div class="mob-center-cardBG">
+              
+                <img src="/images/look3Mob.png" alt="">
+               </div>
+               
+                   <div class="mob-center-cardContent">
+                 <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                 <p class="mob-center-cardContentPara">Opulent jewels, imbued with mystic power, mirror the valley's enchanting allure.</p>
+                  </div>
+                   <div class="button-div-mob">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" >
+                </div>
+                
+            
+          </div>
+        </div>
+      
+      </div>
+      <button class="mob-center-arrow right">&#10095;</button>
+    </div>
+      </div>
+
+        <!-- Right arrow -->
+        <div class="right_arrow_div" id="sec2-right-arrow">
+          <img src="/images/arrowRight.png" alt="arrow" />
+        </div>
+      </div>
+    </section>
+
+
+
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const section = document.getElementById("second_section_slider");
+      const leftArrow = document.getElementById("sec2-left-arrow");
+      const rightArrow = document.getElementById("sec2-right-arrow");
+      const container = document.getElementById("sec2-slider");
+      const cards = Array.from(container.children);
+
+      let currentIndex = 0;
+      let visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
+      let sliderActive = false;
+      let progressInterval;
+
+      // -------------------
+      // Update slider layout
+      // -------------------
+      function updateSlider() {
+        const totalCards = cards.length;
+
+        // Show/hide arrows
+        // if(totalCards <= visibleSliderCard){
+        //   leftArrow.classList.add("hidden");
+        //   rightArrow.classList.add("hidden");
+        // } else {
+        //   leftArrow.classList.remove("hidden");
+        //   rightArrow.classList.remove("hidden");
+        // }
+
+        // Mobile
+        if (window.innerWidth < 768) {
+          cards.forEach((card, i) => {
+            card.style.flex = i === 0 ? "0 0 80%" : "0 0 20%";
+            card.classList.remove("active");
+            if (i === currentIndex) card.classList.add("active");
+          });
+          container.scrollTo({ left: cards[currentIndex].offsetLeft, behavior: "smooth" });
+          startProgress();
+          return;
+        }
+
+        // Desktop
+        cards.forEach((card, i) => {
+          card.style.display = "block";
+          card.classList.remove("active");
+          if (i === 0) {
+            card.style.width = "50%";
+            card.classList.add("active");
+          } else {
+            card.style.width = "24%";
+          }
+        });
+
+        console.log(currentIndex, "data CI");
+
+
+        // Enable/disable arrows based on currentIndex
+        // if (currentIndex === 0) {
+        //   leftArrow.setAttribute("disabled", "true");
+        //   leftArrow.classList.add("opacity-50", "cursor-not-allowed"); // optional styling
+        // } else {
+        //   leftArrow.removeAttribute("disabled");
+        //   leftArrow.classList.remove("opacity-50", "cursor-not-allowed");
+        // }
+
+        if (currentIndex === 0) {
+          leftArrow.setAttribute("disabled", "true");
+          leftArrow.classList.remove("backround-cyan")
+          leftArrow.classList.add("cursor-not-allowed");
+
+          // change image when disabled
+          const img = leftArrow.querySelector("img");
+          img.src = "/assets/disableArrow.svg";
+        } else {
+          leftArrow.removeAttribute("disabled");
+          leftArrow.classList.add("backround-cyan")
+          leftArrow.classList.remove("cursor-not-allowed");
+
+          // revert image when enabled
+          const img = leftArrow.querySelector("img");
+          img.src = "/images/arrowLeft.png";
+        }
+
+
+
+        startProgress();
+      }
+
+      // -------------------
+      // Progress animation
+      // -------------------
+      function startProgress() {
+        if (!sliderActive) return;
+        if (progressInterval) clearInterval(progressInterval);
+
+        const activeCard = cards[0].querySelector(".progress-bar") ? cards[0] : null;
+        if (!activeCard) return;
+
+        const progressBar = activeCard.querySelector(".progress-bar");
+        progressBar.style.width = "0%";
+        let progress = 0;
+        progressInterval = setInterval(() => {
+          progress += 2;
+          progressBar.style.width = progress + "%";
+          if (progress >= 100) {
+            clearInterval(progressInterval);
+            slideRight();
+          }
+        }, 100);
+      }
+
+      // -------------------
+      // Slide navigation
+      // -------------------
+      //  let currentIndex = 0; // start at first card
+
+    let isAnimating = false; // 🔒 lock variable
+
+function slideRight() {
+  if (isAnimating) return; // ignore fast clicks
+  isAnimating = true;
+
+  const firstCard = cards[0];
+  firstCard.style.opacity = "0";
+  firstCard.style.transform = "translateX(-10%)";
+
+  setTimeout(() => {
+    firstCard.style.opacity = "";
+    firstCard.style.transform = "";
+
+    cards.shift();
+    cards.push(firstCard);
+    container.appendChild(firstCard);
+
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateSlider();
+
+    isAnimating = false; // 🔓 unlock
+  }, 300); // 300ms = same as your CSS/JS transition
+}
+
+function slideLeft() {
+  if (isAnimating) return; // ignore fast clicks
+  isAnimating = true;
+
+  const lastCard = cards.pop();
+  container.insertBefore(lastCard, container.firstChild);
+  cards.unshift(lastCard);
+
+  currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+  updateSlider();
+
+  // thoda delay dena zaruri hai taki double-click se break na ho
+  setTimeout(() => {
+    isAnimating = false; // 🔓 unlock
+  }, 300);
+}
+
+      // function slideLeft(){
+      //   // Move last card to first (loop)
+      //   const lastCard = cards.pop();
+      //   cards.unshift(lastCard);
+      //   cards.forEach(c => container.appendChild(c));
+      //   updateSlider();
+      // }
+
+      leftArrow.addEventListener("click", slideLeft);
+      rightArrow.addEventListener("click", slideRight);
+
+      // -------------------
+      // Mobile drag
+      // -------------------
+      let isDragging = false, startX = 0, scrollStart = 0;
+      container.addEventListener("pointerdown", e => {
+        if (window.innerWidth >= 768) return;
+        isDragging = true;
+        startX = e.clientX || e.touches[0].clientX;
+        scrollStart = container.scrollLeft;
+        container.setPointerCapture(e.pointerId);
+      });
+      container.addEventListener("pointermove", e => {
+        if (!isDragging) return;
+        const x = e.clientX || (e.touches && e.touches[0].clientX);
+        container.scrollLeft = scrollStart - (x - startX);
+      });
+      container.addEventListener("pointerup", endDrag);
+      container.addEventListener("pointercancel", endDrag);
+
+      function endDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+
+        // Snap to nearest card
+        let closestIndex = 0, minDist = Infinity;
+        cards.forEach((c, i) => {
+          const dist = Math.abs(container.scrollLeft - c.offsetLeft);
+          if (dist < minDist) { minDist = dist; closestIndex = i; }
+        });
+
+        // Rearrange so that active card is first
+        const moved = cards.splice(closestIndex, 1)[0];
+        cards.unshift(moved);
+        cards.forEach(c => container.appendChild(c));
+        updateSlider();
+      }
+
+      // -------------------
+      // Click card to activate
+      // -------------------
+      // cards.forEach((card, idx)=>{
+      //   card.addEventListener("click", ()=>{
+      //     const moved = cards.splice(idx,1)[0];
+      //     cards.unshift(moved);
+      //     cards.forEach(c=>container.appendChild(c));
+      //     updateSlider();
+      //   });
+      // });
+
+      // -------------------
+      // Intersection observer
+      // -------------------
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          sliderActive = entry.isIntersecting;
+          if (sliderActive) updateSlider();
+          else if (progressInterval) clearInterval(progressInterval);
+        });
+      }, { threshold: 0.3 });
+      observer.observe(section);
+
+      window.addEventListener("resize", () => { visibleSliderCard = window.innerWidth < 768 ? 2 : 3; updateSlider(); });
+
+      // initialize
+      updateSlider();
+    });
+  </script>
+
+
+
+    <!-- <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const section = document.getElementById("second_section_slider");
+    const leftArrow = document.getElementById("sec2-left-arrow");
+    const rightArrow = document.getElementById("sec2-right-arrow");
+    const container = document.getElementById("sec2-slider");
+    const cards = Array.from(container.children);
+
+    let currentStartIndex = 0;
+    let visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
+    let progressInterval;
+    let sliderActive = false;
+
+    // function updateSlider() {
+    //   if (!sliderActive) return;
+
+    //   const totalCards = cards.length;
+
+    //   // Arrow show/hide
+    //   if (totalCards > visibleSliderCard) {
+    //     leftArrow.classList.remove("hidden");
+    //     rightArrow.classList.remove("hidden");
+    //   } else {
+    //     leftArrow.classList.add("hidden");
+    //     rightArrow.classList.add("hidden");
+    //   }
+
+    //   // Reset all cards
+    //   cards.forEach((card) => {
+    //     card.style.display = "none";
+    //     card.classList.remove("active");
+    //   });
+
+    //   // Show visible cards
+    //   for (let i = 0; i < visibleSliderCard; i++) {
+    //     const idx = (currentStartIndex + i) % totalCards;
+    //     const card = cards[idx];
+    //     card.style.display = "block";
+    //     if (i === 0) {
+    //       card.classList.add("active");
+    //       card.style.width = visibleSliderCard === 2 ? "80%" : "50%";
+    //     } else {
+    //       card.style.width = visibleSliderCard === 2 ? "20%" : "24%";
+    //     }
+    //   }
+
+    //   startProgressAnimation();
+    // }
+
+     function updateSlider() {
+          const totalCards = cards.length;
+
+          // Hide arrows if not needed
+          if (totalCards <= visibleSliderCard) {
+            leftArrow.classList.add("hidden");
+            rightArrow.classList.add("hidden");
+          } else {
+            leftArrow.classList.remove("hidden");
+            rightArrow.classList.remove("hidden");
+          }
+
+          cards.forEach((card, idx) => {
+            const visibleIndex =
+              (idx - currentStartIndex + totalCards) % totalCards;
+
+            // Reset styles first
+            card.style.display = "none";
+            card.classList.remove("active");
+
+            if (totalCards === 1) {
+              // Case: only one card
+              card.style.display = "block";
+              card.style.width = "100%";
+              card.classList.add("active");
+            } else if (totalCards === 2) {
+              // Case: exactly two cards total
+              if (visibleIndex < 2) {
+                card.style.display = "block";
+                if (visibleIndex === 0) {
+                  card.style.width = "70%"; // active
+                  card.classList.add("active");
+                } else {
+                  card.style.width = "30%"; // non-active
+                }
+              }
+            } else {
+              // Case: 3 or more cards
+              if (visibleIndex < visibleSliderCard) {
+                card.style.display = "block";
+                if (visibleIndex === 0) {
+                  card.style.width =
+                    visibleSliderCard === 2 ? "80%" : "50%"; // active
+                  card.classList.add("active");
+                } else {
+                  card.style.width =
+                    visibleSliderCard === 2 ? "20%" : "24%"; // non-active
+                }
+              }
+            }
+          });
+
+          // Start progress animation for active card
+          startProgressAnimation();
+        }
+
+    function startProgressAnimation() {
+      if (!sliderActive) return;
+      if (progressInterval) clearInterval(progressInterval);
+
+      const activeCard = document.querySelector(".slider-card.active");
+      if (activeCard) {
+        const progressBar = activeCard.querySelector(".progress-bar");
+        progressBar.style.width = "0%";
+
+        let progress = 0;
+        progressInterval = setInterval(() => {
+          if (!sliderActive) {
+            clearInterval(progressInterval);
+            return;
+          }
+          progress += 2;
+          progressBar.style.width = progress + "%";
+
+          if (progress >= 100) {
+            clearInterval(progressInterval);
+            setTimeout(() => {
+              slideRight();
+            }, 300);
+          }
+        }, 100);
+      }
+    }
+
+    function slideRight() {
+      currentStartIndex = (currentStartIndex + 1) % cards.length;
+      updateSlider();
+    }
+
+    function slideLeft() {
+      currentStartIndex =
+        (currentStartIndex - 1 + cards.length) % cards.length;
+      updateSlider();
+    }
+
+    rightArrow.addEventListener("click", () => {
+      if (progressInterval) clearInterval(progressInterval);
+      slideRight();
+    });
+
+    leftArrow.addEventListener("click", () => {
+      if (progressInterval) clearInterval(progressInterval);
+      slideLeft();
+    });
+
+    // Resize update
+    window.addEventListener("resize", () => {
+      visibleSliderCard = window.innerWidth < 768 ? 2 : 3;
+      updateSlider();
+    });
+
+    // IntersectionObserver for autoplay on view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            sliderActive = true;
+            updateSlider();
+          } else {
+            sliderActive = false;
+            if (progressInterval) clearInterval(progressInterval);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+     cards.forEach((card, idx) => {
+      card.addEventListener("click", () => {
+        currentStartIndex = idx;
+        updateSlider();
+      });
+    });
+
+    // Mobile swipe/scroll sync
+if (window.innerWidth < 768) {
+  container.addEventListener("scroll", () => {
+    const cardWidth = container.querySelector(".slider-card").offsetWidth + 16; // +gap
+    const scrollLeft = container.scrollLeft;
+    const newIndex = Math.round(scrollLeft / cardWidth);
+
+    if (newIndex !== currentStartIndex) {
+      currentStartIndex = newIndex;
+      updateSlider();
+    }
+  });
+}
+
+
+    observer.observe(section);
+
+    observer.observe(section);
+  });
+</script> -->
+
+
+  
+  
+    <!-- An Intimate Story -->
+
+    <section class="IntimateBgParent">
+      <div class="IntimateBg">
+        <div class="IntimateBgChild">
+          <img src="./assets/sLine.png" alt="" />
+          <h3 class="IntimateBgHead">
+            An intimate story, where <br />
+            jewels become poetry.
+          </h3>
+          <p class="IntimateBgPara">
+            Knowing strikes in an instant, unexpected and powerful. For her, it
+            was like
+            diving into an infinity of patterns, emerging stronger, senses
+            sharpened.
+          </p>
+          <div class="IntemateButtonDiv">
+           <button class="explore-btn"> <p>EXPLORE THIS COLLECTION </p>
+              <span>
+                <img src="./images/buttonArrow.svg" alt="arrow" >
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/intimateGirl.jpg"
+        alt="intimateGirl"
+        class="IntimateBgImg"
+      />
+    </section>
+
+    <!-- Discover Slider -->
+
+    <section class="discoverSlider">
+      <h2>Discover Aeterna Collection</h2>
+
+      <div class="slider">
+        <div class="slides" id="slides">
+          <div class="slide">
+            <img src="./images/d1.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./images/d2.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./images/d3.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./images/d1.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./images/d2.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+        </div>     
+
+        <div class="left_arrow_div arrow left" >
+          <img src="/images/arrowLeft.png" alt="arrow" />
+        </div>   
+ 
+        <div class="right_arrow_div arrow right">
+          <img src="/images/arrowRight.png" alt="arrow" />
+        </div>
+
+     
+      </div>
+
+      <button class="explore-btn"><p>EXPLORE THIS COLLECTION</p>  
+        <span>
+          <img src="./images/buttonArrow.svg" alt="arrow" >
+      </span>
+    </button>
+    </section>
+
+    <!-- Sixth Section -->
+
+    <section class="sixth_section">
+      <div style="position: relative; height: 100%">
+        <!-- <img src="/assets/girl.png" alt="" /> -->
+        <!-- Thumbnail & Play Button Layer -->
+        <div style="position: relative">
+          <img
+            src="/assets/girl.png"
+            alt="Model Thumbnail"
+            class="girlDesktopImg"
+          />
+          <img
+            src="/assets/girlmob.jpg"
+            alt="Model Thumbnail"
+            class="girlMobImg"
+          />
+        </div>
+      </div>
+      <div>
+        <h3 class="sixth_section_heading AGaramondPro">
+          Found your style in our collection? Let's take the next step.
+        </h3>
+
+        <button class="exploreBtn2">
+          <span class="exploreBtnText AGaramondPro" style="letter-spacing: 8%"
+            >Book an Appointment</span
+          >
+          <img src="/assets/arrow-right.svg" alt=""   class="arrow"/>
+        </button>
+      </div>
+    </section>
+    <script>
+      function formatTime(seconds) {
+        const m = Math.floor(seconds / 60)
+          .toString()
+          .padStart(2, "0");
+        const s = Math.floor(seconds % 60)
+          .toString()
+          .padStart(2, "0");
+        return `${m}:${s}`;
+      }
+
+      function setupVideoPlayer(index) {
+        const thumbContainer = document.getElementById(
+          `thumbnailContainer${index}`
+        );
+        const playBtn = document.getElementById(`playBtn${index}`);
+        const videoWrapper = document.getElementById(`videoWrapper${index}`);
+        const video = document.getElementById(`video${index}`);
+        const playPauseBtn = document.getElementById(`playPauseBtn${index}`);
+        const muteBtn = document.getElementById(`muteBtn${index}`);
+        const progress = document.getElementById(`progress${index}`);
+        const currentTime = document.getElementById(`currentTime${index}`);
+        const duration = document.getElementById(`duration${index}`);
+        const muteIcon = document.getElementById(`muteIcon${index}`);
+        const pauseIcon = document.getElementById(`pauseIcon${index}`);
+
+        // Manual play button (for fallback if user clicks)
+        playBtn?.addEventListener("click", (e) => {
+          e.stopPropagation();
+          thumbContainer.classList.add("hidden");
+          videoWrapper.classList.remove("hidden");
+          video.play();
+        });
+
+        video.addEventListener("loadedmetadata", () => {
+          duration.textContent = formatTime(video.duration);
+        });
+
+        playPauseBtn.addEventListener("click", () => {
+          if (video.paused) {
+            video.play();
+            pauseIcon.src = "/assets/pause.svg";
+          } else {
+            video.pause();
+            pauseIcon.src = "/assets/Play.svg";
+          }
+        });
+
+        muteBtn.addEventListener("click", () => {
+          video.muted = !video.muted;
+          muteIcon.src = video.muted
+            ? "/assets/Mute.svg"
+            : "/assets/Unmute.svg";
+        });
+
+        video.addEventListener("timeupdate", () => {
+          const percent = (video.currentTime / video.duration) * 100;
+          progress.value = percent;
+          currentTime.textContent = formatTime(video.currentTime);
+        });
+
+        progress.addEventListener("input", () => {
+          video.currentTime = (progress.value / 100) * video.duration;
+        });
+
+        // Auto play when section is visible
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                thumbContainer?.classList.add("hidden");
+                videoWrapper.classList.remove("hidden");
+                video.play();
+              } else {
+                video.pause();
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        observer.observe(videoWrapper.parentElement);
+      }
+
+      // Setup all video sections
+      setupVideoPlayer(1); // autoplay from load
+      setupVideoPlayer(2); // on scroll
+      setupVideoPlayer(3);
+      setupVideoPlayer(4);
+    </script>
+
+    <!-- Discover Slider  -->
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelector(".slides");
+  const prev = document.querySelector(".arrow.left");
+  const next = document.querySelector(".arrow.right");
+
+  let visibleSlides = window.innerWidth < 768 ? 1.7 : 3;
+  let index = visibleSlides;
+
+  // original slides
+  const slideNodes = Array.from(slides.querySelectorAll(".slide"));
+  const totalSlides = slideNodes.length;
+
+  // clone first & last slides
+  for (let i = 0; i < visibleSlides; i++) {
+    slides.append(slideNodes[i].cloneNode(true));
+    slides.prepend(slideNodes[totalSlides - 1 - i].cloneNode(true));
+  }
+
+  const allSlides = Array.from(slides.querySelectorAll(".slide"));
+
+  // get computed gap
+  function getGap() {
+    return parseFloat(getComputedStyle(slides).gap) || 0;
+  }
+
+  // 🔧 calculate slideFullWidth (slide width + gap) but ignore last gap
+  function getSlideFullWidth() {
+    const slideWidth = allSlides[0].getBoundingClientRect().width;
+    return slideWidth + getGap();
+  }
+
+  function updateTransform() {
+    slides.style.transform = `translateX(${-index * getSlideFullWidth()}px)`;
+  }
+
+  updateTransform();
+
+  function moveSlide(dir) {
+    slides.style.transition = "transform 0.5s ease-in-out";
+    index += dir;
+    updateTransform();
+  }
+
+  next.addEventListener("click", () => moveSlide(1));
+  prev.addEventListener("click", () => moveSlide(-1));
+
+  slides.addEventListener("transitionend", () => {
+    const newTotal = allSlides.length;
+
+    if (index >= newTotal - visibleSlides) {
+      slides.style.transition = "none";
+      index = visibleSlides;
+      updateTransform();
+    } else if (index < visibleSlides) {
+      slides.style.transition = "none";
+      index = totalSlides;
+      updateTransform();
+    }
+  });
+
+  // autoplay
+  setInterval(() => moveSlide(1), 3000);
+
+  // 🔁 responsive resize fix (recalculate everything)
+  window.addEventListener("resize", () => {
+    visibleSlides = window.innerWidth < 768 ? 2 : 3;
+    slides.style.transition = "none";
+    updateTransform();
+  });
+});
+</script>
+
+
+
+
+ <script>
+  const slider = document.getElementById("mob-center-slider");
+  const slides = Array.from(slider.children);
+  let centerIndex = 0;
+  let autoplayInterval = 3000; // 3 seconds
+
+  // Drag variables
+  let isDragging = false;
+  let startX = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+
+  // Update center slide
+  function updateSlider(animate = true) {
+    slides.forEach((slide, index) => {
+      slide.classList.remove("mob-center-center");
+      if (index === centerIndex) slide.classList.add("mob-center-center");
+    });
+
+    const sliderWidth = slider.parentElement.offsetWidth;
+    const slideWidth = slides[centerIndex].offsetWidth;
+    const offset =
+      (sliderWidth - slideWidth) / 2 - slides[centerIndex].offsetLeft;
+
+    currentTranslate = offset;
+    prevTranslate = offset;
+    slider.style.transition = animate ? "transform 0.5s ease" : "none";
+    slider.style.transform = `translateX(${offset}px)`;
+  }
+
+  // Arrow navigation
+  document
+    .querySelector(".mob-center-arrow.left")
+    .addEventListener("click", () => {
+      if (centerIndex > 0) centerIndex--;
+      updateSlider();
+      resetAutoplay();
+    });
+  document
+    .querySelector(".mob-center-arrow.right")
+    .addEventListener("click", () => {
+      if (centerIndex < slides.length - 1) centerIndex++;
+      updateSlider();
+      resetAutoplay();
+    });
+
+  // Slide click to center
+  slides.forEach((slide, index) => {
+    slide.addEventListener("click", () => {
+      centerIndex = index;
+      updateSlider();
+      resetAutoplay();
+    });
+
+    // Drag events
+    slide.addEventListener("mousedown", dragStart);
+    slide.addEventListener("mouseup", dragEnd);
+    slide.addEventListener("mouseleave", dragEnd);
+    slide.addEventListener("mousemove", dragAction);
+
+    // Touch events
+    slide.addEventListener("touchstart", dragStart);
+    slide.addEventListener("touchend", dragEnd);
+    slide.addEventListener("touchmove", dragAction);
+  });
+
+  function dragStart(event) {
+    isDragging = true;
+    startX = event.type.includes("mouse")
+      ? event.pageX
+      : event.touches[0].clientX;
+    slider.style.transition = "none";
+  }
+
+  function dragAction(event) {
+    if (!isDragging) return;
+    const currentPosition = event.type.includes("mouse")
+      ? event.pageX
+      : event.touches[0].clientX;
+    const movedBy = currentPosition - startX;
+
+    currentTranslate = prevTranslate + movedBy;
+    slider.style.transform = `translateX(${currentTranslate}px)`;
+  }
+
+  function dragEnd(event) {
+    if (!isDragging) return;
+    isDragging = false;
+
+    // Find nearest slide center
+    const sliderRect = slider.parentElement.getBoundingClientRect();
+    const sliderCenter = sliderRect.left + sliderRect.width / 2;
+    let closestDistance = Infinity;
+
+    slides.forEach((slide, index) => {
+      const slideRect = slide.getBoundingClientRect();
+      const slideCenter = slideRect.left + slideRect.width / 2;
+      const distance = Math.abs(sliderCenter - slideCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        centerIndex = index;
+      }
+    });
+
+    updateSlider(true);
+    resetAutoplay();
+  }
+
+  // Autoplay
+  let autoplay = setInterval(() => {
+    centerIndex = (centerIndex + 1) % slides.length;
+    updateSlider();
+  }, autoplayInterval);
+
+  function resetAutoplay() {
+    clearInterval(autoplay);
+    autoplay = setInterval(() => {
+      centerIndex = (centerIndex + 1) % slides.length;
+      updateSlider();
+    }, autoplayInterval);
+  }
+
+  window.addEventListener("resize", () => updateSlider(false));
+  updateSlider();
+</script>
+
+</body>
+</html>

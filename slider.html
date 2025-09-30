@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GSAP Slider with Active Progress</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        padding: 40px 20px;
+        overflow: hidden;
+      }
+
+      .slider-section {
+        width: 100%;
+        max-width: 1200px;
+      }
+      .slider-heading {
+        font-family: "AGaramondPro", serif;
+        font-size: 36px;
+        font-weight: 400;
+        margin-bottom: 40px;
+        line-height: 1.2;
+        text-align: center;
+      }
+      .slider-container {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      .slider-wrapper {
+        display: flex;
+        gap: 20px;
+        position: relative;
+        min-height: 600px;
+      }
+
+      .slide {
+        flex-shrink: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        position: absolute;
+        top: 20px;
+        cursor: pointer;
+      }
+      .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .slide-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 32px 21px 25px 32px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        /* justify-content: space-between;
+        align-items: end; */
+      }
+      .overlay-title {
+        font-family: "AGaramondPro", serif;
+        font-size: 32px;
+        font-weight: 400;
+        margin-bottom: 11px;
+      }
+      .overlay-description {
+        font-size: 16px;
+        margin: 0 0 25px;
+      }
+      .button-div {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        background: white;
+        padding: 13.5px 20px;
+        margin-bottom: 24px;
+      }
+      .button-div p {
+        font-family: "AGaramondPro", serif;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #232323;
+        margin: 0;
+      }
+      .button-div img {
+        width: 12px;
+        height: 24px;
+      }
+
+      .progress-bar-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: #eee2dc;
+        z-index: 6;
+        display: none;
+      }
+      .progress-bar {
+        height: 100%;
+        background-color: #764631;
+        border-radius: 2px;
+        width: 0%;
+      }
+
+      .arrow-btn {
+        position: absolute;
+        bottom: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #764631;
+        background: rgba(255, 255, 255, 0.1);
+        color: #764631;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+      .arrow-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+      }
+      .arrow-btn:active {
+        transform: scale(0.95);
+      }
+
+      #prevBtn {
+        right: 200px;
+      }
+      #nextBtn {
+        right: 140px;
+      }
+
+      .slide-main-overlay {
+        /* absolute w-full h-full z-50 flex items-center justify-center top-0 left-0 */
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.274);
+      }
+
+      /* utitlity  */
+      .w-full {
+        width: 100%;
+      }
+      .top-0 {
+        top: 0;
+      }
+      .left-0 {
+        left: 0;
+      }
+      .h-full {
+        height: 100%;
+      }
+      .relative {
+        position: relative;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .z-50 {
+        z-index: 50;
+      }
+      .flex {
+        display: flex;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider-section">
+      <h2 class="slider-heading">
+        An intimate story, where jewels become poetry.
+      </h2>
+
+      <div class="slider-container">
+        <div class="slider-wrapper" id="sliderWrapper">
+          <!-- Slides -->
+          <div class="slide">
+            <img src="./images/look1.png" alt="Look 1" />
+            <section class="slide-main-overlay">
+              <h3 class="overlay-title">AETERNA EDITS</h3>
+            </section>
+            <div class="slide-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+              </div>
+              <div class="flex justify-between">
+                <p class="overlay-description">
+                  Knowing strikes in an instant,<br />
+                  unexpected and powerful
+                </p>
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" />
+                </div>
+              </div>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="./images/look2.png" alt="Look 2" />
+            <section class="slide-main-overlay">
+              <h3 class="overlay-title">AETERNA EDITS</h3>
+            </section>
+            <div class="slide-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+              </div>
+              <div class="flex justify-between">
+                <p class="overlay-description">
+                  Knowing strikes in an instant,<br />
+                  unexpected and powerful
+                </p>
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" />
+                </div>
+              </div>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+          <div class="slide">
+            <img src="./images/look3.png" alt="Look 3" />
+            <section class="slide-main-overlay">
+              <h3 class="overlay-title">AETERNA EDITS</h3>
+            </section>
+            <div class="slide-overlay">
+              <div>
+                <h3 class="overlay-title">AETERNA EDITS</h3>
+              </div>
+              <div class="flex justify-between">
+                <p class="overlay-description">
+                  Knowing strikes in an instant,<br />
+                  unexpected and powerful
+                </p>
+                <div class="button-div">
+                  <p>DISCOVER THIS LOOK</p>
+                  <img src="./images/buttonArrow.svg" alt="arrow" />
+                </div>
+              </div>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+          <!-- <div class="slide">
+            <img src="./images/look4.png" alt="Look 4" />
+            <div class="slide-overlay">
+              <h3 class="overlay-title">THE GOLDEN HOUR</h3>
+              <p class="overlay-description">
+                Knowing strikes in an instant,<br />
+                unexpected and powerful
+              </p>
+              <div class="button-div">
+                <p>DISCOVER THIS LOOK</p>
+                <img src="./images/buttonArrow.svg" alt="arrow" />
+              </div>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar"></div>
+            </div>
+          </div> -->
+        </div>
+
+        <button class="arrow-btn" id="prevBtn">←</button>
+        <button class="arrow-btn" id="nextBtn">→</button>
+      </div>
+    </div>
+
+    <script>
+      const wrapper = document.getElementById("sliderWrapper");
+      const slides = Array.from(wrapper.children);
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      let isAnimating = false;
+      let autoSlideInterval;
+
+      function getWidths() {
+        const containerWidth = wrapper.offsetWidth;
+        const gap = 20;
+        const availableWidth = containerWidth - 2 * gap;
+        return {
+          large: availableWidth * 0.6,
+          small: availableWidth * 0.2,
+          largeHeight: 550,
+          smallHeight: 500,
+          gap,
+        };
+      }
+
+      function setWidths() {
+        const { large, small, gap, largeHeight, smallHeight } = getWidths();
+        let leftPos = 0;
+        slides.forEach((slide, index) => {
+          const width = index === 0 ? large : small;
+          const height = index === 0 ? largeHeight : smallHeight;
+          gsap.set(slide, {
+            position: "absolute",
+            top: 20,
+            left: leftPos,
+            width,
+            height,
+          });
+          leftPos += width + gap;
+        });
+        updateProgressBar();
+      }
+
+      function updateProgressBar() {
+        slides.forEach((slide, i) => {
+          const barContainer = slide.querySelector(".progress-bar-container");
+          const overlayDiv = slide.querySelector(".slide-overlay");
+          const mainOverlay = slide.querySelector(".slide-main-overlay");
+          if (i === 0) {
+            barContainer.style.display = "block";
+            overlayDiv.style.display = "block";
+            mainOverlay.style.display = "none";
+            const bar = slide.querySelector(".progress-bar");
+            gsap.set(bar, { width: 0 });
+            gsap.to(bar, { width: "100%", duration: 6, ease: "linear" });
+          } else {
+            barContainer.style.display = "none";
+            overlayDiv.style.display = "none";
+            mainOverlay.style.display = "flex";
+          }
+        });
+      }
+
+      function slideRight() {
+        if (isAnimating) return;
+        isAnimating = true;
+        const { large, small, gap, largeHeight, smallHeight } = getWidths();
+
+        const tl = gsap.timeline({
+          onComplete: () => {
+            const first = slides.shift();
+            slides.push(first);
+            wrapper.appendChild(first);
+            setWidths();
+            isAnimating = false;
+          },
+        });
+
+        tl.to(
+          slides[0],
+          {
+            left: -(large + gap),
+            width: small,
+            height: smallHeight,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          0
+        );
+        tl.to(
+          slides[1],
+          {
+            left: 0,
+            width: large,
+            height: largeHeight,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          0
+        );
+        if (slides[2])
+          tl.to(
+            slides[2],
+            {
+              left: large + gap,
+              width: small,
+              height: smallHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
+        if (slides[3])
+          tl.to(
+            slides[3],
+            {
+              left: large + small + gap * 2,
+              width: small,
+              height: smallHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
+      }
+
+      function slideLeft() {
+        if (isAnimating) return;
+        isAnimating = true;
+        const { large, small, gap, largeHeight, smallHeight } = getWidths();
+
+        const last = slides.pop();
+        slides.unshift(last);
+        wrapper.insertBefore(last, wrapper.firstChild);
+        // set initial left positions for smooth animation
+        const tl = gsap.timeline({
+          onComplete: () => {
+            setWidths();
+            isAnimating = false;
+          },
+        });
+
+        tl.to(
+          slides[0],
+          {
+            left: 0,
+            width: large,
+            height: largeHeight,
+            duration: 0.6,
+            ease: "power2.inOut",
+          },
+          0
+        );
+        if (slides[1])
+          tl.to(
+            slides[1],
+            {
+              left: large + gap,
+              width: small,
+              height: smallHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
+        if (slides[2])
+          tl.to(
+            slides[2],
+            {
+              left: large + small + gap * 2,
+              width: small,
+              height: smallHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
+        if (slides[3])
+          tl.to(
+            slides[3],
+            {
+              left: large + small * 2 + gap * 3,
+              width: small,
+              height: smallHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
+      }
+
+      // Event listeners
+      nextBtn.addEventListener("click", () => {
+        slideRight();
+        resetAutoSlide();
+      });
+      prevBtn.addEventListener("click", () => {
+        slideLeft();
+        resetAutoSlide();
+      });
+
+      function startAutoSlide() {
+        updateProgressBar();
+        autoSlideInterval = setInterval(slideRight, 60000);
+      }
+      function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+      }
+
+      setWidths();
+      startAutoSlide();
+
+      window.addEventListener("resize", () => {
+        if (!isAnimating) setWidths();
+      });
+    </script>
+  </body>
+</html>
