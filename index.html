@@ -2046,37 +2046,47 @@ become poetry</div>
       // -------------------
       //  let currentIndex = 0; // start at first card
 
-      function slideRight() {
-        const firstCard = cards[0];
+    let isAnimating = false; // 🔒 lock variable
 
-        firstCard.style.opacity = "0";
-        firstCard.style.transform = "translateX(-10%)";
+function slideRight() {
+  if (isAnimating) return; // ignore fast clicks
+  isAnimating = true;
 
-        setTimeout(() => {
-          firstCard.style.opacity = "";
-          firstCard.style.transform = "";
+  const firstCard = cards[0];
+  firstCard.style.opacity = "0";
+  firstCard.style.transform = "translateX(-10%)";
 
-          cards.shift();
-          cards.push(firstCard);
-          container.appendChild(firstCard);
+  setTimeout(() => {
+    firstCard.style.opacity = "";
+    firstCard.style.transform = "";
 
-          // Update counter
-          currentIndex = (currentIndex + 1) % cards.length;
-          updateSlider();
-        }, 300);
-      }
+    cards.shift();
+    cards.push(firstCard);
+    container.appendChild(firstCard);
 
-      function slideLeft() {
-        // Move last card to front (for a true left move)
-        const lastCard = cards.pop();
-        container.insertBefore(lastCard, container.firstChild);
-        cards.unshift(lastCard);
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateSlider();
 
-        // Update counter
-        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    isAnimating = false; // 🔓 unlock
+  }, 300); // 300ms = same as your CSS/JS transition
+}
 
-        updateSlider();
-      }
+function slideLeft() {
+  if (isAnimating) return; // ignore fast clicks
+  isAnimating = true;
+
+  const lastCard = cards.pop();
+  container.insertBefore(lastCard, container.firstChild);
+  cards.unshift(lastCard);
+
+  currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+  updateSlider();
+
+  // thoda delay dena zaruri hai taki double-click se break na ho
+  setTimeout(() => {
+    isAnimating = false; // 🔓 unlock
+  }, 300);
+}
 
       // function slideLeft(){
       //   // Move last card to first (loop)
