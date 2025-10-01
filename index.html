@@ -2186,17 +2186,25 @@
 
     <script>
       const slider = document.getElementById("mob-center-slider");
-      const slides = Array.from(slider.children);
-      let centerIndex = 0;
-      let autoplayInterval = 6000; // 3 seconds
+      let originalSlides = Array.from(slider.children);
 
-      // Drag variables
+      // Clone all slides at beginning and end
+      originalSlides.forEach((slide) => {
+        const cloneFirst = slide.cloneNode(true);
+        const cloneLast = slide.cloneNode(true);
+        slider.appendChild(cloneFirst);
+        slider.insertBefore(cloneLast, slider.firstChild);
+      });
+
+      let slides = Array.from(slider.children);
+      let centerIndex = originalSlides.length; // start from first "real" slide in middle
+      let autoplayInterval = 4000;
+
       let isDragging = false;
       let startX = 0;
       let currentTranslate = 0;
       let prevTranslate = 0;
 
-      // Update center slide
       function updateSlider(animate = true) {
         slides.forEach((slide, index) => {
           slide.classList.remove("mob-center-center");
@@ -2214,23 +2222,37 @@
         slider.style.transform = `translateX(${offset}px)`;
       }
 
-      // Arrow navigation
+      // When index goes too far → jump back invisibly
+      function normalizeIndex() {
+        if (centerIndex >= slides.length - originalSlides.length) {
+          centerIndex -= originalSlides.length;
+          updateSlider(false);
+        }
+        if (centerIndex < originalSlides.length) {
+          centerIndex += originalSlides.length;
+          updateSlider(false);
+        }
+      }
+
+      slider.addEventListener("transitionend", normalizeIndex);
+
+      // Arrows
       document
         .querySelector(".mob-center-arrow.left")
         .addEventListener("click", () => {
-          if (centerIndex > 0) centerIndex--;
+          centerIndex--;
           updateSlider();
           resetAutoplay();
         });
       document
         .querySelector(".mob-center-arrow.right")
         .addEventListener("click", () => {
-          if (centerIndex < slides.length - 1) centerIndex++;
+          centerIndex++;
           updateSlider();
           resetAutoplay();
         });
 
-      // Slide click to center
+      // Click to center
       slides.forEach((slide, index) => {
         slide.addEventListener("click", () => {
           centerIndex = index;
@@ -2244,47 +2266,40 @@
         slide.addEventListener("mouseleave", dragEnd);
         slide.addEventListener("mousemove", dragAction);
 
-        // Touch events
         slide.addEventListener("touchstart", dragStart);
         slide.addEventListener("touchend", dragEnd);
         slide.addEventListener("touchmove", dragAction);
       });
 
-      function dragStart(event) {
+      function dragStart(e) {
         isDragging = true;
-        startX = event.type.includes("mouse")
-          ? event.pageX
-          : event.touches[0].clientX;
+        startX = e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
         slider.style.transition = "none";
       }
 
-      function dragAction(event) {
+      function dragAction(e) {
         if (!isDragging) return;
-        const currentPosition = event.type.includes("mouse")
-          ? event.pageX
-          : event.touches[0].clientX;
+        const currentPosition = e.type.includes("mouse")
+          ? e.pageX
+          : e.touches[0].clientX;
         const movedBy = currentPosition - startX;
-
         currentTranslate = prevTranslate + movedBy;
         slider.style.transform = `translateX(${currentTranslate}px)`;
       }
 
-      function dragEnd(event) {
+      function dragEnd(e) {
         if (!isDragging) return;
         isDragging = false;
 
-        const endX = event.type.includes("mouse")
-          ? event.pageX
-          : event.changedTouches[0].clientX;
-
+        const endX = e.type.includes("mouse")
+          ? e.pageX
+          : e.changedTouches[0].clientX;
         const movedBy = endX - startX;
-        const threshold = 50; // jitna drag par slide change ho
+        const threshold = 50;
 
-        if (movedBy < -threshold && centerIndex < slides.length - 1) {
-          // right drag -> next slide
+        if (movedBy < -threshold) {
           centerIndex++;
-        } else if (movedBy > threshold && centerIndex > 0) {
-          // left drag -> prev slide
+        } else if (movedBy > threshold) {
           centerIndex--;
         }
 
@@ -2294,14 +2309,14 @@
 
       // Autoplay
       let autoplay = setInterval(() => {
-        centerIndex = (centerIndex + 1) % slides.length;
+        centerIndex++;
         updateSlider();
       }, autoplayInterval);
 
       function resetAutoplay() {
         clearInterval(autoplay);
         autoplay = setInterval(() => {
-          centerIndex = (centerIndex + 1) % slides.length;
+          centerIndex++;
           updateSlider();
         }, autoplayInterval);
       }
