@@ -1582,11 +1582,9 @@
         let visibleSlides = window.innerWidth < 768 ? 1.7 : 3;
         let index = visibleSlides;
 
-        // original slides
         const slideNodes = Array.from(slides.querySelectorAll(".slide"));
         const totalSlides = slideNodes.length;
 
-        // clone first & last slides
         for (let i = 0; i < visibleSlides; i++) {
           slides.append(slideNodes[i].cloneNode(true));
           slides.prepend(slideNodes[totalSlides - 1 - i].cloneNode(true));
@@ -1603,16 +1601,17 @@
           return slideWidth + getGap();
         }
 
-        function updateTransform() {
+        function updateTransform(animate = true) {
+          slides.style.transition = animate ? "transform 0.5s ease" : "none";
           slides.style.transform = `translateX(${
             -index * getSlideFullWidth()
           }px)`;
         }
 
-        updateTransform();
+        updateTransform(false);
 
         function moveSlide(dir) {
-          slides.style.transition = "transform 0.5s ease-in-out";
+          slides.style.transition = "transform 0.5s ease";
           index += dir;
           updateTransform();
         }
@@ -1626,11 +1625,11 @@
           if (index >= newTotal - visibleSlides) {
             slides.style.transition = "none";
             index = visibleSlides;
-            updateTransform();
+            updateTransform(false);
           } else if (index < visibleSlides) {
             slides.style.transition = "none";
             index = totalSlides;
-            updateTransform();
+            updateTransform(false);
           }
         });
 
@@ -1642,15 +1641,18 @@
         }
 
         // --------------------
-        // 👉 Touch/Drag support
+        // 👉 Smooth Touch/Drag
         // --------------------
         let startX = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
         let isDragging = false;
 
         slides.addEventListener("touchstart", (e) => {
           startX = e.touches[0].clientX;
           isDragging = true;
-          slides.style.transition = "none"; // remove smooth effect during drag
+          prevTranslate = -index * getSlideFullWidth();
+          slides.style.transition = "none"; // disable snap during drag
           clearInterval(auto);
         });
 
@@ -1658,28 +1660,22 @@
           if (!isDragging) return;
           const currentX = e.touches[0].clientX;
           const movedBy = currentX - startX;
-          slides.style.transform = `translateX(${
-            -index * getSlideFullWidth() + movedBy
-          }px)`;
+          currentTranslate = prevTranslate + movedBy;
+          slides.style.transform = `translateX(${currentTranslate}px)`;
         });
 
         slides.addEventListener("touchend", (e) => {
           if (!isDragging) return;
           isDragging = false;
-          const endX = e.changedTouches[0].clientX;
-          const movedBy = endX - startX;
-          const threshold = 50; // jitna drag par slide change ho
+          const movedBy = e.changedTouches[0].clientX - startX;
+          const threshold = 50; // min swipe to change
 
           if (movedBy < -threshold) {
-            moveSlide(1); // next
+            index++;
           } else if (movedBy > threshold) {
-            moveSlide(-1); // prev
-          } else {
-            // snap back
-            slides.style.transition = "transform 0.5s ease-in-out";
-            updateTransform();
+            index--;
           }
-
+          updateTransform(true);
           resetAutoplay();
         });
 
@@ -1687,7 +1683,7 @@
         window.addEventListener("resize", () => {
           visibleSlides = window.innerWidth < 768 ? 2 : 3;
           slides.style.transition = "none";
-          updateTransform();
+          updateTransform(false);
         });
       });
     </script>
