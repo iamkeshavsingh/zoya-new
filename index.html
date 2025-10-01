@@ -391,7 +391,8 @@
         padding: 32px 21px 0px 32px;
         background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
         color: white;
-        display: flex;
+        display: none;
+        opacity: 0;
         flex-direction: column;
         justify-content: flex-end;
         /* justify-content: space-between;
@@ -443,6 +444,7 @@
         background-color: #eee2dc;
         z-index: 6;
         display: none;
+        opacity: 0;
       }
       .progress-bar {
         height: 100%;
@@ -1955,53 +1957,33 @@
           );
 
           if (index === 0) {
-            // Active slide: fade out mainOverlay smoothly
+            // Active slide (big card): hide simple overlay, show detailed content
             if (mainOverlay) {
-              gsap.to(mainOverlay, {
-                opacity: 0,
-                duration: 0.5,
-                onComplete: () => {
-                  mainOverlay.style.display = "none"; // optional cleanup
-                },
-              });
+              gsap.set(mainOverlay, { opacity: 0, display: "none" });
             }
-
-            // Fade in overlay if needed
+            
+            // Show detailed overlay content immediately for active slide
             if (overlay) {
-              overlay.style.display = "block";
-              gsap.to(overlay, { opacity: 1, duration: 0.5, delay: 0.2 });
+              overlay.style.display = "flex";
+              gsap.set(overlay, { opacity: 1 });
             }
-
             if (progressContainer) {
               progressContainer.style.display = "block";
-              gsap.to(progressContainer, { opacity: 1, duration: 0.5 });
+              gsap.set(progressContainer, { opacity: 1 });
             }
           } else {
-            // Non-active slides: fade in mainOverlay
+            // Non-active slides (small cards): hide detailed content, show simple overlay
+            if (overlay) {
+              gsap.set(overlay, { opacity: 0, display: "none" });
+            }
+            if (progressContainer) {
+              gsap.set(progressContainer, { opacity: 0, display: "none" });
+            }
+
+            // Show simple main overlay for small cards
             if (mainOverlay) {
               mainOverlay.style.display = "flex";
-              gsap.to(mainOverlay, { opacity: 1, duration: 0.5 });
-            }
-
-            // Hide overlay
-            if (overlay) {
-              gsap.to(overlay, {
-                opacity: 0,
-                duration: 0.5,
-                onComplete: () => {
-                  overlay.style.display = "none"; // optional cleanup
-                },
-              });
-            }
-
-            if (progressContainer) {
-              gsap.to(progressContainer, {
-                opacity: 0,
-                duration: 0.5,
-                onComplete: () => {
-                  progressContainer.style.display = "none";
-                },
-              });
+              gsap.set(mainOverlay, { opacity: 1 });
             }
           }
         });
@@ -2026,6 +2008,24 @@
       function slideRight() {
         if (isAnimating) return;
         isAnimating = true;
+
+        // Immediately hide all detailed overlays during transition
+        gsap_slides.forEach((slide) => {
+          const overlay = slide.querySelector(".slide-overlay");
+          const progressContainer = slide.querySelector(".progress-bar-container");
+          const mainOverlay = slide.querySelector(".slide-main-overlay");
+          
+          if (overlay) {
+            gsap.set(overlay, { opacity: 0, display: "none" });
+          }
+          if (progressContainer) {
+            gsap.set(progressContainer, { opacity: 0, display: "none" });
+          }
+          if (mainOverlay) {
+            mainOverlay.style.display = "flex";
+            gsap.set(mainOverlay, { opacity: 1 });
+          }
+        });
 
         const { large, small, gap, largeHeight, smallHeight } = getWidths();
         const pos1 = 0;
@@ -2299,6 +2299,24 @@
       function slideLeft() {
         if (isAnimating) return;
         isAnimating = true;
+
+        // Immediately hide all detailed overlays during transition
+        gsap_slides.forEach((slide) => {
+          const overlay = slide.querySelector(".slide-overlay");
+          const progressContainer = slide.querySelector(".progress-bar-container");
+          const mainOverlay = slide.querySelector(".slide-main-overlay");
+          
+          if (overlay) {
+            gsap.set(overlay, { opacity: 0, display: "none" });
+          }
+          if (progressContainer) {
+            gsap.set(progressContainer, { opacity: 0, display: "none" });
+          }
+          if (mainOverlay) {
+            mainOverlay.style.display = "flex";
+            gsap.set(mainOverlay, { opacity: 1 });
+          }
+        });
 
         const { large, small, gap, largeHeight, smallHeight } = getWidths();
         const pos1 = 0;
