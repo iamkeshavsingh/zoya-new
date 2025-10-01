@@ -306,7 +306,7 @@
       }
       .slider-section {
         width: 100%;
-        max-width: 1200px;
+        max-width: 1300px;
         margin: 0 auto;
       }
       .second_section_heading {
@@ -332,7 +332,7 @@
       .slider-container {
         width: 100%;
         position: relative;
-        overflow: hidden;
+        /* overflow: hidden; */
       }
 
       .slider-wrapper {
@@ -358,6 +358,31 @@
         display: block;
       }
 
+      .slide-main-overlay {
+        /* absolute w-full h-full z-50 flex items-center justify-center top-0 left-0 */
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 50;
+        display: flex;
+        align-items: end;
+        justify-content: start;
+        top: 0;
+        left: 0;
+        text-align: left;
+        background-color: rgba(0, 0, 0, 0.474);
+        padding: 20px 10px 20px 18px;
+
+        h3 {
+          color: white;
+          text-align: left;
+          font-size: 19px;
+          line-height: 120%;
+          font-weight: 200;
+          letter-spacing: 1px;
+        }
+      }
+
       .slide-overlay {
         position: absolute;
         bottom: 0;
@@ -366,7 +391,8 @@
         padding: 32px 21px 0px 32px;
         background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
         color: white;
-        display: flex;
+        display: none;
+        opacity: 0;
         flex-direction: column;
         justify-content: flex-end;
         /* justify-content: space-between;
@@ -418,6 +444,7 @@
         background-color: #eee2dc;
         z-index: 6;
         display: none;
+        opacity: 0;
       }
       .progress-bar {
         height: 100%;
@@ -436,7 +463,7 @@
         border: none;
         /* border-radius: 50%; */
         border: 2px solid lightgray;
-        background: white;
+        background-color: white;
         /* color: #764631; */
         font-size: 20px;
         cursor: pointer;
@@ -467,30 +494,6 @@
       }
       #nextBtn {
         right: 32.5%;
-      }
-
-      .slide-main-overlay {
-        /* absolute w-full h-full z-50 flex items-center justify-center top-0 left-0 */
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 50;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        top: 0;
-        left: 0;
-        text-align: center;
-        background-color: rgba(0, 0, 0, 0.474);
-
-        h3 {
-          color: white;
-          text-align: center;
-          font-size: 28px;
-          line-height: 130%;
-          font-weight: 200;
-          letter-spacing: 1.4px;
-        }
       }
 
       /* utitlity  */
@@ -1247,12 +1250,12 @@
                 <section class="slide-main-overlay">
                   <h3 class="overlay-title">
                     Aeterna <br />
-                    Edits
+                    edits
                   </h3>
                 </section>
                 <div class="slide-overlay">
                   <div>
-                    <h3 class="overlay-title">Aeterna Edits</h3>
+                    <h3 class="overlay-title">Aeterna edits</h3>
                   </div>
                   <div class="flex items-center justify-between mb-25">
                     <p class="overlay-description">
@@ -1279,7 +1282,7 @@
                 </section>
                 <div class="slide-overlay">
                   <div>
-                    <h3 class="overlay-title">AETERNA EDITS</h3>
+                    <h3 class="overlay-title">Whispers from the Valley</h3>
                   </div>
                   <div class="flex justify-between mb-25">
                     <p class="overlay-description">
@@ -1300,13 +1303,14 @@
                 <img src="./images/look3.png" alt="Look 3" />
                 <section class="slide-main-overlay">
                   <h3 class="overlay-title">
-                    Where jewels <br />
-                    become poetry
+                    Inspired by the symbols of sacred geometry
                   </h3>
                 </section>
                 <div class="slide-overlay">
                   <div>
-                    <h3 class="overlay-title">Where jewels become poetry</h3>
+                    <h3 class="overlay-title">
+                      Inspired by the symbols <br />of sacred geometry
+                    </h3>
                   </div>
                   <div class="flex justify-between mb-25">
                     <p class="overlay-description">
@@ -1324,23 +1328,30 @@
                 </div>
               </div>
 
-              <!-- <div class="slide">
-            <img src="./images/look4.png" alt="Look 4" />
-            <div class="slide-overlay">
-              <h3 class="overlay-title">THE GOLDEN HOUR</h3>
-              <p class="overlay-description">
-                Knowing strikes in an instant,<br />
-                unexpected and powerful
-              </p>
-              <div class="button-div">
-                <p>DISCOVER THIS LOOK</p>
-                <img src="./images/buttonArrow.svg" alt="arrow" />
-              </div>
-            </div>
-            <div class="progress-bar-container">
-              <div class="progress-bar"></div>
-            </div>
-          </div> -->
+              <!-- <div class="gsap_slide">
+                <img
+                  src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop"
+                  alt="Look 4"
+                />
+                <div class="slide-overlay">
+                  <div>
+                    <h3 class="overlay-title">Where poetry</h3>
+                  </div>
+                  <div class="flex justify-between mb-25">
+                    <p class="overlay-description">
+                      Knowing strikes in an instant,<br />
+                      unexpected and powerful
+                    </p>
+                    <div class="button-div">
+                      <p>DISCOVER THIS LOOK</p>
+                      <img src="./images/buttonArrow.svg" alt="arrow" />
+                    </div>
+                  </div>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar"></div>
+                </div>
+              </div> -->
             </div>
 
             <button class="arrow-btn" id="prevBtn">
@@ -1890,6 +1901,11 @@
       const prevBtn = document.getElementById("prevBtn");
       const nextBtn = document.getElementById("nextBtn");
 
+      if (gsap_slides.length === 2) {
+        prevBtn.style.right = "26%";
+        nextBtn.style.right = "21%";
+      }
+
       let isAnimating = false;
       let autoSlideInterval;
       let progressTween;
@@ -1897,7 +1913,19 @@
       function getWidths() {
         const containerWidth = wrapper.offsetWidth;
         const gap = 50;
-        const availableWidth = containerWidth - 2 * gap;
+        const availableWidth = containerWidth - gap * (gsap_slides.length - 1);
+
+        if (gsap_slides.length === 2) {
+          return {
+            large: availableWidth * 0.7,
+            small: availableWidth * 0.3,
+            largeHeight: 588,
+            smallHeight: 508,
+            gap,
+          };
+        }
+
+        // default (3+ slides)
         return {
           large: availableWidth * 0.6,
           small: availableWidth * 0.2,
@@ -1911,8 +1939,15 @@
         const { large, small, gap, largeHeight, smallHeight } = getWidths();
         let leftPos = 0;
         gsap_slides.forEach((slide, index) => {
-          const width = index === 0 ? large : small;
-          const height = index === 0 ? largeHeight : smallHeight;
+          let width, height;
+          if (index === 0) {
+            width = large;
+            height = largeHeight;
+          } else {
+            width = small;
+            height = smallHeight;
+          }
+
           gsap.set(slide, {
             position: "absolute",
             top: 20,
@@ -1922,35 +1957,50 @@
           });
           leftPos += width + gap;
 
-          // overlay logic
+          // overlay/progress bar logic
           const mainOverlay = slide.querySelector(".slide-main-overlay");
           const overlay = slide.querySelector(".slide-overlay");
+          const progressContainer = slide.querySelector(
+            ".progress-bar-container"
+          );
+
           if (index === 0) {
-            if (mainOverlay) mainOverlay.style.display = "none";
-            if (overlay) overlay.style.display = "block";
-            // show progress bar
-            const progressContainer = slide.querySelector(
-              ".progress-bar-container"
-            );
-            if (progressContainer) progressContainer.style.display = "block";
+            // Active slide (big card): hide simple overlay, show detailed content
+            if (mainOverlay) {
+              gsap.set(mainOverlay, { opacity: 0, display: "none" });
+            }
+
+            // Show detailed overlay content immediately for active slide
+            if (overlay) {
+              overlay.style.display = "flex";
+              gsap.set(overlay, { opacity: 1 });
+            }
+            if (progressContainer) {
+              progressContainer.style.display = "block";
+              gsap.set(progressContainer, { opacity: 1 });
+            }
           } else {
-            if (mainOverlay) mainOverlay.style.display = "flex";
-            if (overlay) overlay.style.display = "none";
-            const progressContainer = slide.querySelector(
-              ".progress-bar-container"
-            );
-            if (progressContainer) progressContainer.style.display = "none";
+            // Non-active slides (small cards): hide detailed content, show simple overlay
+            if (overlay) {
+              gsap.set(overlay, { opacity: 0, display: "none" });
+            }
+            if (progressContainer) {
+              gsap.set(progressContainer, { opacity: 0, display: "none" });
+            }
+
+            // Show simple main overlay for small cards
+            if (mainOverlay) {
+              mainOverlay.style.display = "flex";
+              gsap.set(mainOverlay, { opacity: 1 });
+            }
           }
         });
 
-        // start progress for active slide
         startProgressBar();
       }
 
       function startProgressBar() {
-        // kill previous tween if exists
         if (progressTween) progressTween.kill();
-
         const activeSlide = gsap_slides[0];
         const progressBar = activeSlide.querySelector(".progress-bar");
         if (progressBar) {
@@ -1967,181 +2017,544 @@
         if (isAnimating) return;
         isAnimating = true;
 
+        // Immediately hide all detailed overlays during transition
+        gsap_slides.forEach((slide) => {
+          const overlay = slide.querySelector(".slide-overlay");
+          const progressContainer = slide.querySelector(
+            ".progress-bar-container"
+          );
+          const mainOverlay = slide.querySelector(".slide-main-overlay");
+
+          if (overlay) {
+            gsap.set(overlay, { opacity: 0, display: "none" });
+          }
+          if (progressContainer) {
+            gsap.set(progressContainer, { opacity: 0, display: "none" });
+          }
+          if (mainOverlay) {
+            mainOverlay.style.display = "flex";
+            gsap.set(mainOverlay, { opacity: 1 });
+          }
+        });
+
         const { large, small, gap, largeHeight, smallHeight } = getWidths();
         const pos1 = 0;
         const pos2 = large + gap;
         const pos3 = large + small + gap * 2;
+        const pos4 = pos3 + small + gap; // partial 4th
         const posOffScreenLeft = -(large + gap);
-        const posOffScreenRight = pos3 + small + gap;
+        const posOffScreenRight = pos4 + small + gap;
 
-        // Ensure all slides are set before animating
-        gsap_slides.forEach((slide, i) => {
-          gsap.set(slide, {
-            position: "absolute",
-            left:
-              i === 0
-                ? pos1
-                : i === 1
-                ? pos2
-                : i === 2
-                ? pos3
-                : posOffScreenRight, // put new card offscreen right
-            width: i === 0 ? large : small,
-            height: i === 0 ? largeHeight : smallHeight,
+        if (gsap_slides.length <= 3) {
+          if (gsap_slides.length === 2) {
+            // ----- TWO SLIDES -----
+            gsap.set(gsap_slides[0], {
+              left: pos1,
+              width: large,
+              height: largeHeight,
+            });
+            gsap.set(gsap_slides[1], {
+              left: pos2,
+              width: small,
+              height: smallHeight,
+            });
+
+            const incoming = gsap_slides[0];
+            gsap.set(incoming, {
+              left: posOffScreenRight,
+              width: small,
+              height: smallHeight,
+            });
+
+            const tl = gsap.timeline({
+              onComplete: () => {
+                const firstSlide = gsap_slides.shift();
+                gsap_slides.push(firstSlide);
+                wrapper.appendChild(firstSlide);
+                setSlidePositions();
+                isAnimating = false;
+              },
+            });
+
+            // active → left (offscreen)
+            tl.to(
+              gsap_slides[0],
+              {
+                left: posOffScreenLeft,
+                width: small,
+                height: smallHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+
+            // second → first
+            tl.to(
+              gsap_slides[1],
+              {
+                left: pos1,
+                width: large,
+                height: largeHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+
+            tl.to(
+              incoming,
+              {
+                left: pos2,
+                width: small,
+                height: smallHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+          } else {
+            // ----- THREE SLIDES -----
+            gsap_slides.forEach((slide, i) => {
+              gsap.set(slide, {
+                position: "absolute",
+                left:
+                  i === 0
+                    ? pos1
+                    : i === 1
+                    ? pos2
+                    : i === 2
+                    ? pos3
+                    : posOffScreenRight,
+                width: i === 0 ? large : small,
+                height: i === 0 ? largeHeight : smallHeight,
+              });
+            });
+
+            // 👉 Clone the first slide for fake incoming
+            const clone = gsap_slides[0].cloneNode(true);
+            wrapper.appendChild(clone);
+            gsap.set(clone, {
+              left: posOffScreenRight,
+              width: small,
+              height: smallHeight,
+              position: "absolute",
+              top: 20,
+            });
+
+            const tl = gsap.timeline({
+              onComplete: () => {
+                // cleanup clone
+                clone.remove();
+
+                // reorder original slides
+                const firstSlide = gsap_slides.shift();
+                gsap_slides.push(firstSlide);
+                wrapper.appendChild(firstSlide);
+
+                setSlidePositions();
+                isAnimating = false;
+              },
+            });
+
+            // animate active → offscreen left
+            tl.to(
+              gsap_slides[0],
+              {
+                left: posOffScreenLeft,
+                width: small,
+                height: smallHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+
+            // animate 2nd → pos1
+            tl.to(
+              gsap_slides[1],
+              {
+                left: pos1,
+                width: large,
+                height: largeHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+
+            // animate 3rd → pos2
+            tl.to(
+              gsap_slides[2],
+              {
+                left: pos2,
+                width: small,
+                height: smallHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+
+            // animate clone → pos3
+            tl.to(
+              clone,
+              {
+                left: pos3,
+                width: small,
+                height: smallHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+          }
+        } else {
+          // ----- MORE THAN 3 SLIDES -----
+          gsap_slides.forEach((slide, i) => {
+            gsap.set(slide, {
+              position: "absolute",
+              left:
+                i === 0
+                  ? pos1
+                  : i === 1
+                  ? pos2
+                  : i === 2
+                  ? pos3
+                  : i === 3
+                  ? pos4
+                  : posOffScreenRight,
+              width: i === 0 ? large : small,
+              height: i === 0 ? largeHeight : smallHeight,
+            });
           });
-        });
 
-        // incoming = new 4th card (offscreen right)
-        const incoming = gsap_slides[3] ? gsap_slides[3] : gsap_slides[0];
-        gsap.set(incoming, {
-          left: posOffScreenRight,
-          width: small,
-          height: smallHeight,
-        });
+          const tl = gsap.timeline({
+            onComplete: () => {
+              const firstSlide = gsap_slides.shift();
+              gsap_slides.push(firstSlide);
+              wrapper.appendChild(firstSlide);
+              setSlidePositions();
+              isAnimating = false;
+            },
+          });
 
-        const tl = gsap.timeline({
-          onComplete: () => {
-            const firstSlide = gsap_slides.shift();
-            gsap_slides.push(firstSlide);
-            wrapper.appendChild(firstSlide);
-            setSlidePositions();
-            isAnimating = false;
-          },
-        });
+          // animate all 4 positions left
+          tl.to(
+            gsap_slides[0],
+            {
+              left: posOffScreenLeft,
+              width: small,
+              height: smallHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
 
-        // 1st card goes left and out
-        tl.to(
-          gsap_slides[0],
-          {
-            left: posOffScreenLeft,
-            width: small,
-            height: smallHeight,
-            duration: 0.6,
-            ease: "power2.inOut",
-          },
-          0
-        );
+          tl.to(
+            gsap_slides[1],
+            {
+              left: pos1,
+              width: large,
+              height: largeHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
 
-        // 2nd → 1st (becomes big)
-        tl.to(
-          gsap_slides[1],
-          {
-            left: pos1,
-            width: large,
-            height: largeHeight,
-            duration: 0.6,
-            ease: "power2.inOut",
-          },
-          0
-        );
+          tl.to(
+            gsap_slides[2],
+            {
+              left: pos2,
+              width: small,
+              height: smallHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
 
-        // 3rd → 2nd
-        tl.to(
-          gsap_slides[2],
-          {
-            left: pos2,
-            width: small,
-            height: smallHeight,
-            duration: 0.6,
-            ease: "power2.inOut",
-          },
-          0
-        );
+          tl.to(
+            gsap_slides[3],
+            {
+              left: pos3,
+              width: small,
+              height: smallHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
 
-        // NEW incoming card → 3rd (slides in from right)
-        tl.to(
-          incoming,
-          {
-            left: pos3,
-            width: small,
-            height: smallHeight,
-            duration: 0.6,
-            ease: "power2.inOut",
-          },
-          0
-        );
+          // next offscreen slide comes into pos4
+          const incoming = gsap_slides[4];
+          if (incoming) {
+            tl.to(
+              incoming,
+              {
+                left: pos4,
+                width: small,
+                height: smallHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+          }
+        }
       }
 
       function slideLeft() {
         if (isAnimating) return;
         isAnimating = true;
 
+        // Immediately hide all detailed overlays during transition
+        gsap_slides.forEach((slide) => {
+          const overlay = slide.querySelector(".slide-overlay");
+          const progressContainer = slide.querySelector(
+            ".progress-bar-container"
+          );
+          const mainOverlay = slide.querySelector(".slide-main-overlay");
+
+          if (overlay) {
+            gsap.set(overlay, { opacity: 0, display: "none" });
+          }
+          if (progressContainer) {
+            gsap.set(progressContainer, { opacity: 0, display: "none" });
+          }
+          if (mainOverlay) {
+            mainOverlay.style.display = "flex";
+            gsap.set(mainOverlay, { opacity: 1 });
+          }
+        });
+
         const { large, small, gap, largeHeight, smallHeight } = getWidths();
         const pos1 = 0;
         const pos2 = large + gap;
         const pos3 = large + small + gap * 2;
+        const pos4 = pos3 + small + gap;
         const posOffScreenLeft = -(small + gap);
-        const posOffScreenRight = pos3 + small + gap;
+        const posOffScreenRight = pos4 + small + gap;
 
-        const lastSlide = gsap_slides.pop();
-        gsap_slides.unshift(lastSlide);
-        wrapper.insertBefore(lastSlide, wrapper.firstChild);
+        if (gsap_slides.length <= 3) {
+          if (gsap_slides.length === 2) {
+            // ----- TWO SLIDES -----
+            const lastSlide = gsap_slides.pop();
+            gsap_slides.unshift(lastSlide);
+            wrapper.insertBefore(lastSlide, wrapper.firstChild);
 
-        gsap.set(lastSlide, {
-          left: posOffScreenLeft,
-          width: small,
-          height: smallHeight,
-        });
-        gsap.set(gsap_slides[1], {
-          left: pos1,
-          width: large,
-          height: largeHeight,
-        });
-        gsap.set(gsap_slides[2], {
-          left: pos2,
-          width: small,
-          height: smallHeight,
-        });
-        const outgoing = gsap_slides[3];
-        if (outgoing)
-          gsap.set(outgoing, { left: pos3, width: small, height: smallHeight });
+            gsap.set(lastSlide, {
+              left: posOffScreenLeft,
+              width: small,
+              height: smallHeight,
+            });
 
-        const tl = gsap.timeline({
-          onComplete: () => {
-            setSlidePositions();
-            isAnimating = false;
-          },
-        });
+            const tl = gsap.timeline({
+              onComplete: () => {
+                setSlidePositions();
+                isAnimating = false;
+              },
+            });
 
-        tl.to(
-          lastSlide,
-          {
-            left: pos1,
-            width: large,
-            height: largeHeight,
-            duration: 0.6,
-            ease: "power2.inOut",
-          },
-          0
-        );
-        tl.to(
-          gsap_slides[1],
-          {
-            left: pos2,
+            tl.to(
+              lastSlide,
+              {
+                left: pos1,
+                width: large,
+                height: largeHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+            tl.to(
+              gsap_slides[1],
+              {
+                left: pos2,
+                width: small,
+                height: smallHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+          } else {
+            // ----- THREE SLIDES -----
+            const lastSlide = gsap_slides.pop();
+            gsap_slides.unshift(lastSlide);
+            wrapper.insertBefore(lastSlide, wrapper.firstChild);
+
+            // set incoming positions
+            gsap.set(lastSlide, {
+              left: posOffScreenLeft,
+              width: small,
+              height: smallHeight,
+            });
+            gsap.set(gsap_slides[1], {
+              left: pos1,
+              width: large,
+              height: largeHeight,
+            });
+            gsap.set(gsap_slides[2], {
+              left: pos2,
+              width: small,
+              height: smallHeight,
+            });
+
+            // 👉 create a temporary duplicate of the last "pos2" slide for slide-out illusion
+            const clone = lastSlide.cloneNode(true);
+            wrapper.appendChild(clone);
+            gsap.set(clone, {
+              left: pos3,
+              width: small,
+              height: smallHeight,
+              position: "absolute",
+              top: 20,
+            });
+
+            const tl = gsap.timeline({
+              onComplete: () => {
+                // cleanup
+                clone.remove();
+                setSlidePositions();
+                isAnimating = false;
+              },
+            });
+
+            // animate the actual 3
+            tl.to(
+              lastSlide,
+              {
+                left: pos1,
+                width: large,
+                height: largeHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+
+            tl.to(
+              gsap_slides[1],
+              {
+                left: pos2,
+                width: small,
+                height: smallHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+
+            tl.to(
+              gsap_slides[2],
+              {
+                left: pos3,
+                width: small,
+                height: smallHeight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+
+            // animate the fake clone sliding out
+            tl.to(
+              clone,
+              {
+                left: posOffScreenRight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+          }
+        } else {
+          const lastSlide = gsap_slides.pop();
+          gsap_slides.unshift(lastSlide);
+          wrapper.insertBefore(lastSlide, wrapper.firstChild);
+
+          gsap.set(lastSlide, {
+            left: posOffScreenLeft,
             width: small,
             height: smallHeight,
-            duration: 0.6,
-            ease: "power2.inOut",
-          },
-          0
-        );
-        tl.to(
-          gsap_slides[2],
-          {
-            left: pos3,
-            width: small,
-            height: smallHeight,
-            duration: 0.6,
-            ease: "power2.inOut",
-          },
-          0
-        );
-        if (outgoing)
+          });
+
+          const tl = gsap.timeline({
+            onComplete: () => {
+              setSlidePositions();
+              isAnimating = false;
+            },
+          });
+
+          // animate left incoming → pos1
           tl.to(
-            outgoing,
-            { left: posOffScreenRight, duration: 0.6, ease: "power2.inOut" },
+            lastSlide,
+            {
+              left: pos1,
+              width: large,
+              height: largeHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
             0
           );
+
+          // animate next → pos2
+          tl.to(
+            gsap_slides[1],
+            {
+              left: pos2,
+              width: small,
+              height: smallHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
+
+          // animate 3rd → pos3
+          tl.to(
+            gsap_slides[2],
+            {
+              left: pos3,
+              width: small,
+              height: smallHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
+
+          // animate 4th → pos4
+          tl.to(
+            gsap_slides[3],
+            {
+              left: pos4,
+              width: small,
+              height: smallHeight,
+              duration: 0.6,
+              ease: "power2.inOut",
+            },
+            0
+          );
+
+          // slide-out old clone
+          const outgoing = gsap_slides[4];
+          if (outgoing) {
+            tl.to(
+              outgoing,
+              {
+                left: posOffScreenRight,
+                duration: 0.6,
+                ease: "power2.inOut",
+              },
+              0
+            );
+          }
+        }
       }
 
       nextBtn.addEventListener("click", () => {
@@ -2165,17 +2578,16 @@
         }
       });
 
-      // Auto slide every 6 seconds
       function startAutoSlide() {
         autoSlideInterval = setInterval(() => {
           slideRight();
-        }, 6000);
+        }, 600000);
       }
 
       function restartAutoSlide() {
         clearInterval(autoSlideInterval);
         startAutoSlide();
-        startProgressBar(); // reset progress bar
+        startProgressBar();
       }
 
       setSlidePositions();
