@@ -1959,13 +1959,22 @@
           if (index === 0) {
             // Active slide (big card): hide simple overlay, show detailed content
             if (mainOverlay) {
-              gsap.set(mainOverlay, { opacity: 0, display: "none" });
+              gsap.set(mainOverlay, {
+                opacity: 0,
+                duration: "0.5",
+                display: "none",
+              });
             }
-            
+
             // Show detailed overlay content immediately for active slide
             if (overlay) {
-              overlay.style.display = "flex";
-              gsap.set(overlay, { opacity: 1 });
+              // overlay.style.display = "flex";
+              gsap.set(overlay, {
+                display: "flex",
+                opacity: 1,
+                duration: "0.5",
+                delay: "0.2",
+              });
             }
             if (progressContainer) {
               progressContainer.style.display = "block";
@@ -2012,9 +2021,11 @@
         // Immediately hide all detailed overlays during transition
         gsap_slides.forEach((slide) => {
           const overlay = slide.querySelector(".slide-overlay");
-          const progressContainer = slide.querySelector(".progress-bar-container");
+          const progressContainer = slide.querySelector(
+            ".progress-bar-container"
+          );
           const mainOverlay = slide.querySelector(".slide-main-overlay");
-          
+
           if (overlay) {
             gsap.set(overlay, { opacity: 0, display: "none" });
           }
@@ -2303,9 +2314,11 @@
         // Immediately hide all detailed overlays during transition
         gsap_slides.forEach((slide) => {
           const overlay = slide.querySelector(".slide-overlay");
-          const progressContainer = slide.querySelector(".progress-bar-container");
+          const progressContainer = slide.querySelector(
+            ".progress-bar-container"
+          );
           const mainOverlay = slide.querySelector(".slide-main-overlay");
-          
+
           if (overlay) {
             gsap.set(overlay, { opacity: 0, display: "none" });
           }
@@ -2569,7 +2582,7 @@
       function startAutoSlide() {
         autoSlideInterval = setInterval(() => {
           slideRight();
-        }, 600000);
+        }, 6000);
       }
 
       function restartAutoSlide() {
