@@ -1065,6 +1065,15 @@
           color: #000;
         }
       }
+      @media screen and (max-width: 400px) {
+        .discoverSlider .slide {
+          flex: 0 0 calc((100% - 16px) / 2); /* mobile: 2 cards with gap */
+          max-width: 170px;
+        }
+        .discoverSlider .slide img {
+          width: 168px;
+        }
+      }
     </style>
   </head>
   <body>
