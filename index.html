@@ -791,7 +791,11 @@
           padding-bottom: 0;
         }
       }
-
+      @media screen and (max-width: 600px) {
+        .IntimateBgPara {
+          max-width: 330px;
+        }
+      }
       @media screen and (max-width: 400px) {
         .IntimateBgHead {
           font-size: 32px;
@@ -1585,6 +1589,7 @@
         const slideNodes = Array.from(slides.querySelectorAll(".slide"));
         const totalSlides = slideNodes.length;
 
+        // clone slides for infinite effect
         for (let i = 0; i < visibleSlides; i++) {
           slides.append(slideNodes[i].cloneNode(true));
           slides.prepend(slideNodes[totalSlides - 1 - i].cloneNode(true));
@@ -1613,11 +1618,17 @@
         function moveSlide(dir) {
           slides.style.transition = "transform 0.5s ease";
           index += dir;
-          updateTransform();
+          updateTransform(true);
         }
 
-        next.addEventListener("click", () => moveSlide(1));
-        prev.addEventListener("click", () => moveSlide(-1));
+        next.addEventListener("click", () => {
+          moveSlide(1);
+          resetAutoplay();
+        });
+        prev.addEventListener("click", () => {
+          moveSlide(-1);
+          resetAutoplay();
+        });
 
         slides.addEventListener("transitionend", () => {
           const newTotal = allSlides.length;
@@ -1633,11 +1644,11 @@
           }
         });
 
-        // autoplay
-        let auto = setInterval(() => moveSlide(1), 3000);
+        // autoplay 6s
+        let auto = setInterval(() => moveSlide(1), 6000);
         function resetAutoplay() {
           clearInterval(auto);
-          auto = setInterval(() => moveSlide(1), 3000);
+          auto = setInterval(() => moveSlide(1), 6000);
         }
 
         // --------------------
@@ -1652,7 +1663,7 @@
           startX = e.touches[0].clientX;
           isDragging = true;
           prevTranslate = -index * getSlideFullWidth();
-          slides.style.transition = "none"; // disable snap during drag
+          slides.style.transition = "none";
           clearInterval(auto);
         });
 
@@ -1668,7 +1679,7 @@
           if (!isDragging) return;
           isDragging = false;
           const movedBy = e.changedTouches[0].clientX - startX;
-          const threshold = 50; // min swipe to change
+          const threshold = 50;
 
           if (movedBy < -threshold) {
             index++;
