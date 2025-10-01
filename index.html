@@ -281,7 +281,9 @@
         text-transform: uppercase;
         line-height: 150%;
       }
+
       /* Seconnd Section  Style */
+
       .second_section {
         padding: 48px 1rem;
         text-align: center;
@@ -318,8 +320,9 @@
       .slider-container {
         width: 100%;
         position: relative;
-        /* overflow: hidden; */
+        overflow: hidden;
       }
+
       .slider-wrapper {
         display: flex;
         gap: 20px;
@@ -335,6 +338,7 @@
         top: 20px;
         cursor: pointer;
       }
+
       .gsap_slide img {
         width: 100%;
         height: 100%;
@@ -737,9 +741,9 @@
         max-width: 500px;
         margin: 0 auto;
       }
-      .IntimateBgChild .explore-btn {
-        /* display: none; */
-      }
+      /* .IntimateBgChild .explore-btn {
+        display: none;
+      } */
       .IntemateButtonDiv {
         display: flex;
         justify-content: center;
@@ -1546,6 +1550,7 @@
         </button>
       </div>
     </section>
+
     <script>
       function formatTime(seconds) {
         const m = Math.floor(seconds / 60)
@@ -1941,6 +1946,7 @@
         const posOffScreenLeft = -(large + gap);
         const posOffScreenRight = pos3 + small + gap;
 
+        // Ensure all slides are set before animating
         gsap_slides.forEach((slide, i) => {
           gsap.set(slide, {
             position: "absolute",
@@ -1951,13 +1957,14 @@
                 ? pos2
                 : i === 2
                 ? pos3
-                : posOffScreenRight,
+                : posOffScreenRight, // put new card offscreen right
             width: i === 0 ? large : small,
             height: i === 0 ? largeHeight : smallHeight,
           });
         });
 
-        const incoming = gsap_slides[3];
+        // incoming = new 4th card (offscreen right)
+        const incoming = gsap_slides[3] ? gsap_slides[3] : gsap_slides[0];
         gsap.set(incoming, {
           left: posOffScreenRight,
           width: small,
@@ -1974,6 +1981,7 @@
           },
         });
 
+        // 1st card goes left and out
         tl.to(
           gsap_slides[0],
           {
@@ -1985,6 +1993,8 @@
           },
           0
         );
+
+        // 2nd → 1st (becomes big)
         tl.to(
           gsap_slides[1],
           {
@@ -1996,6 +2006,8 @@
           },
           0
         );
+
+        // 3rd → 2nd
         tl.to(
           gsap_slides[2],
           {
@@ -2007,6 +2019,8 @@
           },
           0
         );
+
+        // NEW incoming card → 3rd (slides in from right)
         tl.to(
           incoming,
           {
@@ -2106,10 +2120,12 @@
         slideRight();
         restartAutoSlide();
       });
+
       prevBtn.addEventListener("click", () => {
         slideLeft();
         restartAutoSlide();
       });
+
       document.addEventListener("keydown", (e) => {
         if (e.key === "ArrowRight") {
           slideRight();
