@@ -369,6 +369,7 @@
         text-align: left;
         padding-left: 4px;
         margin-top: 4px;
+        line-height: 130%;
       }
       .button-div {
         display: flex;
@@ -469,8 +470,9 @@
           color: white;
           text-align: center;
           font-size: 28px;
-          line-height: 100%;
-          font-weight: normal;
+          line-height: 130%;
+          font-weight: 200;
+          letter-spacing: 1.4px;
         }
       }
 
@@ -721,7 +723,7 @@
       }
       .IntimateBgPara {
         font-size: 16px;
-        line-height: 100%;
+        line-height: 130%;
         color: #7b7b7b;
         margin: 0;
         margin-bottom: 52px;
@@ -729,7 +731,28 @@
         margin: 0 auto;
       }
       .IntimateBgChild .explore-btn {
-        display: none;
+        /* display: none; */
+      }
+      .IntemateButtonDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 35px;
+      }
+      .IntimateBgChild .explore-btn {
+        /* margin-top: 2rem; */
+        padding: 12px 28px;
+        border: 1px solid #232323;
+        background: transparent;
+        color: #232323;
+        font-size: 14px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        /* display: none; */
       }
       .explore-btn p {
         margin: 0;
@@ -739,7 +762,7 @@
         width: 916px;
         height: 503px;
         margin-top: -262px;
-        margin: -200px auto 0;
+        margin: -100px auto 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -831,6 +854,10 @@
         overflow: hidden;
       }
 
+      .discoverSlider .slide {
+        overflow: hidden;
+      }
+
       .discoverSlider .slides {
         display: flex;
         gap: 86px;
@@ -850,7 +877,7 @@
         width: 315px;
         max-height: 377px;
         object-fit: cover;
-        border-radius: 5px;
+        /* border-radius: 5px; */
       }
 
       .discoverSlider .caption {
@@ -1176,13 +1203,13 @@
                 <img src="./images/look1.png" alt="Look 1" />
                 <section class="slide-main-overlay">
                   <h3 class="overlay-title">
-                    AETERNA <br />
-                    EDITS
+                    Aeterna <br />
+                    Edits
                   </h3>
                 </section>
                 <div class="slide-overlay">
                   <div>
-                    <h3 class="overlay-title">AETERNA EDITS</h3>
+                    <h3 class="overlay-title">Aeterna Edits</h3>
                   </div>
                   <div class="flex items-center justify-between mb-25">
                     <p class="overlay-description">
@@ -1673,44 +1700,56 @@
         }
 
         // --------------------
-        // Smooth Touch/Drag
+        // Smooth Touch/Drag (fixed for real devices)
         // --------------------
         let startX = 0;
         let currentTranslate = 0;
         let prevTranslate = 0;
         let isDragging = false;
 
-        slides.addEventListener("touchstart", (e) => {
-          startX = e.touches[0].clientX;
-          isDragging = true;
-          prevTranslate = -index * getSlideFullWidth();
-          slides.style.transition = "none";
-          clearInterval(auto);
-        });
+        slides.addEventListener(
+          "touchstart",
+          (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            prevTranslate = -index * getSlideFullWidth();
+            slides.style.transition = "none";
+            clearInterval(auto);
+          },
+          { passive: true }
+        );
 
-        slides.addEventListener("touchmove", (e) => {
-          if (!isDragging) return;
-          const currentX = e.touches[0].clientX;
-          const movedBy = currentX - startX;
-          currentTranslate = prevTranslate + movedBy;
-          slides.style.transform = `translateX(${currentTranslate}px)`;
-        });
+        slides.addEventListener(
+          "touchmove",
+          (e) => {
+            if (!isDragging) return;
+            e.preventDefault(); // 👈 stop vertical scroll while dragging
+            const currentX = e.touches[0].clientX;
+            const movedBy = currentX - startX;
+            currentTranslate = prevTranslate + movedBy;
+            slides.style.transform = `translateX(${currentTranslate}px)`;
+          },
+          { passive: false }
+        ); // 👈 important
 
-        slides.addEventListener("touchend", (e) => {
-          if (!isDragging) return;
-          isDragging = false;
-          const movedBy = e.changedTouches[0].clientX - startX;
+        slides.addEventListener(
+          "touchend",
+          (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            const movedBy = e.changedTouches[0].clientX - startX;
 
-          // Direction-based swipe: thoda sa bhi move kare to slide change ho jaaye
-          if (movedBy < 0) {
-            index++; // swipe left
-          } else if (movedBy > 0) {
-            index--; // swipe right
-          }
+            if (movedBy < 0) {
+              index++; // swipe left
+            } else if (movedBy > 0) {
+              index--; // swipe right
+            }
 
-          updateTransform(true);
-          resetAutoplay();
-        });
+            updateTransform(true);
+            resetAutoplay();
+          },
+          { passive: true }
+        );
 
         // Responsive resize
         window.addEventListener("resize", () => {
