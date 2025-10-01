@@ -1687,29 +1687,43 @@
         const prev = document.querySelector(".arrow.left");
         const next = document.querySelector(".arrow.right");
 
+        // Determine visible slides based on screen width
         let visibleSlides = window.innerWidth < 768 ? 2 : 3;
         let index = visibleSlides;
 
         const slideNodes = Array.from(slides.querySelectorAll(".slide"));
         const totalSlides = slideNodes.length;
 
-        // Clone slides for infinite effect
-        for (let i = 0; i < visibleSlides; i++) {
-          slides.append(slideNodes[i].cloneNode(true));
-          slides.prepend(slideNodes[totalSlides - 1 - i].cloneNode(true));
+        // -------------------------------
+        // CLONE SLIDES FOR INFINITE LOOP
+        // -------------------------------
+        const repeatCount = 3; // 5 original slides × 3 = 15 total slides
+        // Append clones at the end
+        for (let r = 0; r < repeatCount; r++) {
+          slideNodes.forEach((slide) => slides.append(slide.cloneNode(true)));
+        }
+        // Prepend clones at the start
+        for (let r = 0; r < repeatCount; r++) {
+          slideNodes
+            .slice()
+            .reverse()
+            .forEach((slide) => slides.prepend(slide.cloneNode(true)));
         }
 
         const allSlides = Array.from(slides.querySelectorAll(".slide"));
 
+        // Get computed gap
         function getGap() {
           return parseFloat(getComputedStyle(slides).gap) || 0;
         }
 
+        // Full width of one slide including gap
         function getSlideFullWidth() {
           const slideWidth = allSlides[0].getBoundingClientRect().width;
           return slideWidth + getGap();
         }
 
+        // Set transform based on current index
         function updateTransform(animate = true) {
           slides.style.transition = animate ? "transform 0.5s ease" : "none";
           slides.style.transform = `translateX(${
@@ -1719,21 +1733,28 @@
 
         updateTransform(false);
 
+        // Move slides left or right by n slides
         function moveSlide(dir) {
-          slides.style.transition = "transform 0.5s ease";
           index += dir;
           updateTransform(true);
         }
 
+        // -------------------------------
+        // Button events
+        // -------------------------------
         next.addEventListener("click", () => {
           moveSlide(1);
           resetAutoplay();
         });
+
         prev.addEventListener("click", () => {
           moveSlide(-1);
           resetAutoplay();
         });
 
+        // -------------------------------
+        // Infinite loop adjustment
+        // -------------------------------
         slides.addEventListener("transitionend", () => {
           const newTotal = allSlides.length;
 
@@ -1743,21 +1764,24 @@
             updateTransform(false);
           } else if (index < visibleSlides) {
             slides.style.transition = "none";
-            index = totalSlides;
+            index = newTotal - visibleSlides * 2;
             updateTransform(false);
           }
         });
 
-        // Autoplay every 4s
+        // -------------------------------
+        // Autoplay
+        // -------------------------------
         let auto = setInterval(() => moveSlide(1), 4000);
+
         function resetAutoplay() {
           clearInterval(auto);
           auto = setInterval(() => moveSlide(1), 4000);
         }
 
-        // --------------------
-        // Smooth Touch/Drag (fixed for real devices)
-        // --------------------
+        // -------------------------------
+        // Touch / Drag support (multiple slides)
+        // -------------------------------
         let startX = 0;
         let currentTranslate = 0;
         let prevTranslate = 0;
@@ -1779,14 +1803,14 @@
           "touchmove",
           (e) => {
             if (!isDragging) return;
-            e.preventDefault(); // 👈 stop vertical scroll while dragging
+            e.preventDefault(); // prevent vertical scroll while dragging
             const currentX = e.touches[0].clientX;
             const movedBy = currentX - startX;
             currentTranslate = prevTranslate + movedBy;
             slides.style.transform = `translateX(${currentTranslate}px)`;
           },
           { passive: false }
-        ); // 👈 important
+        );
 
         slides.addEventListener(
           "touchend",
@@ -1794,20 +1818,29 @@
             if (!isDragging) return;
             isDragging = false;
             const movedBy = e.changedTouches[0].clientX - startX;
+            const slideWidth = getSlideFullWidth();
 
-            if (movedBy < 0) {
-              index++; // swipe left
-            } else if (movedBy > 0) {
-              index--; // swipe right
+            // Calculate number of slides to move
+            let slideChange = Math.round(-movedBy / slideWidth);
+
+            // Ensure at least 1 slide moves for a significant swipe
+            if (
+              Math.abs(slideChange) === 0 &&
+              Math.abs(movedBy) > slideWidth / 4
+            ) {
+              slideChange = movedBy < 0 ? 1 : -1;
             }
 
+            index += slideChange;
             updateTransform(true);
             resetAutoplay();
           },
           { passive: true }
         );
 
+        // -------------------------------
         // Responsive resize
+        // -------------------------------
         window.addEventListener("resize", () => {
           visibleSlides = window.innerWidth < 768 ? 2 : 3;
           slides.style.transition = "none";
