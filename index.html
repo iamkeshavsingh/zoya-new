@@ -1955,13 +1955,54 @@
           );
 
           if (index === 0) {
-            if (mainOverlay) mainOverlay.style.display = "none";
-            if (overlay) overlay.style.display = "block";
-            if (progressContainer) progressContainer.style.display = "block";
+            // Active slide: fade out mainOverlay smoothly
+            if (mainOverlay) {
+              gsap.to(mainOverlay, {
+                opacity: 0,
+                duration: 0.5,
+                onComplete: () => {
+                  mainOverlay.style.display = "none"; // optional cleanup
+                },
+              });
+            }
+
+            // Fade in overlay if needed
+            if (overlay) {
+              overlay.style.display = "block";
+              gsap.to(overlay, { opacity: 1, duration: 0.5, delay: 0.2 });
+            }
+
+            if (progressContainer) {
+              progressContainer.style.display = "block";
+              gsap.to(progressContainer, { opacity: 1, duration: 0.5 });
+            }
           } else {
-            if (mainOverlay) mainOverlay.style.display = "flex";
-            if (overlay) overlay.style.display = "none";
-            if (progressContainer) progressContainer.style.display = "none";
+            // Non-active slides: fade in mainOverlay
+            if (mainOverlay) {
+              mainOverlay.style.display = "flex";
+              gsap.to(mainOverlay, { opacity: 1, duration: 0.5 });
+            }
+
+            // Hide overlay
+            if (overlay) {
+              gsap.to(overlay, {
+                opacity: 0,
+                duration: 0.5,
+                onComplete: () => {
+                  overlay.style.display = "none"; // optional cleanup
+                },
+              });
+            }
+
+            if (progressContainer) {
+              gsap.to(progressContainer, {
+                opacity: 0,
+                duration: 0.5,
+                onComplete: () => {
+                  progressContainer.style.display = "none";
+                },
+              });
+            }
           }
         });
 
