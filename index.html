@@ -23,7 +23,19 @@
         padding: 0;
         box-sizing: border-box;
       }
+      html {
+        scroll-behavior: smooth;
+      }
 
+      @font-face {
+        font-family: "AGaramondPro";
+        src: url("/font/AGaramondPro-Regular.otf");
+      }
+
+      body {
+        font-family: "AGaramondPro", Serif !important;
+        margin: 0;
+      }
       /* First Section styles */
 
       .first_section {
@@ -1272,7 +1284,7 @@
                   <div class="progress-bar"></div>
                 </div>
               </div>
-              <div class="gsap_slide">
+              <!-- <div class="gsap_slide">
                 <img src="./images/look3.png" alt="Look 3" />
                 <section class="slide-main-overlay">
                   <h3 class="overlay-title">
@@ -1298,7 +1310,8 @@
                 <div class="progress-bar-container">
                   <div class="progress-bar"></div>
                 </div>
-              </div>
+              </div> -->
+
               <!-- <div class="slide">
             <img src="./images/look4.png" alt="Look 4" />
             <div class="slide-overlay">
