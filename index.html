@@ -36,6 +36,9 @@
         font-family: "AGaramondPro", Serif !important;
         margin: 0;
       }
+      body::-webkit-scrollbar {
+        display: none !important;
+      }
       /* First Section styles */
 
       .first_section {
@@ -532,6 +535,17 @@
       }
       .justify-between {
         justify-content: space-between;
+      }
+
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+        -ms-overflow-style: none !important; /* IE and Edge */
+        scrollbar-width: none !important; /* Firefox */
       }
 
       @media screen and (max-width: 768px) {
@@ -1226,7 +1240,7 @@
     </section>
 
     <!-- Second Section -->
-    <div class="second_section" id="second_section_slider">
+    <div class="second_section no-scrollbar" id="second_section_slider">
       <div class="slider-section">
         <img src="./assets/sLine.png" />
         <h2 class="second_section_heading">
@@ -1240,9 +1254,9 @@
           senses sharpened.
         </p>
         <!-- Desktop SLider -->
-        <div class="sec2-slider_Desktop">
-          <div class="slider-container">
-            <div class="slider-wrapper" id="sliderWrapper">
+        <div class="sec2-slider_Desktop no-scrollbar">
+          <div class="slider-container no-scrollbar">
+            <div class="slider-wrapper no-scrollbar" id="sliderWrapper">
               <!-- Slides -->
 
               <div class="gsap_slide">
