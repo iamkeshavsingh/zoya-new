@@ -1691,44 +1691,56 @@
         }
 
         // --------------------
-        // Smooth Touch/Drag
+        // Smooth Touch/Drag (fixed for real devices)
         // --------------------
         let startX = 0;
         let currentTranslate = 0;
         let prevTranslate = 0;
         let isDragging = false;
 
-        slides.addEventListener("touchstart", (e) => {
-          startX = e.touches[0].clientX;
-          isDragging = true;
-          prevTranslate = -index * getSlideFullWidth();
-          slides.style.transition = "none";
-          clearInterval(auto);
-        });
+        slides.addEventListener(
+          "touchstart",
+          (e) => {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+            prevTranslate = -index * getSlideFullWidth();
+            slides.style.transition = "none";
+            clearInterval(auto);
+          },
+          { passive: true }
+        );
 
-        slides.addEventListener("touchmove", (e) => {
-          if (!isDragging) return;
-          const currentX = e.touches[0].clientX;
-          const movedBy = currentX - startX;
-          currentTranslate = prevTranslate + movedBy;
-          slides.style.transform = `translateX(${currentTranslate}px)`;
-        });
+        slides.addEventListener(
+          "touchmove",
+          (e) => {
+            if (!isDragging) return;
+            e.preventDefault(); // 👈 stop vertical scroll while dragging
+            const currentX = e.touches[0].clientX;
+            const movedBy = currentX - startX;
+            currentTranslate = prevTranslate + movedBy;
+            slides.style.transform = `translateX(${currentTranslate}px)`;
+          },
+          { passive: false }
+        ); // 👈 important
 
-        slides.addEventListener("touchend", (e) => {
-          if (!isDragging) return;
-          isDragging = false;
-          const movedBy = e.changedTouches[0].clientX - startX;
+        slides.addEventListener(
+          "touchend",
+          (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            const movedBy = e.changedTouches[0].clientX - startX;
 
-          // Direction-based swipe: thoda sa bhi move kare to slide change ho jaaye
-          if (movedBy < 0) {
-            index++; // swipe left
-          } else if (movedBy > 0) {
-            index--; // swipe right
-          }
+            if (movedBy < 0) {
+              index++; // swipe left
+            } else if (movedBy > 0) {
+              index--; // swipe right
+            }
 
-          updateTransform(true);
-          resetAutoplay();
-        });
+            updateTransform(true);
+            resetAutoplay();
+          },
+          { passive: true }
+        );
 
         // Responsive resize
         window.addEventListener("resize", () => {
