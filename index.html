@@ -1435,6 +1435,18 @@
             <img src="./images/d2.jpg" alt="" />
             <div class="caption">Victoire De Necklace 14k</div>
           </div>
+          <div class="slide">
+            <img src="./images/d1.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./images/d2.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
+          <div class="slide">
+            <img src="./images/d3.jpg" alt="" />
+            <div class="caption">Victoire De Necklace 14k</div>
+          </div>
         </div>
 
         <div class="left_arrow_div arrow left">
@@ -1583,13 +1595,13 @@
         const prev = document.querySelector(".arrow.left");
         const next = document.querySelector(".arrow.right");
 
-        let visibleSlides = window.innerWidth < 768 ? 1.7 : 3;
+        let visibleSlides = window.innerWidth < 768 ? 2 : 3;
         let index = visibleSlides;
 
         const slideNodes = Array.from(slides.querySelectorAll(".slide"));
         const totalSlides = slideNodes.length;
 
-        // clone slides for infinite effect
+        // Clone slides for infinite effect
         for (let i = 0; i < visibleSlides; i++) {
           slides.append(slideNodes[i].cloneNode(true));
           slides.prepend(slideNodes[totalSlides - 1 - i].cloneNode(true));
@@ -1644,15 +1656,15 @@
           }
         });
 
-        // autoplay 6s
-        let auto = setInterval(() => moveSlide(1), 6000);
+        // Autoplay every 4s
+        let auto = setInterval(() => moveSlide(1), 4000);
         function resetAutoplay() {
           clearInterval(auto);
-          auto = setInterval(() => moveSlide(1), 6000);
+          auto = setInterval(() => moveSlide(1), 4000);
         }
 
         // --------------------
-        // 👉 Smooth Touch/Drag
+        // Smooth Touch/Drag
         // --------------------
         let startX = 0;
         let currentTranslate = 0;
@@ -1679,18 +1691,19 @@
           if (!isDragging) return;
           isDragging = false;
           const movedBy = e.changedTouches[0].clientX - startX;
-          const threshold = 50;
 
-          if (movedBy < -threshold) {
-            index++;
-          } else if (movedBy > threshold) {
-            index--;
+          // Direction-based swipe: thoda sa bhi move kare to slide change ho jaaye
+          if (movedBy < 0) {
+            index++; // swipe left
+          } else if (movedBy > 0) {
+            index--; // swipe right
           }
+
           updateTransform(true);
           resetAutoplay();
         });
 
-        // responsive resize
+        // Responsive resize
         window.addEventListener("resize", () => {
           visibleSlides = window.innerWidth < 768 ? 2 : 3;
           slides.style.transition = "none";
