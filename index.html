@@ -89,7 +89,7 @@
       }
       .first_section_rightpart_head {
         font-size: 88px;
-        font-weight: 100;
+        font-weight: 500;
         line-height: 100%;
         text-transform: uppercase;
         color: #523418;
@@ -111,7 +111,7 @@
         font-size: 16px;
         color: #7b7b7b;
         text-transform: capitalize;
-        line-height: 100%;
+        line-height: 130%;
         max-width: 434px;
         margin-bottom: 40px;
       }
@@ -226,7 +226,7 @@
           padding-left: 20px;
           padding-right: 20px;
           text-align: center;
-          line-height: 100%;
+          line-height: 130%;
         }
         .discover_btn {
           margin: 0 auto;
@@ -305,14 +305,14 @@
       }
 
       .second_section_description {
-        max-width: 400px;
+        max-width: 500px;
         margin-left: auto;
         margin-right: auto;
         font-size: 16px;
         color: #7b7b7b;
-        line-height: 100%;
+        line-height: 130%;
         margin-top: 0;
-        margin-bottom: 73px;
+        margin-bottom: 63px;
       }
 
       .slider-container {
@@ -367,6 +367,8 @@
         font-size: 16px;
         margin: 0;
         text-align: left;
+        padding-left: 4px;
+        margin-top: 4px;
       }
       .button-div {
         display: flex;
@@ -374,6 +376,7 @@
         gap: 32px;
         background: white;
         padding: 13.5px 20px;
+        max-height: 44px;
         /* margin-bottom: 14px; */
       }
       .button-div p {
@@ -442,10 +445,10 @@
       }
 
       #prevBtn {
-        right: 36%;
+        right: 37.5%;
       }
       #nextBtn {
-        right: 31%;
+        right: 32.5%;
       }
 
       .slide-main-overlay {
@@ -531,8 +534,11 @@
       }
       @media screen and (max-width: 400px) {
         .second_section_heading {
-          font-size: 34px;
+          font-size: 32px;
           margin-bottom: 23px;
+        }
+        .discoverSlider h2 {
+          font-size: 32px !important;
         }
       }
 
@@ -634,7 +640,7 @@
       .mob-center-cardContentPara {
         font-size: 12px;
         font-weight: normal;
-        line-height: 100%;
+        line-height: 130%;
         color: #fff;
         margin: 0;
         padding: 0px 29px 0;
@@ -648,8 +654,8 @@
 
       @media (max-width: 768px) {
         .mob-center-slide {
-          flex: 0 0 70%;
-          max-width: 70%;
+          flex: 0 0 68%;
+          max-width: 68%;
         }
         .sec2-slider_Desktop {
           display: none;
@@ -661,26 +667,26 @@
 
       @media (max-width: 480px) {
         .mob-center-slide {
-          flex: 0 0 80%;
-          max-width: 80%;
+          flex: 0 0 78%;
+          max-width: 78%;
         }
       }
       @media (max-width: 410px) {
         .mob-center-slide {
-          flex: 0 0 90%;
-          max-width: 90%;
+          flex: 0 0 88%;
+          max-width: 88%;
         }
       }
       @media (max-width: 391px) {
         .mob-center-slide {
-          flex: 0 0 80%;
-          max-width: 80%;
+          flex: 0 0 78%;
+          max-width: 78%;
         }
       }
       @media (max-width: 380px) {
         .mob-center-slide {
-          flex: 0 0 83%;
-          max-width: 83%;
+          flex: 0 0 81%;
+          max-width: 81%;
         }
       }
       /* EnD Second Section Mobile Slider Style */
@@ -753,7 +759,7 @@
         }
         .IntimateBgPara {
           font-size: 14px;
-          line-height: normal;
+          line-height: 130%;
           margin-bottom: 39px;
         }
         .IntimateBgImg {
@@ -781,11 +787,14 @@
           gap: 20px;
           /* display: none; */
         }
+        .IntimateBgParent {
+          padding-bottom: 0;
+        }
       }
 
       @media screen and (max-width: 400px) {
         .IntimateBgHead {
-          font-size: 35px;
+          font-size: 32px;
         }
       }
 
@@ -805,7 +814,7 @@
 
       .discoverSlider h2 {
         font-size: 48px;
-        line-height: 100%;
+        line-height: 130%;
         margin: 0;
         color: #232323;
         padding-top: 32px;
@@ -907,9 +916,18 @@
       } */
 
       @media screen and (max-width: 600px) {
+        .discoverSlider .caption {
+          font-size: 12px;
+        }
         .discoverSlider .slides {
           gap: 22px;
           justify-content: flex-start;
+        }
+        .discoverSlider h2 {
+          font-size: 36px;
+          max-width: 281px;
+          margin: 0 auto;
+          padding-top: 50px;
         }
 
         .discoverSlider .slide {
@@ -919,6 +937,7 @@
         .discoverSlider .slide img {
           width: 161px;
           max-height: 267px;
+          min-height: 228px;
         }
         .discoverSlider .arrow {
           display: none;
@@ -1152,7 +1171,7 @@
                   <div>
                     <h3 class="overlay-title">AETERNA EDITS</h3>
                   </div>
-                  <div class="flex justify-between mb-25">
+                  <div class="flex items-center justify-between mb-25">
                     <p class="overlay-description">
                       Knowing strikes in an instant,<br />
                       unexpected and powerful
@@ -1177,7 +1196,7 @@
                 </section>
                 <div class="slide-overlay">
                   <div>
-                    <h3 class="overlay-title">Whispers from the Valley</h3>
+                    <h3 class="overlay-title">AETERNA EDITS</h3>
                   </div>
                   <div class="flex justify-between mb-25">
                     <p class="overlay-description">
@@ -1554,8 +1573,126 @@
     </script>
 
     <!-- Discover Slider  -->
-
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const slides = document.querySelector(".slides");
+        const prev = document.querySelector(".arrow.left");
+        const next = document.querySelector(".arrow.right");
+
+        let visibleSlides = window.innerWidth < 768 ? 1.7 : 3;
+        let index = visibleSlides;
+
+        // original slides
+        const slideNodes = Array.from(slides.querySelectorAll(".slide"));
+        const totalSlides = slideNodes.length;
+
+        // clone first & last slides
+        for (let i = 0; i < visibleSlides; i++) {
+          slides.append(slideNodes[i].cloneNode(true));
+          slides.prepend(slideNodes[totalSlides - 1 - i].cloneNode(true));
+        }
+
+        const allSlides = Array.from(slides.querySelectorAll(".slide"));
+
+        function getGap() {
+          return parseFloat(getComputedStyle(slides).gap) || 0;
+        }
+
+        function getSlideFullWidth() {
+          const slideWidth = allSlides[0].getBoundingClientRect().width;
+          return slideWidth + getGap();
+        }
+
+        function updateTransform() {
+          slides.style.transform = `translateX(${
+            -index * getSlideFullWidth()
+          }px)`;
+        }
+
+        updateTransform();
+
+        function moveSlide(dir) {
+          slides.style.transition = "transform 0.5s ease-in-out";
+          index += dir;
+          updateTransform();
+        }
+
+        next.addEventListener("click", () => moveSlide(1));
+        prev.addEventListener("click", () => moveSlide(-1));
+
+        slides.addEventListener("transitionend", () => {
+          const newTotal = allSlides.length;
+
+          if (index >= newTotal - visibleSlides) {
+            slides.style.transition = "none";
+            index = visibleSlides;
+            updateTransform();
+          } else if (index < visibleSlides) {
+            slides.style.transition = "none";
+            index = totalSlides;
+            updateTransform();
+          }
+        });
+
+        // autoplay
+        let auto = setInterval(() => moveSlide(1), 3000);
+        function resetAutoplay() {
+          clearInterval(auto);
+          auto = setInterval(() => moveSlide(1), 3000);
+        }
+
+        // --------------------
+        // 👉 Touch/Drag support
+        // --------------------
+        let startX = 0;
+        let isDragging = false;
+
+        slides.addEventListener("touchstart", (e) => {
+          startX = e.touches[0].clientX;
+          isDragging = true;
+          slides.style.transition = "none"; // remove smooth effect during drag
+          clearInterval(auto);
+        });
+
+        slides.addEventListener("touchmove", (e) => {
+          if (!isDragging) return;
+          const currentX = e.touches[0].clientX;
+          const movedBy = currentX - startX;
+          slides.style.transform = `translateX(${
+            -index * getSlideFullWidth() + movedBy
+          }px)`;
+        });
+
+        slides.addEventListener("touchend", (e) => {
+          if (!isDragging) return;
+          isDragging = false;
+          const endX = e.changedTouches[0].clientX;
+          const movedBy = endX - startX;
+          const threshold = 50; // jitna drag par slide change ho
+
+          if (movedBy < -threshold) {
+            moveSlide(1); // next
+          } else if (movedBy > threshold) {
+            moveSlide(-1); // prev
+          } else {
+            // snap back
+            slides.style.transition = "transform 0.5s ease-in-out";
+            updateTransform();
+          }
+
+          resetAutoplay();
+        });
+
+        // responsive resize
+        window.addEventListener("resize", () => {
+          visibleSlides = window.innerWidth < 768 ? 2 : 3;
+          slides.style.transition = "none";
+          updateTransform();
+        });
+      });
+    </script>
+
+    <!-- <script>
       document.addEventListener("DOMContentLoaded", () => {
         const slides = document.querySelector(".slides");
         const prev = document.querySelector(".arrow.left");
@@ -1630,7 +1767,7 @@
           updateTransform();
         });
       });
-    </script>
+    </script> -->
 
     <!-- Second SLider Desktop -->
 
