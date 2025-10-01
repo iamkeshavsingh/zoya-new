@@ -542,7 +542,7 @@
           padding: 35px 0px;
         }
         .second_section_heading {
-          font-size: 36px;
+          font-size: 28px;
           margin-bottom: 23px;
           padding-right: 16px;
           padding-left: 16px;
@@ -554,23 +554,7 @@
           padding-left: 16px;
         }
       }
-      @media screen and (max-width: 400px) {
-        .second_section_heading {
-          font-size: 32px;
-          margin-bottom: 23px;
-        }
-        .discoverSlider h2 {
-          font-size: 32px !important;
-        }
-      }
-      @media screen and (max-width: 359px) {
-        .second_section_heading {
-          font-size: 30px;
-        }
-        .discoverSlider h2 {
-          font-size: 30px !important;
-        }
-      }
+
       /* Mobile slider  */
 
       .sec2-slider_Mob {
@@ -706,7 +690,7 @@
           max-width: 88%;
         }
       }
-      @media (max-width: 391px) {
+      @media (max-width: 395px) {
         .mob-center-slide {
           flex: 0 0 78%;
           max-width: 78%;
@@ -718,6 +702,7 @@
           max-width: 81%;
         }
       }
+
       /* EnD Second Section Mobile Slider Style */
 
       /* Third Section */
@@ -806,7 +791,7 @@
           padding-right: 20px;
         }
         .IntimateBgHead {
-          font-size: 36px;
+          font-size: 28px;
           margin-bottom: 23px;
         }
         .IntimateBgPara {
@@ -847,16 +832,6 @@
       @media screen and (max-width: 600px) {
         .IntimateBgPara {
           max-width: 330px;
-        }
-      }
-      @media screen and (max-width: 400px) {
-        .IntimateBgHead {
-          font-size: 32px;
-        }
-      }
-      @media screen and (max-width: 359px) {
-        .IntimateBgHead {
-          font-size: 30px;
         }
       }
 
@@ -991,7 +966,7 @@
           justify-content: flex-start;
         }
         .discoverSlider h2 {
-          font-size: 36px;
+          font-size: 28px;
           max-width: 281px;
           margin: 0 auto;
           padding-top: 50px;
@@ -1104,12 +1079,45 @@
         }
       }
       @media screen and (max-width: 400px) {
+        .discoverSlider .slider {
+          margin-left: 30px;
+        }
+        .discoverSlider .slide {
+          flex: 0 0 calc((100% - 16px) / 2); /* mobile: 2 cards with gap */
+          max-width: 160px;
+        }
+        .discoverSlider .slide img {
+          width: 158px;
+        }
+      }
+      @media screen and (max-width: 380px) {
+        .discoverSlider .slider {
+          margin-left: 50px;
+        }
         .discoverSlider .slide {
           flex: 0 0 calc((100% - 16px) / 2); /* mobile: 2 cards with gap */
           max-width: 170px;
         }
         .discoverSlider .slide img {
           width: 168px;
+        }
+        .discoverSlider .slides {
+          gap: 8px;
+        }
+      }
+      @media screen and (max-width: 370px) {
+        .discoverSlider .slider {
+          margin-left: 90px;
+        }
+        .discoverSlider .slide {
+          flex: 0 0 calc((100% - 16px) / 2); /* mobile: 2 cards with gap */
+          max-width: 160px;
+        }
+        .discoverSlider .slide img {
+          width: 158px;
+        }
+        .discoverSlider .slides {
+          gap: 12px;
         }
       }
     </style>
@@ -2599,17 +2607,25 @@
 
     <script>
       const slider = document.getElementById("mob-center-slider");
-      const slides = Array.from(slider.children);
-      let centerIndex = 0;
-      let autoplayInterval = 6000; // 3 seconds
+      let originalSlides = Array.from(slider.children);
 
-      // Drag variables
+      // Clone all slides at beginning and end
+      originalSlides.forEach((slide) => {
+        const cloneFirst = slide.cloneNode(true);
+        const cloneLast = slide.cloneNode(true);
+        slider.appendChild(cloneFirst);
+        slider.insertBefore(cloneLast, slider.firstChild);
+      });
+
+      let slides = Array.from(slider.children);
+      let centerIndex = originalSlides.length; // start from first "real" slide in middle
+      let autoplayInterval = 4000;
+
       let isDragging = false;
       let startX = 0;
       let currentTranslate = 0;
       let prevTranslate = 0;
 
-      // Update center slide
       function updateSlider(animate = true) {
         slides.forEach((slide, index) => {
           slide.classList.remove("mob-center-center");
@@ -2627,23 +2643,37 @@
         slider.style.transform = `translateX(${offset}px)`;
       }
 
-      // Arrow navigation
+      // When index goes too far → jump back invisibly
+      function normalizeIndex() {
+        if (centerIndex >= slides.length - originalSlides.length) {
+          centerIndex -= originalSlides.length;
+          updateSlider(false);
+        }
+        if (centerIndex < originalSlides.length) {
+          centerIndex += originalSlides.length;
+          updateSlider(false);
+        }
+      }
+
+      slider.addEventListener("transitionend", normalizeIndex);
+
+      // Arrows
       document
         .querySelector(".mob-center-arrow.left")
         .addEventListener("click", () => {
-          if (centerIndex > 0) centerIndex--;
+          centerIndex--;
           updateSlider();
           resetAutoplay();
         });
       document
         .querySelector(".mob-center-arrow.right")
         .addEventListener("click", () => {
-          if (centerIndex < slides.length - 1) centerIndex++;
+          centerIndex++;
           updateSlider();
           resetAutoplay();
         });
 
-      // Slide click to center
+      // Click to center
       slides.forEach((slide, index) => {
         slide.addEventListener("click", () => {
           centerIndex = index;
@@ -2657,47 +2687,40 @@
         slide.addEventListener("mouseleave", dragEnd);
         slide.addEventListener("mousemove", dragAction);
 
-        // Touch events
         slide.addEventListener("touchstart", dragStart);
         slide.addEventListener("touchend", dragEnd);
         slide.addEventListener("touchmove", dragAction);
       });
 
-      function dragStart(event) {
+      function dragStart(e) {
         isDragging = true;
-        startX = event.type.includes("mouse")
-          ? event.pageX
-          : event.touches[0].clientX;
+        startX = e.type.includes("mouse") ? e.pageX : e.touches[0].clientX;
         slider.style.transition = "none";
       }
 
-      function dragAction(event) {
+      function dragAction(e) {
         if (!isDragging) return;
-        const currentPosition = event.type.includes("mouse")
-          ? event.pageX
-          : event.touches[0].clientX;
+        const currentPosition = e.type.includes("mouse")
+          ? e.pageX
+          : e.touches[0].clientX;
         const movedBy = currentPosition - startX;
-
         currentTranslate = prevTranslate + movedBy;
         slider.style.transform = `translateX(${currentTranslate}px)`;
       }
 
-      function dragEnd(event) {
+      function dragEnd(e) {
         if (!isDragging) return;
         isDragging = false;
 
-        const endX = event.type.includes("mouse")
-          ? event.pageX
-          : event.changedTouches[0].clientX;
-
+        const endX = e.type.includes("mouse")
+          ? e.pageX
+          : e.changedTouches[0].clientX;
         const movedBy = endX - startX;
-        const threshold = 50; // jitna drag par slide change ho
+        const threshold = 50;
 
-        if (movedBy < -threshold && centerIndex < slides.length - 1) {
-          // right drag -> next slide
+        if (movedBy < -threshold) {
           centerIndex++;
-        } else if (movedBy > threshold && centerIndex > 0) {
-          // left drag -> prev slide
+        } else if (movedBy > threshold) {
           centerIndex--;
         }
 
@@ -2707,14 +2730,14 @@
 
       // Autoplay
       let autoplay = setInterval(() => {
-        centerIndex = (centerIndex + 1) % slides.length;
+        centerIndex++;
         updateSlider();
       }, autoplayInterval);
 
       function resetAutoplay() {
         clearInterval(autoplay);
         autoplay = setInterval(() => {
-          centerIndex = (centerIndex + 1) % slides.length;
+          centerIndex++;
           updateSlider();
         }, autoplayInterval);
       }
