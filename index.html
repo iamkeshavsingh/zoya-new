@@ -7,15 +7,12 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=AGaramondPro:ital,wght@0,300..700;1,300..700&display=swap"
-      rel="stylesheet"
-    />
-
-    <link
+    <!-- <link
       href="https://fonts.googleapis.com/css2?family=AGaramondPro+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
-    />
+    /> -->
+
+    <link rel="stylesheet" href="https://use.typekit.net/hjh2ywn.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
       * {
@@ -27,13 +24,14 @@
         scroll-behavior: smooth;
       }
 
-      @font-face {
+      /* @font-face {
         font-family: "AGaramondPro";
         src: url("/font/AGaramondPro-Regular.otf");
-      }
+      } */
 
       body {
-        font-family: "AGaramondPro", Serif !important;
+        /* font-family: "AGaramondPro", Serif !important; */
+        font-family: "adobe-garamond-pro", serif;
         margin: 0;
       }
       body::-webkit-scrollbar {
@@ -280,7 +278,7 @@
           width: 100%;
           object-fit: cover;
           margin: 0 auto;
-          display: block;
+          display: block !important;
         }
         .sixth_section_heading {
           margin-top: 22px;
@@ -315,10 +313,11 @@
         position: relative;
         background-color: #fff;
         z-index: 99;
+        overflow-x: hidden;
       }
       .slider-section {
         width: 100%;
-        max-width: 1300px;
+        max-width: 1400px;
         margin: 0 auto;
       }
       .second_section_heading {
@@ -382,13 +381,33 @@
         top: 0;
         left: 0;
         text-align: left;
-        background-color: rgba(0, 0, 0, 0.474);
-        padding: 20px 10px 20px 18px;
+        /* background-color: rgba(0, 0, 0, 0.474); */
+        padding: 20px 13px 20px 30px;
+
+        /* background-image: url("/images/BG_Overlay.png"); */
+
+        /* background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.2)
+          ),
+          linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0) 52.89%,
+            rgba(0, 0, 0, 0.3) 100%
+          ); */
+
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0) 52.89%,
+            rgba(0, 0, 0, 0.3) 100%
+          ),
+          rgba(0, 0, 0, 0.2);
 
         h3 {
           color: white;
           text-align: left;
-          font-size: 19px;
+          font-size: 21px;
           line-height: 120%;
           font-weight: 200;
           letter-spacing: 1px;
@@ -416,6 +435,9 @@
         font-weight: 400;
         margin-bottom: 11px;
         text-align: left;
+        transform: translateY(0px);
+        opacity: 1;
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
       .overlay-description {
         font-size: 16px;
@@ -424,6 +446,10 @@
         padding-left: 4px;
         margin-top: 4px;
         line-height: 130%;
+        transform: translateY(0px);
+        opacity: 1;
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition-delay: 0.1s;
       }
       .button-div {
         display: flex;
@@ -433,7 +459,37 @@
         padding: 13.5px 20px;
         max-height: 44px;
         letter-spacing: 1px;
+        transform: translateY(30px);
+        opacity: 0;
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition-delay: 0.2s;
         /* margin-bottom: 14px; */
+      }
+      
+      /* Animation states for active slide */
+      .slide-overlay.animate-in .overlay-title {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      
+      .slide-overlay.animate-in.active .overlay-title {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+      
+      .slide-overlay.animate-in .overlay-description {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      
+      .slide-overlay.animate-in.active .overlay-description {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+      
+      .slide-overlay.animate-in.active .button-div {
+        transform: translateY(0px);
+        opacity: 1;
       }
       .button-div p {
         font-family: "AGaramondPro", serif;
@@ -506,6 +562,21 @@
       }
       #nextBtn {
         right: 32.5%;
+      }
+
+      @media screen and (max-wdth: 1400px) {
+        .slider-section {
+          /* width: 100%; */
+          max-width: 1300px;
+          /* margin: 0 auto; */
+        }
+      }
+      @media screen and (max-wdth: 1300px) {
+        .slider-section {
+          /* width: 100%; */
+          max-width: 1200px;
+          /* margin: 0 auto; */
+        }
       }
 
       /* utitlity  */
@@ -669,7 +740,7 @@
         font-weight: normal;
         line-height: 100%;
         color: #fff;
-        text-transform: uppercase;
+        /* text-transform: capitalize; */
         padding: 0 29px 8px;
         margin: 0;
       }
@@ -1086,7 +1157,7 @@
           width: 100%;
           object-fit: cover;
           margin: 0 auto;
-          display: block;
+          display: block !important;
         }
         .sixth_section_heading {
           margin-top: 24px;
@@ -1285,12 +1356,12 @@
                 <section class="slide-main-overlay">
                   <h3 class="overlay-title">
                     Aeterna <br />
-                    edits
+                    Edits
                   </h3>
                 </section>
                 <div class="slide-overlay">
                   <div>
-                    <h3 class="overlay-title">Aeterna edits</h3>
+                    <h3 class="overlay-title">Aeterna Edits</h3>
                   </div>
                   <div class="flex items-center justify-between mb-25">
                     <p class="overlay-description">
@@ -1334,6 +1405,7 @@
                   <div class="progress-bar"></div>
                 </div>
               </div>
+
               <div class="gsap_slide">
                 <img src="./images/look3.png" alt="Look 3" />
                 <section class="slide-main-overlay">
@@ -1444,10 +1516,9 @@
                   </div>
 
                   <div class="mob-center-cardContent">
-                    <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                    <h3 class="mob-center-cardContentHead">Aeterna Edits</h3>
                     <p class="mob-center-cardContentPara">
-                      Opulent jewels, imbued with mystic power, mirror the
-                      valley's enchanting allure.
+                      Knowing strikes in an instant, unexpected and powerful
                     </p>
                   </div>
                   <div class="button-div-mob">
@@ -1463,7 +1534,9 @@
                   </div>
 
                   <div class="mob-center-cardContent">
-                    <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                    <h3 class="mob-center-cardContentHead">
+                      Whispers from the valley
+                    </h3>
                     <p class="mob-center-cardContentPara">
                       Opulent jewels, imbued with mystic power, mirror the
                       valley's enchanting allure.
@@ -1482,7 +1555,9 @@
                   </div>
 
                   <div class="mob-center-cardContent">
-                    <h3 class="mob-center-cardContentHead">AETERNA EDITS</h3>
+                    <h3 class="mob-center-cardContentHead">
+                      Inspired by the symbols of sacred geometry
+                    </h3>
                     <p class="mob-center-cardContentPara">
                       Opulent jewels, imbued with mystic power, mirror the
                       valley's enchanting allure.
@@ -2043,15 +2118,16 @@
               });
             }
 
-            // Show detailed overlay content immediately for active slide
+            // Show detailed overlay content with animation for active slide
             if (overlay) {
-              // overlay.style.display = "flex";
-              gsap.set(overlay, {
-                display: "flex",
-                opacity: 1,
-                duration: "0.5",
-                delay: "0.2",
-              });
+              overlay.style.display = "flex";
+              overlay.classList.add("animate-in");
+              gsap.set(overlay, { opacity: 1 });
+              
+              // Trigger animations with a slight delay
+              setTimeout(() => {
+                overlay.classList.add("active");
+              }, 100);
             }
             if (progressContainer) {
               progressContainer.style.display = "block";
@@ -2060,6 +2136,7 @@
           } else {
             // Non-active slides (small cards): hide detailed content, show simple overlay
             if (overlay) {
+              overlay.classList.remove("animate-in", "active");
               gsap.set(overlay, { opacity: 0, display: "none" });
             }
             if (progressContainer) {
@@ -2085,7 +2162,7 @@
           gsap.set(progressBar, { width: "0%" });
           progressTween = gsap.to(progressBar, {
             width: "100%",
-            duration: 5,
+            duration: 7.5,
             ease: "linear",
           });
         }
@@ -2104,6 +2181,7 @@
           const mainOverlay = slide.querySelector(".slide-main-overlay");
 
           if (overlay) {
+            overlay.classList.remove("animate-in", "active");
             gsap.set(overlay, { opacity: 0, display: "none" });
           }
           if (progressContainer) {
@@ -2397,6 +2475,7 @@
           const mainOverlay = slide.querySelector(".slide-main-overlay");
 
           if (overlay) {
+            overlay.classList.remove("animate-in", "active");
             gsap.set(overlay, { opacity: 0, display: "none" });
           }
           if (progressContainer) {
@@ -2659,7 +2738,7 @@
       function startAutoSlide() {
         autoSlideInterval = setInterval(() => {
           slideRight();
-        }, 6000);
+        }, 8000);
       }
 
       function restartAutoSlide() {
@@ -2676,19 +2755,10 @@
 
     <script>
       const slider = document.getElementById("mob-center-slider");
-      let originalSlides = Array.from(slider.children);
-
-      // Clone all slides at beginning and end
-      originalSlides.forEach((slide) => {
-        const cloneFirst = slide.cloneNode(true);
-        const cloneLast = slide.cloneNode(true);
-        slider.appendChild(cloneFirst);
-        slider.insertBefore(cloneLast, slider.firstChild);
-      });
-
       let slides = Array.from(slider.children);
-      let centerIndex = originalSlides.length; // start from first "real" slide in middle
-      let autoplayInterval = 4000;
+
+      let centerIndex = 0; // start from first slide
+      let autoplayInterval = 8000;
 
       let isDragging = false;
       let startX = 0;
@@ -2708,58 +2778,41 @@
 
         currentTranslate = offset;
         prevTranslate = offset;
+
         slider.style.transition = animate ? "transform 0.5s ease" : "none";
         slider.style.transform = `translateX(${offset}px)`;
       }
-
-      // When index goes too far → jump back invisibly
-      function normalizeIndex() {
-        if (centerIndex >= slides.length - originalSlides.length) {
-          centerIndex -= originalSlides.length;
-          updateSlider(false);
-        }
-        if (centerIndex < originalSlides.length) {
-          centerIndex += originalSlides.length;
-          updateSlider(false);
-        }
-      }
-
-      slider.addEventListener("transitionend", normalizeIndex);
 
       // Arrows
       document
         .querySelector(".mob-center-arrow.left")
         .addEventListener("click", () => {
-          centerIndex--;
-          updateSlider();
-          resetAutoplay();
+          if (centerIndex > 0) {
+            centerIndex--;
+            updateSlider();
+            resetAutoplay();
+          }
         });
+
       document
         .querySelector(".mob-center-arrow.right")
         .addEventListener("click", () => {
-          centerIndex++;
-          updateSlider();
-          resetAutoplay();
+          if (centerIndex < slides.length - 1) {
+            centerIndex++;
+            updateSlider();
+            resetAutoplay();
+          }
         });
 
-      // Click to center
-      slides.forEach((slide, index) => {
-        slide.addEventListener("click", () => {
-          centerIndex = index;
-          updateSlider();
-          resetAutoplay();
-        });
+      // Drag events
+      slider.addEventListener("mousedown", dragStart);
+      slider.addEventListener("mouseup", dragEnd);
+      slider.addEventListener("mouseleave", dragEnd);
+      slider.addEventListener("mousemove", dragAction);
 
-        // Drag events
-        slide.addEventListener("mousedown", dragStart);
-        slide.addEventListener("mouseup", dragEnd);
-        slide.addEventListener("mouseleave", dragEnd);
-        slide.addEventListener("mousemove", dragAction);
-
-        slide.addEventListener("touchstart", dragStart);
-        slide.addEventListener("touchend", dragEnd);
-        slide.addEventListener("touchmove", dragAction);
-      });
+      slider.addEventListener("touchstart", dragStart);
+      slider.addEventListener("touchend", dragEnd);
+      slider.addEventListener("touchmove", dragAction);
 
       function dragStart(e) {
         isDragging = true;
@@ -2787,9 +2840,9 @@
         const movedBy = endX - startX;
         const threshold = 50;
 
-        if (movedBy < -threshold) {
+        if (movedBy < -threshold && centerIndex < slides.length - 1) {
           centerIndex++;
-        } else if (movedBy > threshold) {
+        } else if (movedBy > threshold && centerIndex > 0) {
           centerIndex--;
         }
 
@@ -2797,16 +2850,24 @@
         resetAutoplay();
       }
 
-      // Autoplay
+      // Autoplay (no infinite loop)
       let autoplay = setInterval(() => {
-        centerIndex++;
+        if (centerIndex < slides.length - 1) {
+          centerIndex++;
+        } else {
+          centerIndex = 0; // restart from first
+        }
         updateSlider();
       }, autoplayInterval);
 
       function resetAutoplay() {
         clearInterval(autoplay);
         autoplay = setInterval(() => {
-          centerIndex++;
+          if (centerIndex < slides.length - 1) {
+            centerIndex++;
+          } else {
+            centerIndex = 0;
+          }
           updateSlider();
         }, autoplayInterval);
       }
