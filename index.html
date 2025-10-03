@@ -2678,19 +2678,10 @@
 
     <script>
       const slider = document.getElementById("mob-center-slider");
-      let originalSlides = Array.from(slider.children);
-
-      // Clone all slides at beginning and end
-      originalSlides.forEach((slide) => {
-        const cloneFirst = slide.cloneNode(true);
-        const cloneLast = slide.cloneNode(true);
-        slider.appendChild(cloneFirst);
-        slider.insertBefore(cloneLast, slider.firstChild);
-      });
-
       let slides = Array.from(slider.children);
-      let centerIndex = originalSlides.length; // start from first "real" slide in middle
-      let autoplayInterval = 4000;
+
+      let centerIndex = 0; // start from first slide
+      let autoplayInterval = 8000;
 
       let isDragging = false;
       let startX = 0;
@@ -2710,58 +2701,41 @@
 
         currentTranslate = offset;
         prevTranslate = offset;
+
         slider.style.transition = animate ? "transform 0.5s ease" : "none";
         slider.style.transform = `translateX(${offset}px)`;
       }
-
-      // When index goes too far → jump back invisibly
-      function normalizeIndex() {
-        if (centerIndex >= slides.length - originalSlides.length) {
-          centerIndex -= originalSlides.length;
-          updateSlider(false);
-        }
-        if (centerIndex < originalSlides.length) {
-          centerIndex += originalSlides.length;
-          updateSlider(false);
-        }
-      }
-
-      slider.addEventListener("transitionend", normalizeIndex);
 
       // Arrows
       document
         .querySelector(".mob-center-arrow.left")
         .addEventListener("click", () => {
-          centerIndex--;
-          updateSlider();
-          resetAutoplay();
+          if (centerIndex > 0) {
+            centerIndex--;
+            updateSlider();
+            resetAutoplay();
+          }
         });
+
       document
         .querySelector(".mob-center-arrow.right")
         .addEventListener("click", () => {
-          centerIndex++;
-          updateSlider();
-          resetAutoplay();
+          if (centerIndex < slides.length - 1) {
+            centerIndex++;
+            updateSlider();
+            resetAutoplay();
+          }
         });
 
-      // Click to center
-      slides.forEach((slide, index) => {
-        slide.addEventListener("click", () => {
-          centerIndex = index;
-          updateSlider();
-          resetAutoplay();
-        });
+      // Drag events
+      slider.addEventListener("mousedown", dragStart);
+      slider.addEventListener("mouseup", dragEnd);
+      slider.addEventListener("mouseleave", dragEnd);
+      slider.addEventListener("mousemove", dragAction);
 
-        // Drag events
-        slide.addEventListener("mousedown", dragStart);
-        slide.addEventListener("mouseup", dragEnd);
-        slide.addEventListener("mouseleave", dragEnd);
-        slide.addEventListener("mousemove", dragAction);
-
-        slide.addEventListener("touchstart", dragStart);
-        slide.addEventListener("touchend", dragEnd);
-        slide.addEventListener("touchmove", dragAction);
-      });
+      slider.addEventListener("touchstart", dragStart);
+      slider.addEventListener("touchend", dragEnd);
+      slider.addEventListener("touchmove", dragAction);
 
       function dragStart(e) {
         isDragging = true;
@@ -2789,9 +2763,9 @@
         const movedBy = endX - startX;
         const threshold = 50;
 
-        if (movedBy < -threshold) {
+        if (movedBy < -threshold && centerIndex < slides.length - 1) {
           centerIndex++;
-        } else if (movedBy > threshold) {
+        } else if (movedBy > threshold && centerIndex > 0) {
           centerIndex--;
         }
 
@@ -2799,16 +2773,24 @@
         resetAutoplay();
       }
 
-      // Autoplay
+      // Autoplay (no infinite loop)
       let autoplay = setInterval(() => {
-        centerIndex++;
+        if (centerIndex < slides.length - 1) {
+          centerIndex++;
+        } else {
+          centerIndex = 0; // restart from first
+        }
         updateSlider();
       }, autoplayInterval);
 
       function resetAutoplay() {
         clearInterval(autoplay);
         autoplay = setInterval(() => {
-          centerIndex++;
+          if (centerIndex < slides.length - 1) {
+            centerIndex++;
+          } else {
+            centerIndex = 0;
+          }
           updateSlider();
         }, autoplayInterval);
       }
