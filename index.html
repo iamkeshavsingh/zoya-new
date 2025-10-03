@@ -367,6 +367,7 @@
         height: 100%;
         object-fit: cover;
         display: block;
+        object-position: top;
       }
 
       .slide-main-overlay {
@@ -407,7 +408,7 @@
         h3 {
           color: white;
           text-align: left;
-          font-size: 21px;
+          font-size: 24px;
           line-height: 120%;
           font-weight: 200;
           letter-spacing: 1px;
@@ -1227,6 +1228,38 @@
         }
         .discoverSlider .slides {
           gap: 12px;
+        }
+      }
+
+      @media screen and (max-width: 1920px) {
+        .slider-section {
+          width: 100%;
+          max-width: 1600px !important;
+          margin: 0 auto;
+        }
+      }
+      @media screen and (max-width: 1700px) {
+        .slider-section {
+          width: 100%;
+          max-width: 1400px !important;
+          margin: 0 auto;
+        }
+        .slide-main-overlay h3 {
+          font-size: 21px;
+        }
+      }
+      @media screen and (max-width: 1440px) {
+        .slider-section {
+          width: 100%;
+          max-width: 1300px !important;
+          margin: 0 auto;
+        }
+      }
+      @media screen and (max-width: 1370px) {
+        .slider-section {
+          width: 100%;
+          max-width: 1200px !important;
+          margin: 0 auto;
         }
       }
     </style>
