@@ -317,7 +317,7 @@
       }
       .slider-section {
         width: 100%;
-        max-width: 1400px;
+        max-width: 1300px;
         margin: 0 auto;
       }
       .second_section_heading {
@@ -420,12 +420,15 @@
         left: 0;
         right: 0;
         padding: 32px 21px 0px 32px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+        /* background: linear-gradient(180deg, rgba(0, 0, 0, 0) 52.89%, rgba(0, 0, 0, 0.4) 100%); */
+
         color: white;
         display: none;
         opacity: 0;
         flex-direction: column;
         justify-content: flex-end;
+        height: 40%;
         /* justify-content: space-between;
         align-items: end; */
       }
@@ -465,28 +468,28 @@
         transition-delay: 0.2s;
         /* margin-bottom: 14px; */
       }
-      
+
       /* Animation states for active slide */
       .slide-overlay.animate-in .overlay-title {
         transform: translateY(-20px);
         opacity: 0;
       }
-      
+
       .slide-overlay.animate-in.active .overlay-title {
         transform: translateY(0px);
         opacity: 1;
       }
-      
+
       .slide-overlay.animate-in .overlay-description {
         transform: translateY(-20px);
         opacity: 0;
       }
-      
+
       .slide-overlay.animate-in.active .overlay-description {
         transform: translateY(0px);
         opacity: 1;
       }
-      
+
       .slide-overlay.animate-in.active .button-div {
         transform: translateY(0px);
         opacity: 1;
@@ -567,7 +570,7 @@
       @media screen and (max-wdth: 1400px) {
         .slider-section {
           /* width: 100%; */
-          max-width: 1300px;
+          max-width: 1200px;
           /* margin: 0 auto; */
         }
       }
@@ -2123,7 +2126,7 @@
               overlay.style.display = "flex";
               overlay.classList.add("animate-in");
               gsap.set(overlay, { opacity: 1 });
-              
+
               // Trigger animations with a slight delay
               setTimeout(() => {
                 overlay.classList.add("active");
