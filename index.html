@@ -39,6 +39,15 @@
       body::-webkit-scrollbar {
         display: none !important;
       }
+      .breakMob {
+        display: none;
+      }
+
+      @media screen and (max-width: 600px) {
+        .breakMob {
+          display: block;
+        }
+      }
       /* First Section styles */
 
       .first_section {
@@ -104,7 +113,7 @@
       }
       .first_section_rightpart_head {
         font-size: 88px;
-        font-weight: 500;
+        font-weight: 400;
         line-height: 100%;
         text-transform: uppercase;
         color: #523418;
@@ -553,17 +562,17 @@
           min-height: 720px;
         }
         .second_section {
-          padding: 35px 0px;
+          padding: 35px 0px 18px;
         }
         .second_section_heading {
           font-size: 28px;
-          margin-bottom: 23px;
+          margin-bottom: 18px;
           padding-right: 16px;
           padding-left: 16px;
         }
         .second_section_description {
           font-size: 14px;
-          margin-bottom: 40px;
+          margin-bottom: 32px;
           padding-right: 16px;
           padding-left: 16px;
         }
@@ -623,7 +632,7 @@
         max-width: 316px;
       }
       .button-div-mob img {
-        margin-top: -5px;
+        margin-top: -2px;
       }
       .mob-center-child-element {
         /* background: yellow; */
@@ -689,6 +698,12 @@
         }
         .sec2-slider_Mob {
           display: block;
+        }
+        .button-div-mob p {
+          font-size: 14px;
+          font-weight: normal;
+          letter-spacing: 1px;
+          color: #232323;
         }
       }
 
@@ -803,20 +818,21 @@
         .IntimateBgChild {
           padding-left: 20px;
           padding-right: 20px;
+          padding-top: 40px;
         }
         .IntimateBgHead {
           font-size: 28px;
-          margin-bottom: 23px;
+          margin-bottom: 16px;
         }
         .IntimateBgPara {
           font-size: 14px;
           line-height: 130%;
-          margin-bottom: 39px;
+          margin-bottom: 41px;
         }
         .IntimateBgImg {
           width: 90%;
           object-fit: cover;
-          margin: -73px auto 0;
+          margin: -95px auto 0;
         }
         .IntemateButtonDiv {
           display: flex;
@@ -974,6 +990,7 @@
       @media screen and (max-width: 600px) {
         .discoverSlider .caption {
           font-size: 12px;
+          padding: 12px 0 13px 11px;
         }
         .discoverSlider .slides {
           gap: 22px;
@@ -983,7 +1000,8 @@
           font-size: 28px;
           max-width: 281px;
           margin: 0 auto;
-          padding-top: 50px;
+          padding-top: 45px;
+          padding-bottom: 28px;
         }
 
         .discoverSlider .slide {
@@ -997,6 +1015,9 @@
         }
         .discoverSlider .arrow {
           display: none;
+        }
+        .discoverSlider .explore-btn {
+          margin-top: 35px;
         }
       }
       /* Girl section */
@@ -1054,7 +1075,7 @@
           gap: 0;
           /* margin: 80px 0; */
           flex-direction: column;
-          padding: 80px 10px;
+          padding: 73px 10px 84px;
         }
         .girlDesktopImg {
           display: none;
@@ -1068,7 +1089,7 @@
           display: block;
         }
         .sixth_section_heading {
-          margin-top: 22px;
+          margin-top: 24px;
           margin-bottom: 13px;
           text-align: left;
           font-size: 20px;
@@ -1592,7 +1613,8 @@
       </div>
       <div>
         <h3 class="sixth_section_heading AGaramondPro">
-          Found your style in our collection? Let's take the next step.
+          Found your style in our collection? <br class="breakMob" />
+          Let's take the next step.
         </h3>
 
         <button class="exploreBtn2">
