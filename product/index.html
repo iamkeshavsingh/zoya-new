@@ -80,8 +80,8 @@
       }
       .first_img_section {
         position: relative;
-        height: 801px;
-        width: 55%;
+        height: 777px;
+        width: 56%;
       }
       .img_section {
         width: 100%;
@@ -96,7 +96,8 @@
 
       .first_section_rightpart {
         padding-left: 66px;
-        width: 45%;
+        width: 44%;
+        padding-right: 86px;
       }
       .first_section_rightpart_head {
         font-size: 70px;
@@ -252,25 +253,27 @@
       .timeless_section {
         padding-top: 64px;
         position: relative;
-        max-width: 1440px;
-        margin: 0 auto;
+        margin-left: 120px;
+        /* max-width: 1440px; */
+        /* margin: 0 auto; */
       }
       .timeless_rightpart {
         display: flex;
         justify-content: end;
       }
       .timeless_rightpart img {
-        width: 923px;
+        /* width: 923px; */
+        width: 78%;
         height: 766px;
       }
       .timeless_card {
         position: absolute;
-        left: 122px;
+        left: 0;
         top: 164px;
         width: 459px;
         height: 565px;
         background-color: #fff;
-        padding: 52px 32px;
+        padding: 48px 32px;
       }
       .lineImg {
         margin-left: 10px;
@@ -334,6 +337,14 @@
         font-weight: normal;
         line-height: 100%;
         text-transform: uppercase;
+      }
+
+      @media screen and (max-width: 1440px) {
+        .timeless_rightpart img {
+          width: 923px;
+          /* width: 78%; */
+          height: 766px;
+        }
       }
 
       @media screen and (max-width: 600px) {
@@ -401,8 +412,8 @@
       /* Third Section */
       .third_sec {
         padding-top: 71px;
-        padding-left: 122px;
-        padding-right: 122px;
+        padding-left: 120px;
+        padding-right: 120px;
         max-width: 1440px;
         margin: 0 auto;
       }
@@ -412,14 +423,14 @@
       }
       .third_sec_leftpart img {
         width: 700px;
-        height: 625px;
+        height: 586px;
       }
       .third_sec_rightpart {
         margin-top: 25px;
       }
       .third_sec_rightpart_content {
         background-color: #fff;
-        padding: 50px 48px 61px 52px;
+        padding: 38px 49px 48px 54px;
       }
       .third_sec_rightpart_card_head {
         font-weight: 400;
@@ -440,7 +451,7 @@
         align-items: center;
         justify-content: start;
         gap: 15px;
-        margin-top: 34px;
+        margin-top: 32px;
         margin-bottom: 24px;
         margin-left: 31px;
       }
@@ -494,7 +505,7 @@
         height: 766px;
         position: relative;
         margin-top: 19px;
-        margin-bottom: 67px;
+        margin-bottom: 78px;
       }
       .fourthSec_card {
         position: absolute;
@@ -502,7 +513,7 @@
         top: 130px;
         width: 459px;
         height: 565px;
-        padding: 52px 32px;
+        padding: 52px 32px 52px 0;
       }
 
       @media screen and (max-width: 600px) {
@@ -538,11 +549,11 @@
       }
       .fifthSec_card {
         position: absolute;
-        left: 80px;
+        right: 120px;
         top: 130px;
         width: 459px;
-        height: 565px;
-        padding: 39px 32px;
+        height: 560px;
+        padding: 32px;
         background-color: #fff;
       }
 
@@ -638,8 +649,8 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: #c39784;
-        border: 1px solid #c89d7c;
+        background: #fff;
+        border: 1px solid #d9d9d9;
         color: #c89d7c;
         font-size: 1rem;
         padding: 3px 10px;
@@ -651,6 +662,8 @@
       }
       .discoverSlider .arrow img {
         margin-top: 5px;
+        width: 22px;
+        height: 22px;
       }
 
       .discoverSlider .arrow:hover {
@@ -1195,11 +1208,11 @@
         </div>
 
         <div class="left_arrow_div arrow left">
-          <img src="/images/arrowLeft.png" alt="arrow" />
+          <img src="/images/larow.png" alt="arrow" />
         </div>
 
         <div class="right_arrow_div arrow right">
-          <img src="/images/arrowRight.png" alt="arrow" />
+          <img src="/images/larow.png" alt="arrow" style="rotate: 180deg" />
         </div>
       </div>
 
