@@ -315,16 +315,16 @@
       .purityGroup {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 15px;
         margin-bottom: 39px;
       }
       .box {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         flex-direction: column;
-        min-width: 100px;
+        min-width: 80px;
       }
       .boxText {
         color: #232323;
@@ -332,7 +332,7 @@
         line-height: 22px;
         font-weight: 400;
         margin-top: 6px;
-        text-align: center;
+        /* text-align: center; */
       }
       .exploreBtn,
       .exploreBtn2 {
@@ -406,7 +406,7 @@
         }
         .box {
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
           flex-direction: column;
           min-width: 50px;
@@ -417,6 +417,12 @@
           line-height: 22px;
           font-weight: 400;
           margin-top: 6px;
+        }
+
+        .purityGroup2 .box {
+          align-items: center;
+        }
+        .purityGroup2 .boxText {
           text-align: center;
         }
       }
@@ -470,7 +476,7 @@
         gap: 15px;
         margin-top: 32px;
         margin-bottom: 24px;
-        margin-left: 31px;
+        margin-left: 55px;
       }
 
       @media screen and (max-width: 600px) {
@@ -1069,7 +1075,7 @@
               </p>
             </div>
           </div>
-          <button class="exploreBtn exploreBtnMob" style="margin-left: 42px">
+          <button class="exploreBtn exploreBtnMob" style="margin-left: 55px">
             <p>EXPLORE MORE</p>
             <span>
               <img src="/images/buttonArrow.svg" alt="arrow" />
