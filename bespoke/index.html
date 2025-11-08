@@ -4,26 +4,222 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="https://use.typekit.net/hjh2ywn.css" />
 
     <style>
       * {
-        padding: 0;
         margin: 0;
+        padding: 0;
         box-sizing: border-box;
       }
-      .flex {
-        display: flex;
+      html {
+        scroll-behavior: smooth;
       }
-      .items-center {
+
+      body {
+        font-family: "adobe-garamond-pro", serif;
+        margin: 0;
+      }
+      body::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      /* Journey Section Styles */
+
+      .journeySec {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 765px;
+      }
+      .headSecJourney {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+      .headingJourney {
+        font-weight: 500;
+        font-size: 60px;
+        line-height: 120%;
+        color: #383625;
+      }
+      .journeyContentSec {
+        display: flex;
         align-items: center;
       }
-      .justify-center {
-        justify-content: center;
+      .journeyContentSecLeft {
+        width: 50%;
+        padding-left: 120px;
+      }
+      .journeyContentSecLeft h3 {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 150%;
+        color: #4e4b31;
+      }
+      .journeyContentSecLeft h3 span {
+        font-size: 42px;
+      }
+      .smLine {
+        width: 34px;
+        border: 1px solid #885f39;
+        margin-top: 32px;
+        margin-bottom: 16px;
+      }
+      .journeyContentSecLeftPara {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 180%;
+        color: #4d4929;
+        max-width: 346px;
+      }
+      .journeyContentSecRight {
+        width: 50%;
+      }
+      .journeyContentSecRight img {
+        width: 705px;
+        height: 571px;
+        margin-left: 15px;
+      }
+
+      /* Third Section styles */
+
+      .third_sec {
+        background-image: url("../imgBespoke/thirdSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 718px;
+
+        position: relative;
+      }
+      .third_sec_content {
+        display: flex;
+        align-items: center;
+        gap: 23px;
+      }
+      .third_sec_content_left {
+        padding-left: 61px;
+      }
+      .third_sec_content_left img {
+        width: 826px;
+        height: 806px;
+        position: absolute;
+        top: -115px;
+      }
+      .third_sec_content_right {
+      }
+
+      /* Fourth Section Styles  */
+      .FourthSec {
+        /* background-image: url("../imgBespoke/fourthSecBg.png"); */
+        background-image: url("../imgBespoke/f1.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 1679px;
+        position: relative;
+      }
+      .FourthSecWidth {
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+      .FourthSecContent {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding-left: 120px;
+      }
+      .FourthSecContent img {
+        width: 875px;
+        height: 662px;
+      }
+      .fourthPara {
+        font-weight: 400;
+        font-size: 20px;
+        text-transform: uppercase;
+        line-height: 180%;
+        color: #4d4929;
+      }
+      .fourthSecBottomContent {
+        padding-left: 120px;
+      }
+      .fourthSecHead {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 150%;
+        color: #4e4b31;
+        padding-bottom: 11px;
+      }
+      .fourthSecHead span {
+        font-size: 42px;
       }
     </style>
   </head>
 
   <body>
-    hello
+    <section class="journeySec">
+      <div class="headSecJourney">
+        <img src="../imgBespoke/arrow.png" alt="" />
+        <h3 class="headingJourney">The Journey</h3>
+        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+      </div>
+
+      <div class="journeyContentSec">
+        <div class="journeyContentSecLeft">
+          <h3>
+            Where Imagination Wears <br />
+            <span> the Silhouette of Desire</span>
+          </h3>
+          <div class="smLine"></div>
+          <p class="journeyContentSecLeftPara">
+            A bespoke jewel begins not in metal or stone, but in a moment
+            suspended between thought and feeling a glimmer of memory, a quiet
+            pulse of longing.
+          </p>
+        </div>
+        <div class="journeyContentSecRight">
+          <img src="../imgBespoke/journey.png" alt="journey" />
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="third_sec">
+      <div class="third_sec_content">
+        <div class="third_sec_content_left">
+          <img src="../imgBespoke/thirdImg.png" alt="thirdImg" />
+        </div>
+        <div class="third_sec_content_right"></div>
+      </div>
+    </section> -->
+
+    <section class="FourthSec">
+      <div class="FourthSecWidth">
+        <div class="headSecJourney">
+          <img src="../imgBespoke/arrow.png" alt="" />
+          <h3 class="headingJourney">The Artistry</h3>
+          <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+        </div>
+        <div class="FourthSecContent">
+          <p class="fourthPara">Crafted to</p>
+          <img src="../imgBespoke/fourth.png" alt="fourth" />
+          <p class="fourthPara">Perfection</p>
+        </div>
+        <div class="fourthSecBottomContent">
+          <h3 class="fourthSecHead">
+            As Craft Transcends Creation
+            <br />
+            <span> and Becomes Immortality</span>
+          </h3>
+          <p class="journeyContentSecLeftPara">
+            A bespoke jewel begins not in metal or stone, but in a moment
+            suspended between thought and feeling a glimmer of memory, a quiet
+            pulse of longing.
+          </p>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
