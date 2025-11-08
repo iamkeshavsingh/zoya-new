@@ -87,7 +87,7 @@
       /* Third Section styles */
 
       .third_sec {
-        background-image: url("../imgBespoke/thirdSecBg.png");
+        background-image: url("../imgBespoke/secondSecBg.png");
         background-position: center;
         background-size: cover;
         width: 100%;
@@ -102,16 +102,47 @@
       }
       .third_sec_content_left {
         padding-left: 61px;
+        width: 50%;
       }
       .third_sec_content_left img {
         width: 826px;
         height: 806px;
         position: absolute;
-        top: -115px;
+        top: -155px;
+        object-fit: cover;
       }
       .third_sec_content_right {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-right: 87px;
       }
 
+      .third_sec_content_right img {
+        width: 174px;
+        height: 177px;
+      }
+      .third_sec_content_right h3 {
+        color: #4e4b31;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 150%;
+        text-align: center;
+        padding-bottom: 23px;
+      }
+      .third_sec_content_right h3 span {
+        font-size: 42px;
+      }
+      .third_sec_content_right p {
+        font-size: 14px;
+        line-height: 180%;
+        text-align: center;
+        font-weight: normal;
+        text-align: center;
+        max-width: 380px;
+      }
       /* Fourth Section Styles  */
       .FourthSec {
         /* background-image: url("../imgBespoke/fourthSecBg.png"); */
@@ -145,6 +176,30 @@
       }
       .fourthSecBottomContent {
         padding-left: 120px;
+        padding-right: 77px;
+        display: flex;
+      }
+      .fourthSecBottomContent2 {
+        padding-left: 120px;
+        padding-right: 77px;
+        display: flex;
+        padding-top: 110px;
+        padding-bottom: 95px;
+      }
+      .fourthSecBottomContentLeft {
+        width: 50%;
+      }
+      .fourthSecBottomContentLeft2 {
+        width: 50%;
+        padding-left: 99px;
+      }
+      .fourthSecBottomContentRight {
+        width: 50%;
+      }
+      .fourthSecBottomContentRight video {
+        width: 614px;
+        height: 345px;
+        border-radius: 8px;
       }
       .fourthSecHead {
         font-weight: 400;
@@ -155,6 +210,145 @@
       }
       .fourthSecHead span {
         font-size: 42px;
+      }
+      /* Fifth section styles */
+      .fifthSec {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 815px;
+        position: relative;
+      }
+      .fifthSectionContent {
+        padding-left: 119px;
+        padding-top: 93px;
+      }
+      .fifthSectionContent h3 {
+        color: #4e4b31;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 150%;
+        padding-bottom: 19px;
+      }
+      .fifthSectionContent h3 span {
+        font-size: 42px;
+      }
+      .fifthSectionContent p {
+        font-size: 16px;
+        line-height: 180%;
+        font-weight: normal;
+        max-width: 414px;
+        color: #4d4929;
+      }
+      .firstImg {
+        position: absolute;
+        bottom: 0;
+      }
+      .firstImg img {
+        width: 984px;
+        height: 564px;
+        object-fit: cover;
+      }
+      .secondImg {
+        position: absolute;
+        right: 0;
+        bottom: 0px;
+      }
+      .secondImg img {
+        width: 574px;
+        height: 633px;
+        object-fit: cover;
+      }
+      /* Sixth section styles */
+
+      .sixthSec {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 728px;
+        position: relative;
+      }
+      .sixthSectionContent {
+        display: flex;
+        align-items: center;
+        margin-top: 92px;
+        padding-right: 122px;
+      }
+      .sixthSectionContentLeft {
+        width: 50%;
+      }
+      .sixthSectionContentRight {
+        width: 50%;
+        padding-left: 49px;
+      }
+      .sixthSectionContentLeft img {
+        width: 700px;
+        height: 355px;
+        object-fit: cover;
+      }
+      .sixthSectionContentRight h3 {
+        font-weight: 500;
+        font-size: 38px;
+        line-height: 120%;
+        color: #4e4b31;
+        padding-bottom: 28px;
+      }
+      .sixthSectionContentRight p {
+        color: #4d4929;
+        font-size: 20px;
+        line-height: 180%;
+        font-weight: 500;
+      }
+      .sliderBtnParent {
+        display: flex;
+        align-items: end;
+        justify-content: end;
+      }
+      .sliderBtn {
+        width: 138px;
+        height: 48px;
+        border: 1px solid #b8b2a5;
+        border-radius: 8px;
+        margin-top: 64px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+      .sliderBtnPrev {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sliderBtnNext {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sliderBtnPrev img,
+      .sliderBtnNext img {
+        width: 19px;
+        height: 19px;
+      }
+      .vLine {
+        border: 0.5px solid #b8b2a5;
+        width: 16px;
+        rotate: 90deg;
+        position: absolute;
+        top: 13%;
+        left: 45%;
+      }
+      .vLine2 {
+        border: 0.5px solid #b8b2a5;
+        width: 16px;
+        rotate: 90deg;
+        position: absolute;
+        bottom: 13%;
+        left: 45%;
       }
     </style>
   </head>
@@ -186,14 +380,25 @@
       </div>
     </section>
 
-    <!-- <section class="third_sec">
+    <section class="third_sec">
       <div class="third_sec_content">
         <div class="third_sec_content_left">
           <img src="../imgBespoke/thirdImg.png" alt="thirdImg" />
         </div>
-        <div class="third_sec_content_right"></div>
+        <div class="third_sec_content_right">
+          <img src="../imgBespoke/pankh.png" alt="pankh" />
+          <h3>
+            When Craft Transcends Creation <br />
+            <span>and Becomes Immortality</span>
+          </h3>
+          <p>
+            Within the atelier’s silence, gold is coaxed into emotion and
+            gemstones awaken to light. Each gesture of the artisan is a verse,
+            each facet a breath of poetry.
+          </p>
+        </div>
       </div>
-    </section> -->
+    </section>
 
     <section class="FourthSec">
       <div class="FourthSecWidth">
@@ -208,16 +413,108 @@
           <p class="fourthPara">Perfection</p>
         </div>
         <div class="fourthSecBottomContent">
-          <h3 class="fourthSecHead">
-            As Craft Transcends Creation
+          <div class="fourthSecBottomContentLeft">
+            <h3 class="fourthSecHead">
+              As Craft Transcends Creation
+              <br />
+              <span> and Becomes Immortality</span>
+            </h3>
+            <p class="journeyContentSecLeftPara">
+              A bespoke jewel begins not in metal or stone, but in a moment
+              suspended between thought and feeling a glimmer of memory, a quiet
+              pulse of longing.
+            </p>
+          </div>
+          <div class="fourthSecBottomContentRight">
+            <video src="../imgBespoke/video1.mp4" autoplay muted></video>
+          </div>
+        </div>
+        <div class="fourthSecBottomContent2">
+          <div class="fourthSecBottomContentRight">
+            <video src="../imgBespoke/video2.mp4" autoplay muted></video>
+          </div>
+          <div class="fourthSecBottomContentLeft2">
+            <h3 class="fourthSecHead">
+              The Alchemy of
+
+              <br />
+              <span> Devotion and Detail</span>
+            </h3>
+            <p class="journeyContentSecLeftPara">
+              Each stroke of craft bears a prayer for perfection transforming
+              creation into something almost divine.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fifthSec">
+      <div class="headSecJourney">
+        <img src="../imgBespoke/arrow.png" alt="" />
+        <h3 class="headingJourney">Our Offerings</h3>
+        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+      </div>
+      <div class="fifthSectionContent">
+        <h3>
+          As Beauty Outgrows,
+          <br />
+          <span>Ornament to Become Art</span>
+        </h3>
+        <p>
+          A Zoya creation transcends adornment, it becomes an intimate dialogue
+          between soul, form and the poetry of craftsmanship
+        </p>
+      </div>
+      <div class="firstImg">
+        <img src="../imgBespoke/elephentGrp.png" alt="elephent" />
+      </div>
+      <div class="secondImg">
+        <img src="../imgBespoke/elephent.png" alt="elephent" />
+      </div>
+    </section>
+
+    <section class="sixthSec">
+      <div class="headSecJourney">
+        <img src="../imgBespoke/arrow.png" alt="" />
+        <h3 class="headingJourney">Our Creations</h3>
+        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+      </div>
+      <div class="sixthSectionContent">
+        <div class="sixthSectionContentLeft">
+          <img src="../imgBespoke/crown.png" alt="crown" />
+        </div>
+        <div class="sixthSectionContentRight">
+          <h3>DANCE OF THE PEACOCK</h3>
+          <p>
+            The tiara designed for the beauty pageant draws inspiration from the
+            majestic peacock, a symbol of grace, strength, and captivating
+            beauty. The peacock, with its vibrant plumage, mirrors the elegance,
+            poise, and power of a woman-radiant and enigmatic, bold yet refined.
+            She embraces her allure with confidence, folly aware of her being
             <br />
-            <span> and Becomes Immortality</span>
-          </h3>
-          <p class="journeyContentSecLeftPara">
-            A bespoke jewel begins not in metal or stone, but in a moment
-            suspended between thought and feeling a glimmer of memory, a quiet
-            pulse of longing.
+            This tiara features shades of green tourmaline and blue topaz, with
+            hints of pink tourmaline and garnet. The genistones echo the
+            iridescent hues of the peacock's tail. The seamless combination
+            makes the tiara a modern masterpiece of luxury and sophistication,
+            capturing the juxtaposition of nature and high couture.
           </p>
+          <div class="sliderBtnParent">
+            <div class="sliderBtn">
+              <div class="sliderBtnPrev">
+                <img src="../imgBespoke/lArrow.png" alt="PrevArrow" />
+              </div>
+              <div class="sliderBtnNext">
+                <img
+                  src="../imgBespoke/lArrow.png"
+                  alt="NextArrow"
+                  style="rotate: 180deg"
+                />
+              </div>
+              <div class="vLine"></div>
+              <div class="vLine2"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
