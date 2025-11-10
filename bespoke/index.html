@@ -350,6 +350,96 @@
         bottom: 13%;
         left: 45%;
       }
+      .fifthSecBottomCards {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        padding-bottom: 51px;
+      }
+      .fifthCardGrp {
+        display: flex;
+        align-items: center;
+        gap: 42px;
+        padding-left: 97px;
+        padding-top: 10px;
+        padding-bottom: 55px;
+      }
+      .fifthCard1,
+      .fifthCard2,
+      .fifthCard3 {
+        position: relative;
+      }
+      .fifthCard1 img {
+        width: 395px;
+        min-height: 432px;
+        max-height: 432px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .fifthCard2 img {
+        width: 395px;
+        min-height: 432px;
+        object-fit: cover;
+        margin-top: -50px;
+      }
+      .fifthCard3 img {
+        width: 395px;
+        min-height: 432px;
+        object-fit: cover;
+        margin-top: -40px;
+      }
+      .fifthCardContent {
+        position: absolute;
+        left: 25px;
+        top: 314px;
+        right: 55px;
+      }
+      .fifthCardContent h3 {
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 150%;
+        color: #4e4b31;
+        padding-bottom: 10px;
+      }
+      .fifthCardContent p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 23px;
+        color: #4d4929;
+      }
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border: 0.4px solid #885f39;
+        width: 337px;
+        height: 44px;
+        border-radius: 2px;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+      .cta p {
+        font-size: 14px;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #412a16;
+        letter-spacing: 1px;
+      }
+      .cta img {
+        width: 47px;
+        height: 24px;
+      }
+      /* Testimonal Styles */
+      .testimonialSec {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 903px;
+        padding-top: 75px;
+      }
     </style>
   </head>
 
@@ -473,7 +563,44 @@
         <img src="../imgBespoke/elephent.png" alt="elephent" />
       </div>
     </section>
-
+    <section class="fifthSecBottomCards">
+      <div class="fifthCardGrp">
+        <div class="fifthCard1">
+          <img src="../imgBespoke/card1Bg.png" alt="card1Bg" />
+          <div class="fifthCardContent">
+            <h3>Bespoke Necklace & Accessories</h3>
+            <p>
+              Committed to celebrating the rare and beautiful spirit of a woman,
+              ZOYA designs
+            </p>
+          </div>
+        </div>
+        <div class="fifthCard2">
+          <img src="../imgBespoke/card2Bg.png" alt="card2Bg" />
+          <div class="fifthCardContent">
+            <h3>Obj-De-Art</h3>
+            <p>
+              Committed to celebrating the rare and beautiful spirit of a woman,
+              ZOYA designs
+            </p>
+          </div>
+        </div>
+        <div class="fifthCard3">
+          <img src="../imgBespoke/card3Bg.png" alt="card3Bg" />
+          <div class="fifthCardContent">
+            <h3>Engraving & Customization</h3>
+            <p>
+              Committed to celebrating the rare and beautiful spirit of a woman,
+              ZOYA designs
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="cta">
+        <p>Begin Your Bespoke Journey.</p>
+        <img src="../imgBespoke/arrow-right.png" alt="arrow-right" />
+      </div>
+    </section>
     <section class="sixthSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
@@ -516,6 +643,16 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Testimonial Styles -->
+
+    <section class="testimonialSec">
+      <div class="headSecJourney">
+        <img src="../imgBespoke/arrow.png" alt="" />
+        <h3 class="headingJourney">Testimonals</h3>
+        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
       </div>
     </section>
   </body>
