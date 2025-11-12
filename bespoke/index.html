@@ -24,6 +24,10 @@
         display: none !important;
       }
 
+      .hidden {
+        display: none;
+      }
+
       /* Journey Section Styles */
 
       .journeySec {
@@ -306,7 +310,8 @@
         align-items: end;
         justify-content: end;
       }
-      .sliderBtn {
+      .sliderBtn,
+      .sliderBtn2 {
         width: 138px;
         height: 48px;
         border: 1px solid #b8b2a5;
@@ -316,6 +321,9 @@
         display: flex;
         align-items: center;
         cursor: pointer;
+      }
+      .sliderBtn2 {
+        margin-top: 0;
       }
       .sliderBtnPrev {
         width: 50%;
@@ -331,8 +339,8 @@
       }
       .sliderBtnPrev img,
       .sliderBtnNext img {
-        width: 19px;
-        height: 19px;
+        width: 19px !important;
+        height: 19px !important;
       }
       .vLine {
         border: 0.5px solid #b8b2a5;
@@ -437,8 +445,162 @@
         background-position: center;
         background-size: cover;
         width: 100%;
-        height: 903px;
+        height: 100%;
         padding-top: 75px;
+        position: relative;
+      }
+      .testimonialImg img {
+        width: 734px;
+        height: 703px;
+        object-fit: cover;
+      }
+      .testimonialContent {
+        position: absolute;
+        right: 105px;
+        top: 207px;
+        text-align: end;
+        display: flex;
+        align-items: end;
+        justify-content: end;
+        flex-direction: column;
+      }
+      .testimonialContent img {
+        width: 97px;
+        height: 113px;
+      }
+      .testimonialContent h3 {
+        color: #4e4b31;
+        font-size: 32px;
+        font-weight: 400;
+        padding-top: 58px;
+      }
+      .testimonialContent span {
+        font-size: 42px;
+      }
+      .testimonialContent p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 180%;
+        max-width: 430px;
+        color: #4d4929;
+      }
+      .testimonialContent h2 {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 180%;
+        color: #4d4929;
+        padding-top: 36px;
+        padding-bottom: 27px;
+      }
+      .miniVideoSecSlider {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .miniVideoSecSlider img {
+        width: 103px;
+        height: 83px;
+      }
+      .Line {
+        width: 35px;
+        border: 1px solid #885f39;
+        rotate: 90deg;
+      }
+      /* Contact Styles */
+      .contactSec {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 796px;
+      }
+      .contactBg {
+        position: relative;
+      }
+      .contactBg img {
+        width: 100%;
+        height: 740px;
+      }
+      .contactFormSec {
+        position: absolute;
+        top: 162px;
+        right: 94px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        min-width: 562px;
+      }
+      .contactFormSec p {
+        font-size: 14px;
+        line-height: 22px;
+        color: #232323;
+        padding-bottom: 9px;
+        text-transform: uppercase;
+      }
+      .contactFormSec input {
+        border: 1px solid #e8e3d9;
+        background-color: #fff;
+        height: 52px;
+        width: 100%;
+        padding-left: 19px;
+        color: #b3b3b3;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 4px;
+        font-family: "adobe-garamond-pro", serif;
+        margin-bottom: 25px;
+      }
+      .halfInput {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        width: 100%;
+      }
+      .halfInput div {
+        width: 100%;
+      }
+      .contactFormSec textarea {
+        border: 1px solid #e8e3d9;
+        background-color: #fff;
+        height: 91px;
+        width: 100%;
+        padding-left: 19px;
+        color: #b3b3b3;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 4px;
+        font-family: "adobe-garamond-pro", serif;
+        margin-bottom: 34px;
+        padding-top: 14px;
+      }
+      .formCtas {
+        display: flex;
+        align-items: center;
+        gap: 33px;
+        position: relative;
+      }
+      .formBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 11px;
+        background-color: #4e3721;
+        border: 0.4px solid #885f39;
+        border-radius: 2px;
+        height: 44px;
+        padding: 15px 12px;
+      }
+      .formBtn p {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 100%;
+        color: #fff;
+        padding-bottom: 0px;
+      }
+      .formBtn img {
+        width: 33px;
+        height: 16px;
       }
     </style>
   </head>
@@ -648,12 +810,207 @@
 
     <!-- Testimonial Styles -->
 
-    <section class="testimonialSec">
+    <!-- <section class="testimonialSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Testimonals</h3>
         <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
       </div>
+      <div class="testimonialImg">
+        <img src="../imgBespoke/girl.png" alt="girl" />
+        <div class="testimonialContent">
+          <img src="../imgBespoke/logoMark.png" alt="logoMark" />
+          <h3>
+            Jewels that are not just <br />
+            <span>made, but imagined with you</span>
+          </h3>
+          <div class="smLine"></div>
+          <p>
+            Committed to celebrating the rare and beautiful spirit of a woman,
+            ZOYA designs and crafts precious moments suspended in time.
+            Committed to celebrating the rare and beautiful spirit of a woman,
+            ZOYA designs and crafts precious moments suspended in time.
+          </p>
+          <h2>RACHEL GREEN, INDIA</h2>
+          <div class="miniVideoSecSlider">
+            <img src="../imgBespoke/miniVideo.png" alt="miniVideo" />
+            <div class="Line"></div>
+            <div class="sliderBtnParent">
+              <div class="sliderBtn2">
+                <div class="sliderBtnPrev">
+                  <img src="../imgBespoke/lArrow.png" alt="PrevArrow" />
+                </div>
+                <div class="sliderBtnNext">
+                  <img
+                    src="../imgBespoke/lArrow.png"
+                    alt="NextArrow"
+                    style="rotate: 180deg"
+                  />
+                </div>
+                <div class="vLine"></div>
+                <div class="vLine2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="testimonialSec">
+      <div class="headSecJourney">
+        <img src="../imgBespoke/arrow.png" alt="" />
+        <h3 class="headingJourney">Testimonials</h3>
+        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+      </div>
+
+      <div class="testimonialImg">
+        <img src="../imgBespoke/girl.png" alt="girl" />
+        <div class="testimonialContent">
+          <img src="../imgBespoke/logoMark.png" alt="logoMark" />
+          <h3 id="testimonialTitle">
+            Jewels that are not just <br />
+            <span>made, but imagined with you</span>
+          </h3>
+          <div class="smLine"></div>
+          <p id="testimonialText">
+            Committed to celebrating the rare and beautiful spirit of a woman,
+            ZOYA designs and crafts precious moments suspended in time.
+          </p>
+          <h2 id="testimonialName">RACHEL GREEN, INDIA</h2>
+
+          <div class="miniVideoSecSlider">
+            <img
+              id="testimonialVideo"
+              src="../imgBespoke/miniVideo.png"
+              alt="miniVideo"
+            />
+            <div id="line" class="Line"></div>
+            <div class="sliderBtnParent">
+              <div class="sliderBtn2">
+                <div class="sliderBtnPrev" id="prevBtn">
+                  <img src="../imgBespoke/lArrow.png" alt="PrevArrow" />
+                </div>
+                <div class="sliderBtnNext" id="nextBtn">
+                  <img
+                    src="../imgBespoke/lArrow.png"
+                    alt="NextArrow"
+                    style="rotate: 180deg"
+                  />
+                </div>
+                <div class="vLine"></div>
+                <div class="vLine2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <section class="contactSec">
+      <div class="headSecJourney">
+        <img src="../imgBespoke/arrow.png" alt="" />
+        <h3 class="headingJourney">Contact Us</h3>
+        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+      </div>
+
+      <div class="contactBg">
+        <img src="../imgBespoke/contactBg.png" alt="contactBg" />
+        <div class="contactFormSec">
+          <p>Full name</p>
+          <input type="text" placeholder="Eg: John Thomas" />
+          <div class="halfInput">
+            <div>
+              <p>Email ID</p>
+              <input type="text" placeholder="Eg: johnthomas20@company.com" />
+            </div>
+            <div>
+              <p>Phone Number</p>
+              <input type="text" placeholder="Eg: 987-6543-210" />
+            </div>
+          </div>
+          <div class="halfInput">
+            <div>
+              <p>Appointment Date & Time</p>
+              <input type="text" placeholder="02/08/2024" />
+            </div>
+            <div>
+              <p>REFERENCE IMAGE (Optional)</p>
+              <input type="text" placeholder="Upload File here" />
+            </div>
+          </div>
+          <p>Tell us more about your bespoke needs</p>
+          <textarea type="text" placeholder="Message"></textarea>
+          <div class="formCtas">
+            <div class="formBtn">
+              <p>SUBMIT REQUEST</p>
+              <img src="../imgBespoke/arrow-rightW.png" alt="rightW" />
+            </div>
+            <div class="vLine"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial Script -->
+    <script>
+      const testimonials = [
+        {
+          title:
+            "Jewels that are not just <br><span>made, but imagined with you</span>",
+          text: "Committed to celebrating the rare and beautiful spirit of a woman, ZOYA designs and crafts precious moments suspended in time.",
+          name: "RACHEL GREEN, INDIA",
+          video: "../imgBespoke/miniVideo.png",
+        },
+        {
+          title: "Designs inspired by <br><span>the elegance within</span>",
+          text: "Every piece reflects sophistication and grace, bringing stories of timeless beauty to life through artful craftsmanship.",
+          name: "MONICA BING, LONDON",
+          video: "../imgBespoke/miniVideo.png",
+        },
+        {
+          title: "Where imagination meets <br><span>eternal brilliance</span>",
+          text: "Crafted for the modern woman, each creation is a statement of individuality, art, and passion beyond measure.",
+          name: "PHOEBE BUFFAY, NEW YORK",
+          video: "",
+        },
+      ];
+
+      let current = 0;
+
+      const titleEl = document.getElementById("testimonialTitle");
+      const textEl = document.getElementById("testimonialText");
+      const nameEl = document.getElementById("testimonialName");
+      const videoEl = document.getElementById("testimonialVideo");
+      const lineEl = document.getElementById("line");
+
+      const nextBtn = document.getElementById("nextBtn");
+      const prevBtn = document.getElementById("prevBtn");
+
+      nextBtn.addEventListener("click", () => {
+        current = (current + 1) % testimonials.length;
+        updateTestimonial();
+      });
+
+      prevBtn.addEventListener("click", () => {
+        current = (current - 1 + testimonials.length) % testimonials.length;
+        updateTestimonial();
+      });
+
+      function updateTestimonial() {
+        const t = testimonials[current];
+        videoEl.src = t.image;
+        titleEl.innerHTML = t.title;
+        textEl.textContent = t.text;
+        nameEl.textContent = t.name;
+        if (t.video) {
+          videoEl.src = t.video;
+          videoEl.classList.remove("hidden");
+          lineEl.classList.remove("hidden");
+        } else {
+          videoEl.classList.add("hidden");
+          lineEl.classList.add("hidden");
+        }
+      }
+    </script>
   </body>
 </html>
