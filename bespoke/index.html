@@ -566,47 +566,42 @@
       }
       /* Video Testimonial */
 
-      .videoModal {
-        display: none; /* Hidden initially */
+      .modal {
+        display: none;
         position: fixed;
         z-index: 9999;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.85);
+        background-color: rgba(0, 0, 0, 0.75);
         justify-content: center;
         align-items: center;
       }
 
-      .videoModalContent {
-        background-color: #000;
-        border-radius: 10px;
-        padding: 10px;
-        width: 70%;
-        max-width: 800px;
+      .modal-content {
         position: relative;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        width: 80%;
+        max-width: 800px;
+        background: #000;
+        border-radius: 10px;
+        overflow: hidden;
       }
 
-      .closeModal {
-        position: absolute;
-        top: -35px;
-        right: -35px;
-        color: white;
-        font-size: 40px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      .closeModal:hover {
-        color: #ff4444;
-      }
-
-      .videoModal video {
-        border-radius: 8px;
-        outline: none;
+      .modal video {
         width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .closeBtn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        color: #fff;
+        font-size: 30px;
+        cursor: pointer;
+        z-index: 10;
       }
 
       /* Contact Styles */
@@ -1246,19 +1241,10 @@
     </section>
 
     <!-- VIDEO MODAL -->
-    <div id="videoModal" class="videoModal">
-      <div class="videoModalContent">
-        <span class="closeModal">&times;</span>
-        <video
-          id="testimonialModalVideo"
-          width="100%"
-          height="auto"
-          controls
-          autoplay
-        >
-          <source src="../videos/testimonial.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+    <div id="videoModal" class="modal">
+      <div class="modal-content">
+        <span class="closeBtn">&times;</span>
+        <video id="modalVideo" controls autoplay></video>
       </div>
     </div>
 
@@ -1487,14 +1473,14 @@
     </section>
 
     <!-- Testimonial Script -->
-    <script>
+    <!-- <script>
       const testimonials = [
         {
           title:
             "Jewels that are not just <br><span>made, but imagined with you</span>",
           text: "Committed to celebrating the rare and beautiful spirit of a woman, ZOYA designs and crafts precious moments suspended in time.",
           name: "RACHEL GREEN, INDIA",
-          video: "../imgBespoke/miniVideo.png",
+          video: "../imgBespoke/video1.mp4",
         },
         {
           title: "Designs inspired by <br><span>the elegance within</span>",
@@ -1546,6 +1532,101 @@
           lineEl.classList.add("hidden");
         }
       }
+    </script> -->
+
+    <script>
+      const testimonials = [
+        {
+          title:
+            "Jewels that are not just <br><span>made, but imagined with you</span>",
+          text: "Committed to celebrating the rare and beautiful spirit of a woman, ZOYA designs and crafts precious moments suspended in time.",
+          name: "RACHEL GREEN, INDIA",
+          videoThumb: "../imgBespoke/miniVideo.png",
+          videoSrc: "../imgBespoke/video1.mp4",
+        },
+        {
+          title: "Designs inspired by <br><span>the elegance within</span>",
+          text: "Every piece reflects sophistication and grace, bringing stories of timeless beauty to life through artful craftsmanship.",
+          name: "MONICA BING, LONDON",
+          videoThumb: "../imgBespoke/miniVideo.png",
+          videoSrc: "../imgBespoke/video2.mp4",
+        },
+        {
+          title: "Where imagination meets <br><span>eternal brilliance</span>",
+          text: "Crafted for the modern woman, each creation is a statement of individuality, art, and passion beyond measure.",
+          name: "PHOEBE BUFFAY, NEW YORK",
+          videoThumb: "../imgBespoke/miniVideo.png",
+          videoSrc: "../imgBespoke/video1.mp4",
+        },
+      ];
+
+      let current = 0;
+
+      const titleEl = document.getElementById("testimonialTitle");
+      const textEl = document.getElementById("testimonialText");
+      const nameEl = document.getElementById("testimonialName");
+      const videoEl = document.getElementById("testimonialVideo");
+      const lineEl = document.getElementById("line");
+
+      const nextBtn = document.getElementById("nextBtn");
+      const prevBtn = document.getElementById("prevBtn");
+
+      const modal = document.getElementById("videoModal");
+      const modalVideo = document.getElementById("modalVideo");
+      const closeBtn = document.querySelector(".closeBtn");
+
+      nextBtn.addEventListener("click", () => {
+        current = (current + 1) % testimonials.length;
+        updateTestimonial();
+      });
+
+      prevBtn.addEventListener("click", () => {
+        current = (current - 1 + testimonials.length) % testimonials.length;
+        updateTestimonial();
+      });
+
+      function updateTestimonial() {
+        const t = testimonials[current];
+        titleEl.innerHTML = t.title;
+        textEl.textContent = t.text;
+        nameEl.textContent = t.name;
+        videoEl.src = t.videoThumb;
+        if (t.videoThumb) {
+          videoEl.classList.remove("hidden");
+          lineEl.classList.remove("hidden");
+        } else {
+          videoEl.classList.add("hidden");
+          lineEl.classList.add("hidden");
+        }
+      }
+
+      // Open modal on video thumbnail click
+      videoEl.addEventListener("click", () => {
+        const t = testimonials[current];
+        modal.style.display = "flex";
+        modalVideo.src = t.videoSrc + "?autoplay=1";
+        modalVideo.play();
+      });
+
+      // Close modal on close button
+      closeBtn.addEventListener("click", () => {
+        closeModal();
+      });
+
+      // Close modal on outside click
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      function closeModal() {
+        modal.style.display = "none";
+        modalVideo.pause();
+        modalVideo.currentTime = 0;
+      }
+
+      updateTestimonial();
     </script>
 
     <!-- City Slider -->
