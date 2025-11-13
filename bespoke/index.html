@@ -394,6 +394,8 @@
         padding-left: 97px;
         padding-top: 10px;
         padding-bottom: 55px;
+        max-width: 1440px;
+        margin: 0 auto;
       }
       .fifthCard1,
       .fifthCard2,
@@ -562,6 +564,51 @@
         border: 1px solid #885f39;
         rotate: 90deg;
       }
+      /* Video Testimonial */
+
+      .videoModal {
+        display: none; /* Hidden initially */
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .videoModalContent {
+        background-color: #000;
+        border-radius: 10px;
+        padding: 10px;
+        width: 70%;
+        max-width: 800px;
+        position: relative;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .closeModal {
+        position: absolute;
+        top: -35px;
+        right: -35px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .closeModal:hover {
+        color: #ff4444;
+      }
+
+      .videoModal video {
+        border-radius: 8px;
+        outline: none;
+        width: 100%;
+      }
+
       /* Contact Styles */
       .contactSec {
         background-image: url("../imgBespoke/secondSecBg.png");
@@ -846,14 +893,19 @@
         font-weight: 400;
       }
       /* Letest Press Styles */
-      .letestPress {
+      .letestPressSec {
         background-color: #eaeae8;
         padding: 0 155px;
+      }
+      .letestPress {
+        max-width: 1440px;
+        margin: 0 auto;
       }
 
       .letestPressSlider {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 91px;
         overflow: hidden;
       }
@@ -1193,6 +1245,23 @@
       </div>
     </section>
 
+    <!-- VIDEO MODAL -->
+    <div id="videoModal" class="videoModal">
+      <div class="videoModalContent">
+        <span class="closeModal">&times;</span>
+        <video
+          id="testimonialModalVideo"
+          width="100%"
+          height="auto"
+          controls
+          autoplay
+        >
+          <source src="../videos/testimonial.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
     <section class="contactSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
@@ -1297,113 +1366,123 @@
     </section>
 
     <!-- Letest Press HTML -->
+    <section class="letestPressSec">
+      <div class="letestPress">
+        <div class="headSecJourney">
+          <img src="../imgBespoke/arrow.png" alt="" />
+          <h3 class="headingJourney">Latest Press</h3>
+          <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+        </div>
 
-    <section class="letestPress">
-      <div class="headSecJourney">
-        <img src="../imgBespoke/arrow.png" alt="" />
-        <h3 class="headingJourney">Latest Press</h3>
-        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
-      </div>
+        <div class="letestPressSlider">
+          <img
+            src="../imgBespoke/prevSliderImg.png"
+            alt="prev"
+            class="imgSlider letestPrevBtn"
+          />
 
-      <div class="letestPressSlider">
-        <img
-          src="../imgBespoke/prevSliderImg.png"
-          alt="prev"
-          class="imgSlider letestPrevBtn"
-        />
-
-        <div class="sliderWrapper">
-          <div class="sliderTrack">
-            <!-- CARD 1 -->
-            <div class="letestCard">
-              <div class="letestCardLeft">
-                <img
-                  src="../imgBespoke/letestLeftImg.png"
-                  alt="letestLeftImg"
-                />
-              </div>
-              <div class="letestCardRight">
-                <h4>
-                  Unveiling the Mayura, High Jewellery Brand Zoya’s First Ever
-                  Objet D’art
-                </h4>
-                <p>
-                  Beyond high jewellery, Zoya’s objet d’arts are a lesson in
-                  Indian craftsmanship. The Mayura is one such work of
-                  precision.
-                </p>
-                <div class="nameDate">
-                  <p>Sujata Dugar</p>
-                  <span></span>
-                  <p>Sep 2, 2025</p>
+          <div class="sliderWrapper">
+            <div class="sliderTrack">
+              <!-- CARD 1 -->
+              <div class="letestCard">
+                <div class="letestCardLeft">
+                  <img
+                    src="../imgBespoke/letestLeftImg.png"
+                    alt="letestLeftImg"
+                  />
                 </div>
-                <div class="cta3">
-                  <p>READ MORE</p>
-                  <img src="../imgBespoke/arrow-right.png" alt="arrow-right" />
-                </div>
-              </div>
-            </div>
-
-            <!-- CARD 2 -->
-            <div class="letestCard">
-              <div class="letestCardLeft">
-                <img
-                  src="../imgBespoke/letestLeftImg.png"
-                  alt="letestLeftImg2"
-                />
-              </div>
-              <div class="letestCardRight">
-                <h4>Elegance Redefined: Zoya’s New Diamond Collection</h4>
-                <p>
-                  The collection embodies grace, sophistication and India’s
-                  evolving modern woman.
-                </p>
-                <div class="nameDate">
-                  <p>Ritika Sen</p>
-                  <span></span>
-                  <p>Aug 20, 2025</p>
-                </div>
-                <div class="cta3">
-                  <p>READ MORE</p>
-                  <img src="../imgBespoke/arrow-right.png" alt="arrow-right" />
+                <div class="letestCardRight">
+                  <h4>
+                    Unveiling the Mayura, High Jewellery Brand Zoya’s First Ever
+                    Objet D’art
+                  </h4>
+                  <p>
+                    Beyond high jewellery, Zoya’s objet d’arts are a lesson in
+                    Indian craftsmanship. The Mayura is one such work of
+                    precision.
+                  </p>
+                  <div class="nameDate">
+                    <p>Sujata Dugar</p>
+                    <span></span>
+                    <p>Sep 2, 2025</p>
+                  </div>
+                  <div class="cta3">
+                    <p>READ MORE</p>
+                    <img
+                      src="../imgBespoke/arrow-right.png"
+                      alt="arrow-right"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- CARD 3 -->
-            <div class="letestCard">
-              <div class="letestCardLeft">
-                <img
-                  src="../imgBespoke/letestLeftImg.png"
-                  alt="letestLeftImg3"
-                />
-              </div>
-              <div class="letestCardRight">
-                <h4>Zoya Launches Festive Line Inspired by the Lotus</h4>
-                <p>
-                  A poetic celebration of purity and beauty in nature, captured
-                  in exquisite diamonds.
-                </p>
-                <div class="nameDate">
-                  <p>Anjali Verma</p>
-                  <span></span>
-                  <p>Jul 5, 2025</p>
+              <!-- CARD 2 -->
+              <div class="letestCard">
+                <div class="letestCardLeft">
+                  <img
+                    src="../imgBespoke/letestLeftImg.png"
+                    alt="letestLeftImg2"
+                  />
                 </div>
-                <div class="cta3">
-                  <p>READ MORE</p>
-                  <img src="../imgBespoke/arrow-right.png" alt="arrow-right" />
+                <div class="letestCardRight">
+                  <h4>Elegance Redefined: Zoya’s New Diamond Collection</h4>
+                  <p>
+                    The collection embodies grace, sophistication and India’s
+                    evolving modern woman.
+                  </p>
+                  <div class="nameDate">
+                    <p>Ritika Sen</p>
+                    <span></span>
+                    <p>Aug 20, 2025</p>
+                  </div>
+                  <div class="cta3">
+                    <p>READ MORE</p>
+                    <img
+                      src="../imgBespoke/arrow-right.png"
+                      alt="arrow-right"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 3 -->
+              <div class="letestCard">
+                <div class="letestCardLeft">
+                  <img
+                    src="../imgBespoke/letestLeftImg.png"
+                    alt="letestLeftImg3"
+                  />
+                </div>
+                <div class="letestCardRight">
+                  <h4>Zoya Launches Festive Line Inspired by the Lotus</h4>
+                  <p>
+                    A poetic celebration of purity and beauty in nature,
+                    captured in exquisite diamonds.
+                  </p>
+                  <div class="nameDate">
+                    <p>Anjali Verma</p>
+                    <span></span>
+                    <p>Jul 5, 2025</p>
+                  </div>
+                  <div class="cta3">
+                    <p>READ MORE</p>
+                    <img
+                      src="../imgBespoke/arrow-right.png"
+                      alt="arrow-right"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <img
-          src="../imgBespoke/prevSliderImg.png"
-          alt="next"
-          style="rotate: 180deg"
-          class="imgSlider letestNextBtn"
-        />
+          <img
+            src="../imgBespoke/prevSliderImg.png"
+            alt="next"
+            style="rotate: 180deg"
+            class="imgSlider letestNextBtn"
+          />
+        </div>
       </div>
     </section>
 
@@ -1636,6 +1715,36 @@
         } else {
           currentIndex = totalCards - 1; // Go to last card
           track.style.transform = `translateX(-${cardWidth * currentIndex}px)`;
+        }
+      });
+    </script>
+
+    <!-- Video Testimonial -->
+
+    <script>
+      const openVideoBtn = document.getElementById("testimonialVideo");
+      const videoModal = document.getElementById("videoModal");
+      const closeModal = document.querySelector(".closeModal");
+      const modalVideo = document.getElementById("testimonialModalVideo");
+
+      // Open modal when image is clicked
+      openVideoBtn.addEventListener("click", () => {
+        videoModal.style.display = "flex";
+        modalVideo.currentTime = 0;
+        modalVideo.play();
+      });
+
+      // Close modal when ❌ is clicked
+      closeModal.addEventListener("click", () => {
+        videoModal.style.display = "none";
+        modalVideo.pause();
+      });
+
+      // Close modal when clicking outside the video box
+      window.addEventListener("click", (e) => {
+        if (e.target === videoModal) {
+          videoModal.style.display = "none";
+          modalVideo.pause();
         }
       });
     </script>
