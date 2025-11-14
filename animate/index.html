@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.typekit.net/hjh2ywn.css" />
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+
+    <!-- PIXI (for displacement reveal) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "adobe-garamond-pro", serif;
+        margin: 0;
+      }
+      body::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* Journey Section Styles */
+
+      .journeySec {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 765px;
+      }
+      .headSecJourney {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+      .headingJourney {
+        font-weight: 500;
+        font-size: 60px;
+        line-height: 120%;
+        color: #383625;
+      }
+      .journeyContentSec {
+        display: flex;
+        align-items: center;
+      }
+      .journeyContentSecLeft {
+        width: 50%;
+        padding-left: 120px;
+      }
+      .journeyContentSecLeft h3 {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 150%;
+        color: #4e4b31;
+      }
+      .journeyContentSecLeft h3 span {
+        font-size: 42px;
+      }
+      .smLine {
+        width: 34px;
+        border: 1px solid #885f39;
+        margin-top: 32px;
+        margin-bottom: 16px;
+      }
+      .journeyContentSecLeftPara {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 180%;
+        color: #4d4929;
+        max-width: 346px;
+      }
+      .journeyContentSecRight {
+        width: 50%;
+      }
+      /* The image inside will be replaced by a PIXI canvas at runtime */
+      .journeyContentSecRight img {
+        width: 705px;
+        height: 571px;
+        margin-left: 15px;
+        display: block;
+      }
+
+      /* Third Section styles */
+
+      .third_sec {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 718px;
+
+        position: relative;
+      }
+      .third_sec_content {
+        display: flex;
+        align-items: center;
+        gap: 23px;
+      }
+      .third_sec_content_left {
+        padding-left: 61px;
+        width: 50%;
+      }
+      .third_sec_content_left img {
+        width: 826px;
+        height: 806px;
+        position: absolute;
+        top: -155px;
+        object-fit: cover;
+      }
+      .third_sec_content_right {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-right: 87px;
+      }
+
+      .third_sec_content_right img {
+        width: 174px;
+        height: 177px;
+      }
+      .third_sec_content_right h3 {
+        color: #4e4b31;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 150%;
+        text-align: center;
+        padding-bottom: 23px;
+      }
+      .third_sec_content_right h3 span {
+        font-size: 42px;
+      }
+      .third_sec_content_right p {
+        font-size: 14px;
+        line-height: 180%;
+        text-align: center;
+        font-weight: normal;
+        text-align: center;
+        max-width: 380px;
+      }
+      /* Fourth Section Styles  */
+      .FourthSec {
+        /* background-image: url("../imgBespoke/fourthSecBg.png"); */
+        background-image: url("../imgBespoke/f1.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 1679px;
+        position: relative;
+      }
+      .FourthSecWidth {
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+      .FourthSecContent {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding-left: 120px;
+      }
+      .FourthSecContent img {
+        width: 875px;
+        height: 662px;
+      }
+      .fourthPara {
+        font-weight: 400;
+        font-size: 20px;
+        text-transform: uppercase;
+        line-height: 180%;
+        color: #4d4929;
+      }
+      .fourthSecBottomContent {
+        padding-left: 120px;
+        padding-right: 77px;
+        display: flex;
+      }
+      .fourthSecBottomContent2 {
+        padding-left: 120px;
+        padding-right: 77px;
+        display: flex;
+        padding-top: 110px;
+        padding-bottom: 95px;
+      }
+      .fourthSecBottomContentLeft {
+        width: 50%;
+      }
+      .fourthSecBottomContentLeft2 {
+        width: 50%;
+        padding-left: 99px;
+      }
+      .fourthSecBottomContentRight {
+        width: 50%;
+      }
+      .fourthSecBottomContentRight video {
+        width: 614px;
+        height: 345px;
+        border-radius: 8px;
+      }
+      .fourthSecHead {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 150%;
+        color: #4e4b31;
+        padding-bottom: 11px;
+      }
+      .fourthSecHead span {
+        font-size: 42px;
+      }
+      /* Fifth section styles */
+      .fifthSec {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 815px;
+        position: relative;
+      }
+      .fifthSectionContent {
+        padding-left: 119px;
+        padding-top: 93px;
+      }
+      .fifthSectionContent h3 {
+        color: #4e4b31;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 150%;
+        padding-bottom: 19px;
+      }
+      .fifthSectionContent h3 span {
+        font-size: 42px;
+      }
+      .fifthSectionContent p {
+        font-size: 16px;
+        line-height: 180%;
+        font-weight: normal;
+        max-width: 414px;
+        color: #4d4929;
+      }
+      .firstImg {
+        position: absolute;
+        bottom: 0;
+      }
+      .firstImg img {
+        width: 984px;
+        height: 564px;
+        object-fit: cover;
+      }
+      .secondImg {
+        position: absolute;
+        right: 0;
+        bottom: 0px;
+      }
+      .secondImg img {
+        width: 574px;
+        height: 633px;
+        object-fit: cover;
+      }
+      /* Sixth section styles */
+
+      .sixthSec {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 728px;
+        position: relative;
+      }
+      .sixthSectionContent {
+        display: flex;
+        align-items: center;
+        margin-top: 92px;
+        padding-right: 122px;
+      }
+      .sixthSectionContentLeft {
+        width: 50%;
+      }
+      .sixthSectionContentRight {
+        width: 50%;
+        padding-left: 49px;
+      }
+      .sixthSectionContentLeft img {
+        width: 700px;
+        height: 355px;
+        object-fit: cover;
+      }
+      .sixthSectionContentRight h3 {
+        font-weight: 500;
+        font-size: 38px;
+        line-height: 120%;
+        color: #4e4b31;
+        padding-bottom: 28px;
+      }
+      .sixthSectionContentRight p {
+        color: #4d4929;
+        font-size: 20px;
+        line-height: 180%;
+        font-weight: 500;
+      }
+      .sliderBtnParent {
+        display: flex;
+        align-items: end;
+        justify-content: end;
+      }
+      .sliderBtn,
+      .sliderBtn2 {
+        width: 138px;
+        height: 48px;
+        border: 1px solid #b8b2a5;
+        border-radius: 8px;
+        margin-top: 64px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+      .sliderBtn2 {
+        margin-top: 0;
+      }
+      .sliderBtnPrev {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sliderBtnNext {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sliderBtnPrev img,
+      .sliderBtnNext img {
+        width: 19px !important;
+        height: 19px !important;
+      }
+      .vLine {
+        border: 0.5px solid #b8b2a5;
+        width: 16px;
+        rotate: 90deg;
+        position: absolute;
+        top: 13%;
+        left: 45%;
+      }
+      .vLine2 {
+        border: 0.5px solid #b8b2a5;
+        width: 16px;
+        rotate: 90deg;
+        position: absolute;
+        bottom: 13%;
+        left: 45%;
+      }
+      .fifthSecBottomCards {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        padding-bottom: 51px;
+      }
+      .fifthCardGrp {
+        display: flex;
+        align-items: center;
+        gap: 42px;
+        padding-left: 97px;
+        padding-top: 10px;
+        padding-bottom: 55px;
+      }
+      .fifthCard1,
+      .fifthCard2,
+      .fifthCard3 {
+        position: relative;
+      }
+      .fifthCard1 img {
+        width: 395px;
+        min-height: 432px;
+        max-height: 432px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .fifthCard2 img {
+        width: 395px;
+        min-height: 432px;
+        object-fit: cover;
+        margin-top: -50px;
+      }
+      .fifthCard3 img {
+        width: 395px;
+        min-height: 432px;
+        object-fit: cover;
+        margin-top: -40px;
+      }
+      .fifthCardContent {
+        position: absolute;
+        left: 25px;
+        top: 314px;
+        right: 55px;
+      }
+      .fifthCardContent h3 {
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 150%;
+        color: #4e4b31;
+        padding-bottom: 10px;
+      }
+      .fifthCardContent p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 23px;
+        color: #4d4929;
+      }
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        border: 0.4px solid #885f39;
+        width: 337px;
+        height: 44px;
+        border-radius: 2px;
+        margin: 0 auto;
+        cursor: pointer;
+      }
+      .cta p {
+        font-size: 14px;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #412a16;
+        letter-spacing: 1px;
+      }
+      .cta img {
+        width: 47px;
+        height: 24px;
+      }
+      /* Testimonal Styles */
+      .testimonialSec {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        padding-top: 75px;
+        position: relative;
+      }
+      .testimonialImg img {
+        width: 734px;
+        height: 703px;
+        object-fit: cover;
+      }
+      .testimonialContent {
+        position: absolute;
+        right: 105px;
+        top: 207px;
+        text-align: end;
+        display: flex;
+        align-items: end;
+        justify-content: end;
+        flex-direction: column;
+      }
+      .testimonialContent img {
+        width: 97px;
+        height: 113px;
+      }
+      .testimonialContent h3 {
+        color: #4e4b31;
+        font-size: 32px;
+        font-weight: 400;
+        padding-top: 58px;
+      }
+      .testimonialContent span {
+        font-size: 42px;
+      }
+      .testimonialContent p {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 180%;
+        max-width: 430px;
+        color: #4d4929;
+      }
+      .testimonialContent h2 {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 180%;
+        color: #4d4929;
+        padding-top: 36px;
+        padding-bottom: 27px;
+      }
+      .miniVideoSecSlider {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .miniVideoSecSlider img {
+        width: 103px;
+        height: 83px;
+      }
+      .Line {
+        width: 35px;
+        border: 1px solid #885f39;
+        rotate: 90deg;
+      }
+      /* Contact Styles */
+      .contactSec {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 796px;
+      }
+      .contactBg {
+        position: relative;
+      }
+      .contactBg img {
+        width: 100%;
+        height: 740px;
+      }
+      .contactFormSec {
+        position: absolute;
+        top: 162px;
+        right: 94px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+        min-width: 562px;
+      }
+      .contactFormSec p {
+        font-size: 14px;
+        line-height: 22px;
+        color: #232323;
+        padding-bottom: 9px;
+        text-transform: uppercase;
+      }
+      .contactFormSec input {
+        border: 1px solid #e8e3d9;
+        background-color: #fff;
+        height: 52px;
+        width: 100%;
+        padding-left: 19px;
+        color: #b3b3b3;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 4px;
+        font-family: "adobe-garamond-pro", serif;
+        margin-bottom: 25px;
+      }
+      .halfInput {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        width: 100%;
+      }
+      .halfInput div {
+        width: 100%;
+      }
+      .contactFormSec textarea {
+        border: 1px solid #e8e3d9;
+        background-color: #fff;
+        height: 91px;
+        width: 100%;
+        padding-left: 19px;
+        color: #b3b3b3;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 4px;
+        font-family: "adobe-garamond-pro", serif;
+        margin-bottom: 34px;
+        padding-top: 14px;
+      }
+      .formCtas {
+        display: flex;
+        align-items: center;
+        gap: 33px;
+        position: relative;
+      }
+      .formBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 11px;
+        background-color: #4e3721;
+        border: 0.4px solid #885f39;
+        border-radius: 2px;
+        height: 44px;
+        padding: 15px 12px;
+      }
+      .formBtn p {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 100%;
+        color: #fff;
+        padding-bottom: 0px;
+      }
+      .formBtn img {
+        width: 33px;
+        height: 16px;
+      }
+
+      /* city slider */
+
+      .store-section {
+        background-image: url("../imgBespoke/secondSecBg.png");
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-left: 120px;
+        padding-top: 47px;
+        position: relative;
+      }
+
+      .store-section .content {
+        width: 40%;
+        position: relative;
+        z-index: 2;
+      }
+
+      .store-section h2 {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 45px;
+        text-transform: uppercase;
+        color: #4e4b31;
+      }
+
+      .store-section .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .store-section #city-btn {
+        background: none;
+        border: none;
+        font-weight: 600;
+        color: #432f1c;
+        letter-spacing: 1px;
+        cursor: pointer;
+        font-size: 32px;
+        font-family: "adobe-garamond-pro", serif;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .store-section #city-btn img {
+        width: 24px;
+        height: 24px;
+        margin-top: 5px;
+      }
+
+      .store-section .dropdown-list {
+        position: absolute;
+        top: 40px;
+        left: 0;
+        list-style: none;
+        background: white;
+        padding: 0;
+        border: 1px solid #ccc;
+        display: none;
+        width: 150px;
+        z-index: 5;
+        font-size: 14px;
+      }
+
+      .store-section .dropdown-list li {
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+
+      .store-section .dropdown-list li:hover {
+        background-color: #f2f2f2;
+      }
+
+      .store-section p {
+        margin-top: 13px;
+        font-size: 16px;
+        color: #808080;
+        line-height: 22px;
+        font-weight: 400;
+        max-width: 308px;
+      }
+
+      .store-section .nearby {
+        margin-top: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .store-section .nearby p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        color: #363636;
+        margin-top: 0;
+      }
+      .store-section .slider-container {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        position: relative;
+      }
+
+      .store-section .arrow {
+        background: #fff;
+        border: 1px solid #c5b8a6;
+        border-radius: 4px;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 6px 12px;
+        z-index: 2;
+      }
+
+      .store-section .card-slider {
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .store-section .cards-wrapper {
+        display: flex;
+        transition: transform 0.4s ease-in-out;
+        gap: 19px;
+      }
+
+      .store-section .card {
+        min-width: 250px;
+        height: 183px;
+        background: #f9f8f7;
+        border-radius: 8px;
+        padding: 17px 20px;
+      }
+
+      .store-section .card button {
+        margin-top: 15px;
+        background: none;
+        border: none;
+        color: #704d22;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .store-section .illustration {
+        width: 60%;
+      }
+
+      .store-section .illustration img {
+        width: 100%;
+        height: auto;
+      }
+      .cityCard {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .cityCard img {
+        width: 48px;
+        height: 48px;
+      }
+      .cityCard h3 {
+        font-size: 16px;
+        line-height: 180%;
+        color: #27190c;
+        font-weight: 600;
+        max-width: 159px;
+      }
+
+      .store-section .card p {
+        font-size: 12px;
+        line-height: 150%;
+        color: #000000;
+        font-weight: 400;
+      }
+      /* Letest Press Styles */
+      .letestPressSec {
+        background-color: #eaeae8;
+        padding: 0 155px;
+      }
+      .letestPress {
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+
+      .letestPressSlider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 91px;
+        overflow: hidden;
+      }
+
+      .imgSlider {
+        width: 69px;
+        height: 48px;
+        cursor: pointer;
+      }
+
+      .sliderWrapper {
+        overflow: hidden;
+        width: 810px;
+      }
+
+      .sliderTrack {
+        display: flex;
+        transition: transform 0.6s ease;
+      }
+
+      .letestCard {
+        width: 810px;
+        height: 285px;
+        display: flex;
+        background-color: #fff;
+        border-radius: 8px;
+        margin-top: 67px;
+        margin-bottom: 117px;
+        flex-shrink: 0;
+      }
+
+      .letestCardLeft {
+        width: 50%;
+      }
+
+      .letestCardRight {
+        width: 50%;
+        padding: 32px 47px 0 26px;
+        position: relative;
+      }
+
+      .letestCardRight h4 {
+        color: #202124;
+        font-size: 20px;
+        line-height: 27px;
+        font-weight: 400;
+        padding-bottom: 14px;
+      }
+
+      .letestCardRight p {
+        color: #595a5f;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 130%;
+        padding-bottom: 14px;
+      }
+
+      .letestCardRight .nameDate {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+      }
+
+      .letestCardRight .nameDate p {
+        color: #202124;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 14px;
+      }
+
+      .letestCardRight .nameDate span {
+        width: 14px;
+        border: 1px solid #20212480;
+        margin-top: -10px;
+      }
+
+      .letestCardLeft img {
+        width: 100%;
+        height: 285px;
+        object-fit: cover;
+      }
+
+      /* ---  */
+      /* ------------------ GSAP ------------------------- */
+      /* ---  */
+
+      /* initial hidden state */
+      .headSecJourney .headingJourney {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .headSecJourney img {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      /* content initial states */
+      .journeyContentSecLeft h3,
+      .journeyContentSecLeftPara {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      /* image mask -> keeps overflow hidden while image moves */
+      .imgMask {
+        overflow: hidden;
+        display: inline-block; /* keep it tight around image if needed */
+        /* optional: match image size (or use responsive rules) */
+      }
+
+      .imgMask img {
+        display: block;
+        width: 100%;
+        transform: translateY(40px) scale(1.03);
+        opacity: 0;
+        will-change: transform, opacity;
+      }
+
+      /* Ensure canvas inside .imgMask doesn't overflow layout */
+      .imgMask canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="journeySec">
+      <div class="headSecJourney">
+        <img src="../imgBespoke/arrow.png" alt="" />
+        <h3 class="headingJourney">The Journey</h3>
+        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+      </div>
+
+      <div class="journeyContentSec">
+        <div class="journeyContentSecLeft">
+          <h3>
+            Where Imagination Wears <br />
+            <span> the Silhouette of Desire</span>
+          </h3>
+          <div class="smLine"></div>
+          <p class="journeyContentSecLeftPara">
+            A bespoke jewel begins not in metal or stone, but in a moment
+            suspended between thought and feeling a glimmer of memory, a quiet
+            pulse of longing.
+          </p>
+        </div>
+        <div class="journeyContentSecRight">
+          <!-- This img will be wrapped with .imgMask at runtime (ensureImgMasks)
+               and then replaced with a PIXI canvas by the PIXI script below. -->
+          <img src="../imgBespoke/journey.png" alt="journey" />
+        </div>
+      </div>
+    </section>
+
+    <section class="third_sec">
+      <div class="third_sec_content">
+        <div class="third_sec_content_left">
+          <img src="../imgBespoke/thirdImg.png" alt="thirdImg" />
+        </div>
+        <div class="third_sec_content_right">
+          <img src="../imgBespoke/pankh.png" alt="pankh" />
+          <h3>
+            When Craft Transcends Creation <br />
+            <span>and Becomes Immortality</span>
+          </h3>
+          <p>
+            Within the atelier’s silence, gold is coaxed into emotion and
+            gemstones awaken to light. Each gesture of the artisan is a verse,
+            each facet a breath of poetry.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="FourthSec">
+      <div class="FourthSecWidth">
+        <div class="headSecJourney">
+          <img src="../imgBespoke/arrow.png" alt="" />
+          <h3 class="headingJourney">The Artistry</h3>
+          <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+        </div>
+        <div class="FourthSecContent">
+          <p class="fourthPara">Crafted to</p>
+          <img src="../imgBespoke/fourth.png" alt="fourth" />
+          <p class="fourthPara">Perfection</p>
+        </div>
+
+        <div class="fourthSecBottomContent">
+          <div class="fourthSecBottomContentLeft">
+            <h3 class="fourthSecHead">
+              As Craft Transcends Creation
+              <br />
+              <span> and Becomes Immortality</span>
+            </h3>
+            <p class="journeyContentSecLeftPara">
+              A bespoke jewel begins not in metal or stone, but in a moment
+              suspended between thought and feeling a glimmer of memory, a quiet
+              pulse of longing.
+            </p>
+          </div>
+          <div class="fourthSecBottomContentRight">
+            <video src="../imgBespoke/video1.mp4" autoplay muted></video>
+          </div>
+        </div>
+        <div class="fourthSecBottomContent2">
+          <div class="fourthSecBottomContentRight">
+            <video src="../imgBespoke/video2.mp4" autoplay muted></video>
+          </div>
+          <div class="fourthSecBottomContentLeft2">
+            <h3 class="fourthSecHead">
+              The Alchemy of
+
+              <br />
+              <span> Devotion and Detail</span>
+            </h3>
+            <p class="journeyContentSecLeftPara">
+              Each stroke of craft bears a prayer for perfection transforming
+              creation into something almost divine.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fifthSec">
+      <div class="headSecJourney">
+        <img src="../imgBespoke/arrow.png" alt="" />
+        <h3 class="headingJourney">Our Offerings</h3>
+        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+      </div>
+      <div class="fifthSectionContent">
+        <h3>
+          As Beauty Outgrows,
+          <br />
+          <span>Ornament to Become Art</span>
+        </h3>
+        <p>
+          A Zoya creation transcends adornment, it becomes an intimate dialogue
+          between soul, form and the poetry of craftsmanship
+        </p>
+      </div>
+      <div class="firstImg">
+        <img src="../imgBespoke/elephentGrp.png" alt="elephent" />
+      </div>
+      <div class="secondImg">
+        <img src="../imgBespoke/elephent.png" alt="elephent" />
+      </div>
+    </section>
+    <section class="fifthSecBottomCards">
+      <div class="fifthCardGrp">
+        <div class="fifthCard1">
+          <img src="../imgBespoke/card1Bg.png" alt="card1Bg" />
+          <div class="fifthCardContent">
+            <h3>Bespoke Necklace & Accessories</h3>
+            <p>
+              Committed to celebrating the rare and beautiful spirit of a woman,
+              ZOYA designs
+            </p>
+          </div>
+        </div>
+        <div class="fifthCard2">
+          <img src="../imgBespoke/card2Bg.png" alt="card2Bg" />
+          <div class="fifthCardContent">
+            <h3>Obj-De-Art</h3>
+            <p>
+              Committed to celebrating the rare and beautiful spirit of a woman,
+              ZOYA designs
+            </p>
+          </div>
+        </div>
+        <div class="fifthCard3">
+          <img src="../imgBespoke/card3Bg.png" alt="card3Bg" />
+          <div class="fifthCardContent">
+            <h3>Engraving & Customization</h3>
+            <p>
+              Committed to celebrating the rare and beautiful spirit of a woman,
+              ZOYA designs
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="cta">
+        <p>Begin Your Bespoke Journey.</p>
+        <img src="../imgBespoke/arrow-right.png" alt="arrow-right" />
+      </div>
+    </section>
+
+    <section class="sixthSec">
+      <div class="headSecJourney">
+        <img src="../imgBespoke/arrow.png" alt="" />
+        <h3 class="headingJourney">Our Creations</h3>
+        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+      </div>
+
+      <div class="sixthSectionContent">
+        <div class="sixthSectionContentLeft">
+          <!-- original img kept for fallback; script will hide it and insert a PIXI canvas -->
+          <img src="../imgBespoke/crown.png" alt="crown" />
+        </div>
+
+        <div class="sixthSectionContentRight">
+          <h3 id="sliderTitle">DANCE OF THE PEACOCK</h3>
+          <p id="sliderText">
+            The tiara designed for the beauty pageant draws inspiration from the
+            majestic peacock, a symbol of grace, strength, and captivating
+            beauty. The peacock, with its vibrant plumage, mirrors the elegance,
+            poise, and power of a woman-radiant and enigmatic, bold yet refined.
+            She embraces her allure with confidence...
+          </p>
+
+          <div class="sliderBtnParent">
+            <div class="sliderBtn">
+              <div class="sliderBtnPrev" id="sixPrev">
+                <img src="../imgBespoke/lArrow.png" alt="PrevArrow" />
+              </div>
+              <div class="sliderBtnNext" id="sixNext">
+                <img
+                  src="../imgBespoke/lArrow.png"
+                  alt="NextArrow"
+                  style="rotate: 180deg"
+                />
+              </div>
+              <div class="vLine"></div>
+              <div class="vLine2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonialSec">
+      <div class="headSecJourney">
+        <img src="../imgBespoke/arrow.png" alt="" />
+        <h3 class="headingJourney">Testimonials</h3>
+        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+      </div>
+
+      <div class="testimonialImg">
+        <img src="../imgBespoke/girl.png" alt="girl" />
+        <div class="testimonialContent">
+          <img src="../imgBespoke/logoMark.png" alt="logoMark" />
+          <h3 id="testimonialTitle">
+            Jewels that are not just <br />
+            <span>made, but imagined with you</span>
+          </h3>
+          <div class="smLine"></div>
+          <p id="testimonialText">
+            Committed to celebrating the rare and beautiful spirit of a woman,
+            ZOYA designs and crafts precious moments suspended in time.
+          </p>
+          <h2 id="testimonialName">RACHEL GREEN, INDIA</h2>
+
+          <div class="miniVideoSecSlider">
+            <img
+              id="testimonialVideo"
+              src="../imgBespoke/miniVideo.png"
+              alt="miniVideo"
+            />
+            <div id="line" class="Line"></div>
+            <div class="sliderBtnParent">
+              <div class="sliderBtn2">
+                <div class="sliderBtnPrev" id="prevBtn">
+                  <img src="../imgBespoke/lArrow.png" alt="PrevArrow" />
+                </div>
+                <div class="sliderBtnNext" id="nextBtn">
+                  <img
+                    src="../imgBespoke/lArrow.png"
+                    alt="NextArrow"
+                    style="rotate: 180deg"
+                  />
+                </div>
+                <div class="vLine"></div>
+                <div class="vLine2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contactSec">
+      <div class="headSecJourney">
+        <img src="../imgBespoke/arrow.png" alt="" />
+        <h3 class="headingJourney">Contact Us</h3>
+        <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+      </div>
+
+      <div class="contactBg">
+        <img src="../imgBespoke/contactBg.png" alt="contactBg" />
+        <div class="contactFormSec">
+          <p>Full name</p>
+          <input type="text" placeholder="Eg: John Thomas" />
+          <div class="halfInput">
+            <div>
+              <p>Email ID</p>
+              <input type="text" placeholder="Eg: johnthomas20@company.com" />
+            </div>
+            <div>
+              <p>Phone Number</p>
+              <input type="text" placeholder="Eg: 987-6543-210" />
+            </div>
+          </div>
+          <div class="halfInput">
+            <div>
+              <p>Appointment Date & Time</p>
+              <input type="text" placeholder="02/08/2024" />
+            </div>
+            <div>
+              <p>REFERENCE IMAGE (Optional)</p>
+              <input type="text" placeholder="Upload File here" />
+            </div>
+          </div>
+          <p>Tell us more about your bespoke needs</p>
+          <textarea type="text" placeholder="Message"></textarea>
+          <div class="formCtas">
+            <div class="formBtn">
+              <p>SUBMIT REQUEST</p>
+              <img src="../imgBespoke/arrow-rightW.png" alt="rightW" />
+            </div>
+            <div class="vLine"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO MODAL -->
+    <div id="videoModal" class="modal">
+      <div class="modal-content">
+        <span class="closeBtn">&times;</span>
+        <video id="modalVideo" controls autoplay></video>
+      </div>
+    </div>
+
+    <!-- City slider Html  -->
+
+    <section class="store-section">
+      <div class="content">
+        <h2>
+          Come meet us, right here
+          <br />
+          In
+          <span class="dropdown">
+            <button id="city-btn">
+              Mumbai
+              <img src="../imgBespoke/arrow-down.png" alt="arrow-down" />
+            </button>
+            <ul id="city-list" class="dropdown-list">
+              <li data-city="mumbai">Mumbai</li>
+              <li data-city="delhi">Delhi</li>
+              <li data-city="bengaluru">Bengaluru</li>
+            </ul>
+          </span>
+        </h2>
+
+        <p id="city-description">
+          Visit us to explore our wide range of products at a store near you.
+        </p>
+
+        <div class="nearby">
+          <p>NEARBY 3 SHOPS</p>
+          <div class="sliderBtnParent">
+            <div class="sliderBtn3">
+              <div class="sliderBtnPrev" id="cityPrevBtn">
+                <img src="../imgBespoke/lArrow.png" alt="PrevArrow" />
+              </div>
+              <div class="sliderBtnNext" id="cityNextBtn">
+                <img
+                  src="../imgBespoke/lArrow.png"
+                  alt="NextArrow"
+                  style="rotate: 180deg"
+                />
+              </div>
+              <div class="vLine3"></div>
+              <div class="vLine4"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-container">
+          <div class="card-slider">
+            <div class="cards-wrapper" id="cardsWrapper"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="illustration">
+        <img src="../imgBespoke/home.png" alt="Store Illustration" />
+      </div>
+    </section>
+
+    <!-- Letest Press HTML -->
+    <section class="letestPressSec">
+      <div class="letestPress">
+        <div class="headSecJourney">
+          <img src="../imgBespoke/arrow.png" alt="" />
+          <h3 class="headingJourney">Latest Press</h3>
+          <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
+        </div>
+
+        <div class="letestPressSlider">
+          <img
+            src="../imgBespoke/prevSliderImg.png"
+            alt="prev"
+            class="imgSlider letestPrevBtn"
+          />
+
+          <div class="sliderWrapper">
+            <div class="sliderTrack">
+              <!-- CARD 1 -->
+              <div class="letestCard">
+                <div class="letestCardLeft">
+                  <img
+                    src="../imgBespoke/letestLeftImg.png"
+                    alt="letestLeftImg"
+                  />
+                </div>
+                <div class="letestCardRight">
+                  <h4>
+                    Unveiling the Mayura, High Jewellery Brand Zoya’s First Ever
+                    Objet D’art
+                  </h4>
+                  <p>
+                    Beyond high jewellery, Zoya’s objet d’arts are a lesson in
+                    Indian craftsmanship. The Mayura is one such work of
+                    precision.
+                  </p>
+                  <div class="nameDate">
+                    <p>Sujata Dugar</p>
+                    <span></span>
+                    <p>Sep 2, 2025</p>
+                  </div>
+                  <div class="cta3">
+                    <p>READ MORE</p>
+                    <img
+                      src="../imgBespoke/arrow-right.png"
+                      alt="arrow-right"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 2 -->
+              <div class="letestCard">
+                <div class="letestCardLeft">
+                  <img
+                    src="../imgBespoke/letestLeftImg.png"
+                    alt="letestLeftImg2"
+                  />
+                </div>
+                <div class="letestCardRight">
+                  <h4>Elegance Redefined: Zoya’s New Diamond Collection</h4>
+                  <p>
+                    The collection embodies grace, sophistication and India’s
+                    evolving modern woman.
+                  </p>
+                  <div class="nameDate">
+                    <p>Ritika Sen</p>
+                    <span></span>
+                    <p>Aug 20, 2025</p>
+                  </div>
+                  <div class="cta3">
+                    <p>READ MORE</p>
+                    <img
+                      src="../imgBespoke/arrow-right.png"
+                      alt="arrow-right"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 3 -->
+              <div class="letestCard">
+                <div class="letestCardLeft">
+                  <img
+                    src="../imgBespoke/letestLeftImg.png"
+                    alt="letestLeftImg3"
+                  />
+                </div>
+                <div class="letestCardRight">
+                  <h4>Zoya Launches Festive Line Inspired by the Lotus</h4>
+                  <p>
+                    A poetic celebration of purity and beauty in nature,
+                    captured in exquisite diamonds.
+                  </p>
+                  <div class="nameDate">
+                    <p>Anjali Verma</p>
+                    <span></span>
+                    <p>Jul 5, 2025</p>
+                  </div>
+                  <div class="cta3">
+                    <p>READ MORE</p>
+                    <img
+                      src="../imgBespoke/arrow-right.png"
+                      alt="arrow-right"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <img
+            src="../imgBespoke/prevSliderImg.png"
+            alt="next"
+            style="rotate: 180deg"
+            class="imgSlider letestNextBtn"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial Script -->
+    <script>
+      const testimonials = [
+        {
+          title:
+            "Jewels that are not just <br><span>made, but imagined with you</span>",
+          text: "Committed to celebrating the rare and beautiful spirit of a woman, ZOYA designs and crafts precious moments suspended in time.",
+          name: "RACHEL GREEN, INDIA",
+          video: "../imgBespoke/miniVideo.png",
+        },
+        {
+          title: "Designs inspired by <br><span>the elegance within</span>",
+          text: "Every piece reflects sophistication and grace, bringing stories of timeless beauty to life through artful craftsmanship.",
+          name: "MONICA BING, LONDON",
+          video: "../imgBespoke/miniVideo.png",
+        },
+        {
+          title: "Where imagination meets <br><span>eternal brilliance</span>",
+          text: "Crafted for the modern woman, each creation is a statement of individuality, art, and passion beyond measure.",
+          name: "PHOEBE BUFFAY, NEW YORK",
+          video: "",
+        },
+      ];
+
+      let current = 0;
+
+      const titleEl = document.getElementById("testimonialTitle");
+      const textEl = document.getElementById("testimonialText");
+      const nameEl = document.getElementById("testimonialName");
+      const videoEl = document.getElementById("testimonialVideo");
+      const lineEl = document.getElementById("line");
+
+      const nextBtn = document.getElementById("nextBtn");
+      const prevBtn = document.getElementById("prevBtn");
+
+      nextBtn.addEventListener("click", () => {
+        current = (current + 1) % testimonials.length;
+        updateTestimonial();
+      });
+
+      prevBtn.addEventListener("click", () => {
+        current = (current - 1 + testimonials.length) % testimonials.length;
+        updateTestimonial();
+      });
+
+      function updateTestimonial() {
+        const t = testimonials[current];
+        // set video image (if present)
+        titleEl.innerHTML = t.title;
+        textEl.textContent = t.text;
+        nameEl.textContent = t.name;
+        if (t.video) {
+          videoEl.src = t.video;
+          videoEl.classList.remove("hidden");
+          lineEl.classList.remove("hidden");
+        } else {
+          videoEl.classList.add("hidden");
+          lineEl.classList.add("hidden");
+        }
+      }
+    </script>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      /* Helper: wrap images in .imgMask if not already wrapped */
+      (function ensureImgMasks() {
+        const imgs = document.querySelectorAll(
+          ".journeyContentSecRight img, .third_sec_content_left img, .third_sec_content_right img, .FourthSecContent img, .fourthSecBottomContentRight video, .fifthSectionContent img, .firstImg img, .secondImg img, .sixthSectionContentLeft img"
+        );
+        imgs.forEach((img) => {
+          // skip if parent already has imgMask
+          if (!img.parentElement.classList.contains("imgMask")) {
+            const wrapper = document.createElement("span");
+            wrapper.className = "imgMask";
+            // make wrapper inline-block so it follows layout
+            wrapper.style.display = "inline-block";
+            img.parentElement.replaceChild(wrapper, img);
+            wrapper.appendChild(img);
+          }
+        });
+      })();
+
+      /* Common animation for section headers (uses your existing class) */
+      function animateHeader(triggerEl) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: triggerEl,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        // header title + arrows (works because your structure uses .headSecJourney inside each section)
+        tl.fromTo(
+          triggerEl + " .headingJourney",
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }
+        );
+        tl.fromTo(
+          triggerEl + " .headSecJourney img",
+          { opacity: 0, y: 10 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.55,
+            stagger: 0.08,
+            ease: "power3.out",
+          },
+          "-=0.55"
+        );
+        return tl;
+      }
+
+      /* Generic reveal for text blocks (h3, p) */
+      function revealTextBlock(tl, selector, opts = {}) {
+        const defaults = { duration: 1.0, stagger: 0.12, ease: "power3.out" };
+        const cfg = Object.assign({}, defaults, opts);
+        tl.fromTo(
+          selector,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: cfg.duration,
+            stagger: cfg.stagger,
+            ease: cfg.ease,
+          },
+          opts.position || "-=0.2"
+        );
+      }
+
+      /* Generic reveal for masked images inside .imgMask */
+      function revealMaskedImage(tl, selector, opts = {}) {
+        const defaults = { duration: 0.9, ease: "power3.out" };
+        const cfg = Object.assign({}, defaults, opts);
+        tl.fromTo(
+          selector,
+          { opacity: 0, y: 40, scale: 1.03 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: cfg.duration,
+            ease: cfg.ease,
+          },
+          opts.position || "-=0.45"
+        );
+      }
+
+      /* Sections to animate (order = visual order). Each entry defines trigger and selectors */
+      const sections = [
+        {
+          trigger: ".journeySec",
+          headerThen: () => {
+            const tl = animateHeader(".journeySec");
+            revealTextBlock(
+              tl,
+              ".journeyContentSecLeft h3, .journeyContentSecLeftPara"
+            );
+            // Note: the right image will be revealed via PIXI displacement (added later),
+            // but to keep fallback behavior for non-Pixi environments we still include masked reveal:
+            revealMaskedImage(tl, ".journeySec .imgMask img");
+          },
+        },
+        {
+          trigger: ".third_sec",
+          headerThen: () => {
+            const tl = animateHeader(".third_sec");
+            // left image (masked) then right text & small icon
+            revealMaskedImage(tl, ".third_sec .imgMask img");
+            revealTextBlock(
+              tl,
+              ".third_sec_content_right img, .third_sec_content_right h3, .third_sec_content_right p"
+            );
+          },
+        },
+        {
+          trigger: ".FourthSec",
+          headerThen: () => {
+            const tl = animateHeader(".FourthSec");
+            // big image in the middle + the "crafted to / perfection" row
+            revealTextBlock(tl, ".FourthSecContent .fourthPara");
+            revealMaskedImage(
+              tl,
+              ".FourthSec .imgMask img, .FourthSecContent img"
+            );
+            // content below (left text then video)
+            revealTextBlock(
+              tl,
+              ".fourthSecBottomContentLeft .fourthSecHead, .fourthSecBottomContentLeft p"
+            );
+            tl.fromTo(
+              ".fourthSecBottomContentRight video",
+              { opacity: 0, y: 24 },
+              { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
+              "-=0.55"
+            );
+          },
+        },
+        {
+          trigger: ".fifthSec",
+          headerThen: () => {
+            const tl = animateHeader(".fifthSec");
+            revealTextBlock(
+              tl,
+              ".fifthSectionContent h3, .fifthSectionContent p"
+            );
+            // large images on the sides — animate masked images
+            revealMaskedImage(
+              tl,
+              ".fifthSec .imgMask img, .firstImg img, .secondImg img"
+            );
+          },
+        },
+        {
+          trigger: ".sixthSec",
+          headerThen: () => {
+            const tl = animateHeader(".sixthSec");
+            revealMaskedImage(tl, ".sixthSec .imgMask img");
+            revealTextBlock(
+              tl,
+              ".sixthSectionContentRight h3, .sixthSectionContentRight p"
+            );
+          },
+        },
+        {
+          trigger: ".testimonialSec",
+          headerThen: () => {
+            const tl = animateHeader(".testimonialSec");
+            // revealMaskedImage(tl, ".sixthSec .imgMask img");
+            // revealTextBlock(
+            //   tl,
+            //   ".sixthSectionContentRight h3, .sixthSectionContentRight p"
+            // );
+          },
+        },
+        {
+          trigger: ".contactSec",
+          headerThen: () => {
+            const tl = animateHeader(".contactSec");
+            // revealMaskedImage(tl, ".sixthSec .imgMask img");
+            // revealTextBlock(
+            //   tl,
+            //   ".sixthSectionContentRight h3, .sixthSectionContentRight p"
+            // );
+          },
+        },
+        {
+          trigger: ".letestPressSec",
+          headerThen: () => {
+            const tl = animateHeader(".letestPressSec");
+            // revealMaskedImage(tl, ".sixthSec .imgMask img");
+            // revealTextBlock(
+            //   tl,
+            //   ".sixthSectionContentRight h3, .sixthSectionContentRight p"
+            // );
+          },
+        },
+      ];
+
+      // Run animations for each configured section
+      sections.forEach((s) => {
+        try {
+          // call the builder for that section
+          if (typeof s.headerThen === "function") s.headerThen();
+        } catch (e) {
+          // don't stop if one fails (keeps robust)
+          // console.warn("GSAP section failed:", s.trigger, e);
+        }
+      });
+
+      /* -- Cards animation: animate .fifthCard1/2/3 sliding left from right one-by-one -- */
+      gsap.from(
+        ".fifthCardGrp .fifthCard1, .fifthCardGrp .fifthCard2, .fifthCardGrp .fifthCard3",
+        {
+          scrollTrigger: {
+            trigger: ".fifthCardGrp",
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+          x: 80, // start offset from right (appear to slide left)
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.18,
+          ease: "power3.out",
+          // also animate inner image and content slightly more characterful (optional)
+          onStart: () => {
+            // make sure content inside is visible for accessibility
+            document
+              .querySelectorAll(
+                ".fifthCardGrp .fifthCard1, .fifthCardGrp .fifthCard2, .fifthCardGrp .fifthCard3"
+              )
+              .forEach((el) => {
+                el.style.willChange = "transform, opacity";
+              });
+          },
+        }
+      );
+    </script>
+
+    <!-- PIXI Reverse Displacement Reveal: replaces .journeyContentSecRight img with canvas and reveals it on scroll -->
+    <script>
+      (function () {
+        // config: image to use and displacement map URL (change as needed)
+        const IMAGE_SRC = "../imgBespoke/journey.png"; // your content image
+        const DISP_SRC =
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"; // displacement map
+
+        // find the img element inside the journey section
+        const imgEl = document.querySelector(".journeyContentSecRight img");
+        if (!imgEl || typeof PIXI === "undefined") return;
+
+        // ensure wrapper - but ensureImgMasks should have wrapped it already
+        let mask = imgEl.parentElement;
+        if (!mask.classList.contains("imgMask")) {
+          const wrapper = document.createElement("span");
+          wrapper.className = "imgMask";
+          wrapper.style.display = "inline-block";
+          mask.replaceChild(wrapper, imgEl);
+          wrapper.appendChild(imgEl);
+          mask = wrapper;
+        }
+
+        // get computed wrapper width to size canvas responsive
+        function getWrapperSize() {
+          const rect = mask.getBoundingClientRect();
+          // fallback sizes if image not loaded yet
+          const naturalW = imgEl.naturalWidth || 705;
+          const naturalH = imgEl.naturalHeight || 571;
+          const WW = Math.max(200, Math.round(rect.width || naturalW));
+          const HH = Math.round((naturalH / naturalW) * WW);
+          return { w: WW, h: HH, natW: naturalW, natH: naturalH };
+        }
+
+        // PIXI app
+        const initialSize = getWrapperSize();
+        const app = new PIXI.Application({
+          width: initialSize.w,
+          height: initialSize.h,
+          transparent: true,
+          antialias: true,
+        });
+
+        // hide original image and append canvas
+        imgEl.style.display = "none";
+        // append canvas inside the mask so CSS layout remains intact
+        mask.appendChild(app.view);
+        app.view.style.width = "100%";
+        app.view.style.height = "auto";
+        app.view.style.display = "block";
+        app.view.style.opacity = 0; // start hidden
+
+        // container and content sprite
+        const container = new PIXI.Container();
+        app.stage.addChild(container);
+
+        const contentSprite = PIXI.Sprite.fromImage(IMAGE_SRC);
+        // fill renderer area
+        contentSprite.width = app.renderer.width;
+        contentSprite.height = app.renderer.height;
+        container.addChild(contentSprite);
+
+        // displacement sprite + filter
+        const dispSprite = PIXI.Sprite.fromImage(DISP_SRC);
+        dispSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+        dispSprite.anchor.set(0.5);
+        dispSprite.x = app.renderer.width / 2;
+        dispSprite.y = app.renderer.height / 2;
+        dispSprite.scale.set(0.6);
+
+        const dispFilter = new PIXI.filters.DisplacementFilter(dispSprite);
+        app.stage.addChild(dispSprite);
+        container.filters = [dispFilter];
+
+        // INITIAL: exaggerated negative scale so image looks "blank"
+        dispFilter.scale.x = -3000;
+        dispFilter.scale.y = -3000;
+
+        // reveal timeline using ScrollTrigger (will reverse when scrolled back)
+        const revealTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".journeySec",
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+            // markers: true,
+          },
+        });
+
+        // animate displacement -> 0 and fade canvas in
+        revealTl.to(
+          dispFilter.scale,
+          {
+            x: 0,
+            y: 0,
+            duration: 1.2,
+            ease: "power3.out",
+          },
+          0
+        );
+
+        revealTl.to(
+          app.view,
+          {
+            opacity: 1,
+            duration: 0.9,
+            ease: "power3.out",
+          },
+          0.05
+        );
+
+        // slight content scale-in for better feel
+        revealTl.fromTo(
+          contentSprite.scale,
+          { x: 1.03, y: 1.03 },
+          { x: 1, y: 1, duration: 0.9, ease: "power3.out" },
+          0
+        );
+
+        // subtle displacement sprite drift after reveal
+        app.ticker.add((delta) => {
+          // only drift slowly after reveal completed
+          if (
+            Math.abs(dispFilter.scale.x) < 1 &&
+            Math.abs(dispFilter.scale.y) < 1
+          ) {
+            dispSprite.x += 0.2 * delta;
+            if (dispSprite.x > app.renderer.width * 1.5)
+              dispSprite.x = -app.renderer.width * 0.5;
+          }
+        });
+
+        // responsive resizing
+        function resizeCanvas() {
+          const sz = getWrapperSize();
+          app.renderer.resize(sz.w, sz.h);
+          contentSprite.width = sz.w;
+          contentSprite.height = sz.h;
+          dispSprite.x = sz.w / 2;
+          dispSprite.y = sz.h / 2;
+        }
+        // call on load and resize
+        window.addEventListener("resize", resizeCanvas);
+        // If image loads later, resize once it has natural dimensions
+        if (!imgEl.complete) {
+          imgEl.addEventListener("load", resizeCanvas);
+        } else {
+          resizeCanvas();
+        }
+      })();
+    </script>
+    <script>
+      /*
+  Sixth-section slider with displacement reveal (fixed text reveal).
+  Replace the previous slider script with this block.
+*/
+      (function () {
+        if (typeof gsap === "undefined" || typeof PIXI === "undefined") return;
+
+        const slides = [
+          {
+            img: "../imgBespoke/crown.png",
+            title: "DANCE OF THE PEACOCK",
+            text: "The tiara designed for the beauty pageant draws inspiration from the majestic peacock — a symbol of grace, strength and captivating beauty. Shades of green tourmaline and blue topaz echo the iridescent tail.",
+          },
+          {
+            img: "../imgBespoke/fourth.png",
+            title: "MOONLIGHT SERENADE",
+            text: "A refined harmony of moonstone and diamonds that refracts soft moonlight into liquid silver — a subtle, luminous statement of evening elegance.",
+          },
+          {
+            img: "../imgBespoke/elephent.png",
+            title: "FLORA REGINA",
+            text: "Botanical filigree studded with warm-hued gemstones — delicate as a blossom and bold as royalty, this piece celebrates organic lines and artisanal handwork.",
+          },
+        ];
+
+        const DISP_SRC =
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
+
+        const leftWrap = document.querySelector(".sixthSectionContentLeft");
+        const leftImg = leftWrap ? leftWrap.querySelector("img") : null;
+        const titleEl = document.getElementById("sliderTitle");
+        const textEl = document.getElementById("sliderText");
+        const nextBtn = document.getElementById("sixNext");
+        const prevBtn = document.getElementById("sixPrev");
+
+        if (
+          !leftWrap ||
+          !leftImg ||
+          !titleEl ||
+          !textEl ||
+          !nextBtn ||
+          !prevBtn
+        )
+          return;
+
+        function getSize() {
+          const rect = leftWrap.getBoundingClientRect();
+          const naturalW = leftImg.naturalWidth || 700;
+          const naturalH = leftImg.naturalHeight || 500;
+          const w = Math.max(240, Math.round(rect.width || naturalW));
+          const h = Math.round((naturalH / naturalW) * w);
+          return { w, h, natW: naturalW, natH: naturalH };
+        }
+
+        const initSize = getSize();
+        const app = new PIXI.Application({
+          width: initSize.w,
+          height: initSize.h,
+          transparent: true,
+          antialias: true,
+        });
+
+        leftImg.style.display = "none";
+        leftWrap.appendChild(app.view);
+        app.view.style.width = "100%";
+        app.view.style.height = "auto";
+        app.view.style.display = "block";
+        app.view.style.opacity = 1;
+
+        const container = new PIXI.Container();
+        app.stage.addChild(container);
+
+        let contentSprite = PIXI.Sprite.fromImage(slides[0].img);
+        contentSprite.width = app.renderer.width;
+        contentSprite.height = app.renderer.height;
+        container.addChild(contentSprite);
+
+        const dispSprite = PIXI.Sprite.fromImage(DISP_SRC);
+        dispSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+        dispSprite.anchor.set(0.5);
+        dispSprite.x = app.renderer.width / 2;
+        dispSprite.y = app.renderer.height / 2;
+        dispSprite.scale.set(0.6);
+        app.stage.addChild(dispSprite);
+
+        const dispFilter = new PIXI.filters.DisplacementFilter(dispSprite);
+        container.filters = [dispFilter];
+
+        // Start revealed for first slide
+        dispFilter.scale.x = 0;
+        dispFilter.scale.y = 0;
+
+        let idx = 0;
+        let animating = false;
+
+        function resize() {
+          const s = getSize();
+          app.renderer.resize(s.w, s.h);
+          if (contentSprite) {
+            contentSprite.width = s.w;
+            contentSprite.height = s.h;
+          }
+          dispSprite.x = s.w / 2;
+          dispSprite.y = s.h / 2;
+        }
+        window.addEventListener("resize", resize);
+        if (!leftImg.complete) leftImg.addEventListener("load", resize);
+        else resize();
+
+        // Use innerHTML for title so you can include spans/line-breaks if desired
+        function setCopy(i) {
+          titleEl.innerHTML = slides[i].title;
+          textEl.textContent = slides[i].text;
+        }
+        setCopy(idx);
+
+        // Helper: put title/text into hidden state before reveal
+        function hideCopyInstant() {
+          titleEl.style.opacity = 0;
+          titleEl.style.transform = "translateY(12px)";
+          textEl.style.opacity = 0;
+          textEl.style.transform = "translateY(12px)";
+        }
+        function resetCopyStyle() {
+          titleEl.style.transform = "";
+          textEl.style.transform = "";
+        }
+
+        // Improved goTo that swaps text while image is hidden and animates text in sync
+        function goTo(newIndex, direction = "next") {
+          if (animating || newIndex === idx) return;
+          animating = true;
+          nextBtn.style.pointerEvents = "none";
+          prevBtn.style.pointerEvents = "none";
+
+          const tl = gsap.timeline({ defaults: { overwrite: true } });
+
+          // fade out current copy
+          tl.to(
+            [titleEl, textEl],
+            { duration: 0.35, opacity: 0, y: 12, ease: "power2.in" },
+            0
+          );
+
+          // hide image (displacement)
+          tl.to(
+            dispFilter.scale,
+            {
+              x: -2200,
+              y: -2200,
+              duration: 0.7,
+              ease: "expo.in",
+              onUpdate: () => {
+                // subtle map movement while hiding
+                dispSprite.x += 0.35;
+              },
+            },
+            0
+          );
+
+          // swap texture & update copy while image is hidden
+          tl.add(() => {
+            // swap image texture
+            const newImg = slides[newIndex].img;
+            const newTex = PIXI.Texture.fromImage(newImg);
+            contentSprite.texture = newTex;
+            contentSprite.width = app.renderer.width;
+            contentSprite.height = app.renderer.height;
+
+            // update copy BUT keep it hidden so reveal animation plays
+            setCopy(newIndex);
+            hideCopyInstant();
+          }, ">"); // right after previous step
+
+          // reveal image
+          tl.to(
+            dispFilter.scale,
+            { x: 0, y: 0, duration: 0.95, ease: "power3.out" },
+            "+=0.05"
+          );
+
+          // reveal copy in sync (bring it in)
+          tl.to(
+            [titleEl, textEl],
+            {
+              duration: 0.75,
+              opacity: 1,
+              y: 0,
+              ease: "power3.out",
+              stagger: 0.06,
+              onComplete: () => {
+                idx = newIndex;
+                animating = false;
+                nextBtn.style.pointerEvents = "";
+                prevBtn.style.pointerEvents = "";
+                // cleanup inline transform (keeps DOM tidy)
+                resetCopyStyle();
+              },
+            },
+            "-=0.7" // overlap so text comes in as image reveal completes
+          );
+        }
+
+        nextBtn.addEventListener("click", () => {
+          const newIndex = (idx + 1) % slides.length;
+          goTo(newIndex, "next");
+        });
+        prevBtn.addEventListener("click", () => {
+          const newIndex = (idx - 1 + slides.length) % slides.length;
+          goTo(newIndex, "prev");
+        });
+
+        // reveal section on scroll (if displacement not yet revealed)
+        ScrollTrigger.create({
+          trigger: ".sixthSec",
+          start: "top 75%",
+          onEnter: () => {
+            if (Math.abs(dispFilter.scale.x) < 1) return;
+            gsap.to(dispFilter.scale, {
+              x: 0,
+              y: 0,
+              duration: 1.1,
+              ease: "power3.out",
+            });
+            gsap.fromTo(
+              [titleEl, textEl],
+              { opacity: 0, y: 12 },
+              { opacity: 1, y: 0, duration: 0.9, stagger: 0.08 }
+            );
+          },
+        });
+
+        // tiny drift after reveal
+        app.ticker.add((delta) => {
+          if (
+            Math.abs(dispFilter.scale.x) < 1 &&
+            Math.abs(dispFilter.scale.y) < 1 &&
+            !animating
+          ) {
+            dispSprite.x += 0.12 * delta;
+            if (dispSprite.x > app.renderer.width * 1.5)
+              dispSprite.x = -app.renderer.width * 0.5;
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
