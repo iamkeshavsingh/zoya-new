@@ -59,6 +59,7 @@
       .journeyContentSec {
         display: flex;
         align-items: center;
+        height: 100vh;
       }
       .journeyContentSecLeft {
         width: 50%;
@@ -86,18 +87,50 @@
         color: #4d4929;
         max-width: 346px;
       }
-      .journeyContentSecRight {
-        width: 50%;
-      }
-      /* The image inside will be replaced by a PIXI canvas at runtime */
-      .journeyContentSecRight img {
-        width: 705px;
-        height: 571px;
-        margin-left: 15px;
-        display: block;
-      }
+     .journeyContentSecRight {
+  position: relative;
+  width: 100%;
+  height: 600px;
+}
+
+#inkWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+#inkWrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#inkImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 
       /* Third Section styles */
+
+      .inkWrapThird {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+}
+
+.inkWrapThird canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.inkImageThird {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
       .third_sec {
         background-image: url("../imgBespoke/secondSecBg.png");
@@ -116,6 +149,7 @@
       .third_sec_content_left {
         padding-left: 61px;
         width: 50%;
+        
       }
       .third_sec_content_left img {
         width: 826px;
@@ -123,6 +157,7 @@
         position: absolute;
         top: -155px;
         object-fit: cover;
+        opacity: 0;
       }
       .third_sec_content_right {
         width: 50%;
@@ -157,6 +192,20 @@
         max-width: 380px;
       }
       /* Fourth Section Styles  */
+
+      .inkWrapFourth {
+  position: relative;
+  width: 100%;
+  min-height: 450px; /* 🔥 IMPORTANT: ensures PIXI canvas can render full image */
+  overflow: hidden;
+}
+
+.inkWrapFourth canvas,
+.inkImageFourth {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
       .FourthSec {
         /* background-image: url("../imgBespoke/fourthSecBg.png"); */
         background-image: url("../imgBespoke/f1.png");
@@ -946,7 +995,7 @@
 
       /* image mask -> keeps overflow hidden while image moves */
       .imgMask {
-        overflow: hidden;
+        /* overflow: hidden; */
         display: inline-block; /* keep it tight around image if needed */
         /* optional: match image size (or use responsive rules) */
       }
@@ -989,19 +1038,23 @@
             pulse of longing.
           </p>
         </div>
-        <div class="journeyContentSecRight">
-          <!-- This img will be wrapped with .imgMask at runtime (ensureImgMasks)
-               and then replaced with a PIXI canvas by the PIXI script below. -->
-          <img src="../imgBespoke/journey.png" alt="journey" />
-        </div>
+   <div class="journeyContentSecRight">
+  <div id="inkWrapper">
+    <img id="inkImage" src="../imgBespoke/journey.png" alt="journey">
+  </div>
+</div>
+
       </div>
     </section>
 
     <section class="third_sec">
       <div class="third_sec_content">
-        <div class="third_sec_content_left">
-          <img src="../imgBespoke/thirdImg.png" alt="thirdImg" />
+       <div class="third_sec_content_left">
+          <div class="inkWrapThird">
+            <img class="inkImageThird" src="../imgBespoke/thirdImg.png" alt="thirdImg" />
+          </div>
         </div>
+
         <div class="third_sec_content_right">
           <img src="../imgBespoke/pankh.png" alt="pankh" />
           <h3>
@@ -1025,10 +1078,16 @@
           <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
         </div>
         <div class="FourthSecContent">
-          <p class="fourthPara">Crafted to</p>
-          <img src="../imgBespoke/fourth.png" alt="fourth" />
-          <p class="fourthPara">Perfection</p>
-        </div>
+  <p class="fourthPara">Crafted to</p>
+
+  <div class="inkWrapFourth">
+    <img class="inkImageFourth" src="../imgBespoke/fourth.png" alt="fourth" />
+  </div>
+
+  <p class="fourthPara">Perfection</p>
+</div>
+
+
 
         <div class="fourthSecBottomContent">
           <div class="fourthSecBottomContentLeft">
@@ -1088,7 +1147,7 @@
         <img src="../imgBespoke/elephentGrp.png" alt="elephent" />
       </div>
       <div class="secondImg">
-        <img src="../imgBespoke/elephent.png" alt="elephent" />
+        <img class="inkImageSecond" src="../imgBespoke/elephent.png" alt="elephent" />
       </div>
     </section>
     <section class="fifthSecBottomCards">
@@ -1530,7 +1589,7 @@
             const wrapper = document.createElement("span");
             wrapper.className = "imgMask";
             // make wrapper inline-block so it follows layout
-            wrapper.style.display = "inline-block";
+            wrapper.style.display = "block";
             img.parentElement.replaceChild(wrapper, img);
             wrapper.appendChild(img);
           }
@@ -2152,5 +2211,386 @@
         });
       })();
     </script>
+    <script>
+window.addEventListener("load", () => {
+
+  const wrapper = document.getElementById("inkWrapper");
+  const img = document.getElementById("inkImage");
+
+  const w = wrapper.offsetWidth;
+  const h = wrapper.offsetHeight;
+
+  const app = new PIXI.Application({
+    width: w,
+    height: h,
+    transparent: true
+  });
+
+  wrapper.appendChild(app.view);
+
+  const container = new PIXI.Container();
+  app.stage.addChild(container);
+
+  const displacementSprite = PIXI.Sprite.from("https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png");
+  displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+  displacementSprite.anchor.set(0.5);
+  displacementSprite.position.set(w / 2, h / 2);
+
+  const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+  app.stage.addChild(displacementSprite);
+
+  container.filters = [displacementFilter];
+  displacementFilter.scale.set(0);
+
+  const bg = PIXI.Sprite.from(img.src);
+  bg.width = w;
+  bg.height = h;
+  container.addChild(bg);
+
+  img.style.opacity = 0;
+
+  // GSAP Timeline (auto play + auto reverse)
+  const tl = gsap.timeline();
+
+  // Forward animation
+  // tl.to(displacementFilter.scale, {
+  //   x: -3000,
+  //   y: -3000,
+  //   ease: "expo.inOut",
+  //   duration: 4,
+  // });
+
+  // Reverse animation
+  tl.to(displacementFilter.scale, {
+    x: 0,
+    y: 0,
+    ease: "expo.inOut",
+    duration: 4,
+     onComplete: () => {
+      img.style.opacity = 1; // Show original image
+      // wrapper.removeChild(app.view); // optional cleanup
+    }
+  });
+
+});
+</script>
+
+<!-- <script>
+function applyInkEffect(selectorWrap, selectorImg) {
+  const wrapper = document.querySelector(selectorWrap);
+  const img = document.querySelector(selectorImg);
+
+  const w = wrapper.offsetWidth;
+  const h = wrapper.offsetHeight;
+
+  const app = new PIXI.Application({
+    width: w,
+    height: h,
+    transparent: true
+  });
+
+  wrapper.appendChild(app.view);
+
+  const container = new PIXI.Container();
+  app.stage.addChild(container);
+
+  const displacementSprite = PIXI.Sprite.from(
+    "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+  );
+
+  displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+  displacementSprite.anchor.set(0.5);
+  displacementSprite.position.set(w / 2, h / 2);
+
+  const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+
+  app.stage.addChild(displacementSprite);
+  container.filters = [displacementFilter];
+
+  displacementFilter.scale.set(0);
+
+  const bg = PIXI.Sprite.from(img.src);
+  bg.width = w;
+  bg.height = h;
+
+  container.addChild(bg);
+
+  img.style.opacity = 0;
+
+  // GSAP animation
+  const tl = gsap.timeline();
+
+  // forward
+  // tl.to(displacementFilter.scale, {
+  //   x: -3000,
+  //   y: -3000,
+  //   ease: "expo.inOut",
+  //   duration: 4
+  // });
+
+  // reverse + show image
+  tl.to(displacementFilter.scale, {
+    x: 0,
+    y: 0,
+    ease: "expo.inOut",
+    duration: 4,
+    onComplete: () => {
+      img.style.opacity = 1; // Show original image
+      wrapper.removeChild(app.view); // optional cleanup
+    }
+  });
+}
+
+
+// window.addEventListener("load", function () {
+//   applyInkEffect(".inkWrapThird", ".inkImageThird");
+// });
+
+
+
+window.addEventListener("load", () => {
+  applyInkEffect(".inkWrapFourth", ".inkImageFourth");
+});
+</script> -->
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const wrapper = document.querySelector(".inkWrapFourth");
+  const img = document.querySelector(".inkImageFourth");
+
+  if (!wrapper || !img) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) {
+        observer.disconnect();
+        startInkEffect();
+      }
+    },
+    { threshold: 0.4 }
+  );
+
+  observer.observe(wrapper);
+
+  function startInkEffect() {
+    const w = wrapper.offsetWidth;
+    const h = wrapper.offsetHeight;
+
+    img.style.opacity = 0;
+
+    // PIXI v7 syntax
+    const app = PIXI.Application.new({
+      width: w,
+      height: h,
+      backgroundAlpha: 0,
+    });
+
+    wrapper.appendChild(app.view);
+
+    const container = new PIXI.Container();
+    app.stage.addChild(container);
+
+    const dispSprite = PIXI.Sprite.from(
+      "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+    );
+    dispSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+    dispSprite.anchor.set(0.5);
+    dispSprite.position.set(w / 2, h / 2);
+
+    const dispFilter = new PIXI.filters.DisplacementFilter(dispSprite);
+    container.filters = [dispFilter];
+
+    app.stage.addChild(dispSprite);
+
+    const mainImage = PIXI.Sprite.from(img.src);
+    mainImage.width = w;
+    mainImage.height = h;
+    container.addChild(mainImage);
+
+    // reverse animation — start distorted
+    dispFilter.scale.set(-3000, -3000);
+
+    gsap.to(dispFilter.scale, {
+      x: 0,
+      y: 0,
+      duration: 2.5,
+      ease: "expo.out",
+      onComplete: () => {
+        img.style.opacity = 1;
+
+        if (wrapper.contains(app.view)) {
+          wrapper.removeChild(app.view);
+        }
+
+        app.destroy(true, { children: true });
+      },
+    });
+  }
+});
+</script>
+
+
+
+<script>
+function reverseInkEffect(wrapperSelector, imgSelector) {
+  const wrapper = document.querySelector(wrapperSelector);
+  const img = document.querySelector(imgSelector);
+
+  const w = wrapper.offsetWidth;
+  const h = wrapper.offsetHeight;
+
+  const app = new PIXI.Application({
+    width: w,
+    height: h,
+    transparent: true
+  });
+
+  wrapper.appendChild(app.view);
+
+  const container = new PIXI.Container();
+  app.stage.addChild(container);
+
+  const displacementSprite = PIXI.Sprite.from(
+    "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+  );
+  displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+  displacementSprite.anchor.set(0.5);
+  displacementSprite.position.set(w / 2, h / 2);
+
+  const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+  app.stage.addChild(displacementSprite);
+  container.filters = [displacementFilter];
+
+  const bg = PIXI.Sprite.from(img.src);
+  bg.width = w;
+  bg.height = h;
+  container.addChild(bg);
+
+  // Always hide real image at start
+  img.style.opacity = 0;
+
+  // Start distorted
+  displacementFilter.scale.set(-3000, -3000);
+
+  // Animate to clear
+  gsap.to(displacementFilter.scale, {
+    x: 0,
+    y: 0,
+    duration: 3,
+    ease: "expo.out",
+    onComplete: () => {
+
+      // Show REAL image
+      img.style.opacity = 1;
+
+      // Remove PIXI canvas fully
+      if (wrapper.contains(app.view)) {
+        wrapper.removeChild(app.view);
+      }
+
+      app.destroy(true, { children: true });
+    }
+  });
+}
+
+// Trigger on view
+function triggerInkOnView(wrapperSelector, imgSelector) {
+  const target = document.querySelector(wrapperSelector);
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    if (entries[0].isIntersecting) {
+      reverseInkEffect(wrapperSelector, imgSelector);
+      obs.disconnect();
+    }
+  }, {
+    threshold: 0.4
+  });
+
+  observer.observe(target);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  triggerInkOnView(".secondImg", ".inkImageSecond");
+});
+</script>
+<script>
+function reverseInkEffectThird(wrapperSelector, imgSelector) {
+  const wrapper = document.querySelector(wrapperSelector);
+  const img = document.querySelector(imgSelector);
+
+  const w = wrapper.offsetWidth;
+  const h = wrapper.offsetHeight;
+
+  const app = new PIXI.Application({
+    width: w,
+    height: h,
+    transparent: true
+  });
+
+  wrapper.appendChild(app.view);
+
+  const container = new PIXI.Container();
+  app.stage.addChild(container);
+
+  const displacementSprite = PIXI.Sprite.from(
+    "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+  );
+  displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+  displacementSprite.anchor.set(0.5);
+  displacementSprite.position.set(w / 2, h / 2);
+
+  const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+  app.stage.addChild(displacementSprite);
+  container.filters = [displacementFilter];
+
+  const bg = PIXI.Sprite.from(img.src);
+  bg.width = w;
+  bg.height = h;
+  container.addChild(bg);
+
+  img.style.opacity = 0;
+
+  // Start distorted
+  displacementFilter.scale.set(-3000, -3000);
+
+  // Animate
+  gsap.to(displacementFilter.scale, {
+    x: 0,
+    y: 0,
+    duration: 3,
+    ease: "expo.out",
+    onComplete: () => {
+
+      img.style.opacity = 1;
+
+      if (wrapper.contains(app.view)) {
+        wrapper.removeChild(app.view);
+      }
+
+      app.destroy(true, { children: true });
+    }
+  });
+}
+
+// Trigger with IntersectionObserver
+function triggerInkOnViewThird() {
+  const target = document.querySelector(".inkWrapThird");
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    if (entries[0].isIntersecting) {
+      reverseInkEffectThird(".inkWrapThird", ".inkImageThird");
+      obs.disconnect();
+    }
+  }, { threshold: 0.4 });
+
+  observer.observe(target);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  triggerInkOnViewThird();
+});
+</script>
+
+
+
   </body>
 </html>
