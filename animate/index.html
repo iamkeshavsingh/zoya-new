@@ -167,7 +167,7 @@
         .journeyContentSecLeft h3 span {
           font-size: 28px;
         }
-        .journeyContentSecLeftPara {
+        .journeySec .journeyContentSecLeftPara {
           display: none;
         }
         .journeyContentSecLeftParaMob {
@@ -406,6 +406,84 @@
       .fourthSecHead span {
         font-size: 42px;
       }
+      .crafedTextMob {
+        display: none;
+      }
+
+      @media screen and (max-width: 600px) {
+        .FourthSec {
+          height: auto;
+        }
+        .FourthSecContent {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        .FourthSecContent p {
+          display: none;
+        }
+        .FourthSecContent img {
+          width: 100% !important;
+          height: 370px !important;
+        }
+        .inkWrapFourth {
+          min-height: 0px;
+        }
+        .fourthSecBottomContent {
+          padding-left: 0;
+          padding-right: 0;
+          flex-direction: column-reverse;
+          width: 92%;
+          background-color: #fff;
+          border-radius: 8px;
+          margin: 0 auto;
+        }
+        .fourthSecBottomContentLeft {
+          width: 100%;
+          padding: 20px 16px;
+        }
+        .fourthSecHead {
+          font-size: 18px;
+          padding-bottom: 8px;
+        }
+        .fourthSecHead span {
+          font-size: 28px;
+        }
+        .fourthSecBottomContentRight {
+          width: 100%;
+        }
+        .fourthSecBottomContentRight video {
+          width: 100%;
+          height: auto;
+        }
+        .fourthSecBottomContent2 {
+          padding-left: 0;
+          padding-right: 0;
+          flex-direction: column;
+          width: 92%;
+          padding-top: 0;
+          padding-bottom: 0;
+          background-color: #fff;
+          border-radius: 8px;
+          margin: 0 auto;
+          margin-top: 32px;
+        }
+        .fourthSecBottomContentLeft2 {
+          width: 100%;
+          padding: 20px 16px;
+        }
+        .crafedTextMob {
+          display: block;
+          padding-bottom: 25px;
+          padding-top: 27px;
+          text-align: center;
+          text-transform: uppercase;
+          color: #4d4929;
+          font-size: 18px;
+          line-height: 180%;
+          font-weight: 400;
+        }
+      }
+
       /* Fifth section styles */
       .fifthSec {
         background-image: url("../imgBespoke/secondSecBg.png");
@@ -1345,7 +1423,7 @@
 
           <p class="fourthPara">Perfection</p>
         </div>
-
+        <p class="crafedTextMob">Crafted to Perfection</p>
         <div class="fourthSecBottomContent">
           <div class="fourthSecBottomContentLeft">
             <h3 class="fourthSecHead">
@@ -1359,6 +1437,7 @@
               pulse of longing.
             </p>
           </div>
+
           <div class="fourthSecBottomContentRight">
             <video src="../imgBespoke/video1.mp4" autoplay muted></video>
           </div>
@@ -1383,7 +1462,7 @@
       </div>
     </section>
 
-    <section class="fifthSec">
+    <!-- <section class="fifthSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Our Offerings</h3>
@@ -1410,9 +1489,9 @@
           alt="elephent"
         />
       </div>
-    </section>
+    </section> -->
 
-    <section class="fifthSecBottomCards">
+    <!-- <section class="fifthSecBottomCards">
       <div class="fifthCardGrp">
         <div class="fifthCard1">
           <img src="../imgBespoke/card1Bg.png" alt="card1Bg" />
@@ -1449,9 +1528,9 @@
         <p>Begin Your Bespoke Journey.</p>
         <img src="../imgBespoke/arrow-right.png" alt="arrow-right" />
       </div>
-    </section>
+    </section> -->
 
-    <section class="sixthSec">
+    <!-- <section class="sixthSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Our Creations</h3>
@@ -1491,9 +1570,9 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section class="testimonialSec">
+    <!-- <section class="testimonialSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Testimonials</h3>
@@ -1547,7 +1626,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- <section class="contactSec">
       <div class="headSecJourney">
@@ -1604,7 +1683,7 @@
 
     <!-- City slider Html  -->
 
-    <section class="store-section">
+    <!-- <section class="store-section">
       <div class="content">
         <h2>
           Come meet us, right here
@@ -1663,7 +1742,7 @@
           />
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Letest Press HTML -->
     <section class="letestPressSec">
