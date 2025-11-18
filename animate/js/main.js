@@ -34,7 +34,7 @@ jQuery(document).ready(function($){
     // AUTO CLOSE AFTER 5 SECONDS
     setTimeout(function(){ 
         closeModal(); 
-    }, 3000);
+    }, 2000);
 
     // 🔥 CLOSE MODAL WITH INK EFFECT ONLY
     function closeModal() {

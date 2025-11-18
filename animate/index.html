@@ -1175,7 +1175,7 @@
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis saepe amet sit fugit rerum, corporis minus vitae officia quaerat incidunt voluptate, blanditiis ea est quibusdam voluptas animi quasi totam magni, commodi praesentium. Possimus quam illo ipsam iste unde totam cupiditate deleniti, impedit assumenda hic eligendi natus tempora dolores quod mollitia ab non sunt eaque adipisci, suscipit quas aliquid officiis beatae. Necessitatibus voluptatibus, perferendis tenetur perspiciatis adipisci nesciunt eum ex fuga commodi iure numquam enim rem ullam labore nisi magni sint voluptatem quos! Eum iure exercitationem voluptates repellendus culpa doloremque laborum animi illum, sint fugit soluta possimus a fuga veritatis molestias corporis placeat illo pariatur dolor reiciendis earum, sapiente omnis. Placeat maiores omnis, porro officia, laborum eos. Fugiat mollitia inventore consequuntur odit eaque, rerum recusandae, eum sint molestiae consequatur culpa deserunt quae aliquid dolor tempora tenetur architecto repellendus enim quasi atque, odio voluptas. Tenetur repellendus explicabo ipsum inventore quia aut eos expedita necessitatibus asperiores blanditiis! Delectus nisi laudantium ipsum! Quasi blanditiis corrupti dicta maiores placeat laboriosam delectus ipsum facere voluptas, magnam voluptatibus, perferendis alias ullam saepe, perspiciatis recusandae voluptates, dolores praesentium?
 		</p> -->
 	</div> <!-- .modal-content -->
-	<a href="#0" class="modal-close">Close</a>
+	<!-- <a href="#0" class="modal-close">Close</a> -->
 </div> <!-- .cd-modal -->
     <div class="cd-transition-layer">
       <div class="bg-layer"></div>
@@ -3022,207 +3022,125 @@ window.addEventListener("load", () => {
 
 
     <!-- Testimonials Section Ink Animation - Separate -->
-    <script>
-      (function () {
-        if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
+     <script>
+(function () {
+  if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
 
-        const DISP_SRC =
-          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
-        const wrapper = document.querySelector(".testimonialImgWrap");
-        const img = wrapper
-          ? wrapper.querySelector(".testimonialImgImg")
-          : null;
+  const DISP_SRC =
+    "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
 
-        if (!wrapper || !img) return;
+  const wrapper = document.querySelector(".testimonialImgWrap");
+  const img = wrapper ? wrapper.querySelector(".testimonialImgImg") : null;
 
-        function createPixiAppTestimonial(w, h) {
-          const app = new PIXI.Application({
-            width: w,
-            height: h,
-            transparent: true,
-            resolution: window.devicePixelRatio || 1,
-            autoDensity: true,
-            antialias: true,
-          });
-          app.view.style.width = w + "px";
-          app.view.style.height = h + "px";
-          app.view.style.display = "block";
-          app.view.style.position = "absolute";
-          app.view.style.top = "0";
-          app.view.style.left = "0";
-          app.view.style.pointerEvents = "none";
-          return app;
-        }
+  if (!wrapper || !img) return;
 
-        function reverseInkTestimonial() {
-          if (wrapper._pixiAppTestimonial) return;
+  function createPixiApp(w, h) {
+    const app = new PIXI.Application({
+      width: w,
+      height: h,
+      transparent: true,
+      resolution: window.devicePixelRatio || 1,
+      autoDensity: true,
+      antialias: true,
+    });
+    app.view.style.width = w + "px";
+    app.view.style.height = h + "px";
+    app.view.style.display = "block";
+    app.view.style.position = "absolute";
+    app.view.style.top = "0";
+    app.view.style.left = "0";
+    app.view.style.pointerEvents = "none";
+    return app;
+  }
 
-          const w = wrapper.offsetWidth;
-          const h = wrapper.offsetHeight;
-          if (w === 0 || h === 0) return;
+  // ------------------------ ONLY FORWARD ANIMATION ------------------------
+  function forwardInkTestimonial() {
+    if (wrapper._isAnimatingTestimonial) return;
 
-          const app = createPixiAppTestimonial(w, h);
-          // Insert canvas before image to avoid layout shifts
-          wrapper.insertBefore(app.view, img);
-          wrapper._pixiAppTestimonial = app;
+    const w = wrapper.offsetWidth;
+    const h = wrapper.offsetHeight;
+    if (w === 0 || h === 0) return;
 
-          const container = new PIXI.Container();
-          app.stage.addChild(container);
+    // Always create new PIXI app
+    const app = createPixiApp(w, h);
+    wrapper.insertBefore(app.view, img);
 
-          const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-          displacementSprite.texture.baseTexture.wrapMode =
-            PIXI.WRAP_MODES.REPEAT;
-          displacementSprite.anchor.set(0.5);
-          displacementSprite.position.set(w / 2, h / 2);
+    const container = new PIXI.Container();
+    app.stage.addChild(container);
 
-          const tex = displacementSprite.texture;
-          if (tex && tex.width) {
-            const scaleX = (w / tex.width) * 1.5;
-            const scaleY = (h / tex.height) * 1.5;
-            displacementSprite.scale.set(Math.max(scaleX, scaleY));
-          }
+    const dispSprite = PIXI.Sprite.from(DISP_SRC);
+    dispSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+    dispSprite.anchor.set(0.5);
+    dispSprite.position.set(w / 2, h / 2);
 
-          const displacementFilter = new PIXI.filters.DisplacementFilter(
-            displacementSprite
-          );
-          app.stage.addChild(displacementSprite);
-          container.filters = [displacementFilter];
+    const tex = dispSprite.texture;
+    if (tex && tex.width) {
+      const scaleX = (w / tex.width) * 1.5;
+      const scaleY = (h / tex.height) * 1.5;
+      dispSprite.scale.set(Math.max(scaleX, scaleY));
+    }
 
-          const bg = PIXI.Sprite.from(img.src);
-          bg.width = w;
-          bg.height = h;
-          bg.x = 0;
-          bg.y = 0;
-          container.addChild(bg);
+    const dispFilter = new PIXI.filters.DisplacementFilter(dispSprite);
+    app.stage.addChild(dispSprite);
+    container.filters = [dispFilter];
 
-          wrapper._isAnimatingTestimonial = true;
-          wrapper._filterTestimonial = displacementFilter;
-          displacementFilter.scale.set(0, 0);
-          img.style.opacity = "0";
+    const bg = PIXI.Sprite.from(img.src);
+    bg.width = w;
+    bg.height = h;
+    container.addChild(bg);
 
-          gsap.to(displacementFilter.scale, {
-            x: -3000,
-            y: -3000,
-            duration: 1.8,
-            ease: "expo.inOut",
-            onComplete: () => {
-              wrapper._isAnimatingTestimonial = false;
-            },
-          });
-        }
+    // Start distorted → normal
+    dispFilter.scale.set(-3000, -3000);
 
-        function forwardInkTestimonial() {
-          if (wrapper._isAnimatingTestimonial) return;
+    wrapper._isAnimatingTestimonial = true;
+    img.style.opacity = "0";
 
-          const w = wrapper.offsetWidth;
-          const h = wrapper.offsetHeight;
-          if (w === 0 || h === 0) return;
+    gsap.to(dispFilter.scale, {
+      x: 0,
+      y: 0,
+      duration: 2.2,
+      ease: "expo.out",
+      onComplete: () => {
+        img.style.opacity = "1";
 
-          let app = wrapper._pixiAppTestimonial;
-          let displacementFilter = wrapper._filterTestimonial;
+        // remove PIXI canvas
+        if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
+        app.destroy(true, { children: true });
 
-          if (!app || !displacementFilter) {
-            app = createPixiAppTestimonial(w, h);
-            // Insert canvas before image to avoid layout shifts
-            wrapper.insertBefore(app.view, img);
-            wrapper._pixiAppTestimonial = app;
-
-            const container = new PIXI.Container();
-            app.stage.addChild(container);
-
-            const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-            displacementSprite.texture.baseTexture.wrapMode =
-              PIXI.WRAP_MODES.REPEAT;
-            displacementSprite.anchor.set(0.5);
-            displacementSprite.position.set(w / 2, h / 2);
-
-            const tex = displacementSprite.texture;
-            if (tex && tex.width) {
-              const scaleX = (w / tex.width) * 1.5;
-              const scaleY = (h / tex.height) * 1.5;
-              displacementSprite.scale.set(Math.max(scaleX, scaleY));
-            }
-
-            displacementFilter = new PIXI.filters.DisplacementFilter(
-              displacementSprite
-            );
-            app.stage.addChild(displacementSprite);
-            container.filters = [displacementFilter];
-
-            const bg = PIXI.Sprite.from(img.src);
-            bg.width = w;
-            bg.height = h;
-            bg.x = 0;
-            bg.y = 0;
-            container.addChild(bg);
-
-            wrapper._filterTestimonial = displacementFilter;
-          }
-
-          displacementFilter.scale.set(-3000, -3000);
-          wrapper._isAnimatingTestimonial = true;
-          img.style.opacity = "0";
-
-          gsap.to(displacementFilter.scale, {
-            x: 0,
-            y: 0,
-            duration: 3,
-            ease: "expo.out",
-            onComplete: () => {
-              img.style.opacity = "1";
-
-              if (
-                wrapper._pixiAppTestimonial &&
-                wrapper.contains(wrapper._pixiAppTestimonial.view)
-              ) {
-                wrapper.removeChild(wrapper._pixiAppTestimonial.view);
-              }
-              if (wrapper._pixiAppTestimonial) {
-                wrapper._pixiAppTestimonial.destroy(true, { children: true });
-              }
-
-              wrapper._pixiAppTestimonial = null;
-              wrapper._filterTestimonial = null;
-              wrapper._isAnimatingTestimonial = false;
-            },
-          });
-        }
-
-        wrapper._pixiAppTestimonial = null;
-        wrapper._filterTestimonial = null;
         wrapper._isAnimatingTestimonial = false;
+      },
+    });
+  }
 
-        function initTestimonialObserver() {
-          const observerTestimonial = new IntersectionObserver(
-            (entries) => {
-              const e = entries[0];
-              if (e.isIntersecting) {
-                forwardInkTestimonial();
-              } else {
-                if (
-                  !wrapper._pixiAppTestimonial &&
-                  !wrapper._isAnimatingTestimonial
-                ) {
-                  reverseInkTestimonial();
-                }
-              }
-            },
-            { threshold: 0.4 }
-          );
+  // Remove ALL reverse logic
+  wrapper._pixiAppTestimonial = null;
+  wrapper._filterTestimonial = null;
+  wrapper._isAnimatingTestimonial = false;
 
-          observerTestimonial.observe(wrapper);
+  // ------------------------ OBSERVER → ONLY FORWARD ------------------------
+  function initObserver() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const e = entries[0];
+
+        if (e.isIntersecting) {
+          forwardInkTestimonial(); // play forward everytime entering view
         }
+      },
+      { threshold: 0.4 }
+    );
 
-        // Wait for modal to close before starting animations
-        if (window.modalClosed) {
-          initTestimonialObserver();
-        } else {
-          document.addEventListener("modalClosed", initTestimonialObserver, {
-            once: true,
-          });
-        }
-      })();
-    </script>
+    observer.observe(wrapper);
+  }
+
+  if (window.modalClosed) {
+    initObserver();
+  } else {
+    document.addEventListener("modalClosed", initObserver, { once: true });
+  }
+})();
+</script>
+
 
     <!-- <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -3459,440 +3377,250 @@ window.addEventListener("load", () => {
 
     <!-- 5th section img animation  -->
     <script>
-      function createPixiApp(wrapper, w, h) {
-        const app = new PIXI.Application({
-          width: w,
-          height: h,
-          transparent: true,
-          resolution: window.devicePixelRatio || 1,
-          autoDensity: true,
-          antialias: true,
-        });
-        app.view.style.width = w + "px";
-        app.view.style.height = h + "px";
-        app.view.style.display = "block";
-        return app;
-      }
+  function createPixiApp(wrapper, w, h) {
+    const app = new PIXI.Application({
+      width: w,
+      height: h,
+      transparent: true,
+      resolution: window.devicePixelRatio || 1,
+      autoDensity: true,
+      antialias: true,
+    });
+    app.view.style.width = w + "px";
+    app.view.style.height = h + "px";
+    app.view.style.display = "block";
+    return app;
+  }
 
-      function ensureSizeStyles(img, w, h) {
-        img.style.width = w + "px";
-        img.style.height = h + "px";
-        img.style.objectFit = "cover";
-        img.style.display = "block";
-      }
+  function ensureSizeStyles(img, w, h) {
+    img.style.width = w + "px";
+    img.style.height = h + "px";
+    img.style.objectFit = "cover";
+    img.style.display = "block";
+  }
 
-      function reverseInkEffectFifth(wrapperSelector, imgSelector) {
-        const wrapper = document.querySelector(wrapperSelector);
-        const img = document.querySelector(imgSelector);
-        if (!wrapper || !img) return;
+  // ---------- ONLY FORWARD EFFECT ----------
+  function forwardInkEffect(wrapperSelector, imgSelector) {
+    const wrapper = document.querySelector(wrapperSelector);
+    const img = document.querySelector(imgSelector);
+    if (!wrapper || !img) return;
 
-        const w = wrapper.offsetWidth;
-        const h = wrapper.offsetHeight;
+    // 🔥 Always allow animation again
+    if (wrapper._isAnimating) return;
 
-        // If there's already a running app, don't create another
-        if (wrapper._pixiApp) return;
+    const w = wrapper.offsetWidth;
+    const h = wrapper.offsetHeight;
 
-        ensureSizeStyles(img, w, h);
+    ensureSizeStyles(img, w, h);
 
-        // Create app and stage
-        const app = createPixiApp(wrapper, w, h);
-        wrapper.appendChild(app.view);
-        wrapper._pixiApp = app; // store for later
+    // create new app every time
+    const app = createPixiApp(wrapper, w, h);
+    wrapper.appendChild(app.view);
 
-        const container = new PIXI.Container();
-        app.stage.addChild(container);
+    const container = new PIXI.Container();
+    app.stage.addChild(container);
 
-        const displacementSprite = PIXI.Sprite.from(
-          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
-        );
-        displacementSprite.texture.baseTexture.wrapMode =
-          PIXI.WRAP_MODES.REPEAT;
-        displacementSprite.anchor.set(0.5);
-        displacementSprite.position.set(w / 2, h / 2);
+    const displacementSprite = PIXI.Sprite.from(
+      "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+    );
+    displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+    displacementSprite.anchor.set(0.5);
+    displacementSprite.position.set(w / 2, h / 2);
 
-        // Scale displacement sprite so it covers the view (optional but helpful)
-        const tex = displacementSprite.texture;
-        if (tex && tex.width) {
-          const scaleX = (w / tex.width) * 1.5;
-          const scaleY = (h / tex.height) * 1.5;
-          displacementSprite.scale.set(Math.max(scaleX, scaleY));
-        }
+    // scale distortion sprite
+    const tex = displacementSprite.texture;
+    if (tex && tex.width) {
+      const scaleX = (w / tex.width) * 1.5;
+      const scaleY = (h / tex.height) * 1.5;
+      displacementSprite.scale.set(Math.max(scaleX, scaleY));
+    }
 
-        const displacementFilter = new PIXI.filters.DisplacementFilter(
-          displacementSprite
-        );
+    const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+    app.stage.addChild(displacementSprite);
+    container.filters = [displacementFilter];
 
-        // Add sprite to stage (so it renders) and apply filter to container
-        app.stage.addChild(displacementSprite);
-        container.filters = [displacementFilter];
+    const bg = PIXI.Sprite.from(img.src);
+    bg.width = w;
+    bg.height = h;
+    container.addChild(bg);
 
-        const bg = PIXI.Sprite.from(img.src);
-        bg.width = w;
-        bg.height = h;
-        bg.x = 0;
-        bg.y = 0;
-        container.addChild(bg);
+    // start animation from distorted → normal
+    displacementFilter.scale.set(-3000, -3000);
 
-        // mark state
-        wrapper._isAnimating = true;
-        wrapper._filter = displacementFilter;
+    wrapper._isAnimating = true;
+    img.style.opacity = "0";
 
-        // For reverse effect (clear -> distorted) we'll start from 0 and go to -3000
-        displacementFilter.scale.set(0, 0);
+    gsap.to(displacementFilter.scale, {
+      x: 0,
+      y: 0,
+      duration: 2,
+      ease: "expo.out",
+      onComplete: () => {
+        img.style.opacity = "1";
 
-        // hide the real image while reversed
-        img.style.opacity = "0";
+        // remove pixi canvas
+        if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
 
-        gsap.to(displacementFilter.scale, {
-          x: -3000,
-          y: -3000,
-          duration: 1.8,
-          ease: "expo.inOut",
-          onComplete: () => {
-            wrapper._isAnimating = false;
-            // keep the canvas (do not destroy) so the distorted state remains
-            // leave wrapper._pixiApp in place for the forward animation later
-          },
-        });
-      }
+        // destroy pixi instance
+        app.destroy(true, { children: true });
 
-      // Forward (distorted -> normal, then reveal image and remove canvas)
-      function forwardInkEffectFifth(wrapperSelector, imgSelector) {
-        const wrapper = document.querySelector(wrapperSelector);
-        const img = document.querySelector(imgSelector);
-        if (!wrapper || !img) return;
-
-        const w = wrapper.offsetWidth;
-        const h = wrapper.offsetHeight;
-
-        // If there's already a running animation, skip
-        if (wrapper._isAnimating) return;
-
-        // If there's no existing canvas (app), create one in the distorted state
-        let app = wrapper._pixiApp;
-        let displacementFilter = wrapper._filter;
-
-        // If app doesn't exist, create app and set filter scale large negative (distorted start)
-        if (!app || !displacementFilter) {
-          ensureSizeStyles(img, w, h);
-          app = createPixiApp(wrapper, w, h);
-          wrapper.appendChild(app.view);
-          wrapper._pixiApp = app;
-
-          const container = new PIXI.Container();
-          app.stage.addChild(container);
-
-          const displacementSprite = PIXI.Sprite.from(
-            "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
-          );
-          displacementSprite.texture.baseTexture.wrapMode =
-            PIXI.WRAP_MODES.REPEAT;
-          displacementSprite.anchor.set(0.5);
-          displacementSprite.position.set(w / 2, h / 2);
-          const tex = displacementSprite.texture;
-          if (tex && tex.width) {
-            const scaleX = (w / tex.width) * 1.5;
-            const scaleY = (h / tex.height) * 1.5;
-            displacementSprite.scale.set(Math.max(scaleX, scaleY));
-          }
-
-          displacementFilter = new PIXI.filters.DisplacementFilter(
-            displacementSprite
-          );
-          app.stage.addChild(displacementSprite);
-
-          container.filters = [displacementFilter];
-
-          const bg = PIXI.Sprite.from(img.src);
-          bg.width = w;
-          bg.height = h;
-          bg.x = 0;
-          bg.y = 0;
-          container.addChild(bg);
-
-          wrapper._filter = displacementFilter;
-        }
-
-        // Start with distorted scale so animation goes to 0
-        displacementFilter.scale.set(-3000, -3000);
-
-        // mark animating & hide real image
-        wrapper._isAnimating = true;
-        img.style.opacity = "0";
-        img.style.display = "block";
-
-        gsap.to(displacementFilter.scale, {
-          x: 0,
-          y: 0,
-          duration: 3,
-          ease: "expo.out",
-          onComplete: () => {
-            // reveal the real image
-            img.style.opacity = "1";
-            img.style.opacity = "none";
-
-            // remove canvas and destroy to free resources
-            if (wrapper._pixiApp && wrapper.contains(wrapper._pixiApp.view)) {
-              wrapper.removeChild(wrapper._pixiApp.view);
-            }
-            if (wrapper._pixiApp) {
-              wrapper._pixiApp.destroy(true, { children: true });
-            }
-
-            // clear stored references
-            wrapper._pixiApp = null;
-            wrapper._filter = null;
-            wrapper._isAnimating = false;
-          },
-        });
-      }
-
-      // Observer setup: listen for entry/exit and call forward/reverse accordingly
-      function triggerInkOnViewFifth() {
-        const wrapper = document.querySelector(".secondImg");
-        const imgSelector = ".inkImageSecond";
-        if (!wrapper) return;
-
-        // set initial flags
-        wrapper._pixiApp = null;
-        wrapper._filter = null;
         wrapper._isAnimating = false;
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            const e = entries[0];
-            if (e.isIntersecting) {
-              // section came into view -> play forward animation
-              forwardInkEffectFifth(".secondImg", imgSelector);
-            } else {
-              // section left view -> when leaving (scroll up or down), create reversed distorted look
-              // but only create reverse if there's no existing canvas (i.e., if image currently visible)
-              // This prevents repeatedly re-triggering while already distorted.
-              // We want user to see distortion next time they scroll back in.
-              if (!wrapper._pixiApp && !wrapper._isAnimating) {
-                // small timeout can avoid firing on small scroll jitter; optional
-                reverseInkEffectFifth(".secondImg", imgSelector);
-              }
-            }
-          },
-          { threshold: 0.4 }
-        );
-
-        observer.observe(wrapper);
       }
+    });
+  }
 
-      // Wait for modal to close before starting animation
-      function initFifthSectionAnimation() {
-        triggerInkOnViewFifth();
-      }
+  // ---------- OBSERVER → TRIGGER ONLY FORWARD ----------
+  function triggerInkOnView() {
+    const wrapper = document.querySelector(".secondImg");
+    if (!wrapper) return;
 
-      if (window.modalClosed) {
-        initFifthSectionAnimation();
-      } else {
-        document.addEventListener("modalClosed", initFifthSectionAnimation, {
-          once: true,
-        });
-      }
-    </script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const e = entries[0];
+        if (e.isIntersecting) {
+          // 🔥 Only play forward animation
+          forwardInkEffect(".secondImg", ".inkImageSecond");
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(wrapper);
+  }
+
+  function initAnimation() {
+    triggerInkOnView();
+  }
+
+  if (window.modalClosed) {
+    initAnimation();
+  } else {
+    document.addEventListener("modalClosed", initAnimation, { once: true });
+  }
+</script>
+
 
     <!-- Illustration Section Ink Animation - Separate -->
-    <script>
-      (function () {
-        if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
+     <script>
+(function () {
+  if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
 
-        const DISP_SRC =
-          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
-        const wrapper = document.querySelector(".inkWrapIllustration");
-        const img = document.querySelector(".inkImageIllustration");
+  const DISP_SRC =
+    "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
 
-        if (!wrapper || !img) return;
+  const wrapper = document.querySelector(".inkWrapIllustration");
+  const img = document.querySelector(".inkImageIllustration");
 
-        function createPixiAppIllustration(w, h) {
-          const app = new PIXI.Application({
-            width: w,
-            height: h,
-            transparent: true,
-            resolution: window.devicePixelRatio || 1,
-            autoDensity: true,
-            antialias: true,
-          });
-          app.view.style.width = w + "px";
-          app.view.style.height = h + "px";
-          app.view.style.display = "block";
-          app.view.style.position = "absolute";
-          app.view.style.top = "0";
-          app.view.style.left = "0";
-          app.view.style.pointerEvents = "none";
-          return app;
-        }
+  if (!wrapper || !img) return;
 
-        function reverseInkIllustration() {
-          if (wrapper._pixiAppIllustration) return;
+  function createPixiAppIllustration(w, h) {
+    const app = new PIXI.Application({
+      width: w,
+      height: h,
+      transparent: true,
+      resolution: window.devicePixelRatio || 1,
+      autoDensity: true,
+      antialias: true,
+    });
 
-          const w = wrapper.offsetWidth;
-          const h = wrapper.offsetHeight;
-          if (w === 0 || h === 0) return;
+    app.view.style.width = w + "px";
+    app.view.style.height = h + "px";
+    app.view.style.display = "block";
+    app.view.style.position = "absolute";
+    app.view.style.top = "0";
+    app.view.style.left = "0";
+    app.view.style.pointerEvents = "none";
 
-          const app = createPixiAppIllustration(w, h);
-          wrapper.insertBefore(app.view, img);
-          wrapper._pixiAppIllustration = app;
+    return app;
+  }
 
-          const container = new PIXI.Container();
-          app.stage.addChild(container);
+  // ---------------- FORWARD ONLY ----------------
+  function forwardInkIllustration() {
+    if (wrapper._isAnimatingIllustration) return;
 
-          const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-          displacementSprite.texture.baseTexture.wrapMode =
-            PIXI.WRAP_MODES.REPEAT;
-          displacementSprite.anchor.set(0.5);
-          displacementSprite.position.set(w / 2, h / 2);
+    const w = wrapper.offsetWidth;
+    const h = wrapper.offsetHeight;
+    if (w === 0 || h === 0) return;
 
-          const tex = displacementSprite.texture;
-          if (tex && tex.width) {
-            const scaleX = (w / tex.width) * 1.5;
-            const scaleY = (h / tex.height) * 1.5;
-            displacementSprite.scale.set(Math.max(scaleX, scaleY));
-          }
+    const app = createPixiAppIllustration(w, h);
+    wrapper.insertBefore(app.view, img);
 
-          const displacementFilter = new PIXI.filters.DisplacementFilter(
-            displacementSprite
-          );
-          app.stage.addChild(displacementSprite);
-          container.filters = [displacementFilter];
+    const container = new PIXI.Container();
+    app.stage.addChild(container);
 
-          const bg = PIXI.Sprite.from(img.src);
-          bg.width = w;
-          bg.height = h;
-          bg.x = 0;
-          bg.y = 0;
-          container.addChild(bg);
+    const dispSprite = PIXI.Sprite.from(DISP_SRC);
+    dispSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+    dispSprite.anchor.set(0.5);
+    dispSprite.position.set(w / 2, h / 2);
 
-          wrapper._isAnimatingIllustration = true;
-          wrapper._filterIllustration = displacementFilter;
-          displacementFilter.scale.set(0, 0);
-          img.style.opacity = "0";
+    const tex = dispSprite.texture;
+    if (tex && tex.width) {
+      const scaleX = (w / tex.width) * 1.5;
+      const scaleY = (h / tex.height) * 1.5;
+      dispSprite.scale.set(Math.max(scaleX, scaleY));
+    }
 
-          gsap.to(displacementFilter.scale, {
-            x: -3000,
-            y: -3000,
-            duration: 1.8,
-            ease: "expo.inOut",
-            onComplete: () => {
-              wrapper._isAnimatingIllustration = false;
-            },
-          });
-        }
+    const dispFilter = new PIXI.filters.DisplacementFilter(dispSprite);
+    app.stage.addChild(dispSprite);
+    container.filters = [dispFilter];
 
-        function forwardInkIllustration() {
-          if (wrapper._isAnimatingIllustration) return;
+    const bg = PIXI.Sprite.from(img.src);
+    bg.width = w;
+    bg.height = h;
+    container.addChild(bg);
 
-          const w = wrapper.offsetWidth;
-          const h = wrapper.offsetHeight;
-          if (w === 0 || h === 0) return;
+    // Start at distorted state
+    dispFilter.scale.set(-3000, -3000);
 
-          let app = wrapper._pixiAppIllustration;
-          let displacementFilter = wrapper._filterIllustration;
+    wrapper._isAnimatingIllustration = true;
+    img.style.opacity = "0";
 
-          if (!app || !displacementFilter) {
-            app = createPixiAppIllustration(w, h);
-            wrapper.insertBefore(app.view, img);
-            wrapper._pixiAppIllustration = app;
+    gsap.to(dispFilter.scale, {
+      x: 0,
+      y: 0,
+      duration: 2.5,
+      ease: "expo.out",
+      onComplete: () => {
+        img.style.opacity = "1";
 
-            const container = new PIXI.Container();
-            app.stage.addChild(container);
+        // Remove canvas AFTER animation
+        if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
+        app.destroy(true, { children: true });
 
-            const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-            displacementSprite.texture.baseTexture.wrapMode =
-              PIXI.WRAP_MODES.REPEAT;
-            displacementSprite.anchor.set(0.5);
-            displacementSprite.position.set(w / 2, h / 2);
-
-            const tex = displacementSprite.texture;
-            if (tex && tex.width) {
-              const scaleX = (w / tex.width) * 1.5;
-              const scaleY = (h / tex.height) * 1.5;
-              displacementSprite.scale.set(Math.max(scaleX, scaleY));
-            }
-
-            displacementFilter = new PIXI.filters.DisplacementFilter(
-              displacementSprite
-            );
-            app.stage.addChild(displacementSprite);
-            container.filters = [displacementFilter];
-
-            const bg = PIXI.Sprite.from(img.src);
-            bg.width = w;
-            bg.height = h;
-            bg.x = 0;
-            bg.y = 0;
-            container.addChild(bg);
-
-            wrapper._filterIllustration = displacementFilter;
-          }
-
-          displacementFilter.scale.set(-3000, -3000);
-          wrapper._isAnimatingIllustration = true;
-          img.style.opacity = "0";
-
-          gsap.to(displacementFilter.scale, {
-            x: 0,
-            y: 0,
-            duration: 3,
-            ease: "expo.out",
-            onComplete: () => {
-              img.style.opacity = "1";
-
-              if (
-                wrapper._pixiAppIllustration &&
-                wrapper.contains(wrapper._pixiAppIllustration.view)
-              ) {
-                wrapper.removeChild(wrapper._pixiAppIllustration.view);
-              }
-              if (wrapper._pixiAppIllustration) {
-                wrapper._pixiAppIllustration.destroy(true, { children: true });
-              }
-
-              wrapper._pixiAppIllustration = null;
-              wrapper._filterIllustration = null;
-              wrapper._isAnimatingIllustration = false;
-            },
-          });
-        }
-
-        wrapper._pixiAppIllustration = null;
-        wrapper._filterIllustration = null;
         wrapper._isAnimatingIllustration = false;
+      },
+    });
+  }
 
-        function initIllustrationObserver() {
-          const observerIllustration = new IntersectionObserver(
-            (entries) => {
-              const e = entries[0];
-              if (e.isIntersecting) {
-                forwardInkIllustration();
-              } else {
-                if (
-                  !wrapper._pixiAppIllustration &&
-                  !wrapper._isAnimatingIllustration
-                ) {
-                  reverseInkIllustration();
-                }
-              }
-            },
-            { threshold: 0.4 }
-          );
+  // Remove ALL reverse logic
+  wrapper._pixiAppIllustration = null;
+  wrapper._filterIllustration = null;
+  wrapper._isAnimatingIllustration = false;
 
-          observerIllustration.observe(wrapper);
+  // ---------------- OBSERVER ----------------
+  function initIllustrationObserver() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          forwardInkIllustration(); // Play forward only
         }
+      },
+      { threshold: 0.4 }
+    );
 
-        // Wait for modal to close before starting animations
-        if (window.modalClosed) {
-          initIllustrationObserver();
-        } else {
-          document.addEventListener("modalClosed", initIllustrationObserver, {
-            once: true,
-          });
-        }
-      })();
-    </script>
+    observer.observe(wrapper);
+  }
+
+  if (window.modalClosed) {
+    initIllustrationObserver();
+  } else {
+    document.addEventListener("modalClosed", initIllustrationObserver, {
+      once: true,
+    });
+  }
+})();
+</script>
+
 
     <!-- Latest Press Slider Script -->
     <script>
