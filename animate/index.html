@@ -107,13 +107,21 @@
 
       #inkWrapper canvas {
         width: 100% !important;
-        /* height: 100% !important; */
+        height: 100% !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 1;
       }
 
       #inkImage {
         width: 100%;
         height: 100%;
         object-fit: contain;
+        display: block;
+        position: relative;
+        z-index: 0;
       }
 
       /* Third Section styles */
@@ -561,11 +569,22 @@
         position: relative;
         right: 0;
         bottom: 0px;
+        overflow: hidden;
+        width: 734px;
+        height: 703px;
       }
       .testimonialImgImg {
         width: 734px;
         height: 703px;
         object-fit: cover;
+        display: block;
+      }
+      .testimonialImgWrap canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 1;
       }
       .testimonialContent {
         position: absolute;
@@ -1350,7 +1369,7 @@
         <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
       </div>
 
-      <div class="testimonialImg">
+      <div>
         <div class="testimonialImgWrap">
           <img
             src="../imgBespoke/girl.png"
@@ -2578,6 +2597,11 @@ window.addEventListener("load", () => {
           app.view.style.width = "100%";
           app.view.style.height = "100%";
           app.view.style.display = "block";
+          app.view.style.position = "absolute";
+          app.view.style.top = "0";
+          app.view.style.left = "0";
+          app.view.style.pointerEvents = "none";
+          app.view.style.zIndex = "1";
           return app;
         }
 
@@ -2590,7 +2614,8 @@ window.addEventListener("load", () => {
 
           // Don't modify image styles - let CSS handle it
           const app = createPixiAppJourney(w, h);
-          wrapper.appendChild(app.view);
+          // Insert canvas before image to avoid layout shifts
+          wrapper.insertBefore(app.view, img);
           wrapper._pixiAppJourney = app;
 
           const container = new PIXI.Container();
@@ -2666,7 +2691,8 @@ window.addEventListener("load", () => {
 
           if (!app || !displacementFilter) {
             app = createPixiAppJourney(w, h);
-            wrapper.appendChild(app.view);
+            // Insert canvas before image to avoid layout shifts
+            wrapper.insertBefore(app.view, img);
             wrapper._pixiAppJourney = app;
 
             const container = new PIXI.Container();
