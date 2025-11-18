@@ -57,6 +57,16 @@ function closeModal() {
     transitionBackground.one('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(){
         transitionLayer.removeClass('closing opening visible');
         transitionBackground.off('webkitAnimationEnd oanimationend msAnimationEnd animationend');
+        
+        // Dispatch event to notify animations can start (after animation completes)
+        setTimeout(function() {
+            if (typeof window !== 'undefined') {
+                window.modalClosed = true;
+                if (window.modalCloseEvent) {
+                    document.dispatchEvent(window.modalCloseEvent);
+                }
+            }
+        }, 100); // Small delay to ensure modal is fully closed
     });
 }
 	function setLayerDimensions() {
