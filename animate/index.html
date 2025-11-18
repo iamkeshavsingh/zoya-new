@@ -6,11 +6,18 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://use.typekit.net/hjh2ywn.css" />
 
-    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700|IM+Fell+Double+Pica:400italic' rel='stylesheet' type='text/css'>
-	
-	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+    <link
+      href="https://fonts.googleapis.com/css?family=PT+Sans:400,700|IM+Fell+Double+Pica:400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <!-- CSS reset -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Resource style -->
+    <script src="js/modernizr.js"></script>
+    <!-- Modernizr -->
     <!-- GSAP + ScrollTrigger -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
@@ -122,6 +129,26 @@
         display: block;
         position: relative;
         z-index: 0;
+      }
+
+      @media screen and (max-width: 600px) {
+        .journeyContentSec {
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+        }
+        .journeyContentSecLeft {
+          padding-left: 31px;
+          padding-right: 31px;
+          width: 100%;
+        }
+        .journeyContentSecLeft h3 {
+          font-size: 18px;
+          margin-top: 58px;
+        }
+        .journeyContentSecLeft h3 span {
+          font-size: 28px;
+        }
       }
 
       /* Third Section styles */
@@ -1113,11 +1140,28 @@
         /* position: absolute;
         top: 0; */
       }
+
+      @media screen and (max-width: 600px) {
+        .headingJourney {
+          font-size: 36px;
+        }
+        .headSecJourney img {
+          width: 60px;
+        }
+      }
     </style>
   </head>
 
   <body>
+    <div class="cd-modal">
+      <!-- <div class="modal-content">
+        <h1 id="modelHeading">Modal </h1>
+      </div> -->
+      <!-- .modal-content -->
 
+      <!-- <a href="#0" class="modal-close">Close</a> -->
+    </div>
+    <!-- .cd-modal -->
 
 <div class="cd-modal">
 <div class="modal-content">
@@ -1133,10 +1177,10 @@
 	</div> <!-- .modal-content -->
 	<a href="#0" class="modal-close">Close</a>
 </div> <!-- .cd-modal -->
-
-<div class="cd-transition-layer"> 
-	<div class="bg-layer"></div>
-</div> <!-- .cd-transition-layer -->
+    <div class="cd-transition-layer">
+      <div class="bg-layer"></div>
+    </div>
+    <!-- .cd-transition-layer -->
 
     <section class="journeySec">
       <div class="headSecJourney">
@@ -1279,6 +1323,7 @@
         />
       </div>
     </section>
+
     <section class="fifthSecBottomCards">
       <div class="fifthCardGrp">
         <div class="fifthCard1">
@@ -1327,7 +1372,6 @@
 
       <div class="sixthSectionContent">
         <div class="sixthSectionContentLeft">
-          <!-- original img kept for fallback; script will hide it and insert a PIXI canvas -->
           <img src="../imgBespoke/crown.png" alt="crown" />
         </div>
 
@@ -1851,244 +1895,343 @@
         renderCards();
       });
     </script>
+    <!-- Global Modal State Manager -->
     <script>
-      gsap.registerPlugin(ScrollTrigger);
+      // Create a global flag to track modal state
+      window.modalClosed = false;
+      window.modalCloseEvent = new CustomEvent("modalClosed");
 
-      /* Helper: wrap images in .imgMask if not already wrapped */
-      (function ensureImgMasks() {
-        // .journeyContentSecRight img, .third_sec_content_left img, .firstImg img, .secondImg img,
-        const imgs = document.querySelectorAll(
-          " .third_sec_content_right img, .FourthSecContent img, .fourthSecBottomContentRight video, .fifthSectionContent img,  .sixthSectionContentLeft img"
-        );
-        imgs.forEach((img) => {
-          // skip if parent already has imgMask
-          if (!img.parentElement.classList.contains("imgMask")) {
-            const wrapper = document.createElement("span");
-            wrapper.className = "imgMask";
-            // make wrapper inline-block so it follows layout
-            wrapper.style.display = "block";
-            img.parentElement.replaceChild(wrapper, img);
-            wrapper.appendChild(img);
-          }
-        });
-      })();
-
-      /* Common animation for section headers (uses your existing class) */
-      function animateHeader(triggerEl) {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: triggerEl,
-            start: "top 50%",
-            toggleActions: "play none none reverse",
-          },
-        });
-
-        // header title + arrows (works because your structure uses .headSecJourney inside each section)
-        tl.fromTo(
-          triggerEl + " .headingJourney",
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }
-        );
-        tl.fromTo(
-          triggerEl + " .headSecJourney img",
-          { opacity: 0, y: 10 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.55,
-            stagger: 0.08,
-            ease: "power3.out",
-          },
-          "-=0.55"
-        );
-        return tl;
+      // Function to dispatch modal closed event
+      function dispatchModalClosed() {
+        if (!window.modalClosed) {
+          window.modalClosed = true;
+          document.dispatchEvent(window.modalCloseEvent);
+        }
       }
 
-      /* Generic reveal for text blocks (h3, p) */
-      function revealTextBlock(tl, selector, opts = {}) {
-        const defaults = { duration: 1.0, stagger: 0.12, ease: "power3.out" };
-        const cfg = Object.assign({}, defaults, opts);
-        tl.fromTo(
-          selector,
-          { opacity: 0, y: 24 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: cfg.duration,
-            stagger: cfg.stagger,
-            ease: cfg.ease,
-          },
-          opts.position || "-=0.2"
-        );
-      }
+      // Listen for modal close - check after both DOMContentLoaded and window load
+      document.addEventListener("DOMContentLoaded", function () {
+        // Hook into jQuery modal close if available
+        if (typeof jQuery !== "undefined") {
+          jQuery(document).ready(function ($) {
+            const modalWindow = $(".cd-modal");
+            const transitionLayer = $(".cd-transition-layer");
+            const transitionBackground = transitionLayer.children();
 
-      /* Generic reveal for masked images inside .imgMask */
-      function revealMaskedImage(tl, selector, opts = {}) {
-        const defaults = { duration: 0.9, ease: "power3.out" };
-        const cfg = Object.assign({}, defaults, opts);
-        tl.fromTo(
-          selector,
-          { opacity: 0, y: 40, scale: 1.03 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: cfg.duration,
-            ease: cfg.ease,
-          },
-          opts.position || "-=0.45"
-        );
-      }
+            // Listen for transition animation end (this is when modal is fully closed)
+            transitionBackground.on(
+              "webkitAnimationEnd oanimationend msAnimationEnd animationend",
+              function (e) {
+                // Only dispatch if it's the closing animation, not the opening one
+                if (transitionLayer.hasClass("closing")) {
+                  setTimeout(dispatchModalClosed, 200);
+                }
+              }
+            );
 
-      /* Sections to animate (order = visual order). Each entry defines trigger and selectors */
-      const sections = [
-        {
-          trigger: ".journeySec",
-          headerThen: () => {
-            const tl = animateHeader(".journeySec");
-            revealTextBlock(
-              tl,
-              ".journeyContentSecLeft h3, .journeyContentSecLeftPara"
-            );
-            // Note: the right image will be revealed via PIXI displacement (added later),
-            // but to keep fallback behavior for non-Pixi environments we still include masked reveal:
-            // revealMaskedImage(tl, ".journeySec .imgMask img");
-          },
-        },
-        {
-          trigger: ".third_sec",
-          headerThen: () => {
-            const tl = animateHeader(".third_sec");
-            // left image (masked) then right text & small icon
-            // revealMaskedImage(tl, ".third_sec .imgMask img");
-            revealTextBlock(
-              tl,
-              ".third_sec_content_right img, .third_sec_content_right h3, .third_sec_content_right p"
-            );
-          },
-        },
-        {
-          trigger: ".FourthSec",
-          headerThen: () => {
-            const tl = animateHeader(".FourthSec");
-            // big image in the middle + the "crafted to / perfection" row
-            revealTextBlock(tl, ".FourthSecContent .fourthPara");
-            // revealMaskedImage(
-            //   tl,
-            //   ".FourthSec .imgMask img, .FourthSecContent img"
-            // );
-            // content below (left text then video)
-            revealTextBlock(
-              tl,
-              ".fourthSecBottomContentLeft .fourthSecHead, .fourthSecBottomContentLeft p"
-            );
-            tl.fromTo(
-              ".fourthSecBottomContentRight video",
-              { opacity: 0, y: 24 },
-              { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
-              "-=0.55"
-            );
-          },
-        },
-        {
-          trigger: ".fifthSec",
-          headerThen: () => {
-            const tl = animateHeader(".fifthSec");
-            revealTextBlock(
-              tl,
-              ".fifthSectionContent h3, .fifthSectionContent p"
-            );
-            // large images on the sides — animate masked images
-            // revealMaskedImage(
-            //   tl,
-            //   ".fifthSec .imgMask img, .firstImg img, .secondImg img"
-            // );
-          },
-        },
-        {
-          trigger: ".sixthSec",
-          headerThen: () => {
-            const tl = animateHeader(".sixthSec");
-            revealMaskedImage(tl, ".sixthSec .imgMask img");
-            revealTextBlock(
-              tl,
-              ".sixthSectionContentRight h3, .sixthSectionContentRight p"
-            );
-          },
-        },
-        {
-          trigger: ".testimonialSec",
-          headerThen: () => {
-            const tl = animateHeader(".testimonialSec");
-            // revealMaskedImage(tl, ".sixthSec .imgMask img");
-            // revealTextBlock(
-            //   tl,
-            //   ".sixthSectionContentRight h3, .sixthSectionContentRight p"
-            // );
-          },
-        },
-        {
-          trigger: ".contactSec",
-          headerThen: () => {
-            const tl = animateHeader(".contactSec");
-            // revealMaskedImage(tl, ".sixthSec .imgMask img");
-            // revealTextBlock(
-            //   tl,
-            //   ".sixthSectionContentRight h3, .sixthSectionContentRight p"
-            // );
-          },
-        },
-        {
-          trigger: ".letestPressSec",
-          headerThen: () => {
-            const tl = animateHeader(".letestPressSec");
-            // revealMaskedImage(tl, ".sixthSec .imgMask img");
-            // revealTextBlock(
-            //   tl,
-            //   ".sixthSectionContentRight h3, .sixthSectionContentRight p"
-            // );
-          },
-        },
-      ];
-
-      // Run animations for each configured section
-      sections.forEach((s) => {
-        try {
-          // call the builder for that section
-          if (typeof s.headerThen === "function") s.headerThen();
-        } catch (e) {
-          // don't stop if one fails (keeps robust)
-          // console.warn("GSAP section failed:", s.trigger, e);
+            // Fallback: listen for modal visibility change
+            const modalElement = modalWindow[0];
+            if (modalElement) {
+              const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                  if (
+                    mutation.type === "attributes" &&
+                    mutation.attributeName === "class"
+                  ) {
+                    if (!modalElement.classList.contains("visible")) {
+                      setTimeout(dispatchModalClosed, 500);
+                    }
+                  }
+                });
+              });
+              observer.observe(modalElement, {
+                attributes: true,
+                attributeFilter: ["class"],
+              });
+            }
+          });
         }
       });
 
-      /* -- Cards animation: animate .fifthCard1/2/3 sliding left from right one-by-one -- */
-      gsap.from(
-        ".fifthCardGrp .fifthCard1, .fifthCardGrp .fifthCard2, .fifthCardGrp .fifthCard3",
-        {
-          scrollTrigger: {
-            trigger: ".fifthCardGrp",
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-          x: 80, // start offset from right (appear to slide left)
-          opacity: 0,
-          duration: 1.2,
-          stagger: 0.18,
-          ease: "power3.out",
-          // also animate inner image and content slightly more characterful (optional)
-          onStart: () => {
-            // make sure content inside is visible for accessibility
-            document
-              .querySelectorAll(
-                ".fifthCardGrp .fifthCard1, .fifthCardGrp .fifthCard2, .fifthCardGrp .fifthCard3"
-              )
-              .forEach((el) => {
-                el.style.willChange = "transform, opacity";
-              });
-          },
+      // Also check if modal is already closed (fallback after auto-close)
+      window.addEventListener("load", function () {
+        // Modal auto-closes at 3 seconds, check after animation completes (~4 seconds total)
+        setTimeout(function () {
+          const modal = document.querySelector(".cd-modal");
+          const transitionLayer = document.querySelector(
+            ".cd-transition-layer"
+          );
+          if (
+            modal &&
+            !modal.classList.contains("visible") &&
+            transitionLayer &&
+            !transitionLayer.classList.contains("visible")
+          ) {
+            dispatchModalClosed();
+          }
+        }, 4500); // Check after 4.5 seconds (modal auto-closes at 3s + animation time)
+      });
+    </script>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Disable ScrollTrigger globally until modal closes
+      ScrollTrigger.config({ autoRefreshEvents: "none" });
+      ScrollTrigger.defaults({ immediateRender: false });
+
+      // Wrap entire GSAP animation setup to wait for modal close
+      function initGSAPAnimationsAfterModal() {
+        // Re-enable ScrollTrigger
+        ScrollTrigger.config({
+          autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+        });
+        ScrollTrigger.refresh();
+        /* Helper: wrap images in .imgMask if not already wrapped */
+        (function ensureImgMasks() {
+          // .journeyContentSecRight img, .third_sec_content_left img, .firstImg img, .secondImg img,
+          const imgs = document.querySelectorAll(
+            " .third_sec_content_right img, .FourthSecContent img, .fourthSecBottomContentRight video, .fifthSectionContent img,  .sixthSectionContentLeft img"
+          );
+          imgs.forEach((img) => {
+            // skip if parent already has imgMask
+            if (!img.parentElement.classList.contains("imgMask")) {
+              const wrapper = document.createElement("span");
+              wrapper.className = "imgMask";
+              // make wrapper inline-block so it follows layout
+              wrapper.style.display = "block";
+              img.parentElement.replaceChild(wrapper, img);
+              wrapper.appendChild(img);
+            }
+          });
+        })();
+
+        /* Common animation for section headers (uses your existing class) */
+        function animateHeader(triggerEl) {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: triggerEl,
+              start: "top 50%",
+              toggleActions: "play none none reverse",
+            },
+          });
+
+          // header title + arrows (works because your structure uses .headSecJourney inside each section)
+          tl.fromTo(
+            triggerEl + " .headingJourney",
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 1.0, ease: "power3.out" }
+          );
+          tl.fromTo(
+            triggerEl + " .headSecJourney img",
+            { opacity: 0, y: 10 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.55,
+              stagger: 0.08,
+              ease: "power3.out",
+            },
+            "-=0.55"
+          );
+          return tl;
         }
-      );
+
+        /* Generic reveal for text blocks (h3, p) */
+        function revealTextBlock(tl, selector, opts = {}) {
+          const defaults = { duration: 1.0, stagger: 0.12, ease: "power3.out" };
+          const cfg = Object.assign({}, defaults, opts);
+          tl.fromTo(
+            selector,
+            { opacity: 0, y: 24 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: cfg.duration,
+              stagger: cfg.stagger,
+              ease: cfg.ease,
+            },
+            opts.position || "-=0.2"
+          );
+        }
+
+        /* Generic reveal for masked images inside .imgMask */
+        function revealMaskedImage(tl, selector, opts = {}) {
+          const defaults = { duration: 0.9, ease: "power3.out" };
+          const cfg = Object.assign({}, defaults, opts);
+          tl.fromTo(
+            selector,
+            { opacity: 0, y: 40, scale: 1.03 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: cfg.duration,
+              ease: cfg.ease,
+            },
+            opts.position || "-=0.45"
+          );
+        }
+
+        /* Sections to animate (order = visual order). Each entry defines trigger and selectors */
+        const sections = [
+          {
+            trigger: ".journeySec",
+            headerThen: () => {
+              const tl = animateHeader(".journeySec");
+              revealTextBlock(
+                tl,
+                ".journeyContentSecLeft h3, .journeyContentSecLeftPara"
+              );
+              // Note: the right image will be revealed via PIXI displacement (added later),
+              // but to keep fallback behavior for non-Pixi environments we still include masked reveal:
+              // revealMaskedImage(tl, ".journeySec .imgMask img");
+            },
+          },
+          {
+            trigger: ".third_sec",
+            headerThen: () => {
+              const tl = animateHeader(".third_sec");
+              // left image (masked) then right text & small icon
+              // revealMaskedImage(tl, ".third_sec .imgMask img");
+              revealTextBlock(
+                tl,
+                ".third_sec_content_right img, .third_sec_content_right h3, .third_sec_content_right p"
+              );
+            },
+          },
+          {
+            trigger: ".FourthSec",
+            headerThen: () => {
+              const tl = animateHeader(".FourthSec");
+              // big image in the middle + the "crafted to / perfection" row
+              revealTextBlock(tl, ".FourthSecContent .fourthPara");
+              // revealMaskedImage(
+              //   tl,
+              //   ".FourthSec .imgMask img, .FourthSecContent img"
+              // );
+              // content below (left text then video)
+              revealTextBlock(
+                tl,
+                ".fourthSecBottomContentLeft .fourthSecHead, .fourthSecBottomContentLeft p"
+              );
+              tl.fromTo(
+                ".fourthSecBottomContentRight video",
+                { opacity: 0, y: 24 },
+                { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
+                "-=0.55"
+              );
+            },
+          },
+          {
+            trigger: ".fifthSec",
+            headerThen: () => {
+              const tl = animateHeader(".fifthSec");
+              revealTextBlock(
+                tl,
+                ".fifthSectionContent h3, .fifthSectionContent p"
+              );
+              // large images on the sides — animate masked images
+              // revealMaskedImage(
+              //   tl,
+              //   ".fifthSec .imgMask img, .firstImg img, .secondImg img"
+              // );
+            },
+          },
+          {
+            trigger: ".sixthSec",
+            headerThen: () => {
+              const tl = animateHeader(".sixthSec");
+              revealMaskedImage(tl, ".sixthSec .imgMask img");
+              revealTextBlock(
+                tl,
+                ".sixthSectionContentRight h3, .sixthSectionContentRight p"
+              );
+            },
+          },
+          {
+            trigger: ".testimonialSec",
+            headerThen: () => {
+              const tl = animateHeader(".testimonialSec");
+              // revealMaskedImage(tl, ".sixthSec .imgMask img");
+              // revealTextBlock(
+              //   tl,
+              //   ".sixthSectionContentRight h3, .sixthSectionContentRight p"
+              // );
+            },
+          },
+          {
+            trigger: ".contactSec",
+            headerThen: () => {
+              const tl = animateHeader(".contactSec");
+              // revealMaskedImage(tl, ".sixthSec .imgMask img");
+              // revealTextBlock(
+              //   tl,
+              //   ".sixthSectionContentRight h3, .sixthSectionContentRight p"
+              // );
+            },
+          },
+          {
+            trigger: ".letestPressSec",
+            headerThen: () => {
+              const tl = animateHeader(".letestPressSec");
+              // revealMaskedImage(tl, ".sixthSec .imgMask img");
+              // revealTextBlock(
+              //   tl,
+              //   ".sixthSectionContentRight h3, .sixthSectionContentRight p"
+              // );
+            },
+          },
+        ];
+
+        // Run animations for each configured section
+        sections.forEach((s) => {
+          try {
+            // call the builder for that section
+            if (typeof s.headerThen === "function") s.headerThen();
+          } catch (e) {
+            // don't stop if one fails (keeps robust)
+            // console.warn("GSAP section failed:", s.trigger, e);
+          }
+        });
+
+        // Cards animation: animate .fifthCard1/2/3 sliding left from right one-by-one
+        gsap.from(
+          ".fifthCardGrp .fifthCard1, .fifthCardGrp .fifthCard2, .fifthCardGrp .fifthCard3",
+          {
+            scrollTrigger: {
+              trigger: ".fifthCardGrp",
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+            x: 80, // start offset from right (appear to slide left)
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.18,
+            ease: "power3.out",
+            // also animate inner image and content slightly more characterful (optional)
+            onStart: () => {
+              // make sure content inside is visible for accessibility
+              document
+                .querySelectorAll(
+                  ".fifthCardGrp .fifthCard1, .fifthCardGrp .fifthCard2, .fifthCardGrp .fifthCard3"
+                )
+                .forEach((el) => {
+                  el.style.willChange = "transform, opacity";
+                });
+            },
+          }
+        );
+      }
+
+      // Wait for modal to close before creating ANY GSAP animations
+      if (window.modalClosed) {
+        initGSAPAnimationsAfterModal();
+      } else {
+        document.addEventListener("modalClosed", initGSAPAnimationsAfterModal, {
+          once: true,
+        });
+      }
     </script>
 
     <!-- PIXI Reverse Displacement Reveal: replaces .journeyContentSecRight img with canvas and reveals it on scroll -->
@@ -2307,24 +2450,37 @@
         });
 
         // reveal section on scroll (if displacement not yet revealed)
-        ScrollTrigger.create({
-          trigger: ".sixthSec",
-          start: "top 75%",
-          onEnter: () => {
-            if (Math.abs(dispFilter.scale.x) < 1) return;
-            gsap.to(dispFilter.scale, {
-              x: 0,
-              y: 0,
-              duration: 1.1,
-              ease: "power3.out",
-            });
-            gsap.fromTo(
-              [titleEl, textEl],
-              { opacity: 0, y: 12 },
-              { opacity: 1, y: 0, duration: 0.9, stagger: 0.08 }
-            );
-          },
-        });
+        function initSixthSectionScrollTrigger() {
+          ScrollTrigger.create({
+            trigger: ".sixthSec",
+            start: "top 75%",
+            onEnter: () => {
+              if (Math.abs(dispFilter.scale.x) < 1) return;
+              gsap.to(dispFilter.scale, {
+                x: 0,
+                y: 0,
+                duration: 1.1,
+                ease: "power3.out",
+              });
+              gsap.fromTo(
+                [titleEl, textEl],
+                { opacity: 0, y: 12 },
+                { opacity: 1, y: 0, duration: 0.9, stagger: 0.08 }
+              );
+            },
+          });
+        }
+
+        // Wait for modal to close before starting scroll trigger
+        if (window.modalClosed) {
+          initSixthSectionScrollTrigger();
+        } else {
+          document.addEventListener(
+            "modalClosed",
+            initSixthSectionScrollTrigger,
+            { once: true }
+          );
+        }
 
         // tiny drift after reveal
         app.ticker.add((delta) => {
@@ -2575,13 +2731,14 @@ window.addEventListener("load", () => {
 
     <!-- First Section (Journey) Ink Animation - Separate -->
     <script>
-      (function() {
+      (function () {
         if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
 
-        const DISP_SRC = "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
+        const DISP_SRC =
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
         const wrapper = document.querySelector("#inkWrapper");
         const img = document.querySelector("#inkImage");
-        
+
         if (!wrapper || !img) return;
 
         function createPixiAppJourney(w, h) {
@@ -2621,7 +2778,8 @@ window.addEventListener("load", () => {
           app.stage.addChild(container);
 
           const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-          displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+          displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
           displacementSprite.anchor.set(0.5);
           displacementSprite.position.set(w / 2, h / 2);
 
@@ -2632,7 +2790,9 @@ window.addEventListener("load", () => {
             displacementSprite.scale.set(Math.max(scaleX, scaleY));
           }
 
-          const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+          const displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+          );
           app.stage.addChild(displacementSprite);
           container.filters = [displacementFilter];
 
@@ -2641,7 +2801,7 @@ window.addEventListener("load", () => {
           const imgNaturalH = img.naturalHeight || img.height || h;
           const imgAspect = imgNaturalW / imgNaturalH;
           const containerAspect = w / h;
-          
+
           let bgW, bgH, bgX, bgY;
           if (imgAspect > containerAspect) {
             bgW = w;
@@ -2698,7 +2858,8 @@ window.addEventListener("load", () => {
             app.stage.addChild(container);
 
             const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-            displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+            displacementSprite.texture.baseTexture.wrapMode =
+              PIXI.WRAP_MODES.REPEAT;
             displacementSprite.anchor.set(0.5);
             displacementSprite.position.set(w / 2, h / 2);
 
@@ -2709,7 +2870,9 @@ window.addEventListener("load", () => {
               displacementSprite.scale.set(Math.max(scaleX, scaleY));
             }
 
-            displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+            displacementFilter = new PIXI.filters.DisplacementFilter(
+              displacementSprite
+            );
             app.stage.addChild(displacementSprite);
             container.filters = [displacementFilter];
 
@@ -2718,7 +2881,7 @@ window.addEventListener("load", () => {
             const imgNaturalH = img.naturalHeight || img.height || h;
             const imgAspect = imgNaturalW / imgNaturalH;
             const containerAspect = w / h;
-            
+
             let bgW, bgH, bgX, bgY;
             if (imgAspect > containerAspect) {
               bgW = w;
@@ -2754,7 +2917,10 @@ window.addEventListener("load", () => {
             onComplete: () => {
               img.style.opacity = "1";
 
-              if (wrapper._pixiAppJourney && wrapper.contains(wrapper._pixiAppJourney.view)) {
+              if (
+                wrapper._pixiAppJourney &&
+                wrapper.contains(wrapper._pixiAppJourney.view)
+              ) {
                 wrapper.removeChild(wrapper._pixiAppJourney.view);
               }
               if (wrapper._pixiAppJourney) {
@@ -2772,14 +2938,7 @@ window.addEventListener("load", () => {
         wrapper._filterJourney = null;
         wrapper._isAnimatingJourney = false;
 
-        // Wait for image to load before initializing
-        if (img.complete) {
-          initJourneyObserver();
-        } else {
-          img.addEventListener('load', initJourneyObserver);
-          img.addEventListener('error', initJourneyObserver); // Fallback if image fails
-        }
-
+        // Wait for modal to close and image to load before initializing
         function initJourneyObserver() {
           const observerJourney = new IntersectionObserver(
             (entries) => {
@@ -2797,18 +2956,38 @@ window.addEventListener("load", () => {
 
           observerJourney.observe(wrapper);
         }
+
+        // Wait for modal to close before starting animations
+        function startJourneyAnimation() {
+          if (img.complete) {
+            initJourneyObserver();
+          } else {
+            img.addEventListener("load", initJourneyObserver);
+            img.addEventListener("error", initJourneyObserver);
+          }
+        }
+
+        // Check if modal is already closed, otherwise wait for event
+        if (window.modalClosed) {
+          startJourneyAnimation();
+        } else {
+          document.addEventListener("modalClosed", startJourneyAnimation, {
+            once: true,
+          });
+        }
       })();
     </script>
 
     <!-- Third Section Ink Animation - Separate -->
     <script>
-      (function() {
+      (function () {
         if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
 
-        const DISP_SRC = "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
+        const DISP_SRC =
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
         const wrapper = document.querySelector(".inkWrapThird");
         const img = document.querySelector(".inkImageThird");
-        
+
         if (!wrapper || !img) return;
 
         function createPixiAppThird(w, h) {
@@ -2841,7 +3020,8 @@ window.addEventListener("load", () => {
           app.stage.addChild(container);
 
           const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-          displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+          displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
           displacementSprite.anchor.set(0.5);
           displacementSprite.position.set(w / 2, h / 2);
 
@@ -2852,7 +3032,9 @@ window.addEventListener("load", () => {
             displacementSprite.scale.set(Math.max(scaleX, scaleY));
           }
 
-          const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+          const displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+          );
           app.stage.addChild(displacementSprite);
           container.filters = [displacementFilter];
 
@@ -2898,7 +3080,8 @@ window.addEventListener("load", () => {
             app.stage.addChild(container);
 
             const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-            displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+            displacementSprite.texture.baseTexture.wrapMode =
+              PIXI.WRAP_MODES.REPEAT;
             displacementSprite.anchor.set(0.5);
             displacementSprite.position.set(w / 2, h / 2);
 
@@ -2909,7 +3092,9 @@ window.addEventListener("load", () => {
               displacementSprite.scale.set(Math.max(scaleX, scaleY));
             }
 
-            displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+            displacementFilter = new PIXI.filters.DisplacementFilter(
+              displacementSprite
+            );
             app.stage.addChild(displacementSprite);
             container.filters = [displacementFilter];
 
@@ -2935,7 +3120,10 @@ window.addEventListener("load", () => {
             onComplete: () => {
               img.style.opacity = "1";
 
-              if (wrapper._pixiAppThird && wrapper.contains(wrapper._pixiAppThird.view)) {
+              if (
+                wrapper._pixiAppThird &&
+                wrapper.contains(wrapper._pixiAppThird.view)
+              ) {
                 wrapper.removeChild(wrapper._pixiAppThird.view);
               }
               if (wrapper._pixiAppThird) {
@@ -2953,33 +3141,47 @@ window.addEventListener("load", () => {
         wrapper._filterThird = null;
         wrapper._isAnimatingThird = false;
 
-        const observerThird = new IntersectionObserver(
-          (entries) => {
-            const e = entries[0];
-            if (e.isIntersecting) {
-              forwardInkThird();
-            } else {
-              if (!wrapper._pixiAppThird && !wrapper._isAnimatingThird) {
-                reverseInkThird();
+        function initThirdObserver() {
+          const observerThird = new IntersectionObserver(
+            (entries) => {
+              const e = entries[0];
+              if (e.isIntersecting) {
+                forwardInkThird();
+              } else {
+                if (!wrapper._pixiAppThird && !wrapper._isAnimatingThird) {
+                  reverseInkThird();
+                }
               }
-            }
-          },
-          { threshold: 0.4 }
-        );
+            },
+            { threshold: 0.4 }
+          );
 
-        observerThird.observe(wrapper);
+          observerThird.observe(wrapper);
+        }
+
+        // Wait for modal to close before starting animations
+        if (window.modalClosed) {
+          initThirdObserver();
+        } else {
+          document.addEventListener("modalClosed", initThirdObserver, {
+            once: true,
+          });
+        }
       })();
     </script>
 
     <!-- Testimonials Section Ink Animation - Separate -->
     <script>
-      (function() {
+      (function () {
         if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
 
-        const DISP_SRC = "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
+        const DISP_SRC =
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
         const wrapper = document.querySelector(".testimonialImgWrap");
-        const img = wrapper ? wrapper.querySelector(".testimonialImgImg") : null;
-        
+        const img = wrapper
+          ? wrapper.querySelector(".testimonialImgImg")
+          : null;
+
         if (!wrapper || !img) return;
 
         function createPixiAppTestimonial(w, h) {
@@ -3017,7 +3219,8 @@ window.addEventListener("load", () => {
           app.stage.addChild(container);
 
           const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-          displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+          displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
           displacementSprite.anchor.set(0.5);
           displacementSprite.position.set(w / 2, h / 2);
 
@@ -3028,7 +3231,9 @@ window.addEventListener("load", () => {
             displacementSprite.scale.set(Math.max(scaleX, scaleY));
           }
 
-          const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+          const displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+          );
           app.stage.addChild(displacementSprite);
           container.filters = [displacementFilter];
 
@@ -3075,7 +3280,8 @@ window.addEventListener("load", () => {
             app.stage.addChild(container);
 
             const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-            displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+            displacementSprite.texture.baseTexture.wrapMode =
+              PIXI.WRAP_MODES.REPEAT;
             displacementSprite.anchor.set(0.5);
             displacementSprite.position.set(w / 2, h / 2);
 
@@ -3086,7 +3292,9 @@ window.addEventListener("load", () => {
               displacementSprite.scale.set(Math.max(scaleX, scaleY));
             }
 
-            displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+            displacementFilter = new PIXI.filters.DisplacementFilter(
+              displacementSprite
+            );
             app.stage.addChild(displacementSprite);
             container.filters = [displacementFilter];
 
@@ -3112,7 +3320,10 @@ window.addEventListener("load", () => {
             onComplete: () => {
               img.style.opacity = "1";
 
-              if (wrapper._pixiAppTestimonial && wrapper.contains(wrapper._pixiAppTestimonial.view)) {
+              if (
+                wrapper._pixiAppTestimonial &&
+                wrapper.contains(wrapper._pixiAppTestimonial.view)
+              ) {
                 wrapper.removeChild(wrapper._pixiAppTestimonial.view);
               }
               if (wrapper._pixiAppTestimonial) {
@@ -3130,24 +3341,37 @@ window.addEventListener("load", () => {
         wrapper._filterTestimonial = null;
         wrapper._isAnimatingTestimonial = false;
 
-        const observerTestimonial = new IntersectionObserver(
-          (entries) => {
-            const e = entries[0];
-            if (e.isIntersecting) {
-              forwardInkTestimonial();
-            } else {
-              if (!wrapper._pixiAppTestimonial && !wrapper._isAnimatingTestimonial) {
-                reverseInkTestimonial();
+        function initTestimonialObserver() {
+          const observerTestimonial = new IntersectionObserver(
+            (entries) => {
+              const e = entries[0];
+              if (e.isIntersecting) {
+                forwardInkTestimonial();
+              } else {
+                if (
+                  !wrapper._pixiAppTestimonial &&
+                  !wrapper._isAnimatingTestimonial
+                ) {
+                  reverseInkTestimonial();
+                }
               }
-            }
-          },
-          { threshold: 0.4 }
-        );
+            },
+            { threshold: 0.4 }
+          );
 
-        observerTestimonial.observe(wrapper);
+          observerTestimonial.observe(wrapper);
+        }
+
+        // Wait for modal to close before starting animations
+        if (window.modalClosed) {
+          initTestimonialObserver();
+        } else {
+          document.addEventListener("modalClosed", initTestimonialObserver, {
+            once: true,
+          });
+        }
       })();
     </script>
-
 
     <!-- <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -3449,9 +3673,18 @@ window.addEventListener("load", () => {
         observer.observe(wrapper);
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
+      // Wait for modal to close before starting animation
+      function initFourthSectionAnimation() {
         triggerInkOnViewFourth();
-      });
+      }
+
+      if (window.modalClosed) {
+        initFourthSectionAnimation();
+      } else {
+        document.addEventListener("modalClosed", initFourthSectionAnimation, {
+          once: true,
+        });
+      }
     </script>
 
     <!-- 5th section img animation  -->
@@ -3678,21 +3911,30 @@ window.addEventListener("load", () => {
         observer.observe(wrapper);
       }
 
-      document.addEventListener("DOMContentLoaded", () => {
+      // Wait for modal to close before starting animation
+      function initFifthSectionAnimation() {
         triggerInkOnViewFifth();
-      });
-    </script>
+      }
 
+      if (window.modalClosed) {
+        initFifthSectionAnimation();
+      } else {
+        document.addEventListener("modalClosed", initFifthSectionAnimation, {
+          once: true,
+        });
+      }
+    </script>
 
     <!-- Illustration Section Ink Animation - Separate -->
     <script>
-      (function() {
+      (function () {
         if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
 
-        const DISP_SRC = "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
+        const DISP_SRC =
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
         const wrapper = document.querySelector(".inkWrapIllustration");
         const img = document.querySelector(".inkImageIllustration");
-        
+
         if (!wrapper || !img) return;
 
         function createPixiAppIllustration(w, h) {
@@ -3729,7 +3971,8 @@ window.addEventListener("load", () => {
           app.stage.addChild(container);
 
           const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-          displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+          displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
           displacementSprite.anchor.set(0.5);
           displacementSprite.position.set(w / 2, h / 2);
 
@@ -3740,7 +3983,9 @@ window.addEventListener("load", () => {
             displacementSprite.scale.set(Math.max(scaleX, scaleY));
           }
 
-          const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+          const displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+          );
           app.stage.addChild(displacementSprite);
           container.filters = [displacementFilter];
 
@@ -3786,7 +4031,8 @@ window.addEventListener("load", () => {
             app.stage.addChild(container);
 
             const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-            displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+            displacementSprite.texture.baseTexture.wrapMode =
+              PIXI.WRAP_MODES.REPEAT;
             displacementSprite.anchor.set(0.5);
             displacementSprite.position.set(w / 2, h / 2);
 
@@ -3797,7 +4043,9 @@ window.addEventListener("load", () => {
               displacementSprite.scale.set(Math.max(scaleX, scaleY));
             }
 
-            displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+            displacementFilter = new PIXI.filters.DisplacementFilter(
+              displacementSprite
+            );
             app.stage.addChild(displacementSprite);
             container.filters = [displacementFilter];
 
@@ -3823,7 +4071,10 @@ window.addEventListener("load", () => {
             onComplete: () => {
               img.style.opacity = "1";
 
-              if (wrapper._pixiAppIllustration && wrapper.contains(wrapper._pixiAppIllustration.view)) {
+              if (
+                wrapper._pixiAppIllustration &&
+                wrapper.contains(wrapper._pixiAppIllustration.view)
+              ) {
                 wrapper.removeChild(wrapper._pixiAppIllustration.view);
               }
               if (wrapper._pixiAppIllustration) {
@@ -3841,21 +4092,35 @@ window.addEventListener("load", () => {
         wrapper._filterIllustration = null;
         wrapper._isAnimatingIllustration = false;
 
-        const observerIllustration = new IntersectionObserver(
-          (entries) => {
-            const e = entries[0];
-            if (e.isIntersecting) {
-              forwardInkIllustration();
-            } else {
-              if (!wrapper._pixiAppIllustration && !wrapper._isAnimatingIllustration) {
-                reverseInkIllustration();
+        function initIllustrationObserver() {
+          const observerIllustration = new IntersectionObserver(
+            (entries) => {
+              const e = entries[0];
+              if (e.isIntersecting) {
+                forwardInkIllustration();
+              } else {
+                if (
+                  !wrapper._pixiAppIllustration &&
+                  !wrapper._isAnimatingIllustration
+                ) {
+                  reverseInkIllustration();
+                }
               }
-            }
-          },
-          { threshold: 0.4 }
-        );
+            },
+            { threshold: 0.4 }
+          );
 
-        observerIllustration.observe(wrapper);
+          observerIllustration.observe(wrapper);
+        }
+
+        // Wait for modal to close before starting animations
+        if (window.modalClosed) {
+          initIllustrationObserver();
+        } else {
+          document.addEventListener("modalClosed", initIllustrationObserver, {
+            once: true,
+          });
+        }
       })();
     </script>
 
@@ -3864,8 +4129,10 @@ window.addEventListener("load", () => {
       document.addEventListener("DOMContentLoaded", () => {
         const prevBtn = document.querySelector(".letestPrevBtn");
         const nextBtn = document.querySelector(".letestNextBtn");
-        const sliderTrack = document.querySelector(".letestPressSlider .sliderTrack");
-        
+        const sliderTrack = document.querySelector(
+          ".letestPressSlider .sliderTrack"
+        );
+
         if (!prevBtn || !nextBtn || !sliderTrack) return;
 
         const cards = sliderTrack.querySelectorAll(".letestCard");
@@ -3901,6 +4168,7 @@ window.addEventListener("load", () => {
     </script>
 
     <script src="js/jquery-2.1.4.js"></script>
-<script src="js/main.js"></script> Resource jQuery
+    <script src="js/main.js"></script>
+    Resource jQuery
   </body>
 </html>
