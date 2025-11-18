@@ -2730,445 +2730,296 @@ window.addEventListener("load", () => {
     </script> -->
 
     <!-- First Section (Journey) Ink Animation - Separate -->
-    <script>
-      (function () {
-        if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
 
-        const DISP_SRC =
-          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
-        const wrapper = document.querySelector("#inkWrapper");
-        const img = document.querySelector("#inkImage");
+<script>
+(function(){
 
-        if (!wrapper || !img) return;
+  if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
 
-        function createPixiAppJourney(w, h) {
-          const app = new PIXI.Application({
-            width: w,
-            height: h,
-            transparent: true,
-            resolution: window.devicePixelRatio || 1,
-            autoDensity: true,
-            antialias: true,
-          });
-          app.view.style.width = "100%";
-          app.view.style.height = "100%";
-          app.view.style.display = "block";
-          app.view.style.position = "absolute";
-          app.view.style.top = "0";
-          app.view.style.left = "0";
-          app.view.style.pointerEvents = "none";
-          app.view.style.zIndex = "1";
-          return app;
-        }
+  const wrapper = document.querySelector('#inkWrapper') ||
+                  document.querySelector('.inkWrapFourth') ||
+                  document.querySelector('.ink-wrapper');
 
-        function reverseInkJourney() {
-          if (wrapper._pixiAppJourney) return;
+  const img = document.querySelector('#inkImage') ||
+              document.querySelector('.inkImageFourth') ||
+              document.querySelector('.ink-image');
 
-          const w = wrapper.offsetWidth;
-          const h = wrapper.offsetHeight;
-          if (w === 0 || h === 0) return;
+  if (!wrapper || !img) return;
 
-          // Don't modify image styles - let CSS handle it
-          const app = createPixiAppJourney(w, h);
-          // Insert canvas before image to avoid layout shifts
-          wrapper.insertBefore(app.view, img);
-          wrapper._pixiAppJourney = app;
+  const DISP_SRC = 'https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png';
 
-          const container = new PIXI.Container();
-          app.stage.addChild(container);
+  img.style.opacity = 0;
+  img.style.transition = img.style.transition || 'opacity 0.3s ease';
 
-          const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-          displacementSprite.texture.baseTexture.wrapMode =
-            PIXI.WRAP_MODES.REPEAT;
-          displacementSprite.anchor.set(0.5);
-          displacementSprite.position.set(w / 2, h / 2);
+  wrapper._pixiApp = null;
+  wrapper._isAnimating = false;
 
-          const tex = displacementSprite.texture;
-          if (tex && tex.width) {
-            const scaleX = (w / tex.width) * 1.5;
-            const scaleY = (h / tex.height) * 1.5;
-            displacementSprite.scale.set(Math.max(scaleX, scaleY));
-          }
+  function createPixiApp(w, h) {
+    const app = new PIXI.Application({
+      width: w,
+      height: h,
+      transparent: true,
+      resolution: window.devicePixelRatio || 1,
+      autoDensity: true,
+      antialias: true
+    });
 
-          const displacementFilter = new PIXI.filters.DisplacementFilter(
-            displacementSprite
-          );
-          app.stage.addChild(displacementSprite);
-          container.filters = [displacementFilter];
+    app.view.style.width = '100%';
+    app.view.style.height = '100%';
+    app.view.style.display = 'block';
+    app.view.style.position = 'absolute';
+    app.view.style.top = '0';
+    app.view.style.left = '0';
+    app.view.style.pointerEvents = 'none';
+    app.view.style.zIndex = '1';
 
-          // Calculate proper dimensions for contain
-          const imgNaturalW = img.naturalWidth || img.width || w;
-          const imgNaturalH = img.naturalHeight || img.height || h;
-          const imgAspect = imgNaturalW / imgNaturalH;
-          const containerAspect = w / h;
+    return app;
+  }
 
-          let bgW, bgH, bgX, bgY;
-          if (imgAspect > containerAspect) {
-            bgW = w;
-            bgH = w / imgAspect;
-            bgX = 0;
-            bgY = (h - bgH) / 2;
-          } else {
-            bgW = h * imgAspect;
-            bgH = h;
-            bgX = (w - bgW) / 2;
-            bgY = 0;
-          }
+  function forwardInkJourney() {
+    if (wrapper._isAnimating) return;
 
-          const bg = PIXI.Sprite.from(img.src);
-          bg.width = bgW;
-          bg.height = bgH;
-          bg.x = bgX;
-          bg.y = bgY;
-          container.addChild(bg);
+    const w = wrapper.offsetWidth;
+    const h = wrapper.offsetHeight;
+    if (w === 0 || h === 0) return;
 
-          wrapper._isAnimatingJourney = true;
-          wrapper._filterJourney = displacementFilter;
-          displacementFilter.scale.set(0, 0);
-          img.style.opacity = "0";
+    wrapper._isAnimating = true;
 
-          gsap.to(displacementFilter.scale, {
-            x: -3000,
-            y: -3000,
-            duration: 1.8,
-            ease: "expo.inOut",
-            onComplete: () => {
-              wrapper._isAnimatingJourney = false;
-            },
-          });
-        }
+    const app = createPixiApp(w, h);
+    if (getComputedStyle(wrapper).position === 'static') {
+      wrapper.style.position = 'relative';
+    }
+    wrapper.insertBefore(app.view, img);
+    wrapper._pixiApp = app;
 
-        function forwardInkJourney() {
-          if (wrapper._isAnimatingJourney) return;
+    const container = new PIXI.Container();
+    app.stage.addChild(container);
 
-          const w = wrapper.offsetWidth;
-          const h = wrapper.offsetHeight;
-          if (w === 0 || h === 0) return;
+    const displacementSprite = PIXI.Sprite.from(DISP_SRC);
+    displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+    displacementSprite.anchor.set(0.5);
+    displacementSprite.position.set(w / 2, h / 2);
 
-          let app = wrapper._pixiAppJourney;
-          let displacementFilter = wrapper._filterJourney;
+    const tex = displacementSprite.texture;
+    const scaleX = (w / tex.width) * 1.5;
+    const scaleY = (h / tex.height) * 1.5;
+    displacementSprite.scale.set(Math.max(scaleX, scaleY));
 
-          if (!app || !displacementFilter) {
-            app = createPixiAppJourney(w, h);
-            // Insert canvas before image to avoid layout shifts
-            wrapper.insertBefore(app.view, img);
-            wrapper._pixiAppJourney = app;
+    const imgNaturalW = img.naturalWidth || img.width || w;
+    const imgNaturalH = img.naturalHeight || img.height || h;
+    const imgAspect = imgNaturalW / imgNaturalH;
+    const containerAspect = w / h;
 
-            const container = new PIXI.Container();
-            app.stage.addChild(container);
+    let bgW, bgH, bgX, bgY;
+    if (imgAspect > containerAspect) {
+      bgW = w; bgH = w / imgAspect;
+      bgX = 0; bgY = (h - bgH) / 2;
+    } else {
+      bgW = h * imgAspect; bgH = h;
+      bgX = (w - bgW) / 2; bgY = 0;
+    }
 
-            const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-            displacementSprite.texture.baseTexture.wrapMode =
-              PIXI.WRAP_MODES.REPEAT;
-            displacementSprite.anchor.set(0.5);
-            displacementSprite.position.set(w / 2, h / 2);
+    const bg = PIXI.Sprite.from(img.src);
+    bg.width = bgW; bg.height = bgH;
+    bg.x = bgX; bg.y = bgY;
+    container.addChild(bg);
 
-            const tex = displacementSprite.texture;
-            if (tex && tex.width) {
-              const scaleX = (w / tex.width) * 1.5;
-              const scaleY = (h / tex.height) * 1.5;
-              displacementSprite.scale.set(Math.max(scaleX, scaleY));
-            }
+    const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+    app.stage.addChild(displacementSprite);
+    container.filters = [displacementFilter];
 
-            displacementFilter = new PIXI.filters.DisplacementFilter(
-              displacementSprite
-            );
-            app.stage.addChild(displacementSprite);
-            container.filters = [displacementFilter];
+    displacementFilter.scale.set(-3000, -3000);
 
-            // Calculate proper dimensions for contain
-            const imgNaturalW = img.naturalWidth || img.width || w;
-            const imgNaturalH = img.naturalHeight || img.height || h;
-            const imgAspect = imgNaturalW / imgNaturalH;
-            const containerAspect = w / h;
+    img.style.opacity = 0;
 
-            let bgW, bgH, bgX, bgY;
-            if (imgAspect > containerAspect) {
-              bgW = w;
-              bgH = w / imgAspect;
-              bgX = 0;
-              bgY = (h - bgH) / 2;
-            } else {
-              bgW = h * imgAspect;
-              bgH = h;
-              bgX = (w - bgW) / 2;
-              bgY = 0;
-            }
+    gsap.to(displacementFilter.scale, {
+      x: 0,
+      y: 0,
+      duration: 2.2,
+      ease: 'expo.out',
+      onComplete: function() {
 
-            const bg = PIXI.Sprite.from(img.src);
-            bg.width = bgW;
-            bg.height = bgH;
-            bg.x = bgX;
-            bg.y = bgY;
-            container.addChild(bg);
+        img.style.opacity = 1;
 
-            wrapper._filterJourney = displacementFilter;
-          }
+        setTimeout(() => {
+          if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
 
-          displacementFilter.scale.set(-3000, -3000);
-          wrapper._isAnimatingJourney = true;
-          img.style.opacity = "0";
+          try { app.destroy(true, { children: true, texture: true, baseTexture: true }); } catch(e){}
+          wrapper._pixiApp = null;
+          wrapper._isAnimating = false;
+        }, 50);
+      }
+    });
 
-          gsap.to(displacementFilter.scale, {
-            x: 0,
-            y: 0,
-            duration: 3,
-            ease: "expo.out",
-            onComplete: () => {
-              img.style.opacity = "1";
+    app.ticker.add(() => {
+      displacementSprite.x += 2.2;
+      displacementSprite.y = h / 2;
+    });
+  }
 
-              if (
-                wrapper._pixiAppJourney &&
-                wrapper.contains(wrapper._pixiAppJourney.view)
-              ) {
-                wrapper.removeChild(wrapper._pixiAppJourney.view);
-              }
-              if (wrapper._pixiAppJourney) {
-                wrapper._pixiAppJourney.destroy(true, { children: true });
-              }
+  function resetSilent() {
+    img.style.opacity = 0;
+    wrapper._isAnimating = false;
+  }
 
-              wrapper._pixiAppJourney = null;
-              wrapper._filterJourney = null;
-              wrapper._isAnimatingJourney = false;
-            },
-          });
-        }
+  function initObserver() {
+    const observer = new IntersectionObserver((entries) => {
+      const e = entries[0];
 
-        wrapper._pixiAppJourney = null;
-        wrapper._filterJourney = null;
-        wrapper._isAnimatingJourney = false;
+      if (e.isIntersecting) {
+        forwardInkJourney();
+      } else {
+        resetSilent();
+      }
+    }, { threshold: 0.4 });
 
-        // Wait for modal to close and image to load before initializing
-        function initJourneyObserver() {
-          const observerJourney = new IntersectionObserver(
-            (entries) => {
-              const e = entries[0];
-              if (e.isIntersecting) {
-                forwardInkJourney();
-              } else {
-                if (!wrapper._pixiAppJourney && !wrapper._isAnimatingJourney) {
-                  reverseInkJourney();
-                }
-              }
-            },
-            { threshold: 0.4 }
-          );
+    observer.observe(wrapper);
+  }
 
-          observerJourney.observe(wrapper);
-        }
+  function startWhenReady() {
+    if (img.complete) initObserver();
+    else img.onload = initObserver;
+  }
 
-        // Wait for modal to close before starting animations
-        function startJourneyAnimation() {
-          if (img.complete) {
-            initJourneyObserver();
-          } else {
-            img.addEventListener("load", initJourneyObserver);
-            img.addEventListener("error", initJourneyObserver);
-          }
-        }
+  if (window.modalClosed) {
+    startWhenReady();
+  } else {
+    document.addEventListener('modalClosed', startWhenReady, { once: true });
+  }
 
-        // Check if modal is already closed, otherwise wait for event
-        if (window.modalClosed) {
-          startJourneyAnimation();
-        } else {
-          document.addEventListener("modalClosed", startJourneyAnimation, {
-            once: true,
-          });
-        }
-      })();
-    </script>
+})();
+</script>
+
 
     <!-- Third Section Ink Animation - Separate -->
-    <script>
-      (function () {
-        if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
+ <script>
+(function () {
+  if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
 
-        const DISP_SRC =
-          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
-        const wrapper = document.querySelector(".inkWrapThird");
-        const img = document.querySelector(".inkImageThird");
+  const DISP_SRC =
+    "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
+  const wrapper = document.querySelector(".inkWrapThird");
+  const img = document.querySelector(".inkImageThird");
 
-        if (!wrapper || !img) return;
+  if (!wrapper || !img) return;
 
-        function createPixiAppThird(w, h) {
-          const app = new PIXI.Application({
-            width: w,
-            height: h,
-            transparent: true,
-            resolution: window.devicePixelRatio || 1,
-            autoDensity: true,
-            antialias: true,
-          });
-          app.view.style.width = w + "px";
-          app.view.style.height = h + "px";
-          app.view.style.display = "block";
-          return app;
-        }
+  // ---- RESET silently when out of viewport ----
+  function resetSilentThird() {
+    img.style.opacity = "0";
+    wrapper._pixiAppThird = null;
+    wrapper._filterThird = null;
+    wrapper._isAnimatingThird = false;
+  }
 
-        function reverseInkThird() {
-          if (wrapper._pixiAppThird) return;
+  function createPixiAppThird(w, h) {
+    const app = new PIXI.Application({
+      width: w,
+      height: h,
+      transparent: true,
+      resolution: window.devicePixelRatio || 1,
+      autoDensity: true,
+      antialias: true,
+    });
+    app.view.style.width = w + "px";
+    app.view.style.height = h + "px";
+    app.view.style.display = "block";
+    return app;
+  }
 
-          const w = wrapper.offsetWidth;
-          const h = wrapper.offsetHeight;
-          if (w === 0 || h === 0) return;
+  // ---- FORWARD ANIMATION ----
+  function forwardInkThird() {
+    if (wrapper._isAnimatingThird) return;
 
-          const app = createPixiAppThird(w, h);
-          wrapper.appendChild(app.view);
-          wrapper._pixiAppThird = app;
+    const w = wrapper.offsetWidth;
+    const h = wrapper.offsetHeight;
+    if (w === 0 || h === 0) return;
 
-          const container = new PIXI.Container();
-          app.stage.addChild(container);
+    const app = createPixiAppThird(w, h);
+    wrapper.appendChild(app.view);
+    wrapper._pixiAppThird = app;
 
-          const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-          displacementSprite.texture.baseTexture.wrapMode =
-            PIXI.WRAP_MODES.REPEAT;
-          displacementSprite.anchor.set(0.5);
-          displacementSprite.position.set(w / 2, h / 2);
+    const container = new PIXI.Container();
+    app.stage.addChild(container);
 
-          const tex = displacementSprite.texture;
-          if (tex && tex.width) {
-            const scaleX = (w / tex.width) * 1.5;
-            const scaleY = (h / tex.height) * 1.5;
-            displacementSprite.scale.set(Math.max(scaleX, scaleY));
-          }
+    const displacementSprite = PIXI.Sprite.from(DISP_SRC);
+    displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+    displacementSprite.anchor.set(0.5);
+    displacementSprite.position.set(w / 2, h / 2);
 
-          const displacementFilter = new PIXI.filters.DisplacementFilter(
-            displacementSprite
-          );
-          app.stage.addChild(displacementSprite);
-          container.filters = [displacementFilter];
+    const tex = displacementSprite.texture;
+    if (tex && tex.width) {
+      const scaleX = (w / tex.width) * 1.5;
+      const scaleY = (h / tex.height) * 1.5;
+      displacementSprite.scale.set(Math.max(scaleX, scaleY));
+    }
 
-          const bg = PIXI.Sprite.from(img.src);
-          bg.width = w;
-          bg.height = h;
-          bg.x = 0;
-          bg.y = 0;
-          container.addChild(bg);
+    const displacementFilter = new PIXI.filters.DisplacementFilter(
+      displacementSprite
+    );
+    app.stage.addChild(displacementSprite);
+    container.filters = [displacementFilter];
 
-          wrapper._isAnimatingThird = true;
-          wrapper._filterThird = displacementFilter;
-          displacementFilter.scale.set(0, 0);
-          img.style.opacity = "0";
+    const bg = PIXI.Sprite.from(img.src);
+    bg.width = w;
+    bg.height = h;
+    container.addChild(bg);
 
-          gsap.to(displacementFilter.scale, {
-            x: -3000,
-            y: -3000,
-            duration: 1.8,
-            ease: "expo.inOut",
-            onComplete: () => {
-              wrapper._isAnimatingThird = false;
-            },
-          });
-        }
+    wrapper._filterThird = displacementFilter;
+    wrapper._isAnimatingThird = true;
 
-        function forwardInkThird() {
-          if (wrapper._isAnimatingThird) return;
+    // Start distorted
+    displacementFilter.scale.set(-3000, -3000);
+    img.style.opacity = "0";
 
-          const w = wrapper.offsetWidth;
-          const h = wrapper.offsetHeight;
-          if (w === 0 || h === 0) return;
+    // ---- forward animation ----
+    gsap.to(displacementFilter.scale, {
+      x: 0,
+      y: 0,
+      duration: 3,
+      ease: "expo.out",
+      onComplete: () => {
+        img.style.opacity = "1";
 
-          let app = wrapper._pixiAppThird;
-          let displacementFilter = wrapper._filterThird;
-
-          if (!app || !displacementFilter) {
-            app = createPixiAppThird(w, h);
-            wrapper.appendChild(app.view);
-            wrapper._pixiAppThird = app;
-
-            const container = new PIXI.Container();
-            app.stage.addChild(container);
-
-            const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-            displacementSprite.texture.baseTexture.wrapMode =
-              PIXI.WRAP_MODES.REPEAT;
-            displacementSprite.anchor.set(0.5);
-            displacementSprite.position.set(w / 2, h / 2);
-
-            const tex = displacementSprite.texture;
-            if (tex && tex.width) {
-              const scaleX = (w / tex.width) * 1.5;
-              const scaleY = (h / tex.height) * 1.5;
-              displacementSprite.scale.set(Math.max(scaleX, scaleY));
-            }
-
-            displacementFilter = new PIXI.filters.DisplacementFilter(
-              displacementSprite
-            );
-            app.stage.addChild(displacementSprite);
-            container.filters = [displacementFilter];
-
-            const bg = PIXI.Sprite.from(img.src);
-            bg.width = w;
-            bg.height = h;
-            bg.x = 0;
-            bg.y = 0;
-            container.addChild(bg);
-
-            wrapper._filterThird = displacementFilter;
-          }
-
-          displacementFilter.scale.set(-3000, -3000);
-          wrapper._isAnimatingThird = true;
-          img.style.opacity = "0";
-
-          gsap.to(displacementFilter.scale, {
-            x: 0,
-            y: 0,
-            duration: 3,
-            ease: "expo.out",
-            onComplete: () => {
-              img.style.opacity = "1";
-
-              if (
-                wrapper._pixiAppThird &&
-                wrapper.contains(wrapper._pixiAppThird.view)
-              ) {
-                wrapper.removeChild(wrapper._pixiAppThird.view);
-              }
-              if (wrapper._pixiAppThird) {
-                wrapper._pixiAppThird.destroy(true, { children: true });
-              }
-
-              wrapper._pixiAppThird = null;
-              wrapper._filterThird = null;
-              wrapper._isAnimatingThird = false;
-            },
-          });
-        }
+        // remove PIXI canvas after reveal
+        if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
+        app.destroy(true, { children: true });
 
         wrapper._pixiAppThird = null;
         wrapper._filterThird = null;
         wrapper._isAnimatingThird = false;
+      },
+    });
+  }
 
-        function initThirdObserver() {
-          const observerThird = new IntersectionObserver(
-            (entries) => {
-              const e = entries[0];
-              if (e.isIntersecting) {
-                forwardInkThird();
-              } else {
-                if (!wrapper._pixiAppThird && !wrapper._isAnimatingThird) {
-                  reverseInkThird();
-                }
-              }
-            },
-            { threshold: 0.4 }
-          );
+  // ---- OBSERVER ----
+  function initThirdObserver() {
+    const observerThird = new IntersectionObserver(
+      (entries) => {
+        const e = entries[0];
 
-          observerThird.observe(wrapper);
-        }
-
-        // Wait for modal to close before starting animations
-        if (window.modalClosed) {
-          initThirdObserver();
+        if (e.isIntersecting) {
+          forwardInkThird(); // run forward animation EVERY TIME
         } else {
-          document.addEventListener("modalClosed", initThirdObserver, {
-            once: true,
-          });
+          resetSilentThird(); // silent reset when out
         }
-      })();
-    </script>
+      },
+      { threshold: 0.4 }
+    );
+
+    observerThird.observe(wrapper);
+  }
+
+  // ---- MODAL CHECK ----
+  if (window.modalClosed) {
+    initThirdObserver();
+  } else {
+    document.addEventListener("modalClosed", initThirdObserver, {
+      once: true,
+    });
+  }
+})();
+</script>
+
 
     <!-- Testimonials Section Ink Animation - Separate -->
     <script>
@@ -3450,242 +3301,161 @@ window.addEventListener("load", () => {
     </script> -->
 
     <!-- 4th section img animation  -->
-    <script>
-      function createPixiApp(wrapper, w, h) {
-        const app = new PIXI.Application({
-          width: w,
-          height: h,
-          transparent: true,
-          resolution: window.devicePixelRatio || 1,
-          autoDensity: true,
-          antialias: true,
-        });
-        app.view.style.width = w + "px";
-        app.view.style.height = h + "px";
-        app.view.style.display = "block";
-        return app;
+<script>
+  function createPixiApp(wrapper, w, h) {
+    const app = new PIXI.Application({
+      width: w,
+      height: h,
+      transparent: true,
+      resolution: window.devicePixelRatio || 1,
+      autoDensity: true,
+      antialias: true
+    });
+    app.view.style.width = w + "px";
+    app.view.style.height = h + "px";
+    app.view.style.display = "block";
+    return app;
+  }
+
+  function fixImageSize(img, w, h) {
+    img.style.width = w + "px";
+    img.style.height = h + "px";
+    img.style.objectFit = "cover";
+    img.style.display = "block";
+  }
+
+  /* ------------------------------------------------------------
+     RESET STATE (Option C)
+     - No animation
+     - Just reset distorted state silently
+  ------------------------------------------------------------- */
+  function resetInk(wrapper, img) {
+    if (wrapper._pixiApp) {
+      if (wrapper.contains(wrapper._pixiApp.view)) {
+        wrapper.removeChild(wrapper._pixiApp.view);
       }
+      wrapper._pixiApp.destroy(true, { children: true });
+    }
 
-      function ensureSizeStyles(img, w, h) {
-        img.style.width = w + "px";
-        img.style.height = h + "px";
-        img.style.objectFit = "cover";
-        img.style.display = "block";
-      }
+    wrapper._pixiApp = null;
+    wrapper._filter = null;
+    wrapper._isAnimating = false;
 
-      function reverseInkEffectFourth(wrapperSelector, imgSelector) {
-        const wrapper = document.querySelector(wrapperSelector);
-        const img = document.querySelector(imgSelector);
-        if (!wrapper || !img) return;
+    img.style.opacity = "1"; // show correct clean image
+  }
 
-        const w = wrapper.offsetWidth;
-        const h = wrapper.offsetHeight;
+  /* ------------------------------------------------------------
+     FORWARD ANIMATION (Distorted → Clear)
+  ------------------------------------------------------------- */
+  function forwardInkEffectFourth(wrapperSelector, imgSelector) {
+    const wrapper = document.querySelector(wrapperSelector);
+    const img = document.querySelector(imgSelector);
+    if (!wrapper || !img) return;
 
-        // If there's already a running app, don't create another
-        if (wrapper._pixiApp) return;
+    const w = wrapper.offsetWidth;
+    const h = wrapper.offsetHeight;
+    if (w === 0 || h === 0) return;
 
-        ensureSizeStyles(img, w, h);
+    if (wrapper._isAnimating) return;
 
-        // Create app and stage
-        const app = createPixiApp(wrapper, w, h);
-        wrapper.appendChild(app.view);
-        wrapper._pixiApp = app; // store for later
+    resetInk(wrapper, img);
 
-        const container = new PIXI.Container();
-        app.stage.addChild(container);
+    fixImageSize(img, w, h);
 
-        const displacementSprite = PIXI.Sprite.from(
-          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
-        );
-        displacementSprite.texture.baseTexture.wrapMode =
-          PIXI.WRAP_MODES.REPEAT;
-        displacementSprite.anchor.set(0.5);
-        displacementSprite.position.set(w / 2, h / 2);
+    const app = createPixiApp(wrapper, w, h);
+    wrapper.appendChild(app.view);
+    wrapper._pixiApp = app;
 
-        // Scale displacement sprite so it covers the view (optional but helpful)
-        const tex = displacementSprite.texture;
-        if (tex && tex.width) {
-          const scaleX = (w / tex.width) * 1.5;
-          const scaleY = (h / tex.height) * 1.5;
-          displacementSprite.scale.set(Math.max(scaleX, scaleY));
-        }
+    const container = new PIXI.Container();
+    app.stage.addChild(container);
 
-        const displacementFilter = new PIXI.filters.DisplacementFilter(
-          displacementSprite
-        );
+    const displacementSprite = PIXI.Sprite.from(
+      "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+    );
+    displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+    displacementSprite.anchor.set(0.5);
+    displacementSprite.position.set(w / 2, h / 2);
 
-        // Add sprite to stage (so it renders) and apply filter to container
-        app.stage.addChild(displacementSprite);
-        container.filters = [displacementFilter];
+    const tex = displacementSprite.texture;
+    if (tex && tex.width) {
+      const scaleX = (w / tex.width) * 1.5;
+      const scaleY = (h / tex.height) * 1.5;
+      displacementSprite.scale.set(Math.max(scaleX, scaleY));
+    }
 
-        const bg = PIXI.Sprite.from(img.src);
-        bg.width = w;
-        bg.height = h;
-        bg.x = 0;
-        bg.y = 0;
-        container.addChild(bg);
+    const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+    wrapper._filter = displacementFilter;
 
-        // mark state
-        wrapper._isAnimating = true;
-        wrapper._filter = displacementFilter;
+    app.stage.addChild(displacementSprite);
+    container.filters = [displacementFilter];
 
-        // For reverse effect (clear -> distorted) we'll start from 0 and go to -3000
-        displacementFilter.scale.set(0, 0);
+    const bg = PIXI.Sprite.from(img.src);
+    bg.width = w;
+    bg.height = h;
+    container.addChild(bg);
 
-        // hide the real image while reversed
-        img.style.opacity = "0";
+    // Start distorted
+    displacementFilter.scale.set(-3000, -3000);
+    wrapper._isAnimating = true;
+    img.style.opacity = "0";
 
-        gsap.to(displacementFilter.scale, {
-          x: -3000,
-          y: -3000,
-          duration: 1.8,
-          ease: "expo.inOut",
-          onComplete: () => {
-            wrapper._isAnimating = false;
-            // keep the canvas (do not destroy) so the distorted state remains
-            // leave wrapper._pixiApp in place for the forward animation later
-          },
-        });
-      }
+    gsap.to(displacementFilter.scale, {
+      x: 0,
+      y: 0,
+      duration: 3,
+      ease: "expo.out",
+      onComplete: () => {
+        img.style.opacity = "1";
 
-      // Forward (distorted -> normal, then reveal image and remove canvas)
-      function forwardInkEffectFourth(wrapperSelector, imgSelector) {
-        const wrapper = document.querySelector(wrapperSelector);
-        const img = document.querySelector(imgSelector);
-        if (!wrapper || !img) return;
+        if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
+        app.destroy(true, { children: true });
 
-        const w = wrapper.offsetWidth;
-        const h = wrapper.offsetHeight;
-
-        // If there's already a running animation, skip
-        if (wrapper._isAnimating) return;
-
-        // If there's no existing canvas (app), create one in the distorted state
-        let app = wrapper._pixiApp;
-        let displacementFilter = wrapper._filter;
-
-        // If app doesn't exist, create app and set filter scale large negative (distorted start)
-        if (!app || !displacementFilter) {
-          ensureSizeStyles(img, w, h);
-          app = createPixiApp(wrapper, w, h);
-          wrapper.appendChild(app.view);
-          wrapper._pixiApp = app;
-
-          const container = new PIXI.Container();
-          app.stage.addChild(container);
-
-          const displacementSprite = PIXI.Sprite.from(
-            "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
-          );
-          displacementSprite.texture.baseTexture.wrapMode =
-            PIXI.WRAP_MODES.REPEAT;
-          displacementSprite.anchor.set(0.5);
-          displacementSprite.position.set(w / 2, h / 2);
-          const tex = displacementSprite.texture;
-          if (tex && tex.width) {
-            const scaleX = (w / tex.width) * 1.5;
-            const scaleY = (h / tex.height) * 1.5;
-            displacementSprite.scale.set(Math.max(scaleX, scaleY));
-          }
-
-          displacementFilter = new PIXI.filters.DisplacementFilter(
-            displacementSprite
-          );
-          app.stage.addChild(displacementSprite);
-
-          container.filters = [displacementFilter];
-
-          const bg = PIXI.Sprite.from(img.src);
-          bg.width = w;
-          bg.height = h;
-          bg.x = 0;
-          bg.y = 0;
-          container.addChild(bg);
-
-          wrapper._filter = displacementFilter;
-        }
-
-        // Start with distorted scale so animation goes to 0
-        displacementFilter.scale.set(-3000, -3000);
-
-        // mark animating & hide real image
-        wrapper._isAnimating = true;
-        img.style.opacity = "0";
-        img.style.display = "block";
-
-        gsap.to(displacementFilter.scale, {
-          x: 0,
-          y: 0,
-          duration: 3,
-          ease: "expo.out",
-          onComplete: () => {
-            // reveal the real image
-            img.style.opacity = "1";
-            img.style.opacity = "none";
-
-            // remove canvas and destroy to free resources
-            if (wrapper._pixiApp && wrapper.contains(wrapper._pixiApp.view)) {
-              wrapper.removeChild(wrapper._pixiApp.view);
-            }
-            if (wrapper._pixiApp) {
-              wrapper._pixiApp.destroy(true, { children: true });
-            }
-
-            // clear stored references
-            wrapper._pixiApp = null;
-            wrapper._filter = null;
-            wrapper._isAnimating = false;
-          },
-        });
-      }
-
-      // Observer setup: listen for entry/exit and call forward/reverse accordingly
-      function triggerInkOnViewFourth() {
-        const wrapper = document.querySelector(".inkWrapFourth");
-        const imgSelector = ".inkImageFourth";
-        if (!wrapper) return;
-
-        // set initial flags
         wrapper._pixiApp = null;
         wrapper._filter = null;
         wrapper._isAnimating = false;
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            const e = entries[0];
-            if (e.isIntersecting) {
-              // section came into view -> play forward animation
-              forwardInkEffectFourth(".inkWrapFourth", imgSelector);
-            } else {
-              // section left view -> when leaving (scroll up or down), create reversed distorted look
-              // but only create reverse if there's no existing canvas (i.e., if image currently visible)
-              // This prevents repeatedly re-triggering while already distorted.
-              // We want user to see distortion next time they scroll back in.
-              if (!wrapper._pixiApp && !wrapper._isAnimating) {
-                // small timeout can avoid firing on small scroll jitter; optional
-                reverseInkEffectFourth(".inkWrapFourth", imgSelector);
-              }
-            }
-          },
-          { threshold: 0.4 }
-        );
-
-        observer.observe(wrapper);
       }
+    });
+  }
 
-      // Wait for modal to close before starting animation
-      function initFourthSectionAnimation() {
-        triggerInkOnViewFourth();
-      }
+  /* ------------------------------------------------------------
+     VIEWPORT TRIGGER (Option C)
+     - Forward when entering
+     - Reset silently when leaving
+  ------------------------------------------------------------- */
+  function triggerInkOnViewFourth() {
+    const wrapper = document.querySelector(".inkWrapFourth");
+    const img = document.querySelector(".inkImageFourth");
+    if (!wrapper || !img) return;
 
-      if (window.modalClosed) {
-        initFourthSectionAnimation();
-      } else {
-        document.addEventListener("modalClosed", initFourthSectionAnimation, {
-          once: true,
-        });
-      }
-    </script>
+    resetInk(wrapper, img);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+
+        if (entry.isIntersecting) {
+          forwardInkEffectFourth(".inkWrapFourth", ".inkImageFourth");
+        } else {
+          resetInk(wrapper, img); // silent reset
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(wrapper);
+  }
+
+  function initFourthSectionAnimation() {
+    triggerInkOnViewFourth();
+  }
+
+  if (window.modalClosed) {
+    initFourthSectionAnimation();
+  } else {
+    document.addEventListener("modalClosed", initFourthSectionAnimation, { once: true });
+  }
+</script>
+
 
     <!-- 5th section img animation  -->
     <script>
