@@ -92,50 +92,49 @@
         color: #4d4929;
         max-width: 346px;
       }
-     .journeyContentSecRight {
-  position: relative;
-  width: 100%;
-  height: 600px;
-}
+      .journeyContentSecRight {
+        position: relative;
+        width: 50%;
+        height: 600px;
+      }
 
-#inkWrapper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-}
+      #inkWrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
 
-#inkWrapper canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
+      #inkWrapper canvas {
+        width: 100% !important;
+        /* height: 100% !important; */
+      }
 
-#inkImage {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
+      #inkImage {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
 
       /* Third Section styles */
 
       .inkWrapThird {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 450px;
-}
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 450px;
+      }
 
-.inkWrapThird canvas {
-  width: 100% !important;
-  height: 100% !important;
-}
+      .inkWrapThird canvas {
+        width: 100% !important;
+        height: 100% !important;
+      }
 
-.inkImageThird {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+      .inkImageThird {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
       .third_sec {
         background-image: url("../imgBespoke/secondSecBg.png");
@@ -154,13 +153,12 @@
       .third_sec_content_left {
         padding-left: 61px;
         width: 50%;
-        
       }
       .third_sec_content_left img {
         width: 826px;
         height: 806px;
         position: absolute;
-        top: -155px;
+        /* top: -155px; */
         object-fit: cover;
         opacity: 0;
       }
@@ -199,18 +197,28 @@
       /* Fourth Section Styles  */
 
       .inkWrapFourth {
-  position: relative;
-  width: 100%;
-  min-height: 450px; /* 🔥 IMPORTANT: ensures PIXI canvas can render full image */
-  overflow: hidden;
-}
+        position: relative;
+        width: 100%;
+        min-height: 662px; /* 🔥 IMPORTANT: ensures PIXI canvas can render full image */
+        overflow: hidden;
+      }
 
-.inkWrapFourth canvas,
-.inkImageFourth {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
-}
+      .inkImageFourth {
+        margin-top: -20px !important;
+      }
+
+      .inkWrapFourth canvas,
+      .inkImageFourth {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+      }
+
+      .inkWrapFourth canvas {
+        position: absolute;
+        top: 10px;
+      }
+
       .FourthSec {
         /* background-image: url("../imgBespoke/fourthSecBg.png"); */
         background-image: url("../imgBespoke/f1.png");
@@ -229,10 +237,11 @@
         align-items: center;
         gap: 16px;
         padding-left: 120px;
+        padding-right: 120px;
       }
       .FourthSecContent img {
-        width: 875px;
-        height: 662px;
+        width: 875px !important;
+        height: 662px !important;
       }
       .fourthPara {
         font-weight: 400;
@@ -240,6 +249,8 @@
         text-transform: uppercase;
         line-height: 180%;
         color: #4d4929;
+        min-width: 150px;
+        text-align: center;
       }
       .fourthSecBottomContent {
         padding-left: 120px;
@@ -512,7 +523,12 @@
         padding-top: 75px;
         position: relative;
       }
-      .testimonialImg img {
+      .testimonialImgWrap {
+        position: relative;
+        right: 0;
+        bottom: 0px;
+      }
+      .testimonialImgImg {
         width: 734px;
         height: 703px;
         object-fit: cover;
@@ -1003,6 +1019,7 @@
         /* overflow: hidden; */
         display: inline-block; /* keep it tight around image if needed */
         /* optional: match image size (or use responsive rules) */
+        position: relative;
       }
 
       .imgMask img {
@@ -1018,6 +1035,8 @@
         display: block;
         width: 100%;
         height: auto;
+        /* position: absolute;
+        top: 0; */
       }
     </style>
   </head>
@@ -1065,20 +1084,23 @@
             pulse of longing.
           </p>
         </div>
-   <div class="journeyContentSecRight">
-  <div id="inkWrapper">
-    <img id="inkImage" src="../imgBespoke/journey.png" alt="journey">
-  </div>
-</div>
-
+        <div class="journeyContentSecRight">
+          <div id="inkWrapper">
+            <img id="inkImage" src="../imgBespoke/journey.png" alt="journey" />
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="third_sec">
       <div class="third_sec_content">
-       <div class="third_sec_content_left">
+        <div class="third_sec_content_left">
           <div class="inkWrapThird">
-            <img class="inkImageThird" src="../imgBespoke/thirdImg.png" alt="thirdImg" />
+            <img
+              class="inkImageThird"
+              src="../imgBespoke/thirdImg.png"
+              alt="thirdImg"
+            />
           </div>
         </div>
 
@@ -1105,16 +1127,18 @@
           <img src="../imgBespoke/arrow.png" alt="" style="rotate: 180deg" />
         </div>
         <div class="FourthSecContent">
-  <p class="fourthPara">Crafted to</p>
+          <p class="fourthPara">Crafted to</p>
 
-  <div class="inkWrapFourth">
-    <img class="inkImageFourth" src="../imgBespoke/fourth.png" alt="fourth" />
-  </div>
+          <div class="inkWrapFourth">
+            <img
+              class="inkImageFourth"
+              src="../imgBespoke/fourth.png"
+              alt="fourth"
+            />
+          </div>
 
-  <p class="fourthPara">Perfection</p>
-</div>
-
-
+          <p class="fourthPara">Perfection</p>
+        </div>
 
         <div class="fourthSecBottomContent">
           <div class="fourthSecBottomContentLeft">
@@ -1174,7 +1198,11 @@
         <img src="../imgBespoke/elephentGrp.png" alt="elephent" />
       </div>
       <div class="secondImg">
-        <img class="inkImageSecond" src="../imgBespoke/elephent.png" alt="elephent" />
+        <img
+          class="inkImageSecond"
+          src="../imgBespoke/elephent.png"
+          alt="elephent"
+        />
       </div>
     </section>
     <section class="fifthSecBottomCards">
@@ -1267,7 +1295,13 @@
       </div>
 
       <div class="testimonialImg">
-        <img src="../imgBespoke/girl.png" alt="girl" />
+        <div class="testimonialImgWrap">
+          <img
+            src="../imgBespoke/girl.png"
+            alt="girl"
+            class="testimonialImgImg"
+          />
+        </div>
         <div class="testimonialContent">
           <img src="../imgBespoke/logoMark.png" alt="logoMark" />
           <h3 id="testimonialTitle">
@@ -1607,8 +1641,9 @@
 
       /* Helper: wrap images in .imgMask if not already wrapped */
       (function ensureImgMasks() {
+        // .journeyContentSecRight img, .third_sec_content_left img, .firstImg img, .secondImg img,
         const imgs = document.querySelectorAll(
-          ".journeyContentSecRight img, .third_sec_content_left img, .third_sec_content_right img, .FourthSecContent img, .fourthSecBottomContentRight video, .fifthSectionContent img, .firstImg img, .secondImg img, .sixthSectionContentLeft img"
+          " .third_sec_content_right img, .FourthSecContent img, .fourthSecBottomContentRight video, .fifthSectionContent img,  .sixthSectionContentLeft img"
         );
         imgs.forEach((img) => {
           // skip if parent already has imgMask
@@ -1628,7 +1663,7 @@
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: triggerEl,
-            start: "top 75%",
+            start: "top 50%",
             toggleActions: "play none none reverse",
           },
         });
@@ -1702,7 +1737,7 @@
             );
             // Note: the right image will be revealed via PIXI displacement (added later),
             // but to keep fallback behavior for non-Pixi environments we still include masked reveal:
-            revealMaskedImage(tl, ".journeySec .imgMask img");
+            // revealMaskedImage(tl, ".journeySec .imgMask img");
           },
         },
         {
@@ -1710,7 +1745,7 @@
           headerThen: () => {
             const tl = animateHeader(".third_sec");
             // left image (masked) then right text & small icon
-            revealMaskedImage(tl, ".third_sec .imgMask img");
+            // revealMaskedImage(tl, ".third_sec .imgMask img");
             revealTextBlock(
               tl,
               ".third_sec_content_right img, .third_sec_content_right h3, .third_sec_content_right p"
@@ -1723,10 +1758,10 @@
             const tl = animateHeader(".FourthSec");
             // big image in the middle + the "crafted to / perfection" row
             revealTextBlock(tl, ".FourthSecContent .fourthPara");
-            revealMaskedImage(
-              tl,
-              ".FourthSec .imgMask img, .FourthSecContent img"
-            );
+            // revealMaskedImage(
+            //   tl,
+            //   ".FourthSec .imgMask img, .FourthSecContent img"
+            // );
             // content below (left text then video)
             revealTextBlock(
               tl,
@@ -1749,10 +1784,10 @@
               ".fifthSectionContent h3, .fifthSectionContent p"
             );
             // large images on the sides — animate masked images
-            revealMaskedImage(
-              tl,
-              ".fifthSec .imgMask img, .firstImg img, .secondImg img"
-            );
+            // revealMaskedImage(
+            //   tl,
+            //   ".fifthSec .imgMask img, .firstImg img, .secondImg img"
+            // );
           },
         },
         {
@@ -1842,155 +1877,7 @@
     </script>
 
     <!-- PIXI Reverse Displacement Reveal: replaces .journeyContentSecRight img with canvas and reveals it on scroll -->
-    <script>
-      (function () {
-        // config: image to use and displacement map URL (change as needed)
-        const IMAGE_SRC = "../imgBespoke/journey.png"; // your content image
-        const DISP_SRC =
-          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"; // displacement map
 
-        // find the img element inside the journey section
-        const imgEl = document.querySelector(".journeyContentSecRight img");
-        if (!imgEl || typeof PIXI === "undefined") return;
-
-        // ensure wrapper - but ensureImgMasks should have wrapped it already
-        let mask = imgEl.parentElement;
-        if (!mask.classList.contains("imgMask")) {
-          const wrapper = document.createElement("span");
-          wrapper.className = "imgMask";
-          wrapper.style.display = "inline-block";
-          mask.replaceChild(wrapper, imgEl);
-          wrapper.appendChild(imgEl);
-          mask = wrapper;
-        }
-
-        // get computed wrapper width to size canvas responsive
-        function getWrapperSize() {
-          const rect = mask.getBoundingClientRect();
-          // fallback sizes if image not loaded yet
-          const naturalW = imgEl.naturalWidth || 705;
-          const naturalH = imgEl.naturalHeight || 571;
-          const WW = Math.max(200, Math.round(rect.width || naturalW));
-          const HH = Math.round((naturalH / naturalW) * WW);
-          return { w: WW, h: HH, natW: naturalW, natH: naturalH };
-        }
-
-        // PIXI app
-        const initialSize = getWrapperSize();
-        const app = new PIXI.Application({
-          width: initialSize.w,
-          height: initialSize.h,
-          transparent: true,
-          antialias: true,
-        });
-
-        // hide original image and append canvas
-        imgEl.style.display = "none";
-        // append canvas inside the mask so CSS layout remains intact
-        mask.appendChild(app.view);
-        app.view.style.width = "100%";
-        app.view.style.height = "auto";
-        app.view.style.display = "block";
-        app.view.style.opacity = 0; // start hidden
-
-        // container and content sprite
-        const container = new PIXI.Container();
-        app.stage.addChild(container);
-
-        const contentSprite = PIXI.Sprite.fromImage(IMAGE_SRC);
-        // fill renderer area
-        contentSprite.width = app.renderer.width;
-        contentSprite.height = app.renderer.height;
-        container.addChild(contentSprite);
-
-        // displacement sprite + filter
-        const dispSprite = PIXI.Sprite.fromImage(DISP_SRC);
-        dispSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-        dispSprite.anchor.set(0.5);
-        dispSprite.x = app.renderer.width / 2;
-        dispSprite.y = app.renderer.height / 2;
-        dispSprite.scale.set(0.6);
-
-        const dispFilter = new PIXI.filters.DisplacementFilter(dispSprite);
-        app.stage.addChild(dispSprite);
-        container.filters = [dispFilter];
-
-        // INITIAL: exaggerated negative scale so image looks "blank"
-        dispFilter.scale.x = -3000;
-        dispFilter.scale.y = -3000;
-
-        // reveal timeline using ScrollTrigger (will reverse when scrolled back)
-        const revealTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".journeySec",
-            start: "top 75%",
-            toggleActions: "play none none reverse",
-            // markers: true,
-          },
-        });
-
-        // animate displacement -> 0 and fade canvas in
-        revealTl.to(
-          dispFilter.scale,
-          {
-            x: 0,
-            y: 0,
-            duration: 1.2,
-            ease: "power3.out",
-          },
-          0
-        );
-
-        revealTl.to(
-          app.view,
-          {
-            opacity: 1,
-            duration: 0.9,
-            ease: "power3.out",
-          },
-          0.05
-        );
-
-        // slight content scale-in for better feel
-        revealTl.fromTo(
-          contentSprite.scale,
-          { x: 1.03, y: 1.03 },
-          { x: 1, y: 1, duration: 0.9, ease: "power3.out" },
-          0
-        );
-
-        // subtle displacement sprite drift after reveal
-        app.ticker.add((delta) => {
-          // only drift slowly after reveal completed
-          if (
-            Math.abs(dispFilter.scale.x) < 1 &&
-            Math.abs(dispFilter.scale.y) < 1
-          ) {
-            dispSprite.x += 0.2 * delta;
-            if (dispSprite.x > app.renderer.width * 1.5)
-              dispSprite.x = -app.renderer.width * 0.5;
-          }
-        });
-
-        // responsive resizing
-        function resizeCanvas() {
-          const sz = getWrapperSize();
-          app.renderer.resize(sz.w, sz.h);
-          contentSprite.width = sz.w;
-          contentSprite.height = sz.h;
-          dispSprite.x = sz.w / 2;
-          dispSprite.y = sz.h / 2;
-        }
-        // call on load and resize
-        window.addEventListener("resize", resizeCanvas);
-        // If image loads later, resize once it has natural dimensions
-        if (!imgEl.complete) {
-          imgEl.addEventListener("load", resizeCanvas);
-        } else {
-          resizeCanvas();
-        }
-      })();
-    </script>
     <script>
       /*
   Sixth-section slider with displacement reveal (fixed text reveal).
@@ -2238,71 +2125,8 @@
         });
       })();
     </script>
-    <script>
-window.addEventListener("load", () => {
 
-  const wrapper = document.getElementById("inkWrapper");
-  const img = document.getElementById("inkImage");
-
-  const w = wrapper.offsetWidth;
-  const h = wrapper.offsetHeight;
-
-  const app = new PIXI.Application({
-    width: w,
-    height: h,
-    transparent: true
-  });
-
-  wrapper.appendChild(app.view);
-
-  const container = new PIXI.Container();
-  app.stage.addChild(container);
-
-  const displacementSprite = PIXI.Sprite.from("https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png");
-  displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-  displacementSprite.anchor.set(0.5);
-  displacementSprite.position.set(w / 2, h / 2);
-
-  const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
-  app.stage.addChild(displacementSprite);
-
-  container.filters = [displacementFilter];
-  displacementFilter.scale.set(0);
-
-  const bg = PIXI.Sprite.from(img.src);
-  bg.width = w;
-  bg.height = h;
-  container.addChild(bg);
-
-  img.style.opacity = 0;
-
-  // GSAP Timeline (auto play + auto reverse)
-  const tl = gsap.timeline();
-
-  // Forward animation
-  // tl.to(displacementFilter.scale, {
-  //   x: -3000,
-  //   y: -3000,
-  //   ease: "expo.inOut",
-  //   duration: 4,
-  // });
-
-  // Reverse animation
-  tl.to(displacementFilter.scale, {
-    x: 0,
-    y: 0,
-    ease: "expo.inOut",
-    duration: 4,
-     onComplete: () => {
-      img.style.opacity = 1; // Show original image
-      // wrapper.removeChild(app.view); // optional cleanup
-    }
-  });
-
-});
-</script>
-
-<!-- <script>
+    <!-- <script>
 function applyInkEffect(selectorWrap, selectorImg) {
   const wrapper = document.querySelector(selectorWrap);
   const img = document.querySelector(selectorImg);
@@ -2379,246 +2203,1379 @@ window.addEventListener("load", () => {
   applyInkEffect(".inkWrapFourth", ".inkImageFourth");
 });
 </script> -->
- <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const wrapper = document.querySelector(".inkWrapFourth");
-  const img = document.querySelector(".inkImageFourth");
 
-  if (!wrapper || !img) return;
+    <!-- <script>
+      function reverseInkEffect(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (entries[0].isIntersecting) {
-        observer.disconnect();
-        startInkEffect();
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+
+        const app = new PIXI.Application({
+          width: w,
+          height: h,
+          transparent: true,
+        });
+
+        wrapper.appendChild(app.view);
+
+        const container = new PIXI.Container();
+        app.stage.addChild(container);
+
+        const displacementSprite = PIXI.Sprite.from(
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+        );
+        displacementSprite.texture.baseTexture.wrapMode =
+          PIXI.WRAP_MODES.REPEAT;
+        displacementSprite.anchor.set(0.5);
+        displacementSprite.position.set(w / 2, h / 2);
+
+        const displacementFilter = new PIXI.filters.DisplacementFilter(
+          displacementSprite
+        );
+        app.stage.addChild(displacementSprite);
+        container.filters = [displacementFilter];
+
+        const bg = PIXI.Sprite.from(img.src);
+        bg.width = w;
+        bg.height = h;
+        container.addChild(bg);
+
+        // Always hide real image at start
+        img.style.opacity = 0;
+
+        // Start distorted
+        displacementFilter.scale.set(-3000, -3000);
+
+        // Animate to clear
+        gsap.to(displacementFilter.scale, {
+          x: 0,
+          y: 0,
+          duration: 3,
+          ease: "expo.out",
+          onComplete: () => {
+            // Show REAL image
+            img.style.opacity = 1;
+
+            // Remove PIXI canvas fully
+            if (wrapper.contains(app.view)) {
+              wrapper.removeChild(app.view);
+            }
+
+            app.destroy(true, { children: true });
+          },
+        });
       }
-    },
-    { threshold: 0.4 }
-  );
 
-  observer.observe(wrapper);
+      // Trigger on view
+      function triggerInkOnView(wrapperSelector, imgSelector) {
+        const target = document.querySelector(wrapperSelector);
 
-  function startInkEffect() {
-    const w = wrapper.offsetWidth;
-    const h = wrapper.offsetHeight;
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            if (entries[0].isIntersecting) {
+              reverseInkEffect(wrapperSelector, imgSelector);
+              obs.disconnect();
+            }
+          },
+          {
+            threshold: 0.4,
+          }
+        );
 
-    img.style.opacity = 0;
+        observer.observe(target);
+      }
 
-    // PIXI v7 syntax
-    const app = PIXI.Application.new({
-      width: w,
-      height: h,
-      backgroundAlpha: 0,
-    });
+      document.addEventListener("DOMContentLoaded", () => {
+        triggerInkOnView(".secondImg", ".inkImageSecond");
+      });
+    </script> -->
+    <!-- <script>
+      window.addEventListener("load", () => {
+        const wrapper = document.getElementById("inkWrapper");
+        const img = document.getElementById("inkImage");
 
-    wrapper.appendChild(app.view);
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
 
-    const container = new PIXI.Container();
-    app.stage.addChild(container);
+        const app = new PIXI.Application({
+          width: w,
+          height: h,
+          transparent: true,
+        });
 
-    const dispSprite = PIXI.Sprite.from(
-      "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
-    );
-    dispSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-    dispSprite.anchor.set(0.5);
-    dispSprite.position.set(w / 2, h / 2);
+        wrapper.appendChild(app.view);
 
-    const dispFilter = new PIXI.filters.DisplacementFilter(dispSprite);
-    container.filters = [dispFilter];
+        const container = new PIXI.Container();
+        app.stage.addChild(container);
 
-    app.stage.addChild(dispSprite);
+        const displacementSprite = PIXI.Sprite.from(
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+        );
+        displacementSprite.texture.baseTexture.wrapMode =
+          PIXI.WRAP_MODES.REPEAT;
+        displacementSprite.anchor.set(0.5);
+        displacementSprite.position.set(w / 2, h / 2);
 
-    const mainImage = PIXI.Sprite.from(img.src);
-    mainImage.width = w;
-    mainImage.height = h;
-    container.addChild(mainImage);
+        const displacementFilter = new PIXI.filters.DisplacementFilter(
+          displacementSprite
+        );
+        app.stage.addChild(displacementSprite);
 
-    // reverse animation — start distorted
-    dispFilter.scale.set(-3000, -3000);
+        container.filters = [displacementFilter];
+        displacementFilter.scale.set(0);
 
-    gsap.to(dispFilter.scale, {
-      x: 0,
-      y: 0,
-      duration: 2.5,
-      ease: "expo.out",
-      onComplete: () => {
-        img.style.opacity = 1;
+        const bg = PIXI.Sprite.from(img.src);
+        bg.width = w;
+        bg.height = h;
+        container.addChild(bg);
 
-        if (wrapper.contains(app.view)) {
-          wrapper.removeChild(app.view);
+        img.style.opacity = 0;
+
+        // GSAP Timeline (auto play + auto reverse)
+        const tl = gsap.timeline();
+
+        // Forward animation
+        // tl.to(displacementFilter.scale, {
+        //   x: -3000,
+        //   y: -3000,
+        //   ease: "expo.inOut",
+        //   duration: 4,
+        // });
+
+        // Reverse animation
+        tl.to(displacementFilter.scale, {
+          x: 0,
+          y: 0,
+          ease: "expo.inOut",
+          duration: 4,
+          onComplete: () => {
+            img.style.opacity = 1; // Show original image
+            // wrapper.removeChild(app.view); // optional cleanup
+          },
+        });
+      });
+    </script> -->
+
+    <!-- 2nd section img animation  -->
+    <script>
+      function createPixiApp(wrapper, w, h) {
+        const app = new PIXI.Application({
+          width: w,
+          height: h,
+          transparent: true,
+          resolution: window.devicePixelRatio || 1,
+          autoDensity: true,
+          antialias: true,
+        });
+        app.view.style.width = w + "px";
+        app.view.style.height = h + "px";
+        app.view.style.display = "block";
+        return app;
+      }
+
+      function ensureSizeStyles(img, w, h) {
+        img.style.width = w + "px";
+        img.style.height = h + "px";
+        img.style.objectFit = "cover";
+        img.style.display = "block";
+      }
+
+      function reverseInkEffectThird(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
+        if (!wrapper || !img) return;
+
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+
+        // If there's already a running app, don't create another
+        if (wrapper._pixiApp) return;
+
+        ensureSizeStyles(img, w, h);
+
+        // Create app and stage
+        const app = createPixiApp(wrapper, w, h);
+        wrapper.appendChild(app.view);
+        wrapper._pixiApp = app; // store for later
+
+        const container = new PIXI.Container();
+        app.stage.addChild(container);
+
+        const displacementSprite = PIXI.Sprite.from(
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+        );
+        displacementSprite.texture.baseTexture.wrapMode =
+          PIXI.WRAP_MODES.REPEAT;
+        displacementSprite.anchor.set(0.5);
+        displacementSprite.position.set(w / 2, h / 2);
+
+        // Scale displacement sprite so it covers the view (optional but helpful)
+        const tex = displacementSprite.texture;
+        if (tex && tex.width) {
+          const scaleX = (w / tex.width) * 1.5;
+          const scaleY = (h / tex.height) * 1.5;
+          displacementSprite.scale.set(Math.max(scaleX, scaleY));
         }
 
-        app.destroy(true, { children: true });
-      },
-    });
-  }
-});
-</script>
+        const displacementFilter = new PIXI.filters.DisplacementFilter(
+          displacementSprite
+        );
 
+        // Add sprite to stage (so it renders) and apply filter to container
+        app.stage.addChild(displacementSprite);
+        container.filters = [displacementFilter];
 
+        const bg = PIXI.Sprite.from(img.src);
+        bg.width = w;
+        bg.height = h;
+        bg.x = 0;
+        bg.y = 0;
+        container.addChild(bg);
 
-<script>
-function reverseInkEffect(wrapperSelector, imgSelector) {
-  const wrapper = document.querySelector(wrapperSelector);
-  const img = document.querySelector(imgSelector);
+        // mark state
+        wrapper._isAnimating = true;
+        wrapper._filter = displacementFilter;
 
-  const w = wrapper.offsetWidth;
-  const h = wrapper.offsetHeight;
+        // For reverse effect (clear -> distorted) we'll start from 0 and go to -3000
+        displacementFilter.scale.set(0, 0);
 
-  const app = new PIXI.Application({
-    width: w,
-    height: h,
-    transparent: true
-  });
+        // hide the real image while reversed
+        img.style.opacity = "0";
 
-  wrapper.appendChild(app.view);
-
-  const container = new PIXI.Container();
-  app.stage.addChild(container);
-
-  const displacementSprite = PIXI.Sprite.from(
-    "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
-  );
-  displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-  displacementSprite.anchor.set(0.5);
-  displacementSprite.position.set(w / 2, h / 2);
-
-  const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
-  app.stage.addChild(displacementSprite);
-  container.filters = [displacementFilter];
-
-  const bg = PIXI.Sprite.from(img.src);
-  bg.width = w;
-  bg.height = h;
-  container.addChild(bg);
-
-  // Always hide real image at start
-  img.style.opacity = 0;
-
-  // Start distorted
-  displacementFilter.scale.set(-3000, -3000);
-
-  // Animate to clear
-  gsap.to(displacementFilter.scale, {
-    x: 0,
-    y: 0,
-    duration: 3,
-    ease: "expo.out",
-    onComplete: () => {
-
-      // Show REAL image
-      img.style.opacity = 1;
-
-      // Remove PIXI canvas fully
-      if (wrapper.contains(app.view)) {
-        wrapper.removeChild(app.view);
+        gsap.to(displacementFilter.scale, {
+          x: -3000,
+          y: -3000,
+          duration: 1.8,
+          ease: "expo.inOut",
+          onComplete: () => {
+            wrapper._isAnimating = false;
+            // keep the canvas (do not destroy) so the distorted state remains
+            // leave wrapper._pixiApp in place for the forward animation later
+          },
+        });
       }
 
-      app.destroy(true, { children: true });
-    }
-  });
-}
+      // Forward (distorted -> normal, then reveal image and remove canvas)
+      function forwardInkEffectThird(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
+        if (!wrapper || !img) return;
 
-// Trigger on view
-function triggerInkOnView(wrapperSelector, imgSelector) {
-  const target = document.querySelector(wrapperSelector);
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
 
-  const observer = new IntersectionObserver((entries, obs) => {
-    if (entries[0].isIntersecting) {
-      reverseInkEffect(wrapperSelector, imgSelector);
-      obs.disconnect();
-    }
-  }, {
-    threshold: 0.4
-  });
+        // If there's already a running animation, skip
+        if (wrapper._isAnimating) return;
 
-  observer.observe(target);
-}
+        // If there's no existing canvas (app), create one in the distorted state
+        let app = wrapper._pixiApp;
+        let displacementFilter = wrapper._filter;
 
-document.addEventListener("DOMContentLoaded", () => {
-  triggerInkOnView(".secondImg", ".inkImageSecond");
-});
-</script>
-<script>
-function reverseInkEffectThird(wrapperSelector, imgSelector) {
-  const wrapper = document.querySelector(wrapperSelector);
-  const img = document.querySelector(imgSelector);
+        // If app doesn't exist, create app and set filter scale large negative (distorted start)
+        if (!app || !displacementFilter) {
+          ensureSizeStyles(img, w, h);
+          app = createPixiApp(wrapper, w, h);
+          wrapper.appendChild(app.view);
+          wrapper._pixiApp = app;
 
-  const w = wrapper.offsetWidth;
-  const h = wrapper.offsetHeight;
+          const container = new PIXI.Container();
+          app.stage.addChild(container);
 
-  const app = new PIXI.Application({
-    width: w,
-    height: h,
-    transparent: true
-  });
+          const displacementSprite = PIXI.Sprite.from(
+            "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+          );
+          displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
+          displacementSprite.anchor.set(0.5);
+          displacementSprite.position.set(w / 2, h / 2);
+          const tex = displacementSprite.texture;
+          if (tex && tex.width) {
+            const scaleX = (w / tex.width) * 1.5;
+            const scaleY = (h / tex.height) * 1.5;
+            displacementSprite.scale.set(Math.max(scaleX, scaleY));
+          }
 
-  wrapper.appendChild(app.view);
+          displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+          );
+          app.stage.addChild(displacementSprite);
 
-  const container = new PIXI.Container();
-  app.stage.addChild(container);
+          container.filters = [displacementFilter];
 
-  const displacementSprite = PIXI.Sprite.from(
-    "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
-  );
-  displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-  displacementSprite.anchor.set(0.5);
-  displacementSprite.position.set(w / 2, h / 2);
+          const bg = PIXI.Sprite.from(img.src);
+          bg.width = w;
+          bg.height = h;
+          bg.x = 0;
+          bg.y = 0;
+          container.addChild(bg);
 
-  const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
-  app.stage.addChild(displacementSprite);
-  container.filters = [displacementFilter];
+          wrapper._filter = displacementFilter;
+        }
 
-  const bg = PIXI.Sprite.from(img.src);
-  bg.width = w;
-  bg.height = h;
-  container.addChild(bg);
+        // Start with distorted scale so animation goes to 0
+        displacementFilter.scale.set(-3000, -3000);
 
-  img.style.opacity = 0;
+        // mark animating & hide real image
+        wrapper._isAnimating = true;
+        img.style.opacity = "0";
 
-  // Start distorted
-  displacementFilter.scale.set(-3000, -3000);
+        gsap.to(displacementFilter.scale, {
+          x: 0,
+          y: 0,
+          duration: 3,
+          ease: "expo.out",
+          onComplete: () => {
+            // reveal the real image
+            img.style.opacity = "1";
 
-  // Animate
-  gsap.to(displacementFilter.scale, {
-    x: 0,
-    y: 0,
-    duration: 3,
-    ease: "expo.out",
-    onComplete: () => {
+            // remove canvas and destroy to free resources
+            if (wrapper._pixiApp && wrapper.contains(wrapper._pixiApp.view)) {
+              wrapper.removeChild(wrapper._pixiApp.view);
+            }
+            if (wrapper._pixiApp) {
+              wrapper._pixiApp.destroy(true, { children: true });
+            }
 
-      img.style.opacity = 1;
-
-      if (wrapper.contains(app.view)) {
-        wrapper.removeChild(app.view);
+            // clear stored references
+            wrapper._pixiApp = null;
+            wrapper._filter = null;
+            wrapper._isAnimating = false;
+          },
+        });
       }
 
-      app.destroy(true, { children: true });
-    }
-  });
-}
+      // Observer setup: listen for entry/exit and call forward/reverse accordingly
+      function triggerInkOnViewThird() {
+        const wrapper = document.querySelector(".inkWrapper");
+        const imgSelector = ".inkImage";
+        if (!wrapper) return;
 
-// Trigger with IntersectionObserver
-function triggerInkOnViewThird() {
-  const target = document.querySelector(".inkWrapThird");
+        // set initial flags
+        wrapper._pixiApp = null;
+        wrapper._filter = null;
+        wrapper._isAnimating = false;
 
-  const observer = new IntersectionObserver((entries, obs) => {
-    if (entries[0].isIntersecting) {
-      reverseInkEffectThird(".inkWrapThird", ".inkImageThird");
-      obs.disconnect();
-    }
-  }, { threshold: 0.4 });
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const e = entries[0];
+            if (e.isIntersecting) {
+              // section came into view -> play forward animation
+              forwardInkEffectThird(".inkWrapper", imgSelector);
+            } else {
+              // section left view -> when leaving (scroll up or down), create reversed distorted look
+              // but only create reverse if there's no existing canvas (i.e., if image currently visible)
+              // This prevents repeatedly re-triggering while already distorted.
+              // We want user to see distortion next time they scroll back in.
+              if (!wrapper._pixiApp && !wrapper._isAnimating) {
+                // small timeout can avoid firing on small scroll jitter; optional
+                reverseInkEffectThird(".inkWrapper", imgSelector);
+              }
+            }
+          },
+          { threshold: 0.4 }
+        );
 
-  observer.observe(target);
-}
+        observer.observe(wrapper);
+      }
 
-document.addEventListener("DOMContentLoaded", () => {
-  triggerInkOnViewThird();
-});
-</script>
+      document.addEventListener("DOMContentLoaded", () => {
+        triggerInkOnViewThird();
+      });
+    </script>
 
-<script src="js/jquery-2.1.4.js"></script>
+    <!-- 3rd section img animation  -->
+    <script>
+      function createPixiApp(wrapper, w, h) {
+        const app = new PIXI.Application({
+          width: w,
+          height: h,
+          transparent: true,
+          resolution: window.devicePixelRatio || 1,
+          autoDensity: true,
+          antialias: true,
+        });
+        app.view.style.width = w + "px";
+        app.view.style.height = h + "px";
+        app.view.style.display = "block";
+        return app;
+      }
+
+      function ensureSizeStyles(img, w, h) {
+        img.style.width = w + "px";
+        img.style.height = h + "px";
+        img.style.objectFit = "cover";
+        img.style.display = "block";
+      }
+
+      function reverseInkEffectThird(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
+        if (!wrapper || !img) return;
+
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+
+        // If there's already a running app, don't create another
+        if (wrapper._pixiApp) return;
+
+        ensureSizeStyles(img, w, h);
+
+        // Create app and stage
+        const app = createPixiApp(wrapper, w, h);
+        wrapper.appendChild(app.view);
+        wrapper._pixiApp = app; // store for later
+
+        const container = new PIXI.Container();
+        app.stage.addChild(container);
+
+        const displacementSprite = PIXI.Sprite.from(
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+        );
+        displacementSprite.texture.baseTexture.wrapMode =
+          PIXI.WRAP_MODES.REPEAT;
+        displacementSprite.anchor.set(0.5);
+        displacementSprite.position.set(w / 2, h / 2);
+
+        // Scale displacement sprite so it covers the view (optional but helpful)
+        const tex = displacementSprite.texture;
+        if (tex && tex.width) {
+          const scaleX = (w / tex.width) * 1.5;
+          const scaleY = (h / tex.height) * 1.5;
+          displacementSprite.scale.set(Math.max(scaleX, scaleY));
+        }
+
+        const displacementFilter = new PIXI.filters.DisplacementFilter(
+          displacementSprite
+        );
+
+        // Add sprite to stage (so it renders) and apply filter to container
+        app.stage.addChild(displacementSprite);
+        container.filters = [displacementFilter];
+
+        const bg = PIXI.Sprite.from(img.src);
+        bg.width = w;
+        bg.height = h;
+        bg.x = 0;
+        bg.y = 0;
+        container.addChild(bg);
+
+        // mark state
+        wrapper._isAnimating = true;
+        wrapper._filter = displacementFilter;
+
+        // For reverse effect (clear -> distorted) we'll start from 0 and go to -3000
+        displacementFilter.scale.set(0, 0);
+
+        // hide the real image while reversed
+        img.style.opacity = "0";
+
+        gsap.to(displacementFilter.scale, {
+          x: -3000,
+          y: -3000,
+          duration: 1.8,
+          ease: "expo.inOut",
+          onComplete: () => {
+            wrapper._isAnimating = false;
+            // keep the canvas (do not destroy) so the distorted state remains
+            // leave wrapper._pixiApp in place for the forward animation later
+          },
+        });
+      }
+
+      // Forward (distorted -> normal, then reveal image and remove canvas)
+      function forwardInkEffectThird(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
+        if (!wrapper || !img) return;
+
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+
+        // If there's already a running animation, skip
+        if (wrapper._isAnimating) return;
+
+        // If there's no existing canvas (app), create one in the distorted state
+        let app = wrapper._pixiApp;
+        let displacementFilter = wrapper._filter;
+
+        // If app doesn't exist, create app and set filter scale large negative (distorted start)
+        if (!app || !displacementFilter) {
+          ensureSizeStyles(img, w, h);
+          app = createPixiApp(wrapper, w, h);
+          wrapper.appendChild(app.view);
+          wrapper._pixiApp = app;
+
+          const container = new PIXI.Container();
+          app.stage.addChild(container);
+
+          const displacementSprite = PIXI.Sprite.from(
+            "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+          );
+          displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
+          displacementSprite.anchor.set(0.5);
+          displacementSprite.position.set(w / 2, h / 2);
+          const tex = displacementSprite.texture;
+          if (tex && tex.width) {
+            const scaleX = (w / tex.width) * 1.5;
+            const scaleY = (h / tex.height) * 1.5;
+            displacementSprite.scale.set(Math.max(scaleX, scaleY));
+          }
+
+          displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+          );
+          app.stage.addChild(displacementSprite);
+
+          container.filters = [displacementFilter];
+
+          const bg = PIXI.Sprite.from(img.src);
+          bg.width = w;
+          bg.height = h;
+          bg.x = 0;
+          bg.y = 0;
+          container.addChild(bg);
+
+          wrapper._filter = displacementFilter;
+        }
+
+        // Start with distorted scale so animation goes to 0
+        displacementFilter.scale.set(-3000, -3000);
+
+        // mark animating & hide real image
+        wrapper._isAnimating = true;
+        img.style.opacity = "0";
+
+        gsap.to(displacementFilter.scale, {
+          x: 0,
+          y: 0,
+          duration: 3,
+          ease: "expo.out",
+          onComplete: () => {
+            // reveal the real image
+            img.style.opacity = "1";
+
+            // remove canvas and destroy to free resources
+            if (wrapper._pixiApp && wrapper.contains(wrapper._pixiApp.view)) {
+              wrapper.removeChild(wrapper._pixiApp.view);
+            }
+            if (wrapper._pixiApp) {
+              wrapper._pixiApp.destroy(true, { children: true });
+            }
+
+            // clear stored references
+            wrapper._pixiApp = null;
+            wrapper._filter = null;
+            wrapper._isAnimating = false;
+          },
+        });
+      }
+
+      // Observer setup: listen for entry/exit and call forward/reverse accordingly
+      function triggerInkOnViewThird() {
+        const wrapper = document.querySelector(".inkWrapThird");
+        const imgSelector = ".inkImageThird";
+        if (!wrapper) return;
+
+        // set initial flags
+        wrapper._pixiApp = null;
+        wrapper._filter = null;
+        wrapper._isAnimating = false;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const e = entries[0];
+            if (e.isIntersecting) {
+              // section came into view -> play forward animation
+              forwardInkEffectThird(".inkWrapThird", imgSelector);
+            } else {
+              // section left view -> when leaving (scroll up or down), create reversed distorted look
+              // but only create reverse if there's no existing canvas (i.e., if image currently visible)
+              // This prevents repeatedly re-triggering while already distorted.
+              // We want user to see distortion next time they scroll back in.
+              if (!wrapper._pixiApp && !wrapper._isAnimating) {
+                // small timeout can avoid firing on small scroll jitter; optional
+                reverseInkEffectThird(".inkWrapThird", imgSelector);
+              }
+            }
+          },
+          { threshold: 0.4 }
+        );
+
+        observer.observe(wrapper);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        triggerInkOnViewThird();
+      });
+    </script>
+
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const wrapper = document.querySelector(".inkWrapFourth");
+        const img = document.querySelector(".inkImageFourth");
+
+        if (!wrapper || !img) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (entries[0].isIntersecting) {
+              observer.disconnect();
+              startInkEffect();
+            }
+          },
+          { threshold: 0.4 }
+        );
+
+        observer.observe(wrapper);
+
+        function startInkEffect() {
+          const w = wrapper.offsetWidth;
+          const h = wrapper.offsetHeight;
+
+          img.style.opacity = 0;
+
+          // PIXI v7 syntax
+          const app = PIXI.Application.new({
+            width: w,
+            height: h,
+            backgroundAlpha: 0,
+          });
+
+          wrapper.appendChild(app.view);
+
+          const container = new PIXI.Container();
+          app.stage.addChild(container);
+
+          const dispSprite = PIXI.Sprite.from(
+            "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+          );
+          dispSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+          dispSprite.anchor.set(0.5);
+          dispSprite.position.set(w / 2, h / 2);
+
+          const dispFilter = new PIXI.filters.DisplacementFilter(dispSprite);
+          container.filters = [dispFilter];
+
+          app.stage.addChild(dispSprite);
+
+          const mainImage = PIXI.Sprite.from(img.src);
+          mainImage.width = w;
+          mainImage.height = h;
+          container.addChild(mainImage);
+
+          // reverse animation — start distorted
+          dispFilter.scale.set(-3000, -3000);
+
+          gsap.to(dispFilter.scale, {
+            x: 0,
+            y: 0,
+            duration: 2.5,
+            ease: "expo.out",
+            onComplete: () => {
+              img.style.opacity = 1;
+
+              if (wrapper.contains(app.view)) {
+                wrapper.removeChild(app.view);
+              }
+
+              app.destroy(true, { children: true });
+            },
+          });
+        }
+      });
+    </script> -->
+
+    <!-- 4th section img animation  -->
+    <script>
+      function createPixiApp(wrapper, w, h) {
+        const app = new PIXI.Application({
+          width: w,
+          height: h,
+          transparent: true,
+          resolution: window.devicePixelRatio || 1,
+          autoDensity: true,
+          antialias: true,
+        });
+        app.view.style.width = w + "px";
+        app.view.style.height = h + "px";
+        app.view.style.display = "block";
+        return app;
+      }
+
+      function ensureSizeStyles(img, w, h) {
+        img.style.width = w + "px";
+        img.style.height = h + "px";
+        img.style.objectFit = "cover";
+        img.style.display = "block";
+      }
+
+      function reverseInkEffectFourth(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
+        if (!wrapper || !img) return;
+
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+
+        // If there's already a running app, don't create another
+        if (wrapper._pixiApp) return;
+
+        ensureSizeStyles(img, w, h);
+
+        // Create app and stage
+        const app = createPixiApp(wrapper, w, h);
+        wrapper.appendChild(app.view);
+        wrapper._pixiApp = app; // store for later
+
+        const container = new PIXI.Container();
+        app.stage.addChild(container);
+
+        const displacementSprite = PIXI.Sprite.from(
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+        );
+        displacementSprite.texture.baseTexture.wrapMode =
+          PIXI.WRAP_MODES.REPEAT;
+        displacementSprite.anchor.set(0.5);
+        displacementSprite.position.set(w / 2, h / 2);
+
+        // Scale displacement sprite so it covers the view (optional but helpful)
+        const tex = displacementSprite.texture;
+        if (tex && tex.width) {
+          const scaleX = (w / tex.width) * 1.5;
+          const scaleY = (h / tex.height) * 1.5;
+          displacementSprite.scale.set(Math.max(scaleX, scaleY));
+        }
+
+        const displacementFilter = new PIXI.filters.DisplacementFilter(
+          displacementSprite
+        );
+
+        // Add sprite to stage (so it renders) and apply filter to container
+        app.stage.addChild(displacementSprite);
+        container.filters = [displacementFilter];
+
+        const bg = PIXI.Sprite.from(img.src);
+        bg.width = w;
+        bg.height = h;
+        bg.x = 0;
+        bg.y = 0;
+        container.addChild(bg);
+
+        // mark state
+        wrapper._isAnimating = true;
+        wrapper._filter = displacementFilter;
+
+        // For reverse effect (clear -> distorted) we'll start from 0 and go to -3000
+        displacementFilter.scale.set(0, 0);
+
+        // hide the real image while reversed
+        img.style.opacity = "0";
+
+        gsap.to(displacementFilter.scale, {
+          x: -3000,
+          y: -3000,
+          duration: 1.8,
+          ease: "expo.inOut",
+          onComplete: () => {
+            wrapper._isAnimating = false;
+            // keep the canvas (do not destroy) so the distorted state remains
+            // leave wrapper._pixiApp in place for the forward animation later
+          },
+        });
+      }
+
+      // Forward (distorted -> normal, then reveal image and remove canvas)
+      function forwardInkEffectFourth(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
+        if (!wrapper || !img) return;
+
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+
+        // If there's already a running animation, skip
+        if (wrapper._isAnimating) return;
+
+        // If there's no existing canvas (app), create one in the distorted state
+        let app = wrapper._pixiApp;
+        let displacementFilter = wrapper._filter;
+
+        // If app doesn't exist, create app and set filter scale large negative (distorted start)
+        if (!app || !displacementFilter) {
+          ensureSizeStyles(img, w, h);
+          app = createPixiApp(wrapper, w, h);
+          wrapper.appendChild(app.view);
+          wrapper._pixiApp = app;
+
+          const container = new PIXI.Container();
+          app.stage.addChild(container);
+
+          const displacementSprite = PIXI.Sprite.from(
+            "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+          );
+          displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
+          displacementSprite.anchor.set(0.5);
+          displacementSprite.position.set(w / 2, h / 2);
+          const tex = displacementSprite.texture;
+          if (tex && tex.width) {
+            const scaleX = (w / tex.width) * 1.5;
+            const scaleY = (h / tex.height) * 1.5;
+            displacementSprite.scale.set(Math.max(scaleX, scaleY));
+          }
+
+          displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+          );
+          app.stage.addChild(displacementSprite);
+
+          container.filters = [displacementFilter];
+
+          const bg = PIXI.Sprite.from(img.src);
+          bg.width = w;
+          bg.height = h;
+          bg.x = 0;
+          bg.y = 0;
+          container.addChild(bg);
+
+          wrapper._filter = displacementFilter;
+        }
+
+        // Start with distorted scale so animation goes to 0
+        displacementFilter.scale.set(-3000, -3000);
+
+        // mark animating & hide real image
+        wrapper._isAnimating = true;
+        img.style.opacity = "0";
+        img.style.display = "block";
+
+        gsap.to(displacementFilter.scale, {
+          x: 0,
+          y: 0,
+          duration: 3,
+          ease: "expo.out",
+          onComplete: () => {
+            // reveal the real image
+            img.style.opacity = "1";
+            img.style.opacity = "none";
+
+            // remove canvas and destroy to free resources
+            if (wrapper._pixiApp && wrapper.contains(wrapper._pixiApp.view)) {
+              wrapper.removeChild(wrapper._pixiApp.view);
+            }
+            if (wrapper._pixiApp) {
+              wrapper._pixiApp.destroy(true, { children: true });
+            }
+
+            // clear stored references
+            wrapper._pixiApp = null;
+            wrapper._filter = null;
+            wrapper._isAnimating = false;
+          },
+        });
+      }
+
+      // Observer setup: listen for entry/exit and call forward/reverse accordingly
+      function triggerInkOnViewFourth() {
+        const wrapper = document.querySelector(".inkWrapFourth");
+        const imgSelector = ".inkImageFourth";
+        if (!wrapper) return;
+
+        // set initial flags
+        wrapper._pixiApp = null;
+        wrapper._filter = null;
+        wrapper._isAnimating = false;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const e = entries[0];
+            if (e.isIntersecting) {
+              // section came into view -> play forward animation
+              forwardInkEffectFourth(".inkWrapFourth", imgSelector);
+            } else {
+              // section left view -> when leaving (scroll up or down), create reversed distorted look
+              // but only create reverse if there's no existing canvas (i.e., if image currently visible)
+              // This prevents repeatedly re-triggering while already distorted.
+              // We want user to see distortion next time they scroll back in.
+              if (!wrapper._pixiApp && !wrapper._isAnimating) {
+                // small timeout can avoid firing on small scroll jitter; optional
+                reverseInkEffectFourth(".inkWrapFourth", imgSelector);
+              }
+            }
+          },
+          { threshold: 0.4 }
+        );
+
+        observer.observe(wrapper);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        triggerInkOnViewFourth();
+      });
+    </script>
+
+    <!-- 5th section img animation  -->
+    <script>
+      function createPixiApp(wrapper, w, h) {
+        const app = new PIXI.Application({
+          width: w,
+          height: h,
+          transparent: true,
+          resolution: window.devicePixelRatio || 1,
+          autoDensity: true,
+          antialias: true,
+        });
+        app.view.style.width = w + "px";
+        app.view.style.height = h + "px";
+        app.view.style.display = "block";
+        return app;
+      }
+
+      function ensureSizeStyles(img, w, h) {
+        img.style.width = w + "px";
+        img.style.height = h + "px";
+        img.style.objectFit = "cover";
+        img.style.display = "block";
+      }
+
+      function reverseInkEffectFifth(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
+        if (!wrapper || !img) return;
+
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+
+        // If there's already a running app, don't create another
+        if (wrapper._pixiApp) return;
+
+        ensureSizeStyles(img, w, h);
+
+        // Create app and stage
+        const app = createPixiApp(wrapper, w, h);
+        wrapper.appendChild(app.view);
+        wrapper._pixiApp = app; // store for later
+
+        const container = new PIXI.Container();
+        app.stage.addChild(container);
+
+        const displacementSprite = PIXI.Sprite.from(
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+        );
+        displacementSprite.texture.baseTexture.wrapMode =
+          PIXI.WRAP_MODES.REPEAT;
+        displacementSprite.anchor.set(0.5);
+        displacementSprite.position.set(w / 2, h / 2);
+
+        // Scale displacement sprite so it covers the view (optional but helpful)
+        const tex = displacementSprite.texture;
+        if (tex && tex.width) {
+          const scaleX = (w / tex.width) * 1.5;
+          const scaleY = (h / tex.height) * 1.5;
+          displacementSprite.scale.set(Math.max(scaleX, scaleY));
+        }
+
+        const displacementFilter = new PIXI.filters.DisplacementFilter(
+          displacementSprite
+        );
+
+        // Add sprite to stage (so it renders) and apply filter to container
+        app.stage.addChild(displacementSprite);
+        container.filters = [displacementFilter];
+
+        const bg = PIXI.Sprite.from(img.src);
+        bg.width = w;
+        bg.height = h;
+        bg.x = 0;
+        bg.y = 0;
+        container.addChild(bg);
+
+        // mark state
+        wrapper._isAnimating = true;
+        wrapper._filter = displacementFilter;
+
+        // For reverse effect (clear -> distorted) we'll start from 0 and go to -3000
+        displacementFilter.scale.set(0, 0);
+
+        // hide the real image while reversed
+        img.style.opacity = "0";
+
+        gsap.to(displacementFilter.scale, {
+          x: -3000,
+          y: -3000,
+          duration: 1.8,
+          ease: "expo.inOut",
+          onComplete: () => {
+            wrapper._isAnimating = false;
+            // keep the canvas (do not destroy) so the distorted state remains
+            // leave wrapper._pixiApp in place for the forward animation later
+          },
+        });
+      }
+
+      // Forward (distorted -> normal, then reveal image and remove canvas)
+      function forwardInkEffectFifth(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
+        if (!wrapper || !img) return;
+
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+
+        // If there's already a running animation, skip
+        if (wrapper._isAnimating) return;
+
+        // If there's no existing canvas (app), create one in the distorted state
+        let app = wrapper._pixiApp;
+        let displacementFilter = wrapper._filter;
+
+        // If app doesn't exist, create app and set filter scale large negative (distorted start)
+        if (!app || !displacementFilter) {
+          ensureSizeStyles(img, w, h);
+          app = createPixiApp(wrapper, w, h);
+          wrapper.appendChild(app.view);
+          wrapper._pixiApp = app;
+
+          const container = new PIXI.Container();
+          app.stage.addChild(container);
+
+          const displacementSprite = PIXI.Sprite.from(
+            "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+          );
+          displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
+          displacementSprite.anchor.set(0.5);
+          displacementSprite.position.set(w / 2, h / 2);
+          const tex = displacementSprite.texture;
+          if (tex && tex.width) {
+            const scaleX = (w / tex.width) * 1.5;
+            const scaleY = (h / tex.height) * 1.5;
+            displacementSprite.scale.set(Math.max(scaleX, scaleY));
+          }
+
+          displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+          );
+          app.stage.addChild(displacementSprite);
+
+          container.filters = [displacementFilter];
+
+          const bg = PIXI.Sprite.from(img.src);
+          bg.width = w;
+          bg.height = h;
+          bg.x = 0;
+          bg.y = 0;
+          container.addChild(bg);
+
+          wrapper._filter = displacementFilter;
+        }
+
+        // Start with distorted scale so animation goes to 0
+        displacementFilter.scale.set(-3000, -3000);
+
+        // mark animating & hide real image
+        wrapper._isAnimating = true;
+        img.style.opacity = "0";
+        img.style.display = "block";
+
+        gsap.to(displacementFilter.scale, {
+          x: 0,
+          y: 0,
+          duration: 3,
+          ease: "expo.out",
+          onComplete: () => {
+            // reveal the real image
+            img.style.opacity = "1";
+            img.style.opacity = "none";
+
+            // remove canvas and destroy to free resources
+            if (wrapper._pixiApp && wrapper.contains(wrapper._pixiApp.view)) {
+              wrapper.removeChild(wrapper._pixiApp.view);
+            }
+            if (wrapper._pixiApp) {
+              wrapper._pixiApp.destroy(true, { children: true });
+            }
+
+            // clear stored references
+            wrapper._pixiApp = null;
+            wrapper._filter = null;
+            wrapper._isAnimating = false;
+          },
+        });
+      }
+
+      // Observer setup: listen for entry/exit and call forward/reverse accordingly
+      function triggerInkOnViewFifth() {
+        const wrapper = document.querySelector(".secondImg");
+        const imgSelector = ".inkImageSecond";
+        if (!wrapper) return;
+
+        // set initial flags
+        wrapper._pixiApp = null;
+        wrapper._filter = null;
+        wrapper._isAnimating = false;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const e = entries[0];
+            if (e.isIntersecting) {
+              // section came into view -> play forward animation
+              forwardInkEffectFifth(".secondImg", imgSelector);
+            } else {
+              // section left view -> when leaving (scroll up or down), create reversed distorted look
+              // but only create reverse if there's no existing canvas (i.e., if image currently visible)
+              // This prevents repeatedly re-triggering while already distorted.
+              // We want user to see distortion next time they scroll back in.
+              if (!wrapper._pixiApp && !wrapper._isAnimating) {
+                // small timeout can avoid firing on small scroll jitter; optional
+                reverseInkEffectFifth(".secondImg", imgSelector);
+              }
+            }
+          },
+          { threshold: 0.4 }
+        );
+
+        observer.observe(wrapper);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        triggerInkOnViewFifth();
+      });
+    </script>
+
+    <!-- 7th section img animation  -->
+    <script>
+      function createPixiApp(wrapper, w, h) {
+        const app = new PIXI.Application({
+          width: w,
+          height: h,
+          transparent: true,
+          resolution: window.devicePixelRatio || 1,
+          autoDensity: true,
+          antialias: true,
+        });
+        app.view.style.width = w + "px";
+        app.view.style.height = h + "px";
+        app.view.style.display = "block";
+        return app;
+      }
+
+      function ensureSizeStyles(img, w, h) {
+        img.style.width = w + "px";
+        img.style.height = h + "px";
+        img.style.objectFit = "cover";
+        img.style.display = "block";
+      }
+
+      function reverseInkEffectSeventh(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
+        if (!wrapper || !img) return;
+
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+
+        // If there's already a running app, don't create another
+        if (wrapper._pixiApp) return;
+
+        ensureSizeStyles(img, w, h);
+
+        // Create app and stage
+        const app = createPixiApp(wrapper, w, h);
+        wrapper.appendChild(app.view);
+        wrapper._pixiApp = app; // store for later
+
+        const container = new PIXI.Container();
+        app.stage.addChild(container);
+
+        const displacementSprite = PIXI.Sprite.from(
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+        );
+        displacementSprite.texture.baseTexture.wrapMode =
+          PIXI.WRAP_MODES.REPEAT;
+        displacementSprite.anchor.set(0.5);
+        displacementSprite.position.set(w / 2, h / 2);
+
+        // Scale displacement sprite so it covers the view (optional but helpful)
+        const tex = displacementSprite.texture;
+        if (tex && tex.width) {
+          const scaleX = (w / tex.width) * 1.5;
+          const scaleY = (h / tex.height) * 1.5;
+          displacementSprite.scale.set(Math.max(scaleX, scaleY));
+        }
+
+        const displacementFilter = new PIXI.filters.DisplacementFilter(
+          displacementSprite
+        );
+
+        // Add sprite to stage (so it renders) and apply filter to container
+        app.stage.addChild(displacementSprite);
+        container.filters = [displacementFilter];
+
+        const bg = PIXI.Sprite.from(img.src);
+        bg.width = w;
+        bg.height = h;
+        bg.x = 0;
+        bg.y = 0;
+        container.addChild(bg);
+
+        // mark state
+        wrapper._isAnimating = true;
+        wrapper._filter = displacementFilter;
+
+        // For reverse effect (clear -> distorted) we'll start from 0 and go to -3000
+        displacementFilter.scale.set(0, 0);
+
+        // hide the real image while reversed
+        img.style.opacity = "0";
+
+        gsap.to(displacementFilter.scale, {
+          x: -3000,
+          y: -3000,
+          duration: 1.8,
+          ease: "expo.inOut",
+          onComplete: () => {
+            wrapper._isAnimating = false;
+            // keep the canvas (do not destroy) so the distorted state remains
+            // leave wrapper._pixiApp in place for the forward animation later
+          },
+        });
+      }
+
+      // Forward (distorted -> normal, then reveal image and remove canvas)
+      function forwardInkEffectSeventh(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
+        if (!wrapper || !img) return;
+
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+
+        // If there's already a running animation, skip
+        if (wrapper._isAnimating) return;
+
+        // If there's no existing canvas (app), create one in the distorted state
+        let app = wrapper._pixiApp;
+        let displacementFilter = wrapper._filter;
+
+        // If app doesn't exist, create app and set filter scale large negative (distorted start)
+        if (!app || !displacementFilter) {
+          ensureSizeStyles(img, w, h);
+          app = createPixiApp(wrapper, w, h);
+          wrapper.appendChild(app.view);
+          wrapper._pixiApp = app;
+
+          const container = new PIXI.Container();
+          app.stage.addChild(container);
+
+          const displacementSprite = PIXI.Sprite.from(
+            "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+          );
+          displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
+          displacementSprite.anchor.set(0.5);
+          displacementSprite.position.set(w / 2, h / 2);
+          const tex = displacementSprite.texture;
+          if (tex && tex.width) {
+            const scaleX = (w / tex.width) * 1.5;
+            const scaleY = (h / tex.height) * 1.5;
+            displacementSprite.scale.set(Math.max(scaleX, scaleY));
+          }
+
+          displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+          );
+          app.stage.addChild(displacementSprite);
+
+          container.filters = [displacementFilter];
+
+          const bg = PIXI.Sprite.from(img.src);
+          bg.width = w;
+          bg.height = h;
+          bg.x = 0;
+          bg.y = 0;
+          container.addChild(bg);
+
+          wrapper._filter = displacementFilter;
+        }
+
+        // Start with distorted scale so animation goes to 0
+        displacementFilter.scale.set(-3000, -3000);
+
+        // mark animating & hide real image
+        wrapper._isAnimating = true;
+        img.style.opacity = "0";
+        img.style.display = "block";
+
+        gsap.to(displacementFilter.scale, {
+          x: 0,
+          y: 0,
+          duration: 3,
+          ease: "expo.out",
+          onComplete: () => {
+            // reveal the real image
+            img.style.opacity = "1";
+            img.style.opacity = "none";
+
+            // remove canvas and destroy to free resources
+            if (wrapper._pixiApp && wrapper.contains(wrapper._pixiApp.view)) {
+              wrapper.removeChild(wrapper._pixiApp.view);
+            }
+            if (wrapper._pixiApp) {
+              wrapper._pixiApp.destroy(true, { children: true });
+            }
+
+            // clear stored references
+            wrapper._pixiApp = null;
+            wrapper._filter = null;
+            wrapper._isAnimating = false;
+          },
+        });
+      }
+
+      // Observer setup: listen for entry/exit and call forward/reverse accordingly
+      function triggerInkOnViewSeventh() {
+        const wrapper = document.querySelector(".testimonialImgImg");
+        const imgSelector = ".testimonialImgWrap";
+        if (!wrapper) return;
+
+        // set initial flags
+        wrapper._pixiApp = null;
+        wrapper._filter = null;
+        wrapper._isAnimating = false;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const e = entries[0];
+            if (e.isIntersecting) {
+              // section came into view -> play forward animation
+              forwardInkEffectSeventh(".testimonialImgImg", imgSelector);
+            } else {
+              // section left view -> when leaving (scroll up or down), create reversed distorted look
+              // but only create reverse if there's no existing canvas (i.e., if image currently visible)
+              // This prevents repeatedly re-triggering while already distorted.
+              // We want user to see distortion next time they scroll back in.
+              if (!wrapper._pixiApp && !wrapper._isAnimating) {
+                // small timeout can avoid firing on small scroll jitter; optional
+                reverseInkEffectSeventh(".testimonialImgImg", imgSelector);
+              }
+            }
+          },
+          { threshold: 0.4 }
+        );
+
+        observer.observe(wrapper);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        triggerInkOnViewSeventh();
+      });
+    </script>
+
+    <script src="js/jquery-2.1.4.js"></script>
 <script src="js/main.js"></script> Resource jQuery
-
   </body>
 </html>
