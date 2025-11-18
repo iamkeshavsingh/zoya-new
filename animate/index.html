@@ -130,8 +130,25 @@
         position: relative;
         z-index: 0;
       }
-
+      .journeyContentSecLeftParaMob {
+        display: none;
+      }
       @media screen and (max-width: 600px) {
+        .journeySec {
+          height: 630px;
+        }
+        .headSecJourney {
+          padding-top: 44px;
+        }
+        .headingJourney {
+          font-size: 36px;
+        }
+        .smLine {
+          display: none;
+        }
+        .headSecJourney img {
+          width: 60px;
+        }
         .journeyContentSec {
           flex-direction: column;
           justify-content: center;
@@ -145,9 +162,25 @@
         .journeyContentSecLeft h3 {
           font-size: 18px;
           margin-top: 58px;
+          padding-bottom: 20px;
         }
         .journeyContentSecLeft h3 span {
           font-size: 28px;
+        }
+        .journeyContentSecLeftPara {
+          display: none;
+        }
+        .journeyContentSecLeftParaMob {
+          display: block;
+          font-size: 14px;
+          line-height: 180%;
+          padding: 0 32px;
+        }
+        .journeyContentSecRight {
+          width: 100%;
+        }
+        #inkWrapper {
+          height: auto;
         }
       }
 
@@ -221,7 +254,7 @@
       .third_sec_content_right h3 span {
         font-size: 42px;
       }
-      .third_sec_content_right p {
+      .third_sec_content_right .third_sec_content_right_Des {
         font-size: 14px;
         line-height: 180%;
         text-align: center;
@@ -229,6 +262,55 @@
         text-align: center;
         max-width: 380px;
       }
+      .third_sec_content_right_Mob {
+        display: none;
+      }
+
+      @media screen and (max-width: 600px) {
+        .third_sec_content {
+          flex-direction: column-reverse;
+          padding: 0 20px;
+          overflow: hidden;
+          gap: 0;
+        }
+        .third_sec_content_left {
+          width: 100%;
+          padding-left: 0;
+        }
+        .third_sec_content_right {
+          width: 100%;
+          padding-right: 0;
+        }
+        .third_sec_content_left img {
+          width: 100%;
+          height: 450px;
+          overflow: hidden;
+          margin-left: 40px;
+        }
+        .third_sec_content_right img {
+          width: 72px;
+          height: 74px;
+        }
+        .third_sec_content_right h3 {
+          font-size: 18px;
+          padding-bottom: 0;
+        }
+        .third_sec_content_right h3 span {
+          font-size: 28px;
+        }
+        .third_sec_content_right .third_sec_content_right_Des {
+          display: none;
+        }
+        .third_sec_content_right_Mob {
+          display: block;
+          font-size: 14px;
+          line-height: 180%;
+          font-weight: 400;
+          color: #4d4929;
+          text-align: center;
+        }
+      }
+
       /* Fourth Section Styles  */
 
       .inkWrapFourth {
@@ -1142,12 +1224,6 @@
       }
 
       @media screen and (max-width: 600px) {
-        .headingJourney {
-          font-size: 36px;
-        }
-        .headSecJourney img {
-          width: 60px;
-        }
       }
     </style>
   </head>
@@ -1163,9 +1239,9 @@
     </div>
     <!-- .cd-modal -->
 
-<div class="cd-modal">
-<div class="modal-content">
-		<!-- <h1 id="modelHeading">My Modal Content</h1>
+    <div class="cd-modal">
+      <div class="modal-content">
+        <!-- <h1 id="modelHeading">My Modal Content</h1>
 		
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla, nesciunt molestias, iusto aliquam aperiam est qui possimus reprehenderit ipsam ea aut assumenda inventore iste! Animi quaerat facere repudiandae earum quisquam accusamus tempora, delectus nesciunt, provident quae aliquam, voluptatum beatae quis similique in maiores repellat eligendi voluptas veniam optio illum vero! Eius, dignissimos esse eligendi veniam.
@@ -1174,9 +1250,11 @@
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis saepe amet sit fugit rerum, corporis minus vitae officia quaerat incidunt voluptate, blanditiis ea est quibusdam voluptas animi quasi totam magni, commodi praesentium. Possimus quam illo ipsam iste unde totam cupiditate deleniti, impedit assumenda hic eligendi natus tempora dolores quod mollitia ab non sunt eaque adipisci, suscipit quas aliquid officiis beatae. Necessitatibus voluptatibus, perferendis tenetur perspiciatis adipisci nesciunt eum ex fuga commodi iure numquam enim rem ullam labore nisi magni sint voluptatem quos! Eum iure exercitationem voluptates repellendus culpa doloremque laborum animi illum, sint fugit soluta possimus a fuga veritatis molestias corporis placeat illo pariatur dolor reiciendis earum, sapiente omnis. Placeat maiores omnis, porro officia, laborum eos. Fugiat mollitia inventore consequuntur odit eaque, rerum recusandae, eum sint molestiae consequatur culpa deserunt quae aliquid dolor tempora tenetur architecto repellendus enim quasi atque, odio voluptas. Tenetur repellendus explicabo ipsum inventore quia aut eos expedita necessitatibus asperiores blanditiis! Delectus nisi laudantium ipsum! Quasi blanditiis corrupti dicta maiores placeat laboriosam delectus ipsum facere voluptas, magnam voluptatibus, perferendis alias ullam saepe, perspiciatis recusandae voluptates, dolores praesentium?
 		</p> -->
-	</div> <!-- .modal-content -->
-	<a href="#0" class="modal-close">Close</a>
-</div> <!-- .cd-modal -->
+      </div>
+      <!-- .modal-content -->
+      <a href="#0" class="modal-close">Close</a>
+    </div>
+    <!-- .cd-modal -->
     <div class="cd-transition-layer">
       <div class="bg-layer"></div>
     </div>
@@ -1206,6 +1284,11 @@
           <div id="inkWrapper">
             <img id="inkImage" src="../imgBespoke/journey.png" alt="journey" />
           </div>
+          <p class="journeyContentSecLeftParaMob">
+            A bespoke jewel begins not in metal or stone, but in a moment
+            suspended between thought and feeling a glimmer of memory, a quiet
+            pulse of longing.
+          </p>
         </div>
       </div>
     </section>
@@ -1220,6 +1303,11 @@
               alt="thirdImg"
             />
           </div>
+          <p class="third_sec_content_right_Mob">
+            Within the atelier’s silence, gold is coaxed into emotion and
+            gemstones awaken to light. Each gesture of the artisan is a verse,
+            each facet a breath of poetry.
+          </p>
         </div>
 
         <div class="third_sec_content_right">
@@ -1228,7 +1316,7 @@
             When Craft Transcends Creation <br />
             <span>and Becomes Immortality</span>
           </h3>
-          <p>
+          <p class="third_sec_content_right_Des">
             Within the atelier’s silence, gold is coaxed into emotion and
             gemstones awaken to light. Each gesture of the artisan is a verse,
             each facet a breath of poetry.
@@ -1461,7 +1549,7 @@
       </div>
     </section>
 
-    <section class="contactSec">
+    <!-- <section class="contactSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Contact Us</h3>
@@ -1504,15 +1592,15 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- VIDEO MODAL -->
-    <div id="videoModal" class="modal">
+    <!-- <div id="videoModal" class="modal">
       <div class="modal-contennt">
         <span class="closeBtn">&times;</span>
         <video id="modalVideo" controls autoplay></video>
       </div>
-    </div>
+    </div> -->
 
     <!-- City slider Html  -->
 
@@ -2731,295 +2819,314 @@ window.addEventListener("load", () => {
 
     <!-- First Section (Journey) Ink Animation - Separate -->
 
-<script>
-(function(){
+    <script>
+      (function () {
+        if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
 
-  if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
+        const wrapper =
+          document.querySelector("#inkWrapper") ||
+          document.querySelector(".inkWrapFourth") ||
+          document.querySelector(".ink-wrapper");
 
-  const wrapper = document.querySelector('#inkWrapper') ||
-                  document.querySelector('.inkWrapFourth') ||
-                  document.querySelector('.ink-wrapper');
+        const img =
+          document.querySelector("#inkImage") ||
+          document.querySelector(".inkImageFourth") ||
+          document.querySelector(".ink-image");
 
-  const img = document.querySelector('#inkImage') ||
-              document.querySelector('.inkImageFourth') ||
-              document.querySelector('.ink-image');
+        if (!wrapper || !img) return;
 
-  if (!wrapper || !img) return;
+        const DISP_SRC =
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
 
-  const DISP_SRC = 'https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png';
+        img.style.opacity = 0;
+        img.style.transition = img.style.transition || "opacity 0.3s ease";
 
-  img.style.opacity = 0;
-  img.style.transition = img.style.transition || 'opacity 0.3s ease';
+        wrapper._pixiApp = null;
+        wrapper._isAnimating = false;
 
-  wrapper._pixiApp = null;
-  wrapper._isAnimating = false;
+        function createPixiApp(w, h) {
+          const app = new PIXI.Application({
+            width: w,
+            height: h,
+            transparent: true,
+            resolution: window.devicePixelRatio || 1,
+            autoDensity: true,
+            antialias: true,
+          });
 
-  function createPixiApp(w, h) {
-    const app = new PIXI.Application({
-      width: w,
-      height: h,
-      transparent: true,
-      resolution: window.devicePixelRatio || 1,
-      autoDensity: true,
-      antialias: true
-    });
+          app.view.style.width = "100%";
+          app.view.style.height = "100%";
+          app.view.style.display = "block";
+          app.view.style.position = "absolute";
+          app.view.style.top = "0";
+          app.view.style.left = "0";
+          app.view.style.pointerEvents = "none";
+          app.view.style.zIndex = "1";
 
-    app.view.style.width = '100%';
-    app.view.style.height = '100%';
-    app.view.style.display = 'block';
-    app.view.style.position = 'absolute';
-    app.view.style.top = '0';
-    app.view.style.left = '0';
-    app.view.style.pointerEvents = 'none';
-    app.view.style.zIndex = '1';
+          return app;
+        }
 
-    return app;
-  }
+        function forwardInkJourney() {
+          if (wrapper._isAnimating) return;
 
-  function forwardInkJourney() {
-    if (wrapper._isAnimating) return;
+          const w = wrapper.offsetWidth;
+          const h = wrapper.offsetHeight;
+          if (w === 0 || h === 0) return;
 
-    const w = wrapper.offsetWidth;
-    const h = wrapper.offsetHeight;
-    if (w === 0 || h === 0) return;
+          wrapper._isAnimating = true;
 
-    wrapper._isAnimating = true;
+          const app = createPixiApp(w, h);
+          if (getComputedStyle(wrapper).position === "static") {
+            wrapper.style.position = "relative";
+          }
+          wrapper.insertBefore(app.view, img);
+          wrapper._pixiApp = app;
 
-    const app = createPixiApp(w, h);
-    if (getComputedStyle(wrapper).position === 'static') {
-      wrapper.style.position = 'relative';
-    }
-    wrapper.insertBefore(app.view, img);
-    wrapper._pixiApp = app;
+          const container = new PIXI.Container();
+          app.stage.addChild(container);
 
-    const container = new PIXI.Container();
-    app.stage.addChild(container);
+          const displacementSprite = PIXI.Sprite.from(DISP_SRC);
+          displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
+          displacementSprite.anchor.set(0.5);
+          displacementSprite.position.set(w / 2, h / 2);
 
-    const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-    displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-    displacementSprite.anchor.set(0.5);
-    displacementSprite.position.set(w / 2, h / 2);
+          const tex = displacementSprite.texture;
+          const scaleX = (w / tex.width) * 1.5;
+          const scaleY = (h / tex.height) * 1.5;
+          displacementSprite.scale.set(Math.max(scaleX, scaleY));
 
-    const tex = displacementSprite.texture;
-    const scaleX = (w / tex.width) * 1.5;
-    const scaleY = (h / tex.height) * 1.5;
-    displacementSprite.scale.set(Math.max(scaleX, scaleY));
+          const imgNaturalW = img.naturalWidth || img.width || w;
+          const imgNaturalH = img.naturalHeight || img.height || h;
+          const imgAspect = imgNaturalW / imgNaturalH;
+          const containerAspect = w / h;
 
-    const imgNaturalW = img.naturalWidth || img.width || w;
-    const imgNaturalH = img.naturalHeight || img.height || h;
-    const imgAspect = imgNaturalW / imgNaturalH;
-    const containerAspect = w / h;
+          let bgW, bgH, bgX, bgY;
+          if (imgAspect > containerAspect) {
+            bgW = w;
+            bgH = w / imgAspect;
+            bgX = 0;
+            bgY = (h - bgH) / 2;
+          } else {
+            bgW = h * imgAspect;
+            bgH = h;
+            bgX = (w - bgW) / 2;
+            bgY = 0;
+          }
 
-    let bgW, bgH, bgX, bgY;
-    if (imgAspect > containerAspect) {
-      bgW = w; bgH = w / imgAspect;
-      bgX = 0; bgY = (h - bgH) / 2;
-    } else {
-      bgW = h * imgAspect; bgH = h;
-      bgX = (w - bgW) / 2; bgY = 0;
-    }
+          const bg = PIXI.Sprite.from(img.src);
+          bg.width = bgW;
+          bg.height = bgH;
+          bg.x = bgX;
+          bg.y = bgY;
+          container.addChild(bg);
 
-    const bg = PIXI.Sprite.from(img.src);
-    bg.width = bgW; bg.height = bgH;
-    bg.x = bgX; bg.y = bgY;
-    container.addChild(bg);
+          const displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+          );
+          app.stage.addChild(displacementSprite);
+          container.filters = [displacementFilter];
 
-    const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
-    app.stage.addChild(displacementSprite);
-    container.filters = [displacementFilter];
+          displacementFilter.scale.set(-3000, -3000);
 
-    displacementFilter.scale.set(-3000, -3000);
+          img.style.opacity = 0;
 
-    img.style.opacity = 0;
+          gsap.to(displacementFilter.scale, {
+            x: 0,
+            y: 0,
+            duration: 2.2,
+            ease: "expo.out",
+            onComplete: function () {
+              img.style.opacity = 1;
 
-    gsap.to(displacementFilter.scale, {
-      x: 0,
-      y: 0,
-      duration: 2.2,
-      ease: 'expo.out',
-      onComplete: function() {
+              setTimeout(() => {
+                if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
 
-        img.style.opacity = 1;
+                try {
+                  app.destroy(true, {
+                    children: true,
+                    texture: true,
+                    baseTexture: true,
+                  });
+                } catch (e) {}
+                wrapper._pixiApp = null;
+                wrapper._isAnimating = false;
+              }, 50);
+            },
+          });
 
-        setTimeout(() => {
-          if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
+          app.ticker.add(() => {
+            displacementSprite.x += 2.2;
+            displacementSprite.y = h / 2;
+          });
+        }
 
-          try { app.destroy(true, { children: true, texture: true, baseTexture: true }); } catch(e){}
-          wrapper._pixiApp = null;
+        function resetSilent() {
+          img.style.opacity = 0;
           wrapper._isAnimating = false;
-        }, 50);
-      }
-    });
+        }
 
-    app.ticker.add(() => {
-      displacementSprite.x += 2.2;
-      displacementSprite.y = h / 2;
-    });
-  }
+        function initObserver() {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              const e = entries[0];
 
-  function resetSilent() {
-    img.style.opacity = 0;
-    wrapper._isAnimating = false;
-  }
+              if (e.isIntersecting) {
+                forwardInkJourney();
+              } else {
+                resetSilent();
+              }
+            },
+            { threshold: 0.4 }
+          );
 
-  function initObserver() {
-    const observer = new IntersectionObserver((entries) => {
-      const e = entries[0];
+          observer.observe(wrapper);
+        }
 
-      if (e.isIntersecting) {
-        forwardInkJourney();
-      } else {
-        resetSilent();
-      }
-    }, { threshold: 0.4 });
+        function startWhenReady() {
+          if (img.complete) initObserver();
+          else img.onload = initObserver;
+        }
 
-    observer.observe(wrapper);
-  }
-
-  function startWhenReady() {
-    if (img.complete) initObserver();
-    else img.onload = initObserver;
-  }
-
-  if (window.modalClosed) {
-    startWhenReady();
-  } else {
-    document.addEventListener('modalClosed', startWhenReady, { once: true });
-  }
-
-})();
-</script>
-
+        if (window.modalClosed) {
+          startWhenReady();
+        } else {
+          document.addEventListener("modalClosed", startWhenReady, {
+            once: true,
+          });
+        }
+      })();
+    </script>
 
     <!-- Third Section Ink Animation - Separate -->
- <script>
-(function () {
-  if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
+    <script>
+      (function () {
+        if (typeof PIXI === "undefined" || typeof gsap === "undefined") return;
 
-  const DISP_SRC =
-    "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
-  const wrapper = document.querySelector(".inkWrapThird");
-  const img = document.querySelector(".inkImageThird");
+        const DISP_SRC =
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png";
+        const wrapper = document.querySelector(".inkWrapThird");
+        const img = document.querySelector(".inkImageThird");
 
-  if (!wrapper || !img) return;
+        if (!wrapper || !img) return;
 
-  // ---- RESET silently when out of viewport ----
-  function resetSilentThird() {
-    img.style.opacity = "0";
-    wrapper._pixiAppThird = null;
-    wrapper._filterThird = null;
-    wrapper._isAnimatingThird = false;
-  }
-
-  function createPixiAppThird(w, h) {
-    const app = new PIXI.Application({
-      width: w,
-      height: h,
-      transparent: true,
-      resolution: window.devicePixelRatio || 1,
-      autoDensity: true,
-      antialias: true,
-    });
-    app.view.style.width = w + "px";
-    app.view.style.height = h + "px";
-    app.view.style.display = "block";
-    return app;
-  }
-
-  // ---- FORWARD ANIMATION ----
-  function forwardInkThird() {
-    if (wrapper._isAnimatingThird) return;
-
-    const w = wrapper.offsetWidth;
-    const h = wrapper.offsetHeight;
-    if (w === 0 || h === 0) return;
-
-    const app = createPixiAppThird(w, h);
-    wrapper.appendChild(app.view);
-    wrapper._pixiAppThird = app;
-
-    const container = new PIXI.Container();
-    app.stage.addChild(container);
-
-    const displacementSprite = PIXI.Sprite.from(DISP_SRC);
-    displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-    displacementSprite.anchor.set(0.5);
-    displacementSprite.position.set(w / 2, h / 2);
-
-    const tex = displacementSprite.texture;
-    if (tex && tex.width) {
-      const scaleX = (w / tex.width) * 1.5;
-      const scaleY = (h / tex.height) * 1.5;
-      displacementSprite.scale.set(Math.max(scaleX, scaleY));
-    }
-
-    const displacementFilter = new PIXI.filters.DisplacementFilter(
-      displacementSprite
-    );
-    app.stage.addChild(displacementSprite);
-    container.filters = [displacementFilter];
-
-    const bg = PIXI.Sprite.from(img.src);
-    bg.width = w;
-    bg.height = h;
-    container.addChild(bg);
-
-    wrapper._filterThird = displacementFilter;
-    wrapper._isAnimatingThird = true;
-
-    // Start distorted
-    displacementFilter.scale.set(-3000, -3000);
-    img.style.opacity = "0";
-
-    // ---- forward animation ----
-    gsap.to(displacementFilter.scale, {
-      x: 0,
-      y: 0,
-      duration: 3,
-      ease: "expo.out",
-      onComplete: () => {
-        img.style.opacity = "1";
-
-        // remove PIXI canvas after reveal
-        if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
-        app.destroy(true, { children: true });
-
-        wrapper._pixiAppThird = null;
-        wrapper._filterThird = null;
-        wrapper._isAnimatingThird = false;
-      },
-    });
-  }
-
-  // ---- OBSERVER ----
-  function initThirdObserver() {
-    const observerThird = new IntersectionObserver(
-      (entries) => {
-        const e = entries[0];
-
-        if (e.isIntersecting) {
-          forwardInkThird(); // run forward animation EVERY TIME
-        } else {
-          resetSilentThird(); // silent reset when out
+        // ---- RESET silently when out of viewport ----
+        function resetSilentThird() {
+          img.style.opacity = "0";
+          wrapper._pixiAppThird = null;
+          wrapper._filterThird = null;
+          wrapper._isAnimatingThird = false;
         }
-      },
-      { threshold: 0.4 }
-    );
 
-    observerThird.observe(wrapper);
-  }
+        function createPixiAppThird(w, h) {
+          const app = new PIXI.Application({
+            width: w,
+            height: h,
+            transparent: true,
+            resolution: window.devicePixelRatio || 1,
+            autoDensity: true,
+            antialias: true,
+          });
+          app.view.style.width = w + "px";
+          app.view.style.height = h + "px";
+          app.view.style.display = "block";
+          return app;
+        }
 
-  // ---- MODAL CHECK ----
-  if (window.modalClosed) {
-    initThirdObserver();
-  } else {
-    document.addEventListener("modalClosed", initThirdObserver, {
-      once: true,
-    });
-  }
-})();
-</script>
+        // ---- FORWARD ANIMATION ----
+        function forwardInkThird() {
+          if (wrapper._isAnimatingThird) return;
 
+          const w = wrapper.offsetWidth;
+          const h = wrapper.offsetHeight;
+          if (w === 0 || h === 0) return;
+
+          const app = createPixiAppThird(w, h);
+          wrapper.appendChild(app.view);
+          wrapper._pixiAppThird = app;
+
+          const container = new PIXI.Container();
+          app.stage.addChild(container);
+
+          const displacementSprite = PIXI.Sprite.from(DISP_SRC);
+          displacementSprite.texture.baseTexture.wrapMode =
+            PIXI.WRAP_MODES.REPEAT;
+          displacementSprite.anchor.set(0.5);
+          displacementSprite.position.set(w / 2, h / 2);
+
+          const tex = displacementSprite.texture;
+          if (tex && tex.width) {
+            const scaleX = (w / tex.width) * 1.5;
+            const scaleY = (h / tex.height) * 1.5;
+            displacementSprite.scale.set(Math.max(scaleX, scaleY));
+          }
+
+          const displacementFilter = new PIXI.filters.DisplacementFilter(
+            displacementSprite
+          );
+          app.stage.addChild(displacementSprite);
+          container.filters = [displacementFilter];
+
+          const bg = PIXI.Sprite.from(img.src);
+          bg.width = w;
+          bg.height = h;
+          container.addChild(bg);
+
+          wrapper._filterThird = displacementFilter;
+          wrapper._isAnimatingThird = true;
+
+          // Start distorted
+          displacementFilter.scale.set(-3000, -3000);
+          img.style.opacity = "0";
+
+          // ---- forward animation ----
+          gsap.to(displacementFilter.scale, {
+            x: 0,
+            y: 0,
+            duration: 3,
+            ease: "expo.out",
+            onComplete: () => {
+              img.style.opacity = "1";
+
+              // remove PIXI canvas after reveal
+              if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
+              app.destroy(true, { children: true });
+
+              wrapper._pixiAppThird = null;
+              wrapper._filterThird = null;
+              wrapper._isAnimatingThird = false;
+            },
+          });
+        }
+
+        // ---- OBSERVER ----
+        function initThirdObserver() {
+          const observerThird = new IntersectionObserver(
+            (entries) => {
+              const e = entries[0];
+
+              if (e.isIntersecting) {
+                forwardInkThird(); // run forward animation EVERY TIME
+              } else {
+                resetSilentThird(); // silent reset when out
+              }
+            },
+            { threshold: 0.4 }
+          );
+
+          observerThird.observe(wrapper);
+        }
+
+        // ---- MODAL CHECK ----
+        if (window.modalClosed) {
+          initThirdObserver();
+        } else {
+          document.addEventListener("modalClosed", initThirdObserver, {
+            once: true,
+          });
+        }
+      })();
+    </script>
 
     <!-- Testimonials Section Ink Animation - Separate -->
     <script>
@@ -3301,161 +3408,165 @@ window.addEventListener("load", () => {
     </script> -->
 
     <!-- 4th section img animation  -->
-<script>
-  function createPixiApp(wrapper, w, h) {
-    const app = new PIXI.Application({
-      width: w,
-      height: h,
-      transparent: true,
-      resolution: window.devicePixelRatio || 1,
-      autoDensity: true,
-      antialias: true
-    });
-    app.view.style.width = w + "px";
-    app.view.style.height = h + "px";
-    app.view.style.display = "block";
-    return app;
-  }
+    <script>
+      function createPixiApp(wrapper, w, h) {
+        const app = new PIXI.Application({
+          width: w,
+          height: h,
+          transparent: true,
+          resolution: window.devicePixelRatio || 1,
+          autoDensity: true,
+          antialias: true,
+        });
+        app.view.style.width = w + "px";
+        app.view.style.height = h + "px";
+        app.view.style.display = "block";
+        return app;
+      }
 
-  function fixImageSize(img, w, h) {
-    img.style.width = w + "px";
-    img.style.height = h + "px";
-    img.style.objectFit = "cover";
-    img.style.display = "block";
-  }
+      function fixImageSize(img, w, h) {
+        img.style.width = w + "px";
+        img.style.height = h + "px";
+        img.style.objectFit = "cover";
+        img.style.display = "block";
+      }
 
-  /* ------------------------------------------------------------
+      /* ------------------------------------------------------------
      RESET STATE (Option C)
      - No animation
      - Just reset distorted state silently
   ------------------------------------------------------------- */
-  function resetInk(wrapper, img) {
-    if (wrapper._pixiApp) {
-      if (wrapper.contains(wrapper._pixiApp.view)) {
-        wrapper.removeChild(wrapper._pixiApp.view);
-      }
-      wrapper._pixiApp.destroy(true, { children: true });
-    }
-
-    wrapper._pixiApp = null;
-    wrapper._filter = null;
-    wrapper._isAnimating = false;
-
-    img.style.opacity = "1"; // show correct clean image
-  }
-
-  /* ------------------------------------------------------------
-     FORWARD ANIMATION (Distorted → Clear)
-  ------------------------------------------------------------- */
-  function forwardInkEffectFourth(wrapperSelector, imgSelector) {
-    const wrapper = document.querySelector(wrapperSelector);
-    const img = document.querySelector(imgSelector);
-    if (!wrapper || !img) return;
-
-    const w = wrapper.offsetWidth;
-    const h = wrapper.offsetHeight;
-    if (w === 0 || h === 0) return;
-
-    if (wrapper._isAnimating) return;
-
-    resetInk(wrapper, img);
-
-    fixImageSize(img, w, h);
-
-    const app = createPixiApp(wrapper, w, h);
-    wrapper.appendChild(app.view);
-    wrapper._pixiApp = app;
-
-    const container = new PIXI.Container();
-    app.stage.addChild(container);
-
-    const displacementSprite = PIXI.Sprite.from(
-      "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
-    );
-    displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-    displacementSprite.anchor.set(0.5);
-    displacementSprite.position.set(w / 2, h / 2);
-
-    const tex = displacementSprite.texture;
-    if (tex && tex.width) {
-      const scaleX = (w / tex.width) * 1.5;
-      const scaleY = (h / tex.height) * 1.5;
-      displacementSprite.scale.set(Math.max(scaleX, scaleY));
-    }
-
-    const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
-    wrapper._filter = displacementFilter;
-
-    app.stage.addChild(displacementSprite);
-    container.filters = [displacementFilter];
-
-    const bg = PIXI.Sprite.from(img.src);
-    bg.width = w;
-    bg.height = h;
-    container.addChild(bg);
-
-    // Start distorted
-    displacementFilter.scale.set(-3000, -3000);
-    wrapper._isAnimating = true;
-    img.style.opacity = "0";
-
-    gsap.to(displacementFilter.scale, {
-      x: 0,
-      y: 0,
-      duration: 3,
-      ease: "expo.out",
-      onComplete: () => {
-        img.style.opacity = "1";
-
-        if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
-        app.destroy(true, { children: true });
+      function resetInk(wrapper, img) {
+        if (wrapper._pixiApp) {
+          if (wrapper.contains(wrapper._pixiApp.view)) {
+            wrapper.removeChild(wrapper._pixiApp.view);
+          }
+          wrapper._pixiApp.destroy(true, { children: true });
+        }
 
         wrapper._pixiApp = null;
         wrapper._filter = null;
         wrapper._isAnimating = false;
-      }
-    });
-  }
 
-  /* ------------------------------------------------------------
+        img.style.opacity = "1"; // show correct clean image
+      }
+
+      /* ------------------------------------------------------------
+     FORWARD ANIMATION (Distorted → Clear)
+  ------------------------------------------------------------- */
+      function forwardInkEffectFourth(wrapperSelector, imgSelector) {
+        const wrapper = document.querySelector(wrapperSelector);
+        const img = document.querySelector(imgSelector);
+        if (!wrapper || !img) return;
+
+        const w = wrapper.offsetWidth;
+        const h = wrapper.offsetHeight;
+        if (w === 0 || h === 0) return;
+
+        if (wrapper._isAnimating) return;
+
+        resetInk(wrapper, img);
+
+        fixImageSize(img, w, h);
+
+        const app = createPixiApp(wrapper, w, h);
+        wrapper.appendChild(app.view);
+        wrapper._pixiApp = app;
+
+        const container = new PIXI.Container();
+        app.stage.addChild(container);
+
+        const displacementSprite = PIXI.Sprite.from(
+          "https://res.cloudinary.com/dvxikybyi/image/upload/v1486634113/2yYayZk_vqsyzx.png"
+        );
+        displacementSprite.texture.baseTexture.wrapMode =
+          PIXI.WRAP_MODES.REPEAT;
+        displacementSprite.anchor.set(0.5);
+        displacementSprite.position.set(w / 2, h / 2);
+
+        const tex = displacementSprite.texture;
+        if (tex && tex.width) {
+          const scaleX = (w / tex.width) * 1.5;
+          const scaleY = (h / tex.height) * 1.5;
+          displacementSprite.scale.set(Math.max(scaleX, scaleY));
+        }
+
+        const displacementFilter = new PIXI.filters.DisplacementFilter(
+          displacementSprite
+        );
+        wrapper._filter = displacementFilter;
+
+        app.stage.addChild(displacementSprite);
+        container.filters = [displacementFilter];
+
+        const bg = PIXI.Sprite.from(img.src);
+        bg.width = w;
+        bg.height = h;
+        container.addChild(bg);
+
+        // Start distorted
+        displacementFilter.scale.set(-3000, -3000);
+        wrapper._isAnimating = true;
+        img.style.opacity = "0";
+
+        gsap.to(displacementFilter.scale, {
+          x: 0,
+          y: 0,
+          duration: 3,
+          ease: "expo.out",
+          onComplete: () => {
+            img.style.opacity = "1";
+
+            if (wrapper.contains(app.view)) wrapper.removeChild(app.view);
+            app.destroy(true, { children: true });
+
+            wrapper._pixiApp = null;
+            wrapper._filter = null;
+            wrapper._isAnimating = false;
+          },
+        });
+      }
+
+      /* ------------------------------------------------------------
      VIEWPORT TRIGGER (Option C)
      - Forward when entering
      - Reset silently when leaving
   ------------------------------------------------------------- */
-  function triggerInkOnViewFourth() {
-    const wrapper = document.querySelector(".inkWrapFourth");
-    const img = document.querySelector(".inkImageFourth");
-    if (!wrapper || !img) return;
+      function triggerInkOnViewFourth() {
+        const wrapper = document.querySelector(".inkWrapFourth");
+        const img = document.querySelector(".inkImageFourth");
+        if (!wrapper || !img) return;
 
-    resetInk(wrapper, img);
+        resetInk(wrapper, img);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const entry = entries[0];
 
-        if (entry.isIntersecting) {
-          forwardInkEffectFourth(".inkWrapFourth", ".inkImageFourth");
-        } else {
-          resetInk(wrapper, img); // silent reset
-        }
-      },
-      { threshold: 0.4 }
-    );
+            if (entry.isIntersecting) {
+              forwardInkEffectFourth(".inkWrapFourth", ".inkImageFourth");
+            } else {
+              resetInk(wrapper, img); // silent reset
+            }
+          },
+          { threshold: 0.4 }
+        );
 
-    observer.observe(wrapper);
-  }
+        observer.observe(wrapper);
+      }
 
-  function initFourthSectionAnimation() {
-    triggerInkOnViewFourth();
-  }
+      function initFourthSectionAnimation() {
+        triggerInkOnViewFourth();
+      }
 
-  if (window.modalClosed) {
-    initFourthSectionAnimation();
-  } else {
-    document.addEventListener("modalClosed", initFourthSectionAnimation, { once: true });
-  }
-</script>
-
+      if (window.modalClosed) {
+        initFourthSectionAnimation();
+      } else {
+        document.addEventListener("modalClosed", initFourthSectionAnimation, {
+          once: true,
+        });
+      }
+    </script>
 
     <!-- 5th section img animation  -->
     <script>
@@ -3939,6 +4050,5 @@ window.addEventListener("load", () => {
 
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/main.js"></script>
-    Resource jQuery
   </body>
 </html>
