@@ -6,11 +6,18 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://use.typekit.net/hjh2ywn.css" />
 
-    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700|IM+Fell+Double+Pica:400italic' rel='stylesheet' type='text/css'>
-	
-	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+    <link
+      href="https://fonts.googleapis.com/css?family=PT+Sans:400,700|IM+Fell+Double+Pica:400italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <!-- CSS reset -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Resource style -->
+    <script src="js/modernizr.js"></script>
+    <!-- Modernizr -->
     <!-- GSAP + ScrollTrigger -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
@@ -122,6 +129,26 @@
         display: block;
         position: relative;
         z-index: 0;
+      }
+
+      @media screen and (max-width: 600px) {
+        .journeyContentSec {
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+        }
+        .journeyContentSecLeft {
+          padding-left: 31px;
+          padding-right: 31px;
+          width: 100%;
+        }
+        .journeyContentSecLeft h3 {
+          font-size: 18px;
+          margin-top: 58px;
+        }
+        .journeyContentSecLeft h3 span {
+          font-size: 28px;
+        }
       }
 
       /* Third Section styles */
@@ -1113,31 +1140,41 @@
         /* position: absolute;
         top: 0; */
       }
+
+      @media screen and (max-width: 600px) {
+        .headingJourney {
+          font-size: 36px;
+        }
+        .headSecJourney img {
+          width: 60px;
+        }
+      }
     </style>
   </head>
 
   <body>
+    <div class="cd-modal">
+      <div class="modal-content">
+        <h1 id="modelHeading">My Modal Content</h1>
 
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi
+          repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A
+          rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem
+          fugiat, porro animi tempora? Sit harum nulla, nesciunt molestias,
+          iusto aliquam aperiam est qui possimus reprehenderit ipsam ea aut
+          assumenda inventore iste! Animi quaerat facere repudiandae earum
+          quisquam accusamus tempora, delectus nesciunt, provident quae aliquam,
+          voluptatum beatae quis similique in maiores repellat eligendi voluptas
+          veniam optio illum vero! Eius, dignissimos esse eligendi veniam.
+        </p>
 
 <div class="cd-modal">
-	<div class="modal-content">
-		<h1 id="modelHeading">My Modal Content</h1>
-		
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla, nesciunt molestias, iusto aliquam aperiam est qui possimus reprehenderit ipsam ea aut assumenda inventore iste! Animi quaerat facere repudiandae earum quisquam accusamus tempora, delectus nesciunt, provident quae aliquam, voluptatum beatae quis similique in maiores repellat eligendi voluptas veniam optio illum vero! Eius, dignissimos esse eligendi veniam.
-		</p>
 
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis saepe amet sit fugit rerum, corporis minus vitae officia quaerat incidunt voluptate, blanditiis ea est quibusdam voluptas animi quasi totam magni, commodi praesentium. Possimus quam illo ipsam iste unde totam cupiditate deleniti, impedit assumenda hic eligendi natus tempora dolores quod mollitia ab non sunt eaque adipisci, suscipit quas aliquid officiis beatae. Necessitatibus voluptatibus, perferendis tenetur perspiciatis adipisci nesciunt eum ex fuga commodi iure numquam enim rem ullam labore nisi magni sint voluptatem quos! Eum iure exercitationem voluptates repellendus culpa doloremque laborum animi illum, sint fugit soluta possimus a fuga veritatis molestias corporis placeat illo pariatur dolor reiciendis earum, sapiente omnis. Placeat maiores omnis, porro officia, laborum eos. Fugiat mollitia inventore consequuntur odit eaque, rerum recusandae, eum sint molestiae consequatur culpa deserunt quae aliquid dolor tempora tenetur architecto repellendus enim quasi atque, odio voluptas. Tenetur repellendus explicabo ipsum inventore quia aut eos expedita necessitatibus asperiores blanditiis! Delectus nisi laudantium ipsum! Quasi blanditiis corrupti dicta maiores placeat laboriosam delectus ipsum facere voluptas, magnam voluptatibus, perferendis alias ullam saepe, perspiciatis recusandae voluptates, dolores praesentium?
-		</p>
-	</div> <!-- .modal-content -->
-
-	<a href="#0" class="modal-close">Close</a>
-</div> <!-- .cd-modal -->
-
-<div class="cd-transition-layer"> 
-	<div class="bg-layer"></div>
-</div> <!-- .cd-transition-layer -->
+    <div class="cd-transition-layer">
+      <div class="bg-layer"></div>
+    </div>
+    <!-- .cd-transition-layer -->
 
     <section class="journeySec">
       <div class="headSecJourney">
@@ -1167,7 +1204,7 @@
       </div>
     </section>
 
-    <section class="third_sec">
+    <!-- <section class="third_sec">
       <div class="third_sec_content">
         <div class="third_sec_content_left">
           <div class="inkWrapThird">
@@ -1192,9 +1229,9 @@
           </p>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section class="FourthSec">
+    <!-- <section class="FourthSec">
       <div class="FourthSecWidth">
         <div class="headSecJourney">
           <img src="../imgBespoke/arrow.png" alt="" />
@@ -1250,9 +1287,9 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section class="fifthSec">
+    <!-- <section class="fifthSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Our Offerings</h3>
@@ -1279,8 +1316,9 @@
           alt="elephent"
         />
       </div>
-    </section>
-    <section class="fifthSecBottomCards">
+    </section> -->
+
+    <!-- <section class="fifthSecBottomCards">
       <div class="fifthCardGrp">
         <div class="fifthCard1">
           <img src="../imgBespoke/card1Bg.png" alt="card1Bg" />
@@ -1317,9 +1355,9 @@
         <p>Begin Your Bespoke Journey.</p>
         <img src="../imgBespoke/arrow-right.png" alt="arrow-right" />
       </div>
-    </section>
+    </section> -->
 
-    <section class="sixthSec">
+    <!-- <section class="sixthSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Our Creations</h3>
@@ -1328,7 +1366,7 @@
 
       <div class="sixthSectionContent">
         <div class="sixthSectionContentLeft">
-          <!-- original img kept for fallback; script will hide it and insert a PIXI canvas -->
+       
           <img src="../imgBespoke/crown.png" alt="crown" />
         </div>
 
@@ -1360,9 +1398,9 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section class="testimonialSec">
+    <!-- <section class="testimonialSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Testimonials</h3>
@@ -1416,9 +1454,9 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section class="contactSec">
+    <!-- <section class="contactSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Contact Us</h3>
@@ -1461,19 +1499,19 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- VIDEO MODAL -->
-    <div id="videoModal" class="modal">
+    <!-- <div id="videoModal" class="modal">
       <div class="modal-contennt">
         <span class="closeBtn">&times;</span>
         <video id="modalVideo" controls autoplay></video>
       </div>
-    </div>
+    </div> -->
 
     <!-- City slider Html  -->
 
-    <section class="store-section">
+    <!-- <section class="store-section">
       <div class="content">
         <h2>
           Come meet us, right here
@@ -1532,7 +1570,7 @@
           />
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Letest Press HTML -->
     <section class="letestPressSec">
@@ -4042,6 +4080,7 @@ window.addEventListener("load", () => {
     </script>
 
     <script src="js/jquery-2.1.4.js"></script>
-<script src="js/main.js"></script> Resource jQuery
+    <script src="js/main.js"></script>
+    Resource jQuery
   </body>
 </html>
