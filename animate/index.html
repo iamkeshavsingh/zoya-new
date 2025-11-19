@@ -613,9 +613,11 @@
         display: flex;
         align-items: end;
         justify-content: end;
+        margin-right: 20px;
       }
       .sliderBtn,
-      .sliderBtn2 {
+      .sliderBtn2,
+      .sliderBtn3 {
         width: 138px;
         height: 48px;
         border: 1px solid #b8b2a5;
@@ -627,6 +629,11 @@
         cursor: pointer;
       }
       .sliderBtn2 {
+        margin-top: 0;
+      }
+      .sliderBtn3 {
+        width: 115px;
+        height: 40px;
         margin-top: 0;
       }
       .sliderBtnPrev {
@@ -657,6 +664,22 @@
       .vLine2 {
         border: 0.5px solid #b8b2a5;
         width: 16px;
+        rotate: 90deg;
+        position: absolute;
+        bottom: 13%;
+        left: 45%;
+      }
+      .vLine3 {
+        border: 0.5px solid #b8b2a5;
+        width: 13px;
+        rotate: 90deg;
+        position: absolute;
+        top: 13%;
+        left: 45%;
+      }
+      .vLine4 {
+        border: 0.5px solid #b8b2a5;
+        width: 13px;
         rotate: 90deg;
         position: absolute;
         bottom: 13%;
@@ -1056,6 +1079,9 @@
         color: "#232323";
       }
       @media screen and (max-width: 600px) {
+        .contactSec {
+          height: 900px;
+        }
         .contactFormSec {
           position: relative;
           top: 46px;
@@ -1316,6 +1342,26 @@
         color: #000000;
         font-weight: 400;
       }
+
+      @media screen and (max-width: 600px) {
+        .store-section {
+          padding-left: 0;
+          flex-direction: column-reverse;
+        }
+        .store-section .illustration {
+          width: 100%;
+        }
+        .store-section .content {
+          width: 100%;
+          padding-left: 20px;
+        }
+        .store-section h2 {
+          font-size: 22px;
+        }
+        .store-section #city-btn {
+          font-size: 22px;
+        }
+      }
       /* Letest Press Styles */
       .letestPressSec {
         background-color: #eaeae8;
@@ -1412,6 +1458,35 @@
         object-fit: cover;
       }
 
+      @media screen and (max-width: 600px) {
+        .letestPressSec {
+          padding: 0 20px;
+        }
+        .imgSlider {
+          display: none;
+        }
+        .letestCard {
+          width: 100%;
+          height: auto;
+          min-height: 512px;
+          flex-direction: column;
+        }
+        .letestCardLeft {
+          width: 100%;
+        }
+        .letestCardRight {
+          width: 100%;
+          padding: 33px 20px 26px;
+        }
+        .letestCardLeft img {
+          height: 238px;
+        }
+        .cta3 {
+          bottom: -45px;
+          right: 21px;
+        }
+      }
+
       /* ---  */
       /* ------------------ GSAP ------------------------- */
       /* ---  */
@@ -1458,8 +1533,18 @@
         /* position: absolute;
         top: 0; */
       }
+      .sliderBtnContactMob {
+        display: none;
+      }
 
       @media screen and (max-width: 600px) {
+        .sliderBtnContactMob {
+          margin-top: -120px;
+          padding-bottom: 54px;
+        }
+        .sliderBtnContactMob {
+          display: block;
+        }
       }
     </style>
   </head>
@@ -2020,6 +2105,22 @@
             style="rotate: 180deg"
             class="imgSlider letestNextBtn"
           />
+        </div>
+        <div class="sliderBtnContactMob">
+          <div class="sliderBtn">
+            <div class="sliderBtnPrev letestPrevBtnMob">
+              <img src="../imgBespoke/lArrow.png" alt="PrevArrow" />
+            </div>
+            <div class="sliderBtnNext letestNextBtnMob">
+              <img
+                src="../imgBespoke/lArrow.png"
+                alt="NextArrow"
+                style="rotate: 180deg"
+              />
+            </div>
+            <div class="vLine"></div>
+            <div class="vLine2"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -3980,6 +4081,8 @@ window.addEventListener("load", () => {
       document.addEventListener("DOMContentLoaded", () => {
         const prevBtn = document.querySelector(".letestPrevBtn");
         const nextBtn = document.querySelector(".letestNextBtn");
+        const prevBtnMob = document.querySelector(".letestPrevBtnMob");
+        const nextBtnMob = document.querySelector(".letestNextBtnMob");
         const sliderTrack = document.querySelector(
           ".letestPressSlider .sliderTrack"
         );
@@ -3988,16 +4091,21 @@ window.addEventListener("load", () => {
 
         const cards = sliderTrack.querySelectorAll(".letestCard");
         let currentIndex = 0;
-        const cardWidth = 810; // Width of each card (from CSS)
-        const totalCards = cards.length;
+
+        // ✅ FIX: cardWidth अब dynamic हो गया (mobile + desktop दोनों में perfect काम करेगा)
+        function getCardWidth() {
+          return cards[0].offsetWidth;
+        }
 
         function updateSlider() {
-          // Calculate translateX based on card width (no gap between cards)
+          const cardWidth = getCardWidth(); // ← FIX लागू
           const translateX = -(currentIndex * cardWidth);
           sliderTrack.style.transform = `translateX(${translateX}px)`;
         }
 
-        // Next button
+        const totalCards = cards.length;
+
+        // Next button (Desktop)
         nextBtn.addEventListener("click", () => {
           if (currentIndex < totalCards - 1) {
             currentIndex++;
@@ -4005,7 +4113,7 @@ window.addEventListener("load", () => {
           }
         });
 
-        // Previous button
+        // Previous button (Desktop)
         prevBtn.addEventListener("click", () => {
           if (currentIndex > 0) {
             currentIndex--;
@@ -4013,8 +4121,31 @@ window.addEventListener("load", () => {
           }
         });
 
+        // Mobile Next
+        if (nextBtnMob) {
+          nextBtnMob.addEventListener("click", () => {
+            if (currentIndex < totalCards - 1) {
+              currentIndex++;
+              updateSlider();
+            }
+          });
+        }
+
+        // Mobile Prev
+        if (prevBtnMob) {
+          prevBtnMob.addEventListener("click", () => {
+            if (currentIndex > 0) {
+              currentIndex--;
+              updateSlider();
+            }
+          });
+        }
+
         // Initialize
         updateSlider();
+
+        // 👉 Window resize पर भी width correct रहे
+        window.addEventListener("resize", updateSlider);
       });
     </script>
 
