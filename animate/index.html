@@ -154,22 +154,23 @@
       /* Third Section styles */
 
       .inkWrapThird {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        min-height: 450px;
+       position: relative;
+    width: 100%;
+    min-height: 450px;
+    height: 450px; /* fixed height during animation */
       }
 
-      .inkWrapThird canvas {
-        width: 100% !important;
-        height: 100% !important;
-      }
+      .inkWrapThird canvas,
 
-      .inkImageThird {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+      .inkWrapThird img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
       .third_sec {
         background-image: url("../imgBespoke/secondSecBg.png");
@@ -190,11 +191,6 @@
         width: 50%;
       }
       .third_sec_content_left img {
-        width: 826px;
-        height: 806px;
-        position: absolute;
-        /* top: -155px; */
-        object-fit: cover;
         opacity: 0;
       }
       .third_sec_content_right {
