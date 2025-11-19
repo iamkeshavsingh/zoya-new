@@ -139,6 +139,7 @@
         }
         .headSecJourney {
           padding-top: 44px;
+          gap: 10px;
         }
         .headingJourney {
           font-size: 36px;
@@ -533,6 +534,39 @@
         height: 633px;
         object-fit: cover;
       }
+      @media screen and (max-width: 600px) {
+        .fifthSec {
+          height: 600px;
+        }
+        .firstImg {
+          display: none;
+        }
+        .fifthSectionContent {
+          padding-left: 20px;
+          padding-right: 19px;
+          padding-top: 335px;
+        }
+        .secondImg {
+          top: 50px;
+          bottom: unset;
+          right: 17%;
+        }
+        .secondImg img {
+          width: 275px;
+          height: 371px;
+        }
+        .fifthSectionContent h3 {
+          font-size: 18px;
+          text-align: center;
+        }
+        .fifthSectionContent h3 span {
+          font-size: 28px;
+        }
+        .fifthSectionContent p {
+          font-size: 14px;
+          text-align: center;
+        }
+      }
       /* Sixth section styles */
 
       .sixthSec {
@@ -567,6 +601,7 @@
         line-height: 120%;
         color: #4e4b31;
         padding-bottom: 28px;
+        text-transform: uppercase;
       }
       .sixthSectionContentRight p {
         color: #4d4929;
@@ -742,6 +777,51 @@
         width: 47px;
         height: 24px;
       }
+
+      @media screen and (max-width: 600px) {
+        .fifthCard1 img {
+          width: 316px;
+          height: 345px;
+          min-width: 316px;
+          max-height: 345px;
+        }
+        .sixthSectionContent {
+          flex-direction: column;
+          padding-left: 19px;
+          padding-right: 16px;
+          margin-top: 50px;
+        }
+        .sixthSectionContentLeft {
+          width: 100%;
+        }
+        .sixthSectionContentRight {
+          width: 100%;
+        }
+        .sixthSectionContentRight {
+          padding-left: 0;
+          text-align: center;
+        }
+        .sixthSectionContentRight h3 {
+          font-size: 26px;
+          padding-bottom: 12px;
+          text-transform: unset;
+        }
+        .sixthSectionContentRight p {
+          font-size: 12px;
+        }
+        .sliderBtn {
+          margin: 39px auto 0;
+          height: 42px;
+          width: 121px;
+        }
+        .vLine {
+          top: 18%;
+        }
+        .vLine2 {
+          bottom: 18%;
+        }
+      }
+
       /* Testimonal Styles */
       .testimonialSec {
         background-image: url("../imgBespoke/secondSecBg.png");
@@ -1462,7 +1542,7 @@
       </div>
     </section>
 
-    <!-- <section class="fifthSec">
+    <section class="fifthSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Our Offerings</h3>
@@ -1489,9 +1569,9 @@
           alt="elephent"
         />
       </div>
-    </section> -->
+    </section>
 
-    <!-- <section class="fifthSecBottomCards">
+    <section class="fifthSecBottomCards">
       <div class="fifthCardGrp">
         <div class="fifthCard1">
           <img src="../imgBespoke/card1Bg.png" alt="card1Bg" />
@@ -1528,9 +1608,9 @@
         <p>Begin Your Bespoke Journey.</p>
         <img src="../imgBespoke/arrow-right.png" alt="arrow-right" />
       </div>
-    </section> -->
+    </section>
 
-    <!-- <section class="sixthSec">
+    <section class="sixthSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Our Creations</h3>
@@ -1543,7 +1623,7 @@
         </div>
 
         <div class="sixthSectionContentRight">
-          <h3 id="sliderTitle">DANCE OF THE PEACOCK</h3>
+          <h3 id="sliderTitle">Dance Of The peacock</h3>
           <p id="sliderText">
             The tiara designed for the beauty pageant draws inspiration from the
             majestic peacock, a symbol of grace, strength, and captivating
@@ -1570,9 +1650,9 @@
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
-    <!-- <section class="testimonialSec">
+    <section class="testimonialSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Testimonials</h3>
@@ -1626,9 +1706,9 @@
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
-    <!-- <section class="contactSec">
+    <section class="contactSec">
       <div class="headSecJourney">
         <img src="../imgBespoke/arrow.png" alt="" />
         <h3 class="headingJourney">Contact Us</h3>
@@ -1671,19 +1751,19 @@
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
     <!-- VIDEO MODAL -->
-    <!-- <div id="videoModal" class="modal">
+    <div id="videoModal" class="modal">
       <div class="modal-contennt">
         <span class="closeBtn">&times;</span>
         <video id="modalVideo" controls autoplay></video>
       </div>
-    </div> -->
+    </div>
 
     <!-- City slider Html  -->
 
-    <!-- <section class="store-section">
+    <section class="store-section">
       <div class="content">
         <h2>
           Come meet us, right here
@@ -1742,7 +1822,7 @@
           />
         </div>
       </div>
-    </section> -->
+    </section>
 
     <!-- Letest Press HTML -->
     <section class="letestPressSec">
@@ -2414,7 +2494,7 @@
         const slides = [
           {
             img: "../imgBespoke/crown.png",
-            title: "DANCE OF THE PEACOCK",
+            title: "Dance of the Peacock",
             text: "The tiara designed for the beauty pageant draws inspiration from the majestic peacock — a symbol of grace, strength and captivating beauty. Shades of green tourmaline and blue topaz echo the iridescent tail.",
           },
           {
